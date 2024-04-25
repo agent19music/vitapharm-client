@@ -1,6 +1,21 @@
- root{
-	max-width:  99vw !important; 
-}  /*
+
+div.info-bar{
+	min-width: 100vw;
+	display: flex;
+	justify-content:center;
+	background: #000;
+	
+	
+}
+
+div.info-item{
+	margin: auto;
+	height: 3vh;
+	padding: 0.3rem;
+	background: #000;
+	color: white;
+}
+/*
 div.whb-main-header {
     position: relative;
     top: 0;
