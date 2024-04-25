@@ -1,6 +1,8 @@
 import React,{useState, useEffect} from 'react'
 import TextTransition, { presets } from 'react-text-transition';
 import { Input } from '@chakra-ui/react';
+import WithSubnavigation from '../components/Navbar';
+
 
 
 export default function Bands() {
@@ -28,11 +30,18 @@ export default function Bands() {
                 <div className='search-bar'>
                    <Input placeholder='Search product or brand' id='search.InputFieldUnderline__input.InputFieldUnderline__input--active' size='md'/>           
                 </div>
-                <div className='whatsapp'></div>
+                <div className='whatsapp'>
+                  <div></div>
+                  <div></div>
+                </div>
               </div>
 
             </div>
+            <section>
+        <WithSubnavigation/>
+        </section>
         </header>
+       
     </div>
   )
 }
