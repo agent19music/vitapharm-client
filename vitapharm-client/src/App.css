@@ -15,6 +15,38 @@ div.info-item{
 	background: #000;
 	color: white;
 }
+/* CSS Inspector (https://www.baki.co.ke) */ 
+div.primary-bar{
+	min-width: 100vw;
+	display: flex;
+	justify-content: center;
+}
+div.search-bar {
+	align-items: center;
+	box-sizing: border-box;
+	display: flex;
+	flex: 1 1 0%;
+	flex-basis: 0%;
+	flex-grow: 1;
+	max-height: 80px;
+	place-items: center normal;
+}
+
+
+
+img.logo {
+	aspect-ratio: auto 2530 / 1063;
+	box-sizing: border-box;
+	cursor: pointer;
+	display: inline;
+	max-height: 80px;
+	max-width: 165px;
+	overflow: clip;
+	padding: 10px 0px;
+	transform: matrix(1, 0, 0, 1, 0, 0);
+	vertical-align: middle;
+}
+
 /*
 div.whb-main-header {
     position: relative;
