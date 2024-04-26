@@ -73,12 +73,20 @@ section.navbar{
 	justify-content: center;
 
 }
-.banner-slide {
+/* .banner-slide {
 	box-sizing: border-box;
 	overflow: hidden;
 	position: absolute;
 	user-select: none;
 	z-index: 20;
+} */
+.banner-slide {
+	width: 99%;
+	height: 100%;
+	object-fit: cover;
+  }
+.bg{
+background: #000;
 }
 /* h3.image-categories-titles{
 	text-transform: uppercase;

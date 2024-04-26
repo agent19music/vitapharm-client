@@ -19,6 +19,10 @@ export default function Bands() {
     );
     return () => clearTimeout(intervalId);
   }, []);
+
+  const slides = [
+    '/pic3.png'
+  ]
   return (
     <div>
         <header>
@@ -51,8 +55,10 @@ export default function Bands() {
         <WithSubnavigation/>
         </section>
         </header>
-        <section>
-       <BannerCarousel/>
+        <section className='bg max-w-screen '>
+      <Carousel autoSlide={true} >
+       {slides.map((s)=> (<img className='banner-slide' key={index} src={s}/>))}
+       </Carousel>
        </section>
        <section className='image-caegories flex justify-center '>
         <div className='relative'>  <h3 className='image-categories-titles text-center text-orange-700 absolute inset-0'>makeup</h3><img src="/1.jpg" alt="" /></div>

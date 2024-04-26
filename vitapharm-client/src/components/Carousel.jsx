@@ -10,7 +10,7 @@ import 'swiper/css/effect-fade';
 
 const BannerCarousel = () => {
   return (
-    <div style={{ maxWidth: '99vw' }}>
+    <div style={{ maxWidth: '100vw' }}>
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         navigation

@@ -19,11 +19,7 @@ export default function  LandingPage
     return () => clearTimeout(intervalId);
   }, []);
 
-  const slides = [
-    '/pic2npng', 
-    '/pic4.png',
-    'pic1.png'
-  ]
+ 
   return (
     <div>
 
