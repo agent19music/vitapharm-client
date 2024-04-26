@@ -80,7 +80,13 @@ section.navbar{
 	user-select: none;
 	z-index: 20;
 }
-
+/* h3.image-categories-titles{
+	text-transform: uppercase;
+	margin-bottom: 0%;
+	position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+	color: white;
+	font-weight: bold;
+} */
 /*
 div.whb-main-header {
     position: relative;

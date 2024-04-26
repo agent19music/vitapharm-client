@@ -3,6 +3,8 @@ import TextTransition, { presets } from 'react-text-transition';
 import { Input } from '@chakra-ui/react';
 import WithSubnavigation from '../components/Navbar';
 import BannerCarousel from '../components/Carousel';
+import Carousel from '../components/2Carousel';
+
 
 
 
@@ -52,6 +54,14 @@ export default function Bands() {
         <section>
        <BannerCarousel/>
        </section>
+       <section className='image-caegories flex justify-center '>
+        <div className='relative'>  <h3 className='image-categories-titles text-center text-orange-700 absolute inset-0'>makeup</h3><img src="/1.jpg" alt="" /></div>
+         <div>  <h3 className='image-categories-titles text-center self-center' >haircare</h3><img src="/2.jpg" alt="" /></div>
+        <div><h3  className='image-categories-titles text-center'>bodycare</h3><img src="/5.jpg" alt="" /></div>
+        <div><h3  className='image-categories-titles text-center'> skincare</h3><img src="/3.jpg" alt="" /></div> 
+      
+
+       </section >
       
     </div>
   )
