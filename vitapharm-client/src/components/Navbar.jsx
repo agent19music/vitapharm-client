@@ -33,15 +33,15 @@ export default function NavbarWithExtensions() {
       label: 'Category',
       children: [
         {
-          label: 'Action',
+          label: 'Face',
           href: '#',
         },
         {
-          label: 'Romance',
+          label: 'Body',
           href: '#',
         },
         {
-          label: 'Drama',
+          label: 'Hands',
           href: '#',
         },
         // More categories...
@@ -78,12 +78,12 @@ export default function NavbarWithExtensions() {
         px={{ base: 4 }}
         align={'center'}>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Text
+          {/* <Text
             textAlign={useColorModeValue('start', 'center')}
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}>
             My App
-          </Text>
+          </Text> */}
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav navItems={NAV_ITEMS} />

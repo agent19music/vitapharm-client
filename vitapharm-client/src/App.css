@@ -30,6 +30,7 @@ div.search-bar {
 	flex-grow: 1;
 	max-height: 80px;
 	place-items: center normal;
+	max-width: 60vw;
 }
 
 
@@ -46,8 +47,32 @@ img.logo {
 	transform: matrix(1, 0, 0, 1, 0, 0);
 	vertical-align: middle;
 }
-/* CSS Inspector (https://www.baki.co.ke) */ 
+div.whatsapp-info-holder{
+display: flex;
+justify-content: center;
+min-width: 20vw;
+}
+div.whatsapp-info{
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+}
+a.whatsapp {
+    color: #25d366;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 900;
+}
+div.free-shipping-banner{
+	margin: auto;
+}
 
+section.navbar{
+	min-width: 100vw;
+	display: flex;
+	justify-content: center;
+
+}
 .banner-slide {
 	box-sizing: border-box;
 	overflow: hidden;

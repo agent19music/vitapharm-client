@@ -6,12 +6,11 @@ import BannerCarousel from '../components/Carousel';
 
 
 
-
 export default function Bands() {
   const TEXTS = ['30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS', 'BANKAI SENBOZAKURA KAGEYOSHI', 'KATON GYOKYAKU NO JUTSU', 'RASEN SHIRUKEN']
-  const [index, setIndex] = React.useState(0);
+  const [index, setIndex] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const intervalId = setInterval(
       () => setIndex((index) => index + 1),
       4800, // every 4.8 seconds
@@ -32,14 +31,21 @@ export default function Bands() {
                 <div className='search-bar'>
                    <Input placeholder='Search product or brand' id='search.InputFieldUnderline__input.InputFieldUnderline__input--active' size='md'/>           
                 </div>
-                <div className='whatsapp'>
-                  <div></div>
-                  <div></div>
+                <div className='whatsapp-info-holder'>
+                  <div className='whatsapp-info'>
+                    <a href="" className='whatsapp'> Whatsapp</a>
+                    <a href="">0745071299</a>
+                  </div>
+                  <div className='free-shipping-banner'>
+                    <h6>Free shipping</h6>
+                    <p>Orders above 3000 bob</p>
+
+                  </div>
                 </div>
               </div>
 
             </div>
-            <section>
+            <section className='navbar'>
         <WithSubnavigation/>
         </section>
         </header>

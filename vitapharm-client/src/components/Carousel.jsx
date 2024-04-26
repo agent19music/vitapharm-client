@@ -30,7 +30,7 @@ const BannerCarousel = () => {
             src="/pic1.png"
             alt="Banner"
             className="banner-slide"
-            style={{ /* Add your vanilla CSS styles here */ }}
+           
           />
         </SwiperSlide>
         <SwiperSlide className="">
@@ -38,7 +38,15 @@ const BannerCarousel = () => {
             src="/pic2.png"
             alt="Banner"
             className="banner-slide"
-            style={{ /* Add your vanilla CSS styles here */ }}
+            
+          />
+        </SwiperSlide>
+        <SwiperSlide className="">
+          <img
+            src="../assets/pic4.png"
+            alt="Banner"
+            className="banner-slide"
+            
           />
         </SwiperSlide>
         {/* Repeat SwiperSlide for additional images */}
