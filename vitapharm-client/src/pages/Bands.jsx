@@ -2,6 +2,8 @@ import React,{useState, useEffect} from 'react'
 import TextTransition, { presets } from 'react-text-transition';
 import { Input } from '@chakra-ui/react';
 import WithSubnavigation from '../components/Navbar';
+import BannerCarousel from '../components/Carousel';
+
 
 
 
@@ -41,7 +43,10 @@ export default function Bands() {
         <WithSubnavigation/>
         </section>
         </header>
-       
+        <section>
+       <BannerCarousel/>
+       </section>
+      
     </div>
   )
 }

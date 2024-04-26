@@ -8,41 +8,42 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
 
-// Import Tailwind CSS classes
-import 'tailwindcss/tailwind.css';
-
 const BannerCarousel = () => {
   return (
-    <Swiper
-      modules={[Navigation, Pagination, Autoplay, EffectFade]}
-      navigation
-      pagination={{ clickable: true }}
-      spaceBetween={30}
-      centeredSlides={true}
-      autoplay={{
-        delay: 6000,
-        disableOnInteraction: false,
-      }}
-      effect="fade"
-      className="mySwiper"
-    >
-      {/* Add SwiperSlide components here */}
-      <SwiperSlide className="">
-        <img
-          src="/"
-          alt="Banner"
-          className="banner-slide"
-        />
-      </SwiperSlide>
-      <SwiperSlide className="">
-        <img
-          src="/"
-          alt="Banner"
-          className="banner-slide"
-        />
-      </SwiperSlide>
-      {/* Repeat SwiperSlide for additional images */}
-    </Swiper>
+    <div style={{ maxWidth: '99vw' }}>
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay, EffectFade]}
+        navigation
+        pagination={{ clickable: true }}
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 6000,
+          disableOnInteraction: false,
+        }}
+        effect="fade"
+        className="mySwiper"
+      >
+        {/* Add SwiperSlide components here */}
+        <SwiperSlide className="">
+          <img
+            src="/pic1.png"
+            alt="Banner"
+            className="banner-slide"
+            style={{ /* Add your vanilla CSS styles here */ }}
+          />
+        </SwiperSlide>
+        <SwiperSlide className="">
+          <img
+            src="/pic2.png"
+            alt="Banner"
+            className="banner-slide"
+            style={{ /* Add your vanilla CSS styles here */ }}
+          />
+        </SwiperSlide>
+        {/* Repeat SwiperSlide for additional images */}
+      </Swiper>
+    </div>
   );
 };
 

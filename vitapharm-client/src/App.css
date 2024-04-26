@@ -46,6 +46,15 @@ img.logo {
 	transform: matrix(1, 0, 0, 1, 0, 0);
 	vertical-align: middle;
 }
+/* CSS Inspector (https://www.baki.co.ke) */ 
+
+.banner-slide {
+	box-sizing: border-box;
+	overflow: hidden;
+	position: absolute;
+	user-select: none;
+	z-index: 20;
+}
 
 /*
 div.whb-main-header {
