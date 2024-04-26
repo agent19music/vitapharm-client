@@ -82,7 +82,7 @@ export default function NavbarWithExtensions() {
             textAlign={useColorModeValue('start', 'center')}
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}>
-            My App
+            My App 
           </Text> */}
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
