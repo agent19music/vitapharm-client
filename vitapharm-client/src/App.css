@@ -88,6 +88,9 @@ section.navbar{
 .bg{
 background: #000;
 }
+h3.image-categories-titles{
+	text-transform: uppercase;
+}
 /* h3.image-categories-titles{
 	text-transform: uppercase;
 	margin-bottom: 0%;

@@ -55,16 +55,16 @@ export default function Bands() {
         <WithSubnavigation/>
         </section>
         </header>
-        <section className='bg max-w-screen '>
+        <section className='bg max-w-screen m-3'>
       <Carousel autoSlide={true} >
        {slides.map((s)=> (<img className='banner-slide' key={index} src={s}/>))}
        </Carousel>
        </section>
-       <section className='image-caegories flex justify-center '>
-        <div className='relative'>  <h3 className='image-categories-titles text-center text-orange-700 absolute inset-0'>makeup</h3><img src="/1.jpg" alt="" /></div>
-         <div>  <h3 className='image-categories-titles text-center self-center' >haircare</h3><img src="/2.jpg" alt="" /></div>
-        <div><h3  className='image-categories-titles text-center'>bodycare</h3><img src="/5.jpg" alt="" /></div>
-        <div><h3  className='image-categories-titles text-center'> skincare</h3><img src="/3.jpg" alt="" /></div> 
+       <section className='image-categories flex justify-center m-3'>
+        <div className='relative p-2'>  <h3 className='image-categories-titles text-center absolute inset-0 self-center text-white font-extrabold' >makeup</h3><img src="/1.jpg" alt="" /></div>
+         <div className='relative p-2'>  <h3 className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white' >haircare</h3><img src="/2.jpg" alt="" /></div>
+        <div className='relative p-2'><h3  className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white'>bodycare</h3><img src="/5.jpg" alt="" /></div>
+        <div className='relative p-2'><h3  className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white'> skincare</h3><img src="/3.jpg" alt="" /></div> 
       
 
        </section >
