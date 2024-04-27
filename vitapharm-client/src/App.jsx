@@ -14,6 +14,7 @@ function App() {
  
 
   return (
+   
     <BrowserRouter>
     <ChakraProvider>
       <Routes>
@@ -26,6 +27,7 @@ function App() {
     </ChakraProvider>
     
     </BrowserRouter>
+   
   
   )
 }
