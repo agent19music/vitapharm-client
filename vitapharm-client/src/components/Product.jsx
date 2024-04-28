@@ -58,6 +58,12 @@ const ProductList = () => {
       'brand' : "Dior",
       'product_type': 'Lip Oil',
       'price': '1,700' ,
+    },
+    {
+      'image': '/prod5.jpg',
+      'brand' : "Dior",
+      'product_type': 'Lip Oil',
+      'price': '1,700' ,
     }
   ]
   const [start, setStart] = React.useState(0);
