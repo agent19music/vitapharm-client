@@ -31,14 +31,14 @@ const ProductList = () => {
   const products = [
     { 'image': '/prod1.webp',
       'brand' : 'CeraVe',
-      'product_type': 'cleanser',
+      'product_type': 'Hydrating Cleanser',
       'price': '3,700' ,
 
     },
     {
       'image': '/prod2.jpg',
-      'brand' : 'CeraVe',
-      'product_type': 'cleanser',
+      'brand' : "L'oreal",
+      'product_type': 'Scalp Advanced',
       'price': '3,700' ,
     }
   ]
