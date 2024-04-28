@@ -1,12 +1,14 @@
 import React,{useContext} from 'react';
 // import { ProductContext } from '../context/ProductsContext';
 import '../App.css'
+import { ChevronLeft, ChevronRight } from "react-feather"
+
 
 
 const ProductCard = ({ product }) => (
-  <div className="w-full rounded overflow-hidden m-4 hover:cursor-pointer relative self-center bg-orange-300 ">
+  <div className="w-full rounded overflow-hidden m-4 hover:cursor-pointer relative self-center bg-orange-300 h-96 ">
     <div className="w-full overflow-hidden relative">
-      <img className=" w-64 transition-all duration-500 ease-in-out transform hover:scale-110" src={product.image} alt={product.brand} />
+      <img className=" w-64 transition-all duration-500 ease-in-out transform hover:scale-110 img-fluid" src={product.image} alt={product.brand} />
       <div className="absolute inset-0 bg-zinc-0 opacity-50 hover:opacity-0 transition-opacity duration-500 ease-in-out"></div>
       {product.product_colors && product.product_colors.length > 1 && 
         <div className="absolute bottom-1 left-0 px-3 py-1 text-xs font-sans">{product.product_colors.length} colours</div>
@@ -78,14 +80,21 @@ const ProductList = () => {
 
   return (
     <div className=''>
-    <div className="flex flex-col justify-center min-h-screen min-w-screen items-center space-x-6  ">
-     <div className='space-1 align-bottom'>
-     <button aria-label="Previous slide" class="Button-ds ProductRail-Pagination__button ProductRail-Pagination__button--back Button-ds--clear Button-ds--compact Button-ds--icon" type="button" tabindex="0" aria-controls="swiper-wrapper-ef939342c81de69e" aria-disabled="false" onClick={scrollLeft}>
-      <svg class="Button-ds__icon" aria-hidden="true" width="16" height="16"><path d="M12 14.75L4.5 8 12 1.25" fill-rule="nonzero" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-      </button>
-     <button aria-label="Next slide" class="Button-ds ProductRail-Pagination__button ProductRail-Pagination__button--forward Button-ds--clear Button-ds--compact Button-ds--icon" type="button" tabindex="0" aria-controls="swiper-wrapper-ef939342c81de69e" aria-disabled="false" onClick={scrollRight}>
-        <svg class="Button-ds__icon" aria-hidden="true" width="16" height="16"><path d="M4 14.75L11.5 8 4 1.25" fill-rule="nonzero" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg></button>
+    <div className="flex flex-col justify-center  min-w-screen items-center ">
+     <div className='space-1 align-bottom self-end mr-24'>
+     <button
+          onClick={scrollLeft}
+          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
+        >
+          <ChevronLeft size={40} />
+        </button>
+        <button
+          onClick={scrollRight}
+          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
+        >
+        <ChevronRight size={40} />
+        </button>
+    
      </div>
       <div className="flex p-9 transition-all duration-500 ease-in-out ">
         {products.slice(start, start + 4).map((product) => (
