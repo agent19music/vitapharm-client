@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from "react-feather"
 
 
 const ProductCard = ({ product }) => (
-  <div className="w-full rounded overflow-hidden m-4 hover:cursor-pointer relative self-center bg-orange-300 h-96 ">
+  <div className="w-full rounded overflow-hidden m-4 hover:cursor-pointer relative self-center h-96 ">
     <div className="w-full overflow-hidden relative">
       <img className=" w-64 transition-all duration-500 ease-in-out transform hover:scale-110 img-fluid" src={product.image} alt={product.brand} />
       <div className="absolute inset-0 bg-zinc-0 opacity-50 hover:opacity-0 transition-opacity duration-500 ease-in-out"></div>
@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => (
       <p className= "font-sans text-gray-700 text-base">{product.product_type}</p>
     </div>
     <div className="px-6 pt-4 pb-2 text-left">
-     Kshs {product.price &&<span className="font-sans inline-block px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>}
+     Kshs {product.price &&<span className="font-sans inline-block px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{product.price}</span>}
     </div>
   </div>
 );
