@@ -5,6 +5,7 @@ import WithSubnavigation from '../components/Navbar';
 import BannerCarousel from '../components/Carousel';
 import Carousel from '../components/2Carousel';
 import ProductList from '../components/Product';
+import ProductCard from '../components/ProductCard';
 
 
 
@@ -71,6 +72,7 @@ export default function Bands() {
        <section >
         <ProductList/>
        </section>
+       <ProductCard/>
        <section className=' mt-4 '>
         <div className='container flex justify-center items-center m-auto services ' >
           <div className='items-center service-woman 0 mr-24'>
