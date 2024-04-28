@@ -46,6 +46,18 @@ const ProductList = () => {
       'brand' : "ORS",
       'product_type': 'Sheen Spray',
       'price': '3,700' ,
+    },
+    {
+      'image': '/prod4.webp',
+      'brand' : "CeraVe",
+      'product_type': 'Moisturizing Cream',
+      'price': '3,700' ,
+    },
+    {
+      'image': '/prod5.jpg',
+      'brand' : "Dior",
+      'product_type': 'Lip Oil',
+      'price': '1,700' ,
     }
   ]
   const [start, setStart] = React.useState(0);
