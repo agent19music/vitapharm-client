@@ -77,8 +77,8 @@ const ProductList = () => {
   };
 
   return (
-    <div className='flex content-center items-center bg-black'>
-    <div className="flex flex-col justify-center min-h-screen min-w-screen items-center space-x-6 bg-orange-700 ">
+    <div className=''>
+    <div className="flex flex-col justify-center min-h-screen min-w-screen items-center space-x-6  ">
      <div className='space-1 align-bottom'>
      <button aria-label="Previous slide" class="Button-ds ProductRail-Pagination__button ProductRail-Pagination__button--back Button-ds--clear Button-ds--compact Button-ds--icon" type="button" tabindex="0" aria-controls="swiper-wrapper-ef939342c81de69e" aria-disabled="false" onClick={scrollLeft}>
       <svg class="Button-ds__icon" aria-hidden="true" width="16" height="16"><path d="M12 14.75L4.5 8 12 1.25" fill-rule="nonzero" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
