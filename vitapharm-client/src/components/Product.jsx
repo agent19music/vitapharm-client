@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => (
       <p className= "font-sans text-gray-700 text-base">{product.product_type}</p>
     </div>
     <div className="px-6 pt-4 pb-2 text-left">
-      {product.price &&<span className="font-sans inline-block px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{product.price_sign|| '$'}{product.price}{product.currency|| ' CAD'}</span>}
+     Kshs {product.price &&<span className="font-sans inline-block px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"></span>}
     </div>
   </div>
 );
@@ -31,8 +31,15 @@ const ProductList = () => {
   const products = [
     { 'image': '/prod1.webp',
       'brand' : 'CeraVe',
-      ''
+      'product_type': 'cleanser',
+      'price': '3,700' ,
 
+    },
+    {
+      'image': '/prod2.jpg',
+      'brand' : 'CeraVe',
+      'product_type': 'cleanser',
+      'price': '3,700' ,
     }
   ]
   const [start, setStart] = React.useState(0);
