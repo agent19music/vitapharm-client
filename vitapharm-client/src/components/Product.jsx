@@ -29,7 +29,9 @@ const ProductCard = ({ product }) => (
 const ProductList = () => {
   // const { products } = useContext(ProductContext);
   const products = [
-    {
+    { 'image': '/prod1.webp',
+      'brand' : 'CeraVe',
+      ''
 
     }
   ]
