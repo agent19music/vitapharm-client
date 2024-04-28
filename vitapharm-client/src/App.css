@@ -91,11 +91,33 @@ background: #000;
 h3.image-categories-titles{
 	text-transform: uppercase;
 }
+
+@media screen and (max-width: 601px){
+	div.whatsapp-info-holder{
+		display: none ;
+	}
+	section.image-categories{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	div.services{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	div.service-woman{
+		align-self: center;
+		margin: auto;
+		margin-right: none;
+	}
+
+}
 /* h3.image-categories-titles{
 	text-transform: uppercase;
 	margin-bottom: 0%;
 	position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-	color: white;
+color: white;
 	font-weight: bold;
 } */
 /*

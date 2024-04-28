@@ -4,6 +4,7 @@ import { Input } from '@chakra-ui/react';
 import WithSubnavigation from '../components/Navbar';
 import BannerCarousel from '../components/Carousel';
 import Carousel from '../components/2Carousel';
+import ProductList from '../components/Product';
 
 
 
@@ -67,17 +68,20 @@ export default function Bands() {
         <div className='relative p-2'><h3  className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white'> skincare</h3><img src="/3.jpg" alt="" /></div> 
          
        </section >
-       <section className=' mt-4'>
-        <div className='container flex justify-center items-center m-auto'>
-          <div className='flex justify-center items-center '>
-            <img src="/woman.webp" alt="lady" className='img-fluid' />
+       <section className='container'>
+        <ProductList/>
+       </section>
+       <section className=' mt-4 '>
+        <div className='container flex justify-center items-center m-auto services ' >
+          <div className='items-center service-woman 0 mr-24'>
+            <img src="/woman.webp" alt="lady" className='img-fluid  ' />
           </div>
-          <div className='flex-column items-center text-wrap max-w-80'>
-            <div><h4 className='text-bold'>
+          <div className=' container flex-column items-center text-wrap max-w-80'>
+            <div><h4 className=' font-bold' p-4>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime temporibus aliquid sunt recusandae corrupti, ipsa possimus modi, expedita quod hic dolorem aliquam perspiciatis.
               </h4></div>
-            <div><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa reprehenderit facilis sequi laborum repudiandae, enim beatae neque itaque blanditiis illum expedita sapiente exercitationem, dolores suscipit molestiae ea a nulla illo dolor sunt earum ullam magni nesciunt. Laborum magni possimus deleniti natus rem animi dolorum enim nobis labore, nemo nihil atque aliquid necessitatibus consectetur adipisci sint molestias id. Laudantium impedit, recusandae quae, ratione vel facilis magnam nisi ipsum reiciendis vitae hic iste molestias, architecto harum expedita. Odit, quam?</p></div>
-            <div></div>
+            <div><p className='py-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa reprehenderit facilis sequi laborum repudiandae, enim beatae neque itaque blanditiis illum expedita sapiente exercitationem, dolores suscipit molestiae ea a nulla illo dolor sunt earum ullam magni nesciunt. Laborum magni possimus deleniti natus rem animi dolorum enim nobis labore, nemo nihil atque aliquid necessitatibus consectetur adipisci sint m</p></div>
+            <div> <button className=" bg-orange-700 w-100 text-white p-2" type='submit'>Book Service</button></div>
           </div>
           
           </div> 
