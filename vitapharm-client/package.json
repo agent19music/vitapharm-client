@@ -1,4 +1,5 @@
 {
+  "proxy": "https://makeup-api.herokuapp.com",
   "name": "vitapharm",
   "private": true,
   "version": "0.0.0",

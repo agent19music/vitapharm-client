@@ -1,12 +1,12 @@
 import React,{useContext} from 'react';
-import { ProductContext } from '../context/ProductsContext';
+// import { ProductContext } from '../context/ProductsContext';
 import '../App.css'
 
 
 const ProductCard = ({ product }) => (
   <div className="w-full h-full rounded overflow-hidden m-4 hover:cursor-pointer relative ">
     <div className="w-full overflow-hidden relative">
-      <img className=" w-64 transition-all duration-500 ease-in-out transform hover:scale-110" src={product.image_link} alt={product.brand} />
+      <img className=" w-64 transition-all duration-500 ease-in-out transform hover:scale-110" src={product.image} alt={product.brand} />
       <div className="absolute inset-0 bg-zinc-0 opacity-50 hover:opacity-0 transition-opacity duration-500 ease-in-out"></div>
       {product.product_colors && product.product_colors.length > 1 && 
         <div className="absolute bottom-1 left-0 px-3 py-1 text-xs font-sans">{product.product_colors.length} colours</div>
@@ -27,7 +27,12 @@ const ProductCard = ({ product }) => (
 
 
 const ProductList = () => {
-  const { products } = useContext(ProductContext);
+  // const { products } = useContext(ProductContext);
+  const products = [
+    {
+
+    }
+  ]
   const [start, setStart] = React.useState(0);
 
   const scrollLeft = () => {
