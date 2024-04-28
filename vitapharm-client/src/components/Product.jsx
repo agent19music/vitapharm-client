@@ -40,6 +40,12 @@ const ProductList = () => {
       'brand' : "L'oreal",
       'product_type': 'Scalp Advanced',
       'price': '3,700' ,
+    },
+    {
+      'image': '/prod3.jpg',
+      'brand' : "ORS",
+      'product_type': 'Sheen Spray',
+      'price': '3,700' ,
     }
   ]
   const [start, setStart] = React.useState(0);
