@@ -4,7 +4,7 @@ import '../App.css'
 
 
 const ProductCard = ({ product }) => (
-  <div className="w-full h-full rounded overflow-hidden m-4 hover:cursor-pointer relative ">
+  <div className="w-full rounded overflow-hidden m-4 hover:cursor-pointer relative self-center bg-orange-300 ">
     <div className="w-full overflow-hidden relative">
       <img className=" w-64 transition-all duration-500 ease-in-out transform hover:scale-110" src={product.image} alt={product.brand} />
       <div className="absolute inset-0 bg-zinc-0 opacity-50 hover:opacity-0 transition-opacity duration-500 ease-in-out"></div>
@@ -60,9 +60,9 @@ const ProductList = () => {
       'price': '1,700' ,
     },
     {
-      'image': '/prod5.jpg',
-      'brand' : "Dior",
-      'product_type': 'Lip Oil',
+      'image': '/prod6.jpg',
+      'brand' : "CeraVe",
+      'product_type': 'Acne Control Cleanser',
       'price': '1,700' ,
     }
   ]
@@ -77,7 +77,8 @@ const ProductList = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center min-h-screen min-w-screen items-center space-x-6">
+    <div className='flex content-center items-center bg-black'>
+    <div className="flex flex-col justify-center min-h-screen min-w-screen items-center space-x-6 bg-orange-700 ">
      <div className='space-1 align-bottom'>
      <button aria-label="Previous slide" class="Button-ds ProductRail-Pagination__button ProductRail-Pagination__button--back Button-ds--clear Button-ds--compact Button-ds--icon" type="button" tabindex="0" aria-controls="swiper-wrapper-ef939342c81de69e" aria-disabled="false" onClick={scrollLeft}>
       <svg class="Button-ds__icon" aria-hidden="true" width="16" height="16"><path d="M12 14.75L4.5 8 12 1.25" fill-rule="nonzero" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -92,6 +93,7 @@ const ProductList = () => {
         ))}
       </div>
       
+    </div>
     </div>
   );
 };

@@ -68,7 +68,7 @@ export default function Bands() {
         <div className='relative p-2'><h3  className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white'> skincare</h3><img src="/3.jpg" alt="" /></div> 
          
        </section >
-       <section className='container'>
+       <section >
         <ProductList/>
        </section>
        <section className=' mt-4 '>
