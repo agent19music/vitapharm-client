@@ -2,14 +2,15 @@ import React,{useContext} from 'react';
 // import { ProductContext } from '../context/ProductsContext';
 import '../App.css'
 import { ChevronLeft, ChevronRight } from "react-feather"
+import { px } from 'framer-motion';
 
 
 
 const ProductCard = ({ product }) => (
   <div className="w-full rounded overflow-hidden m-4 hover:cursor-pointer relative self-center h-96 ">
     <div className="w-full overflow-hidden relative">
-      <img className=" w-64 transition-all duration-500 ease-in-out transform hover:scale-110 img-fluid" src={product.image} alt={product.brand} />
-      <div className="absolute inset-0 bg-zinc-0 opacity-50 hover:opacity-0 transition-opacity duration-500 ease-in-out"></div>
+      <img className=" w-64 transition-all duration-500 ease-in-out transform hover:scale-110 "src={product.image} alt={product.brand} />
+      <div className="absolute inset-0 bg-zinc-100 opacity-50 hover:opacity-0  transition-opacity duration-500 ease-in-out"></div>
       {product.product_colors && product.product_colors.length > 1 && 
         <div className="absolute bottom-1 left-0 px-3 py-1 text-xs font-sans">{product.product_colors.length} colours</div>
       }
@@ -41,25 +42,25 @@ const ProductList = () => {
       'image': '/prod2.jpg',
       'brand' : "L'oreal",
       'product_type': 'Scalp Advanced',
-      'price': '3,700' ,
+      'price': '2,500' ,
     },
     {
       'image': '/prod3.jpg',
       'brand' : "ORS",
       'product_type': 'Sheen Spray',
-      'price': '3,700' ,
+      'price': '700' ,
     },
     {
       'image': '/prod4.webp',
       'brand' : "CeraVe",
       'product_type': 'Moisturizing Cream',
-      'price': '3,700' ,
+      'price': '4,100' ,
     },
     {
       'image': '/prod5.jpg',
       'brand' : "Dior",
       'product_type': 'Lip Oil',
-      'price': '1,700' ,
+      'price': '8,750' ,
     },
     {
       'image': '/prod6.jpg',
