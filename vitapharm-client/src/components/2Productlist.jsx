@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function TwoProuctList() {
+export default function ProuctList() {
   return (
-    <div></div>
+    <div>
+
+    </div>
   )
 }
