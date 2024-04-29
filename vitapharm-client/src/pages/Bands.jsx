@@ -76,11 +76,10 @@ export default function Bands() {
         <ProductList/>
         <TwoProductList/>
        </section>
-       <ProductCard/>
        <section className=' mt-4 '>
         <div className='container flex justify-center items-center m-auto services ' >
           <div className='items-center service-woman 0 mr-24'>
-            <img src="/woman.webp" alt="lady" className='img-fluid  ' />
+            <img src="/woman.webp" alt="lady" className='img-fluid'/>
           </div>
           <div className=' container flex-column items-center text-wrap max-w-80'>
             <div><h4 className=' font-bold' p-4>
