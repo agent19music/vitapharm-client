@@ -8,6 +8,7 @@ import ProductList from '../components/Product';
 import ProductCard from '../components/ProductCard';
 import VitapharmFooter from '../components/Footer';
 import SocialVideos from '../components/SocialVideos';
+import TwoProductList from '../components/Productlist';
 
 
 
@@ -73,6 +74,7 @@ export default function Bands() {
        </section >
        <section >
         <ProductList/>
+        <TwoProductList/>
        </section>
        <ProductCard/>
        <section className=' mt-4 '>
