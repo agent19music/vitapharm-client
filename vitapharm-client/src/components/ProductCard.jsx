@@ -3,7 +3,6 @@ import React from 'react'
 export default function ProductCard() {
   return (
     <div>
-  <div></div>
   <div class="group border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-lg border bg-zinc-100 shadow-md">
     <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
       <img class="peer absolute top-0 right-0 h-full w-full object-cover" src="/prod1.webp" alt="product image" />
