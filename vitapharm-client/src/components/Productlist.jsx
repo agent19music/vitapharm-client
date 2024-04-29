@@ -118,7 +118,7 @@ const TwoProductList = () => {
      </div>
       <div className="flex p-9 transition-all duration-500 ease-in-out ">
         {products.slice(start, start + 4).map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={index} product={product} />
         ))}
       </div>
       
