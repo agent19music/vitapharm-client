@@ -74,7 +74,7 @@ export default function Bands() {
        <section >
         <ProductList/>
        </section>
-       {/* <ProductCard/> */}
+       <ProductCard/>
        <section className=' mt-4 '>
         <div className='container flex justify-center items-center m-auto services ' >
           <div className='items-center service-woman 0 mr-24'>
@@ -91,11 +91,11 @@ export default function Bands() {
           </div> 
 
        </section>
-       <section className='container'>
-      {/* <VitapharmFooter/> */}
+       <section >
+      
       <SocialVideos/>
       </section>
-      
+      {/* <VitapharmFooter/> */}
     </div>
   )
 }

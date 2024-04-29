@@ -33,6 +33,7 @@ const ProductList = () => {
   // const { products } = useContext(ProductContext);
   const products = [
     { 'image': '/prod1.webp',
+      'zoom-image':'',
       'brand' : 'CeraVe',
       'product_type': 'Hydrating Cleanser',
       'price': '3,700' ,
@@ -40,30 +41,35 @@ const ProductList = () => {
     },
     {
       'image': '/prod2.jpg',
+      'zoom-image':'',
       'brand' : "L'oreal",
       'product_type': 'Scalp Advanced',
       'price': '2,500' ,
     },
     {
       'image': '/prod3.jpg',
+      'zoom-image':'',
       'brand' : "ORS",
       'product_type': 'Sheen Spray',
       'price': '700' ,
     },
     {
       'image': '/prod4.webp',
+      'zoom-image':'',
       'brand' : "CeraVe",
       'product_type': 'Moisturizing Cream',
       'price': '4,100' ,
     },
     {
       'image': '/prod5.jpg',
+      'zoom-image':'',
       'brand' : "Dior",
       'product_type': 'Lip Oil',
       'price': '8,750' ,
     },
     {
       'image': '/prod6.jpg',
+      'zoom-image':'',
       'brand' : "CeraVe",
       'product_type': 'Acne Control Cleanser',
       'price': '1,700' ,
