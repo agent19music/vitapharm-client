@@ -86,7 +86,7 @@ export default function Bands() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime temporibus aliquid sunt recusandae corrupti, ipsa possimus modi, expedita quod hic dolorem aliquam perspiciatis.
               </h4></div>
             <div><p className='py-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa reprehenderit facilis sequi laborum repudiandae, enim beatae neque itaque blanditiis illum expedita sapiente exercitationem, dolores suscipit molestiae ea a nulla illo dolor sunt earum ullam magni nesciunt. Laborum magni possimus deleniti natus rem animi dolorum enim nobis labore, nemo nihil atque aliquid necessitatibus consectetur adipisci sint m</p></div>
-            <div> <button className=" bg-orange-700 w-100 text-white p-2" type='submit'>Book Service</button></div>
+            <div> <button className=" bg-orange-600 w-100 text-white p-2" type='submit'>Book Service</button></div>
           </div>
           
           </div> 
