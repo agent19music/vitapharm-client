@@ -96,7 +96,7 @@ export default function Bands() {
       
       <SocialVideos/>
       </section>
-      {/* <VitapharmFooter/> */}
+      <VitapharmFooter/>
     </div>
   )
 }
