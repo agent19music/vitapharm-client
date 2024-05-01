@@ -2,12 +2,12 @@ import React,{useState, useEffect} from 'react'
 import TextTransition, { presets } from 'react-text-transition';
 import { Input } from '@chakra-ui/react';
 import WithSubnavigation from '../components/Navbar';
-import BannerCarousel from '../components/Carousel';
 import Carousel from '../components/2Carousel';
 import ProductList from '../components/Product';
 import VitapharmFooter from '../components/Footer';
 import SocialVideos from '../components/SocialVideos';
 import TwoProductList from '../components/Productlist';
+import { ShoppingCart } from 'react-feather';
 
 
 
@@ -57,6 +57,9 @@ export default function LandingPage() {
             </div>
             <section className='navbar'>
         <WithSubnavigation/>
+        <button>
+          <ShoppingCart/>
+        </button>
         </section>
         </header>
         <section className='bg max-w-screen m-3'>
@@ -85,7 +88,13 @@ export default function LandingPage() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime temporibus aliquid sunt recusandae corrupti, ipsa possimus modi, expedita quod hic dolorem aliquam perspiciatis.
               </h4></div>
             <div><p className='py-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa reprehenderit facilis sequi laborum repudiandae, enim beatae neque itaque blanditiis illum expedita sapiente exercitationem, dolores suscipit molestiae ea a nulla illo dolor sunt earum ullam magni nesciunt. Laborum magni possimus deleniti natus rem animi dolorum enim nobis labore, nemo nihil atque aliquid necessitatibus consectetur adipisci sint m</p></div>
-            <div> <button className=" bg-orange-600 w-100 text-white p-2" type='submit'>Book Service</button></div>
+            <div class="group flex w-full cursor-pointer items-center justify-center rounded-md bg-orange-600 px-6 py-2 text-white transition">
+  <span class="group flex w-full items-center justify-center rounded py-1 text-center font-bold"> Book an appoin ment </span>
+  <svg class="flex-0 ml-4 h-6 w-6 transition-all group-hover:ml-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+  </svg>
+</div>
+ 
           </div>
           
           </div> 
