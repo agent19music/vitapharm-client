@@ -16,10 +16,10 @@ export default function VitapharmFooter() {
             <div className="mt-4 mb-2 font-medium xl:mb-4">Guides</div>
             <nav aria-label="Guides Navigation" className="text-gray-500">
               <ul className="space-y-3">
-                <li><a className="hover:text-orange-600 hover:underline" href="#">How to make a footer</a></li>
-                <li><a className="hover:text-orange-600 hover:underline" href="#">Designing your app</a></li>
-                <li><a className="hover:text-orange-600 hover:underline" href="#">Getting help from the community</a></li>
-                <li><a className="hover:text-orange-600 hover:underline" href="#">Pricing vs Hourly Rate</a></li>
+                <li><a className="hover:text-orange-600 hover:underline" href="#">How to make an oder</a></li>
+                <li><a className="hover:text-orange-600 hover:underline" href="#">How to locate us</a></li>
+                <li><a className="hover:text-orange-600 hover:underline" href="#">Getting help from the our helpline</a></li>
+                <li><a className="hover:text-orange-600 hover:underline" href="#">Help on deliveies</a></li>
               </ul>
             </nav>
           </div>
