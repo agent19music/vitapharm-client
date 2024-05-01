@@ -52,7 +52,7 @@ export default function SingleProductCard() {
                                 </div>
                             </div>
                             <div className="mt-2 lg:order-1 lg:w-32 lg:flex-shrink-0 flex justify-between bg-orange-300">
-                                <div className="flex flex-row justify-between w-full bg--300">
+                                <div className="flex flex-row justify-between w-full --300">
                                     {product.images.map((image, index) => (
                                         <button key={index} type="button" className="w-20 h-20 overflow-hidden border-2 border-gray-900 text-center" onClick={() => setSelectedImage(image)}>
                                             <img className="h-full w-full object-cover" src={image} alt="" />
