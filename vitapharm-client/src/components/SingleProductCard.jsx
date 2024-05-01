@@ -11,9 +11,9 @@ export default function SingleProductCard() {
     const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
     return (
-        <div>
-            <section className="py-12 sm:py-16">
-                <div className="container mx-auto px-4">
+        <div> 
+            <section className="sm:py-16 bg-pink-600 w-full">
+                <div className="container mx-auto px-4 bg-orange-300">
                     {/* Navigation */}
                     <nav className="flex">
                         <ol role="list" className="flex items-center">
@@ -42,7 +42,7 @@ export default function SingleProductCard() {
                     </nav>
 
                     {/* Product Images */}
-                    <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
+                    <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16 bg-black">
                         <div className="lg:col-span-3 lg:row-end-1">
                             <div className="lg:flex lg:items-start">
                                 <div className="lg:order-2 lg:ml-5">
@@ -51,7 +51,7 @@ export default function SingleProductCard() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="mt-2 lg:order-1 lg:w-32 lg:flex-shrink-0 flex justify-between">
+                            <div className="mt-2 lg:order-1 lg:w-32 lg:flex-shrink-0 flex justify-between bg-orange-300">
                                 <div className="flex flex-row justify-between w-full bg-green-300">
                                     {product.images.map((image, index) => (
                                         <button key={index} type="button" className="w-20 h-20 overflow-hidden border-2 border-gray-900 text-center" onClick={() => setSelectedImage(image)}>
