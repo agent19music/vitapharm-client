@@ -11,9 +11,9 @@ export default function SingleProductCard() {
     const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
     return (
-        <div className="w-full">
-            <section className="sm:py-16 bg-pink-600">
-                <div className="container mx-auto px-4 bg-orange-300">
+        <div className="w-full h-full">
+            <section className="sm:py-16 bg-pink-600 h-full">
+                <div className="container mx-auto px-4 bg-orange-300 h-full">
                     {/* Navigation */}
                     <nav className="flex">
                         <ol role="list" className="flex items-center">
@@ -42,12 +42,12 @@ export default function SingleProductCard() {
                     </nav>
 
                     {/* Product Images */}
-                    <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16 bg-black">
+                    <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16 bg-black h-full">
                         <div className="lg:col-span-3 lg:row-end-1">
                             <div className="lg:flex lg:items-start">
                                 <div className="lg:order-2 lg:ml-5">
-                                    <div className="max-w-xl overflow-hidden rounded-lg">
-                                        <img className="h-96 w-full object-cover" src={selectedImage} alt="" />
+                                    <div className="max-w-xl overflow-hidden rounded-lg h-full">
+                                        <img className="h-full w-full object-cover" src={selectedImage} alt="" />
                                     </div>
                                 </div>
                             </div>
