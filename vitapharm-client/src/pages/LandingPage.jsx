@@ -5,7 +5,6 @@ import WithSubnavigation from '../components/Navbar';
 import BannerCarousel from '../components/Carousel';
 import Carousel from '../components/2Carousel';
 import ProductList from '../components/Product';
-import ProductCard from '../components/ProductCard';
 import VitapharmFooter from '../components/Footer';
 import SocialVideos from '../components/SocialVideos';
 import TwoProductList from '../components/Productlist';
