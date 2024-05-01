@@ -11,8 +11,8 @@ export default function SingleProductCard() {
     const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
     return (
-        <div> 
-            <section className="sm:py-16  w-full">
+        <div className="w-full">
+            <section className="sm:py-16 bg-pink-600">
                 <div className="container mx-auto px-4 bg-orange-300">
                     {/* Navigation */}
                     <nav className="flex">
@@ -52,7 +52,7 @@ export default function SingleProductCard() {
                                 </div>
                             </div>
                             <div className="mt-2 lg:order-1 lg:w-32 lg:flex-shrink-0 flex justify-between bg-orange-300">
-                                <div className="flex flex-row justify-between w-full">
+                                <div className="flex flex-row justify-between w-full bg-green-300">
                                     {product.images.map((image, index) => (
                                         <button key={index} type="button" className="w-20 h-20 overflow-hidden border-2 border-gray-900 text-center" onClick={() => setSelectedImage(image)}>
                                             <img className="h-full w-full object-cover" src={image} alt="" />
