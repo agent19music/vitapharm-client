@@ -12,7 +12,7 @@ export default function SingleProductCard() {
 
     return (
         <div> 
-            <section className="sm:py-16 bg-pink-600 w-full">
+            <section className="sm:py-16  w-full">
                 <div className="container mx-auto px-4 bg-orange-300">
                     {/* Navigation */}
                     <nav className="flex">
