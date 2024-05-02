@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 export default function SingleProductCard() {
     let product = {
-        'images': ['/prod2.jpg', '/slide1.jpg', '/slide2.jpg'],
+        'images': ['/prod2.jpg', '/slide1.avif', '/slide2.jpg'],
         'brand': "L'oreal",
         'product_type': 'Scalp Advanced',
         'price': '2,500',
@@ -52,7 +52,7 @@ export default function SingleProductCard() {
                                 </div>
                             </div>
                             <div className="mt-2 lg:order-1 lg:w-32 lg:flex-shrink-0">
-                                <div className="flex flex-col items-start">
+                                <div className="flex justify-between items-start">
                                     {product.images.map((image, index) => (
                                         <button key={index} type="button" className="w-20 h-20 overflow-hidden border-2 border-gray-900 text-center" onClick={() => setSelectedImage(image)}>
                                             <img className="h-full w-full object-cover" src={image} alt="" />
