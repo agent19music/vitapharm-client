@@ -20,7 +20,7 @@ export default function SingleProductCard() {
     };
 
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center m-auto self-center w-full">
             <section className="py-12 sm:py-16 w-full max-w-6xl">
                 <div className="container mx-auto px-4">
                     {/* Navigation */}
