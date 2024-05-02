@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 export default function SingleProductCard() {
     let product = {
-        'images': ['/prod2.jpg', '/slide1.avif', '/slide2.jpg'],
+        'images': ['/prod2.webp', '/slide1.avif', '/slide2.jpg'],
         'brand': "L'oreal",
         'product_type': 'Scalp Advanced',
         'price': '2,500',
