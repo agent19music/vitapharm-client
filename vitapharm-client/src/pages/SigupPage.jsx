@@ -1,230 +1,58 @@
-import React, { useState, useContext } from 'react';
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
-// import { UserContext } from '../context/UserContext';
+import React from 'react';
 
-function SignUpPage() {
-    const navigate = useNavigate();
-    // const { apiEndpoint } = useContext(UserContext);
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [course, setCourse] = useState('');
-    const [gender, setGender] = useState('');
-
-    const addUser = async (e) => {
-        e.preventDefault();
-        // Check if passwords match
-        if (password !== confirmPassword) {
-            Swal.fire({
-                icon: 'error',
-                text: 'Passwords do not match!',
-            });
-            return;
-        }
-
-        try {
-            const response = await fetch(`${apiEndpoint}/signup`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email,
-                    username,
-                    password,
-                    first_name: firstName,
-                    last_name: lastName,
-                    category: course,
-                    gender
-                })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Your account has been created, login.',
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-                navigate('/login')
-            } else if (response.status === 409) {
-                Swal.fire({
-                    icon: 'error',
-                    text: 'Username or email already exists!',
-                });
-            } else if (response.status === 500) {
-                Swal.fire({
-                    icon: 'error',
-                    text: 'An error occurred: ' + data.message,
-                })
-            } else if (response.status === 400) {
-                Swal.fire({
-                    icon: 'error',
-                    text: 'Oops ! ' + data.message,
-                });
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            Swal.fire({
-                icon: 'error',
-                text: 'A network error occurred: ' + error.message,
-            });
-        }
-    };
-
-    return (
-        <div className="flex justify-center items-center h-screen">
-            <div id='form' className="container py-5">
-                <h1 className="text-center mb-4">Signup</h1>
-                <form onSubmit={addUser} className="row g-4">
-                    <div className="col-md-6">
-                        <div className="form-floating mb-3">
-                            <input
-                                type="text"
-                                id="firstName"
-                                className="form-control"
-                                placeholder="Enter your first name"
-                                value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
-                            />
-                            <label htmlFor="firstName" className="text-muted">
-                                First Name:
-                            </label>
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="form-floating mb-3">
-                            <input
-                                type="text"
-                                id="lastName"
-                                className="form-control"
-                                placeholder="Enter your last name"
-                                value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}
-                            />
-                            <label htmlFor="lastName" className="text-muted">
-                                Last Name:
-                            </label>
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="form-floating mb-3">
-                            <input
-                                type="email"
-                                id="email"
-                                className="form-control"
-                                placeholder="Enter your email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <label htmlFor="email" className="text-muted">
-                                Email:
-                            </label>
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="form-floating mb-3">
-                            <input
-                                type="text"
-                                id="username"
-                                className="form-control"
-                                placeholder="Enter your username"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                            />
-                            <label htmlFor="username" className="text-muted">
-                                Username:
-                            </label>
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="form-floating mb-3">
-                            <input
-                                type="password"
-                                id="password"
-                                className="form-control"
-                                placeholder="Enter your password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            <label htmlFor="password" className="text-muted">
-                                Password:
-                            </label>
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="form-floating mb-3">
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                className="form-control"
-                                placeholder="Confirm your password"
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                            />
-                            <label htmlFor="confirmPassword" className="text-muted">
-                                Confirm Password:
-                            </label>
-                        </div>
-                    </div>
-
-                    <div className="col-md-6">
-                        <div className="form-floating mb-3">
-                            <select
-                                id="course"
-                                className="form-select rounded"
-                                value={course}
-                                onChange={(e) => setCourse(e.target.value)}
-                            >
-                                <option value="">Select Course</option>
-                                <option value="Software Engineering">
-                                    Software Engineering
-                                </option>
-                                <option value="UI/UX">UI/UX</option>
-                                <option value="Data Science">Data Science</option>
-                                <option value="Cybersec">Cyber Security</option>
-                            </select>
-                            <label htmlFor="course" className="text-muted">
-                                Course Enrolled:
-                            </label>
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="form-floating mb-3">
-                            <select
-                                id="gender"
-                                className="form-select rounded"
-                                value={gender}
-                                onChange={(e) => setGender(e.target.value)}
-                            >
-                                <option value="">Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Non-binary">Non-binary</option>
-                                <option value="Prefer not to say">Prefer not to say</option>
-                            </select>
-                            <label htmlFor="gender" className="text-muted">
-                                Gender:
-                            </label>
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <button className="btn btn-dark w-100 rounded" type="submit">Sign Up</button>
-                    </div>
-                    <div className="mt-3 text-center">
-                        <p>Already have an account? <a href="/login">Log in</a></p>
-                    </div>
-                </form>
-            </div>
+const FormComponent = () => {
+  return (
+    <div>
+      <form className="max-w-sm mx-auto">
+        <div className="mb-5">
+          <label htmlFor="username-success" className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Your name</label>
+          <input type="text" id="username-success" className="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500" placeholder="Bonnie Green" />
+          <p className="mt-2 text-sm text-green-600 dark:text-green-500"><span className="font-medium">Alright!</span> Username available!</p>
         </div>
-    );
+        <div>
+          <label htmlFor="username-error" className="block mb-2 text-sm font-medium text-red-700 dark:text-red-500">Your name</label>
+          <input type="text" id="username-error" className="bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500" placeholder="Bonnie Green" />
+          <p className="mt-2 text-sm text-red-600 dark:text-red-500"><span className="font-medium">Oops!</span> Username already taken!</p>
+        </div>
+      </form>
+
+      <form className="max-w-sm mx-auto">
+        <label htmlFor="email-address-icon" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
+        <div className="relative">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+            {/* SVG code */}
+          </div>
+          <input type="text" id="email-address-icon" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" />
+        </div>
+      </form>
+
+      <form className="max-w-sm mx-auto">
+        <div className="mb-5">
+          <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+          <input type="email" id="email" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required />
+        </div>
+        <div className="mb-5">
+          <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+          <input type="password" id="password" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+        </div>
+        <div className="mb-5">
+          <label htmlFor="repeat-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repeat password</label>
+          <input type="password" id="repeat-password" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+        </div>
+        <div className="flex items-start mb-5">
+          <div className="flex items-center h-5">
+            <input id="terms" type="checkbox" className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded" />
+          </div>
+          <div className="ml-3 text-sm">
+            <label htmlFor="terms" className="font-medium text-gray-700 dark:text-white">I agree to the terms and conditions</label>
+          </div>
+        </div>
+        <div>
+          <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-offset-gray-900 dark:focus:ring-blue-500">Sign up</button>
+        </div>
+      </form>
+    </div>
+  );
 };
 
-export default SignUpPage;
+export default FormComponent;

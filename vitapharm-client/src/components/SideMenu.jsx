@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { slide as Menu } from 'react-burger-menu';
+import { Link } from 'react-router-dom';
 
-export default function Cart() {
-  return (
-    <div>
+const SideMenu = ({ mode }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const renderCart = () => {
+   
+      return (
+        <div>
         <section class="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
   <div class="mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-center">
@@ -10,7 +18,7 @@ export default function Cart() {
     </div>
 
     <div class="mx-auto mt-8 max-w-md md:mt-12">
-      <div class="rounded-3xl bg-white shadow-lg">
+      <div class="rounded-3xl bg-white">
         <div class="px-4 py-6 sm:px-8 sm:py-10">
           <div class="flow-root">
             <ul class="-my-8">
@@ -103,5 +111,32 @@ export default function Cart() {
 </section>
 
     </div>
-  )
-}
+      );
+    } 
+
+ 
+
+  return (
+    <div>
+      <button className="btn btn-dark lg" onClick={toggleMenu}>
+        <i className='fas fa-bars'></i>
+      </button>
+      <Menu
+        right
+        width={'24vw'}
+        disableAutoFocus
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        styles={{
+          overlay: { background: 'rgba(0, 0, 0, 0.3)' },
+          bmMenu: { background: 'white', boxShadow: 'none'  }
+        }}
+      >
+        {renderCart()}
+      
+      </Menu>
+    </div>
+  );
+};
+
+export default SideMenu;

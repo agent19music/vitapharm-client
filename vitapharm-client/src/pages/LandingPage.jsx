@@ -8,6 +8,7 @@ import VitapharmFooter from '../components/Footer';
 import SocialVideos from '../components/SocialVideos';
 import TwoProductList from '../components/Productlist';
 import { ShoppingCart } from 'react-feather';
+import SideMenu from '../components/SideMenu';
 
 
 
@@ -59,6 +60,7 @@ export default function LandingPage() {
         <WithSubnavigation/>
         <button>
           <ShoppingCart/>
+          {/* <SideMenu/> */}
         </button>
         </section>
         </header>

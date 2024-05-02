@@ -38,7 +38,7 @@ const TwoProductList = () => {
       'product_type': 'Hydrating Cleanser',
       'price': '3,700' },
     {
-      'image': '/prod2.jpg',
+      'image': '/prod2.webp',
       'zoom_image':'slide2.jpg',
       'brand' : "L'oreal",
       'product_type': 'Scalp Advanced',
