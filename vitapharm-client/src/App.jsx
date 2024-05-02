@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import SingleProductCard from './components/SingleProductCard';
 import SignUpPage from './pages/SigupPage';
+import CheckoutPage from './pages/CheckoutPage';
 
 
 
@@ -20,6 +21,7 @@ function App() {
       <Route path="/111" element={<LandingPage />} />  
       <Route path="/222" element={<SingleProductCard />} />  
       <Route path="/333" element={<SignUpPage />} />  
+      <Route path="/444" element={<CheckoutPage />} />  
 
 
      
