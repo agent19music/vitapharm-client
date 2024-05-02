@@ -11,9 +11,9 @@ export default function SingleProductCard() {
     const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
     return (
-        <div className="w-full h-full">
-            <section className="sm:py-16 bg-pink-600 h-full w-full">
-                <div className="mx-auto px-4 bg-orange-300 h-full">
+        <div>
+            <section className="py-12 sm:py-16">
+                <div className="container mx-auto px-4">
                     {/* Navigation */}
                     <nav className="flex">
                         <ol role="list" className="flex items-center">
@@ -42,17 +42,17 @@ export default function SingleProductCard() {
                     </nav>
 
                     {/* Product Images */}
-                    <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16 bg-green h-full">
+                    <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
                         <div className="lg:col-span-3 lg:row-end-1">
                             <div className="lg:flex lg:items-start">
                                 <div className="lg:order-2 lg:ml-5">
-                                    <div className="max-w-xl overflow-hidden rounded-lg h-full">
-                                        <img className="h-full w-full object-cover" src={selectedImage} alt="" />
+                                    <div className="max-w-xl overflow-hidden rounded-lg">
+                                        <img className="h-full w-full max-w-full object-cover" src={selectedImage} alt="" />
                                     </div>
                                 </div>
                             </div>
-                            <div className="mt-2 lg:order-1 lg:w-32 lg:flex-shrink-0 flex justify-between bg-orange-300">
-                                <div className="flex flex-row justify-between w-full bg-green-300">
+                            <div className="mt-2 lg:order-1 lg:w-32 lg:flex-shrink-0">
+                                <div className="flex flex-col items-start">
                                     {product.images.map((image, index) => (
                                         <button key={index} type="button" className="w-20 h-20 overflow-hidden border-2 border-gray-900 text-center" onClick={() => setSelectedImage(image)}>
                                             <img className="h-full w-full object-cover" src={image} alt="" />
