@@ -13,7 +13,7 @@ export default function SingleProductCard() {
     return (
         <div className="w-full h-full">
             <section className="sm:py-16 bg-pink-600 h-full">
-                <div className="container mx-auto px-4 bg-orange-300 h-full">
+                <div className="mx-auto px-4 bg-orange-300 h-full">
                     {/* Navigation */}
                     <nav className="flex">
                         <ol role="list" className="flex items-center">
