@@ -77,7 +77,7 @@ export default function LandingPage() {
          
        </section >
        <section >
-        <ProductList/>
+        {/* <ProductList/> */}
         <TwoProductList/>
        </section>
        <section className=' mt-4 '>

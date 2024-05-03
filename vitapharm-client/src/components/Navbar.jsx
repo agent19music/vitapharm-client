@@ -16,7 +16,7 @@ export default function NavbarWithExtensions() {
   // Define the nav items and their sub-items here
   const NAV_ITEMS = [
     {
-      label: 'Brands',
+      label: 'BRANDS',
       children: [
         {
           label: 'Brand A',
@@ -30,7 +30,7 @@ export default function NavbarWithExtensions() {
       ],
     },
     {
-      label: 'Category',
+      label: 'CATEGORY',
       children: [
         {
           label: 'Face',
@@ -48,7 +48,7 @@ export default function NavbarWithExtensions() {
       ],
     },
     {
-      label: 'Skin Type',
+      label: 'SKIN TYPE',
       children: [
         {
           label: 'Oily',
