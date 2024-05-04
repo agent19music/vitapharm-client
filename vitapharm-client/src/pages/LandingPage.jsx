@@ -59,7 +59,7 @@ export default function LandingPage() {
         <WithSubnavigation/>
         <button>
           <ShoppingCart/>
-          {/* <SideMenu/> */}
+          <SideMenu/>
         </button>
         </section>
         </header>
