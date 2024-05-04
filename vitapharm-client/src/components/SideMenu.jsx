@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { Link } from 'react-router-dom';
 
-const SideMenu = ({ mode }) => {
+const SideMenu = ({mode}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const renderCart = () => {
-   
+    if (mode === 'cart') {
       return (
         <div>
         <section class="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
@@ -113,6 +113,7 @@ const SideMenu = ({ mode }) => {
     </div>
       );
     } 
+  }
 
  
 
