@@ -65,6 +65,27 @@ export default function NavbarWithExtensions() {
         // More skin types...
       ],
     },
+    {
+      label: 'BEST SELLERS',
+      children: [
+        {
+          label: 'Cera Ve',
+          href: '#',
+        },
+        {
+          label: 'Ganier',
+          href: '#',
+        },
+        {
+          label: 'Fenty',
+          href: '#',
+        },
+        // More skin types...
+      ],
+    },{
+      label: 'OFFERS',
+     
+    }
     // More nav items...
   ];
 

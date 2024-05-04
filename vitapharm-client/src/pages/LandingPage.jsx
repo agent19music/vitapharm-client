@@ -3,7 +3,6 @@ import TextTransition, { presets } from 'react-text-transition';
 import { Input } from '@chakra-ui/react';
 import WithSubnavigation from '../components/Navbar';
 import Carousel from '../components/2Carousel';
-import ProductList from '../components/Product';
 import VitapharmFooter from '../components/Footer';
 import SocialVideos from '../components/SocialVideos';
 import TwoProductList from '../components/Productlist';
@@ -77,7 +76,7 @@ export default function LandingPage() {
          
        </section >
        <section >
-        {/* <ProductList/> */}
+       
         <TwoProductList/>
        </section>
        <section className=' mt-4 '>
