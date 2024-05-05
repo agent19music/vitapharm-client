@@ -6,7 +6,7 @@ export const ProductContext = createContext()
 
 export default function ProductProvider({ children }) {
 
-const apiEndpoint = '/api/v1/products.json?brand=covergirl&product_type=foundation'
+const apiEndpoint = 'http://127.0.0.1:5000'
 
 const [products, setProducts] = useState([])
 const [onChange, setOnChange] = useState(false)
@@ -30,6 +30,10 @@ useEffect(() => {
             console.log(error);
         }
     };
+
+    const addToCart = () =>{
+
+    }
     fetchData();
 }, [products,apiEndpoint]);
 
