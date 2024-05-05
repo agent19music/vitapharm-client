@@ -25,6 +25,8 @@ export default function LandingPage() {
   }, []);
 
   const slides = [
+    '/pic3.png',
+    '/pic3.png',
     '/pic3.png'
   ]
   return (
