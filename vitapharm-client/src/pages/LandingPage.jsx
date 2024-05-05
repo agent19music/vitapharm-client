@@ -6,7 +6,7 @@ import Carousel from '../components/2Carousel';
 import VitapharmFooter from '../components/Footer';
 import SocialVideos from '../components/SocialVideos';
 import TwoProductList from '../components/Productlist';
-import { ShoppingCart } from 'react-feather';
+import { ShoppingBag } from 'react-feather';
 import SideMenu from '../components/SideMenu';
 
 
@@ -60,10 +60,7 @@ export default function LandingPage() {
             <section className='navbar'>
         <WithSubnavigation/>
         <button>
-          <ShoppingCart/>
-          {/* <div>
-          <SideMenu mode='cart'/>
-          </div> */}
+          <ShoppingBag/>
           
         </button>
         </section>
