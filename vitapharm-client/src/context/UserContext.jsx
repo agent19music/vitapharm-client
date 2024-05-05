@@ -63,6 +63,28 @@ export default function UserProvider({ children }) {
     navigate('/login')
   }
 
+   // Get Authenticated user
+   useEffect(() => {
+    if (authToken) {
+      fetch(`${apiEndpoint}/authenticated_user`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${authToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.email || response.username) {
+            setCurrentUser(response)
+          } else {
+            setCurrentUser(null)
+          }
+        })
+    }
+  }, [authToken, onchange])
+
+
    
  
 
