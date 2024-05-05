@@ -84,6 +84,27 @@ export default function UserProvider({ children }) {
     }
   }, [authToken, onchange])
 
+  const updateUserContext = () => {
+    fetch(`${apiEndpoint}/authenticated_user`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${authToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        if (response.email || response.username) {
+          setCurrentUser(response)
+        } else {
+          setCurrentUser(null)
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching user data:', error);
+      });
+  };
+
 
    
  
