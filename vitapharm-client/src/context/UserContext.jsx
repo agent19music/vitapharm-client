@@ -54,6 +54,15 @@ export default function UserProvider({ children }) {
       });
   }
 
+  // Logout user
+  function logout() {
+    sessionStorage.removeItem('authToken')
+    setCurrentUser(null)
+    setAuthToken(null)
+    setOnchange(!onchange)
+    navigate('/login')
+  }
+
    
  
 
