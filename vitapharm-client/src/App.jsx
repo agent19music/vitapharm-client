@@ -8,11 +8,13 @@ import SingleProductCard from './components/SingleProductCard';
 import SignUpPage from './pages/SigupPage';
 import CheckoutPage from './pages/CheckoutPage';
 import Cart from './pages/Cart';
+import Cookies from 'js-cookie'
 
 
 
 function App() {
- 
+ Cookies.set('session_id', {expires:7, path: '/'})
+ const sessionId = Cookies.get('session_id');
 
   return (
    
