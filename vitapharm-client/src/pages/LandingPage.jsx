@@ -71,10 +71,10 @@ export default function LandingPage() {
        </Carousel>
        </section>
        <section className='image-categories flex justify-center m-3'>
-        <div className='relative p-2'>  <h3 className='image-categories-titles text-center absolute inset-0 self-center text-white font-extrabold' >makeup</h3><img src="/1.jpg" alt="" /></div>
-         <div className='relative p-2'>  <h3 className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white' >haircare</h3><img src="/2.jpg" alt="" /></div>
-        <div className='relative p-2'><h3  className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white'>bodycare</h3><img src="/5.jpg" alt="" /></div>
-        <div className='relative p-2'><h3  className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white'> skincare</h3><img src="/3.jpg" alt="" /></div> 
+        <div className='relative p-2'>  <h3 className='image-categories-titles text-center absolute inset-0 self-center text-white font-extrabold' >makeup</h3><img className='category-pic' src="/1.jpg" alt="" /></div>
+         <div className='relative p-2'>  <h3 className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white' >haircare</h3><img className='category-pic' src="/2.jpg" alt="" /></div>
+        <div className='relative p-2'><h3  className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white'>bodycare</h3><img className='category-pic' src="/5.jpg" alt="" /></div>
+        <div className='relative p-2'><h3  className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white'> skincare</h3><img className='category-pic' src="/3.jpg" alt="" /></div> 
          
        </section >
        <section >
