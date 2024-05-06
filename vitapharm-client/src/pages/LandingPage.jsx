@@ -5,7 +5,6 @@ import WithSubnavigation from '../components/Navbar';
 import Carousel from '../components/2Carousel';
 import VitapharmFooter from '../components/Footer';
 import TwoProductList from '../components/Productlist';
-import { ShoppingBag } from 'react-feather';
 import SideMenu from '../components/SideMenu';
 
 
@@ -24,6 +23,9 @@ export default function LandingPage() {
   }, []);
 
   const slides = [
+    '/pic3.png',
+    '/pic3.png',
+    '/pic3.png',
     '/pic3.png',
   ]
   return (
@@ -56,10 +58,11 @@ export default function LandingPage() {
             </div>
             <section className='navbar'>
         <WithSubnavigation/>
-        <button>
-          <ShoppingBag/>
+        <div className='bg-green-700 flex align-middle'>
+         <SideMenu/>
+        </div>
+        
           
-        </button>
         </section>
         </header>
         <section className='bg max-w-screen m-3'>
@@ -101,6 +104,7 @@ export default function LandingPage() {
 
        </section>
       <VitapharmFooter/>
+      
     </div>
   )
 }

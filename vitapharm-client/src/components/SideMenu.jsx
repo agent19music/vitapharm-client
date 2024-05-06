@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { Link } from 'react-router-dom';
+import { ShoppingBag } from 'react-feather';
 
-const SideMenu = ({mode}) => {
+
+const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const renderCart = () => {
-    if (mode === 'cart') {
       return (
         <div>
         <section class="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
@@ -97,12 +98,12 @@ const SideMenu = ({mode}) => {
           </div>
 
           <div class="mt-6 text-center">
-            <button type="button" class="group inline-flex w-full items-center justify-center rounded-md bg-orange-500 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
+            <Link to={'/444'} type="button" class="group inline-flex w-full items-center justify-center rounded-md bg-orange-500 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
               Place Order
               <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:ml-8 ml-4 h-6 w-6 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -110,34 +111,33 @@ const SideMenu = ({mode}) => {
   </div>
 </section>
 
-    </div>
+</div>
       );
     } 
-  }
+  
 
- 
-
-  return (
-    <div>
-      <button className="btn btn-dark lg" onClick={toggleMenu}>
-        <i className='fas fa-bars'></i>
-      </button>
-      <Menu
-        right
-        width={'24vw'}
-        disableAutoFocus
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        styles={{
-          overlay: { background: 'rgba(0, 0, 0, 0.3)' },
-          bmMenu: { background: 'white', boxShadow: 'none'  }
-        }}
-      >
-        {renderCart()}
-      
-      </Menu>
-    </div>
-  );
-};
-
-export default SideMenu;
+    return (
+      <div>
+        <div>
+        <ShoppingBag onClick={toggleMenu}/>
+        </div>
+        <Menu
+          right
+          width={'24 vw'}
+          disableAutoFocus
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          styles={{
+            overlay: { background: 'rgba(0, 0, 0, 0.3)' },
+            bmMenu: { background: 'white' }
+          }}
+        >
+          {renderCart()}
+          
+        </Menu>
+      </div>
+    );
+  };
+  
+  export default SideMenu;
+  

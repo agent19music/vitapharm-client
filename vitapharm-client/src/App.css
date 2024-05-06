@@ -1,4 +1,7 @@
 
+a{
+	text-decoration: none;
+}
 div.info-bar{
 	min-width: 100vw;
 	display: flex;
