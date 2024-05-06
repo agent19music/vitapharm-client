@@ -1,7 +1,5 @@
 import React from 'react'
-import WithSubnavigation from '../components/Navbar'
-import TextTransition,{presets} from 'react-text-transition'
-import SideMenu from '../components/SideMenu'
+
 
 export default function CheckoutPage() {
   const TEXTS = ['30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS', 'BANKAI SENBOZAKURA KAGEYOSHI', 'KATON GYOKYAKU NO JUTSU', 'RASEN SHIRUKEN']
