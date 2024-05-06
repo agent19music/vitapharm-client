@@ -8,11 +8,19 @@ import SocialVideos from '../components/SocialVideos';
 import TwoProductList from '../components/Productlist';
 import { ShoppingBag } from 'react-feather';
 import SideMenu from '../components/SideMenu';
-
+import { useCookies } from 'react-cookie';
 
 
 
 export default function LandingPage() {
+  
+  const[cookies, setCookie, removeCookie] = useCookies(['session_id'])
+  setCookie('session_id', 'your-session-id',{path: '/'});
+
+  const sessionId = cookies.session_id
+
+  removeCookie('session_id', {path: '/'});
+
   const TEXTS = ['30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS', 'BANKAI SENBOZAKURA KAGEYOSHI', 'KATON GYOKYAKU NO JUTSU', 'RASEN SHIRUKEN']
   const [index, setIndex] = useState(0);
 

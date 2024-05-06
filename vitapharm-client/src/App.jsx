@@ -8,8 +8,8 @@ import SingleProductCard from './components/SingleProductCard';
 import SignUpPage from './pages/SigupPage';
 import CheckoutPage from './pages/CheckoutPage';
 import Cart from './pages/Cart';
-import Cookies from 'js-cookie'
-
+import {CookiesProvider} from 'react-cookie'
+import ProductProvider from './context/ProductContext';
 
 
 function App() {
@@ -19,6 +19,8 @@ function App() {
   return (
    
     <BrowserRouter>
+    <ProductProvider>
+    <CookiesProvider>
     <ChakraProvider>
       <Routes>
       <Route path="/111" element={<LandingPage />} />  
@@ -34,7 +36,8 @@ function App() {
 
   
     </ChakraProvider>
-    
+    </CookiesProvider>
+    </ProductProvider>
     </BrowserRouter>
    
   
