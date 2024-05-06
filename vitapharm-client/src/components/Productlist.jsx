@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { ProductContext } from '../context/ProductContext';
 
 
-const ProductCard = ({ product } ) => (
+const ProductCard = ({ product, addToCart } ) => (
   <div className="group border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border bg-zinc-100 shadow-md">
     <a className="relative mx-3 mt-3 flex h-60 overflow-hidden" href="#">
       <img className="peer absolute top-0 right-0 h-full w-full object-cover" src={product.image} alt="product image" />
@@ -109,7 +109,7 @@ const TwoProductList = () => {
         </div>
         <div className="flex p-9 transition-all duration-500 ease-in-out w-full  items-center justify-evenly ">
           {products.slice(start, start + 4).map((product, index) => (
-            <ProductCard key={index} product={product} />
+            <ProductCard key={index} product={product} addToCart={addToCart}/>
           ))}
         </div>
       </div>

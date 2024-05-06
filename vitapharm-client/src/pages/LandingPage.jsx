@@ -4,22 +4,13 @@ import { Input } from '@chakra-ui/react';
 import WithSubnavigation from '../components/Navbar';
 import Carousel from '../components/2Carousel';
 import VitapharmFooter from '../components/Footer';
-import SocialVideos from '../components/SocialVideos';
 import TwoProductList from '../components/Productlist';
 import { ShoppingBag } from 'react-feather';
 import SideMenu from '../components/SideMenu';
-import { useCookies } from 'react-cookie';
 
 
 
 export default function LandingPage() {
-  
-  const[cookies, setCookie, removeCookie] = useCookies(['session_id'])
-  setCookie('session_id', 'your-session-id',{path: '/'});
-
-  const sessionId = cookies.session_id
-
-  removeCookie('session_id', {path: '/'});
 
   const TEXTS = ['30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS', 'BANKAI SENBOZAKURA KAGEYOSHI', 'KATON GYOKYAKU NO JUTSU', 'RASEN SHIRUKEN']
   const [index, setIndex] = useState(0);
@@ -34,8 +25,6 @@ export default function LandingPage() {
 
   const slides = [
     '/pic3.png',
-    '/pic3.png',
-    '/pic3.png'
   ]
   return (
     <div >
@@ -111,10 +100,6 @@ export default function LandingPage() {
           </div> 
 
        </section>
-       <section >
-      
-      <SocialVideos/>
-      </section>
       <VitapharmFooter/>
     </div>
   )
