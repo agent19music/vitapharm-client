@@ -1,9 +1,13 @@
-import React from 'react'
+import React,{useState} from 'react'
 import WithSubnavigation from '../components/Navbar'
 import TextTransition,{presets} from 'react-text-transition'
 import SideMenu from '../components/SideMenu'
+import { Input } from '@chakra-ui/react'
 
 export default function Header() {
+    const TEXTS = ['30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS', 'BANKAI SENBOZAKURA KAGEYOSHI', 'KATON GYOKYAKU NO JUTSU', 'RASEN SHIRUKEN']
+    const [index, setIndex] = useState(0);
+
   return (
     <header>
     <div className='info-bar'>

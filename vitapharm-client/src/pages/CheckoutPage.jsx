@@ -1,13 +1,12 @@
 import React from 'react'
-
+import Header from '../components/Header'
 
 export default function CheckoutPage() {
-  const TEXTS = ['30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS', 'BANKAI SENBOZAKURA KAGEYOSHI', 'KATON GYOKYAKU NO JUTSU', 'RASEN SHIRUKEN']
  
  
   return (
     <div>
-     
+    
         <div class="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
   <a href="#" class="text-2xl font-bold text-gray-800">Vitapharm Checkout</a>
   <div class="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">

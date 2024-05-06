@@ -11,6 +11,7 @@ import Cart from './pages/Cart';
 import { CookiesProvider } from 'react-cookie';
 import ProductProvider from './context/ProductContext';
 import Cookies from 'js-cookie'; // Import Cookies from js-cookie
+import Header from './components/Header';
 
 function App() {
   // Correctly setting and getting session_id cookie
@@ -28,6 +29,7 @@ function App() {
               <Route path="/333" element={<SignUpPage />} />
               <Route path="/444" element={<CheckoutPage />} />
               <Route path="/555" element={<Cart />} />
+              <Route path="/777" element={<Header />} />
             </Routes>
           </ChakraProvider>
         </CookiesProvider>
