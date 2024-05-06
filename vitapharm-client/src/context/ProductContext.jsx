@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { useCookies } from 'react-cookie'
 
@@ -37,35 +36,35 @@ useEffect(() => {
         } catch (error) {
             console.log(error);
         }
-    };
-
-    function addToCart(prouctId){
-        fetch(`${apiEndpoint}/cart/add`,{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sessionId}`
-            },
-            body: JSON.stringify({prouctId})
-            .then(response => response.json)
-            .then(data=>{
-                console.log('Item added to cart:', data);
-            })
-            .catch(error =>{
-                console.error(`Error adding item to cart :`, error);
-            })
-        })
-
-    }
+    };    
 
     fetchData();
 }, [products,apiEndpoint]);
+
+function addToCart(productId) {
+    fetch(`${apiEndpoint}/cart/add`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionId}`
+        },
+        body: JSON.stringify({ productId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Item added to cart:', data);
+    })
+    .catch(error => {
+        console.error('Error adding item to cart:', error);
+    });
+}
 
 
 
 const contextData = {
    products,
-   apiEndpoint
+   apiEndpoint,
+   addToCart
   }
 
   return (
