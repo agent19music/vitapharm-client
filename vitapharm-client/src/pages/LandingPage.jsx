@@ -58,8 +58,8 @@ export default function LandingPage() {
             </div>
             <section className='navbar'>
         <WithSubnavigation/>
-        <div className='bg-green-700 flex align-middle'>
-         <SideMenu/>
+        <div className='flex align-middle'>
+         {/* <SideMenu/> */}
         </div>
         
           
