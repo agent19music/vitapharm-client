@@ -37,9 +37,9 @@ export default function LandingPage() {
             <div >
               <div className='primary-bar'>
                 <div className='logo-holder'>  
-                <img src="/seanandprincelogo.jpg" alt="" className='logo' />
+                <img src="/logo.png" alt="" className='logo' />
                 </div>
-                <div className='search-bar'>
+                <div className='search-bar '>
                    <Input placeholder='Search product or brand' id='search.InputFieldUnderline__input.InputFieldUnderline__input--active' size='md'/>           
                 </div>
                 <div className='whatsapp-info-holder'>
