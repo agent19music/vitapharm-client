@@ -6,7 +6,7 @@ div.info-bar{
 	min-width: 100vw;
 	display: flex;
 	justify-content:center;
-	background: #000;
+	background: rgb(150,50,7);
 	
 	
 }
@@ -15,7 +15,7 @@ div.info-item{
 	margin: auto;
 	height: 3vh;
 	padding: 0.3rem;
-	background: #000;
+	background: rgb(150,50,7);
 	color: white;
 }
 /* CSS Inspector (https://www.baki.co.ke) */ 
@@ -119,6 +119,10 @@ h3.image-categories-titles{
 		margin-right: none;
 	}
 
+}
+
+.vp-bo{
+	background-color: rgb(150,50,7);
 }
 /* h3.image-categories-titles{
 	text-transform: uppercase;

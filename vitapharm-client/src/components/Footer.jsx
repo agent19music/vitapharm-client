@@ -3,7 +3,7 @@ import React from 'react';
 export default function VitapharmFooter() {
   return (
     <div>
-      <footer className="bg-orange-700 text-white">
+      <footer className="vp-bo text-white">
         <div className="mx-auto grid max-w-screen-xl gap-y-8 gap-x-12 px-4 py-10 sm:px-20 md:grid-cols-2 xl:grid-cols-4 xl:px-10">
           <div className="max-w-sm">
             <div className="mb-6 flex h-10 items-center space-x-2">

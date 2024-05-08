@@ -37,7 +37,7 @@ export default function Header() {
     </div>
     <section className='navbar'>
 <WithSubnavigation/>
-<div className='bg-green-700 flex align-middle'>
+<div className=' flex align-middle'>
  <SideMenu/>
 </div>
 
