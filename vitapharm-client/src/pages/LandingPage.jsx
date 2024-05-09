@@ -7,6 +7,7 @@ import VitapharmFooter from '../components/Footer';
 import TwoProductList from '../components/Productlist';
 import { Link } from 'react-router-dom';
 import SideMenu from '../components/SideMenu';
+import SocialVideos from '../components/SocialVideos';
 
 export default function LandingPage() {
   const TEXTS = [
@@ -61,6 +62,14 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
+        <section className='navbar'>
+<WithSubnavigation/>
+<div className=' flex align-middle'>
+ {/* <SideMenu/> */}
+</div>
+
+  
+</section>
       </header>
       <section className='bg max-w-screen m-3'>
         <Carousel autoSlide={true}>
@@ -140,6 +149,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      <SocialVideos/>
       <VitapharmFooter />
     </div>
   );
