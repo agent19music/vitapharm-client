@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import SingleProductCard from './components/SingleProductCard';
-import SignUpPage from './pages/SignUpPage'; // Corrected typo in import
+import CustomerForm from './pages/AppointmentPage';
 import CheckoutPage from './pages/CheckoutPage';
 import Cart from './pages/Cart';
 import { CookiesProvider } from 'react-cookie';
@@ -26,7 +26,7 @@ function App() {
             <Routes>
               <Route path="/111" element={<LandingPage />} />
               <Route path="/222" element={<SingleProductCard />} />
-              <Route path="/333" element={<SignUpPage />} />
+              <Route path="/333" element={<CustomerForm />} />
               <Route path="/444" element={<CheckoutPage />} />
               <Route path="/555" element={<Cart />} />
               <Route path="/777" element={<Header />} />
