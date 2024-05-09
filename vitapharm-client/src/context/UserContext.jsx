@@ -1,24 +1,20 @@
-import { createContext, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Swal from 'sweetalert2'
+import React, { createContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-export const UserContext = createContext()
-
+export const UserContext = createContext();
 
 export default function UserProvider({ children }) {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-    
-  const [onchange, setOnchange] = useState(false)
+  const [onchange, setOnchange] = useState(false);
   const [authToken, setAuthToken] = useState(() =>
-    sessionStorage.getItem('authToken')
-      ? sessionStorage.getItem('authToken')
-      : null
-  )
-  const [currentUser, setCurrentUser] = useState(null)
+    sessionStorage.getItem('authToken') ? sessionStorage.getItem('authToken') : null
+  );
+  const [currentUser, setCurrentUser] = useState(null);
 
-  const apiEndpoint = ' http://127.0.0.1:5000'
- 
+  const apiEndpoint = 'http://127.0.0.1:5000';
+
   function login(username, password) {
     fetch(`${apiEndpoint}/login`, {
       method: 'POST',
@@ -54,17 +50,15 @@ export default function UserProvider({ children }) {
       });
   }
 
-  // Logout user
   function logout() {
-    sessionStorage.removeItem('authToken')
-    setCurrentUser(null)
-    setAuthToken(null)
-    setOnchange(!onchange)
-    navigate('/login')
+    sessionStorage.removeItem('authToken');
+    setCurrentUser(null);
+    setAuthToken(null);
+    setOnchange(!onchange);
+    navigate('/login');
   }
 
-   // Get Authenticated user
-   useEffect(() => {
+  useEffect(() => {
     if (authToken) {
       fetch(`${apiEndpoint}/authenticated_user`, {
         method: 'GET',
@@ -76,13 +70,13 @@ export default function UserProvider({ children }) {
         .then((res) => res.json())
         .then((response) => {
           if (response.email || response.username) {
-            setCurrentUser(response)
+            setCurrentUser(response);
           } else {
-            setCurrentUser(null)
+            setCurrentUser(null);
           }
-        })
+        });
     }
-  }, [authToken, onchange])
+  }, [authToken, onchange]);
 
   const updateUserContext = () => {
     fetch(`${apiEndpoint}/authenticated_user`, {
@@ -95,9 +89,9 @@ export default function UserProvider({ children }) {
       .then((res) => res.json())
       .then((response) => {
         if (response.email || response.username) {
-          setCurrentUser(response)
+          setCurrentUser(response);
         } else {
-          setCurrentUser(null)
+          setCurrentUser(null);
         }
       })
       .catch((error) => {
@@ -105,23 +99,38 @@ export default function UserProvider({ children }) {
       });
   };
 
+  const submitAppointment = async (data) => {
+    try {
+      const response = await fetch(`${apiEndpoint}/book`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify(data),
+      });
 
-   
- 
+      if (!response.ok) {
+        throw new Error('Failed to add appointment');
+      }
 
-   // context data
-   const contextData = {
+      return await response.json();
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+
+  const contextData = {
     login,
     logout,
     currentUser,
     authToken,
     onchange,
-    setOnchange, 
+    setOnchange,
     apiEndpoint,
-    updateUserContext
-  }
+    updateUserContext,
+    submitAppointment,
+  };
 
-  return (
-    <UserContext.Provider value={contextData}>{children}</UserContext.Provider>
-  )
+  return <UserContext.Provider value={contextData}>{children}</UserContext.Provider>;
 }

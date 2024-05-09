@@ -12,6 +12,7 @@ import { CookiesProvider } from 'react-cookie';
 import ProductProvider from './context/ProductContext';
 import Cookies from 'js-cookie'; // Import Cookies from js-cookie
 import Header from './components/Header';
+import UserProvider from './context/UserContext';
 
 function App() {
   // Correctly setting and getting session_id cookie
@@ -21,6 +22,7 @@ function App() {
   return (
     <BrowserRouter>
       <ProductProvider>
+        <UserProvider>
         <CookiesProvider>
           <ChakraProvider>
             <Routes>
@@ -33,6 +35,7 @@ function App() {
             </Routes>
           </ChakraProvider>
         </CookiesProvider>
+        </UserProvider>
       </ProductProvider>
     </BrowserRouter>
   );

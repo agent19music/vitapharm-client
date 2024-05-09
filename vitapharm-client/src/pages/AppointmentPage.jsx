@@ -1,38 +1,99 @@
-import React from "react";
-import { Box, Button, FormControl, FormLabel, Input, VStack } from "@chakra-ui/react";
+import React, { useState, useContext } from 'react';
+import { Box, Button, FormControl, FormLabel, Input, VStack, FormErrorMessage, Select } from '@chakra-ui/react';
+import { format, isFuture } from 'date-fns';
+import { formatInTimeZone } from 'date-fns-tz';
+import { UserContext } from '../context/UserContext';
+
+const countries = [
+  { label: 'Kenya (+254)', value: '+254' },
+  { label: 'United States (+1)', value: '+1' },
+  { label: 'United Kingdom (+44)', value: '+44' },
+  { label: 'India (+91)', value: '+91' },
+  { label: 'United Arab Emirates (+971)', value: '+971' },
+  { label: 'Tanzania (+255)', value: '+255' },
+  { label: 'Rwanda (+250)', value: '+250' },
+];
 
 function CustomerForm() {
+  const { submitAppointment } = useContext(UserContext);
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [date, setDate] = useState('');
+  const [countryCode, setCountryCode] = useState('+254');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleFirstNameChange = (e) => setFirstName(e.target.value);
+  const handleLastNameChange = (e) => setLastName(e.target.value);
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handlePhoneChange = (e) => setPhone(e.target.value);
+  const handleDateChange = (e) => setDate(e.target.value);
+  const handleCountryCodeChange = (e) => setCountryCode(e.target.value);
+
+  const today = format(new Date(), 'yyyy-MM-dd');
+  const isFirstNameError = submitted && firstName.trim() === '';
+  const isLastNameError = submitted && lastName.trim() === '';
+  const isEmailError = submitted && !email.includes('@');
+  const isDateError = submitted && (date !== '' && !isFuture(new Date(formatInTimeZone(date, 'Africa/Nairobi', 'yyyy-MM-dd'))));
+  const isPhoneError = submitted && phone.length !== 10;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    if (!isFirstNameError && !isLastNameError && !isEmailError && !isDateError && !isPhoneError) {
+      try {
+        await submitAppointment({
+          customer_name: `${firstName} ${lastName}`,
+          customer_email: email,
+          customer_phone: `${countryCode}${phone}`,
+          appointment_date: date,
+        });
+        // Clear form fields if needed
+      } catch (error) {
+        console.error('Error submitting appointment:', error.message);
+        // Handle error
+      }
+    }
+  };
+
   return (
     <Box p={5}>
-      <VStack spacing={5}>
-        <FormControl id="name">
-          <FormLabel>Customer Name</FormLabel>
-          <Input type="text" />
+      <VStack as="form" onSubmit={handleSubmit} spacing={5}>
+        <FormControl id="firstName" isInvalid={isFirstNameError}>
+          <FormLabel>First Name</FormLabel>
+          <Input type="text" value={firstName} onChange={handleFirstNameChange} />
+          {isFirstNameError && <FormErrorMessage>First name is required.</FormErrorMessage>}
         </FormControl>
 
-        <FormControl id="email">
-          <FormLabel>Email</FormLabel>
-          <Input type="email" />
+        <FormControl id="lastName" isInvalid={isLastNameError}>
+          <FormLabel>Last Name</FormLabel>
+          <Input type="text" value={lastName} onChange={handleLastNameChange} />
+          {isLastNameError && <FormErrorMessage>Last name is required.</FormErrorMessage>}
         </FormControl>
 
-        <FormControl id="phone">
+        <FormControl id="email" isInvalid={isEmailError}>
+          <FormLabel>Email Address</FormLabel>
+          <Input type='email' value={email} onChange={handleEmailChange} />
+          {isEmailError && <FormErrorMessage>Email is required and should include '@'.</FormErrorMessage>}
+        </FormControl>
+
+        <FormControl id="phone" isInvalid={isPhoneError}>
           <FormLabel>Phone</FormLabel>
-          <Input type="tel" />
+          <Select value={countryCode} onChange={handleCountryCodeChange}>
+            {countries.map(country => (
+              <option key={country.value} value={country.value}>{country.label}</option>
+            ))}
+          </Select>
+          <Input type="tel" value={phone} onChange={handlePhoneChange} />
+          {isPhoneError && <FormErrorMessage>Phone number must be 10 digits.</FormErrorMessage>}
         </FormControl>
 
-        <FormControl id="address">
-          <FormLabel>Address</FormLabel>
-          <Input type="text" />
-        </FormControl>
-
-        <FormControl id="town">
-          <FormLabel>Town</FormLabel>
-          <Input type="text" />
-        </FormControl>
-
-        <FormControl id="other">
-          <FormLabel>Other Items</FormLabel>
-          <Input type="text" />
+        <FormControl id="date" isInvalid={isDateError}>
+          <FormLabel>Appointment Date</FormLabel>
+          <Input type="date" min={today} value={date} onChange={handleDateChange} />
+          {isDateError && <FormErrorMessage>Date should be later than today.</FormErrorMessage>}
         </FormControl>
 
         <Button colorScheme="blue" type="submit">Submit</Button>
