@@ -107,6 +107,12 @@ span.edit-cartamount:hover{
 	color: rgb(150,50,7) ;
 }
 
+/* img.category-pic:hover{
+	transform: scale(1.2);
+transition: transform 0.3s ease;
+cursor: pointer;
+} */
+
 @media screen and (max-width: 601px){
 	div.whatsapp-info-holder{
 		display: none ;
@@ -118,9 +124,7 @@ span.edit-cartamount:hover{
 		align-items: center;
 		
 	}
-	category-pic:hover{
-		transform: scale(1.5);
-	}
+	
 	div.services{
 		display: flex;
 		flex-direction: column;
