@@ -95,9 +95,17 @@ h3.image-categories-titles{
 	text-transform: uppercase;
 }
 
+span.edit-cartamount:hover{
+	transform: scale(1.2);
+	transition: transform 0.3s ease;
+	cursor: pointer;
+	color: rgb(150,50,7) ;
+}
+
 @media screen and (max-width: 601px){
 	div.whatsapp-info-holder{
 		display: none ;
+		
 	}
 	section.image-categories{
 		display: flex;

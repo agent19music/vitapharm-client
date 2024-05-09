@@ -28,15 +28,22 @@ export default function Cart() {
                     <div class="pr-8 sm:pr-5">
                       <p class="text-base font-semibold text-gray-900">L'oreal Scalp Advanced</p>
                       <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">500 ml</p>
-                      <span class="absolute top-1 left-1 flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow sm:-top-2 sm:-right-2">+</span>
-                      <span class="absolute top-1 left-1 flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow sm:-top-2 sm:-right-2">-</span>
-
+                    
 
                     </div>
 
                     <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
-                      <p class="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">Ksh 6500</p>
-                    </div>
+              <div class="relative flex space-x-2">
+                <p class="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">Ksh 6500</p>
+                <div class="absolute top-6 left-0 flex flex-row space-x-1 ">
+                  <span class="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount">+</span>
+                  <span class="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount">-</span>
+                </div>
+              </div>
+</div>
+
+
+
                   </div>
 
                   <div class="absolute top-0 right-0 flex sm:bottom-0 sm:top-auto">
@@ -62,7 +69,13 @@ export default function Cart() {
                     </div>
 
                     <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
-                      <p class="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">Ksh 2200</p>
+                    <div class="relative flex space-x-2">
+                <p class="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">Ksh 2200</p>
+                <div class="absolute top-6 left-0 flex flex-row space-x-1 ">
+                  <span class="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount">+</span>
+                  <span class="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount">-</span>
+                </div>
+              </div>
                     </div>
                   </div>
 
