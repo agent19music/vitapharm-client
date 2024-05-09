@@ -45,12 +45,16 @@ function CustomerForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
+    
+    // Remove preceding zeros from phone number
+    const trimmedPhone = phone.replace(/^0+/, '');
+  
     if (!isFirstNameError && !isLastNameError && !isEmailError && !isDateError && !isPhoneError) {
       try {
         await submitAppointment({
           customer_name: `${firstName} ${lastName}`,
           customer_email: email,
-          customer_phone: `${countryCode}${phone}`,
+          customer_phone: `${countryCode}${trimmedPhone}`, // Use trimmed phone number
           appointment_date: date,
         });
         setSuccess(true);
@@ -67,6 +71,7 @@ function CustomerForm() {
       }
     }
   };
+  
 
   return (
     <div>
