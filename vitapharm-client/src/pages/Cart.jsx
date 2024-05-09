@@ -28,6 +28,10 @@ export default function Cart() {
                     <div class="pr-8 sm:pr-5">
                       <p class="text-base font-semibold text-gray-900">L'oreal Scalp Advanced</p>
                       <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">500 ml</p>
+                      <span class="absolute top-1 left-1 flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow sm:-top-2 sm:-right-2">+</span>
+                      <span class="absolute top-1 left-1 flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow sm:-top-2 sm:-right-2">-</span>
+
+
                     </div>
 
                     <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
