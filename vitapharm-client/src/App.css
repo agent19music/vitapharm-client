@@ -34,8 +34,11 @@ div.search-bar {
 	max-height: 80px;
 	place-items: center normal;
 	max-width: 60vw;
+	
 }
-
+#search.InputFieldUnderline__input.InputFieldUnderline__input--active{
+	border: 2px solid black;
+}
 
 
 img.logo {
@@ -43,7 +46,9 @@ img.logo {
 	box-sizing: border-box;
 	cursor: pointer;
 	display: inline;
+
 	max-height: 140px;
+
 	max-width: 165px;
 	overflow: clip;
 	padding: 10px 0px;

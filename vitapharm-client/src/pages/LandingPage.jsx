@@ -35,6 +35,7 @@ export default function LandingPage() {
                 <div className='info-item'>  <TextTransition springConfig={presets.wobbly}>{TEXTS[index % TEXTS.length]}</TextTransition></div>
             </div>
             <div >
+    
               <div className='primary-bar'>
                 <div className='logo-holder'>  
                 <img src="/logo.png" alt="" className='logo' />
@@ -51,9 +52,7 @@ export default function LandingPage() {
                     <h6>Free shipping</h6>
                     <p>Orders above 3000 bob</p>
 
-                  </div>
-                </div>
-              </div>
+
 
             </div>
             <section className='navbar'>
