@@ -5,6 +5,7 @@ import WithSubnavigation from '../components/Navbar';
 import Carousel from '../components/2Carousel';
 import VitapharmFooter from '../components/Footer';
 import TwoProductList from '../components/Productlist';
+import { Link } from 'react-router-dom';
 import SideMenu from '../components/SideMenu';
 
 export default function LandingPage() {
@@ -122,9 +123,9 @@ export default function LandingPage() {
               </p>
             </div>
             <div className='group flex w-full cursor-pointer items-center justify-center vp-bo px-6 py-2 text-white transition'>
-              <span className='group flex w-full items-center justify-center rounded py-1 text-center font-bold'>
+              <Link to={'/333'} className='group flex w-full items-center justify-center rounded py-1 text-center font-bold hover:text-white'>
                 Book an appointment
-              </span>
+              </Link>
               <svg
                 className='flex-0 ml-4 h-6 w-6 transition-all group-hover:ml-8'
                 xmlns='http://www.w3.org/2000/svg'

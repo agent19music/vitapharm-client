@@ -101,24 +101,26 @@ export default function UserProvider({ children }) {
 
   const submitAppointment = async (data) => {
     try {
-      const response = await fetch(`${apiEndpoint}/book`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${authToken}`,
-        },
-        body: JSON.stringify(data),
-      });
+        console.log("Submitting appointment:", data); // Log before sending
+        const response = await fetch(`${apiEndpoint}/book`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${authToken}`,
+            },
+            body: JSON.stringify(data),
+        });
 
-      if (!response.ok) {
-        throw new Error('Failed to add appointment');
-      }
+        if (!response.ok) {
+            throw new Error('Failed to add appointment');
+        }
 
-      return await response.json();
+        return await response.json();
     } catch (error) {
-      throw new Error(error.message);
+        throw new Error(error.message);
     }
-  };
+};
+
 
   const contextData = {
     login,
