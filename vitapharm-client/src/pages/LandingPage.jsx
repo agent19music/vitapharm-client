@@ -79,7 +79,7 @@ export default function LandingPage() {
         <section className='navbar'>
 <WithSubnavigation/>
 <div className=' flex align-middle'>
- {/* <SideMenu/> */}
+ <SideMenu/>
 </div>
 
   
@@ -116,48 +116,49 @@ export default function LandingPage() {
       <section>
         <TwoProductList />
       </section>
-      <section className='mt-4'>
-        <div className='container flex justify-center items-center m-auto services'>
-          <div className='items-center service-woman 0 mr-24'>
-            <img src='/woman.webp' alt='lady' className='img-fluid' />
-          </div>
-          <div className='container flex-column items-center text-wrap max-w-80'>
-            <div>
-              <h4 className='font-bold' p-4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-                temporibus aliquid sunt recusandae corrupti, ipsa possimus modi,
-                expedita quod hic dolorem aliquam perspiciatis.
-              </h4>
-            </div>
-            <div>
-              <p className='py-4'>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
-                reprehenderit facilis sequi laborum repudiandae, enim beatae
-                neque itaque blanditiis illum expedita sapiente exercitationem,
-                dolores suscipit molestiae ea a nulla illo dolor sunt earum ullam
-                magni nesciunt. Laborum magni possimus deleniti natus rem animi
-                dolorum enim nobis labore, nemo nihil atque aliquid necessitatibus
-                consectetur adipisci sint m
-              </p>
-            </div>
-            <div className='group flex w-full cursor-pointer items-center justify-center vp-bo px-6 py-2 text-white transition'>
-              <Link to={'/333'} className='group flex w-full items-center justify-center rounded py-1 text-center font-bold hover:text-white'>
-                Book an appointment
-              </Link>
-              <svg
-                className='flex-0 ml-4 h-6 w-6 transition-all group-hover:ml-8'
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-                strokeWidth='2'
-              >
-                <path strokeLinecap='round' strokeLinejoin='round' d='M14 5l7 7m0 0l-7 7m7-7H3' />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </section>
+      <section className='my-4'>
+  <div className='container flex justify-center items-center mx-auto services'>
+    <div className='items-center service-woman mr-24'>
+      <img src='/service.webp' alt='lady' className='rounded-md w-140 h-70 object-cover mx-auto' />
+    </div>
+    <div className='container flex flex-col items-center text-wrap max-w-80'>
+      <div>
+        <h4 className='font-bold p-4'>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
+          temporibus aliquid sunt recusandae corrupti, ipsa possimus modi,
+          expedita quod hic dolorem aliquam perspiciatis.
+        </h4>
+      </div>
+      <div className=''>
+        <p className='py-4'>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
+          reprehenderit facilis sequi laborum repudiandae, enim beatae
+          neque itaque blanditiis illum expedita sapiente exercitationem,
+          dolores suscipit molestiae ea a nulla illo dolor sunt earum ullam
+          magni nesciunt. Laborum magni possimus deleniti natus rem animi
+          dolorum enim nobis labore, nemo nihil atque aliquid necessitatibus
+          consectetur adipisci sint m
+        </p>
+      </div>
+      <div className='group flex w-full cursor-pointer items-center justify-center vp-bo px-6 py- text-white transition'>
+        <Link to={'/333'} className='group flex w-full items-center justify-center rounded py-1 text-center font-bold hover:text-white'>
+          Book an appointment
+        </Link>
+        <svg
+          className='flex-0 ml-4 h-6 w-6 transition-all group-hover:ml-8'
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 24 24'
+          stroke='currentColor'
+          strokeWidth='2'
+        >
+          <path strokeLinecap='round' strokeLinejoin='round' d='M14 5l7 7m0 0l-7 7m7-7H3' />
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
       {/* <SocialVideos/> */}
       <VitapharmFooter />
     </div>
