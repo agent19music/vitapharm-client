@@ -13,16 +13,35 @@ export default function SingleProductCard({ productId }) {
     useEffect(() => {
         const fetchSessionToken = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/vitapharm/session');
-                const { session_token } = await response.json();
-                localStorage.setItem('session_token', session_token);
-                setSessionToken(session_token);
+                let storedToken = localStorage.getItem('session_token')
+                let tokenExpiration = localStorage.getItem('token_expiration')
+
+                if (storedToken && tokenExpiration && new Date(tokenExpiration) > new Date()) {
+                    setSessionToken(storedToken);
+                } else {
+                    const response = await fetch('http://localhost:5000/api/vitapharm/session');
+                    const { session_token } = await response.json();
+                    storedToken = session_token
+                    tokenExpiration = new Date(Date.now() + 2 * 60 * 60 * 1000);
+                    localStorage.setItem('session_token', session_token);
+                    localStorage.setItem('token_expiration', tokenExpiration)
+                    setSessionToken(session_token);
+
+                }
             } catch (error) {
                 console.error('Error fetching session token:', error);
             }
         };
 
         fetchSessionToken(); // Fetch token on component mount
+
+        // expiration timer for the token
+        const expirationTimer = setTimeout(() => {
+            // Token expired, fetch a new token
+            fetchSessionToken();
+        }, 2 * 60 * 60 * 1000); // 2 hours timer
+
+        return () => clearTimeout(expirationTimer); // clears timer on component unmount
     }, []);
 
     useEffect(() => {
@@ -45,6 +64,7 @@ export default function SingleProductCard({ productId }) {
             fetchProducts(sessionToken);
         }
     }, [productId, sessionToken]); // Dependency array includes productId and sessionToken
+
 
     const addToCart = async () => {
         if (!sessionToken) return; // Handle missing token
