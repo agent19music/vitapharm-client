@@ -13,7 +13,7 @@ export default function UserProvider({ children }) {
   );
   const [currentUser, setCurrentUser] = useState(null);
 
-  const apiEndpoint = 'http://127.0.0.1:5000';
+  const apiEndpoint = 'http://127.0.0.1:5000/api/vitapharm';
 
   function login(username, password) {
     fetch(`${apiEndpoint}/login`, {

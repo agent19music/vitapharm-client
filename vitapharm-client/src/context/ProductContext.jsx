@@ -18,7 +18,7 @@ export default function ProductProvider({ children }) {
 
     const sessionId = cookies.session_id;
 
-    const apiEndpoint = 'http://127.0.0.1:5000';
+    const apiEndpoint = 'http://127.0.0.1:5000/api/vitapharm';
 
     const [products, setProducts] = useState([]);
     const [onChange, setOnChange] = useState(false);

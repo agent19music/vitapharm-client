@@ -133,10 +133,10 @@ function CustomerForm() {
           >
             <AlertIcon boxSize='40px' mr={0} />
             <AlertTitle mt={4} mb={1} fontSize='lg'>
-              Application submitted!
+              Appointement booking received!
             </AlertTitle>
             <AlertDescription maxWidth='sm'>
-              Thanks for submitting your application. Our team will get back to you soon.
+              Thanks for submitting your booking. Our team will get back to you soon to discuss further details.
             </AlertDescription>
           </Alert>
         )}
