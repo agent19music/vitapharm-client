@@ -31,13 +31,9 @@ div.search-bar {
 	flex: 1 1 0%;
 	flex-basis: 0%;
 	flex-grow: 1;
-	max-height: 80px;
 	place-items: center normal;
 	max-width: 60vw;
 	
-}
-#search.InputFieldUnderline__input.InputFieldUnderline__input--active{
-	border: 2px solid black;
 }
 
 
@@ -99,6 +95,32 @@ background: #000;
 h3.image-categories-titles{
 	text-transform: uppercase;
 }
+.category-pic {
+	width: 100%;
+	height: auto;
+}
+  
+.image-categories-titles {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+  
+.image-categories div:hover .image-categories-titles {
+	display: none;
+}
+  
+.image-categories div:hover .category-pic {
+	filter: brightness(70%);
+}
+  
+.image-categories div:hover div {
+	transition: height 0.5s ease-out;
+}
+
+  
+  
+  
 
 span.edit-cartamount:hover{
 	transform: scale(1.2);

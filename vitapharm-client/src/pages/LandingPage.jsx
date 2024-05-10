@@ -7,9 +7,11 @@ import VitapharmFooter from '../components/Footer';
 import TwoProductList from '../components/Productlist';
 import { Link } from 'react-router-dom';
 import SideMenu from '../components/SideMenu';
+import { Search } from 'react-feather';
 import SocialVideos from '../components/SocialVideos';
 
 export default function LandingPage() {
+
   const TEXTS = [
     '30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS',
     'BANKAI SENBOZAKURA KAGEYOSHI',
@@ -28,6 +30,16 @@ export default function LandingPage() {
 
   const slides = ['/pic3.png', '/pic3.png', '/pic3.png', '/pic3.png'];
 
+  const categories = [
+    { title: "Makeup", image: "/1.jpg", description: "Makeup products" },
+    { title: "Haircare", image: "/2.jpg", description: "Haircare products" },
+    { title: "Bodycare", image: "/5.jpg", description: "Bodycare products" },
+    { title: "Skincare", image: "/3.jpg", description: "Skincare products" }
+  ];
+  
+  // Render the categories
+  
+
   return (
     <div>
       <header>
@@ -39,17 +51,19 @@ export default function LandingPage() {
           </div>
         </div>
         <div className='primary-bar'>
-          <div className='logo-holder'>
+          <div className='logo-holder '>
             <img src='/logo.png' alt='' className='logo' />
           </div>
-          <div className='search-bar'>
+          <div className='search-bar align-bottom min-h-max mx-4'>
             <Input
+              variant='outline'
+              borderColor='black.400'
+              focusBorderColor='pink.400'
               placeholder='Search product or brand'
-              id='search.InputFieldUnderline__input.InputFieldUnderline__input--active'
               size='md'
             />
           </div>
-          <div className='whatsapp-info-holder'>
+          <div className='whatsapp-info-holder '>
             <div className='whatsapp-info'>
               <a href='' className='whatsapp'>
                 Whatsapp
@@ -79,31 +93,26 @@ export default function LandingPage() {
         </Carousel>
       </section>
       <section className='image-categories flex justify-center m-3'>
-        <div className='relative p-2'>
-          <h3 className='image-categories-titles text-center absolute inset-0 self-center text-white font-extrabold'>
-            makeup
-          </h3>
-          <img className='category-pic' src='/1.jpg' alt='' />
-        </div>
-        <div className='relative p-2'>
-          <h3 className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white'>
-            haircare
-          </h3>
-          <img className='category-pic' src='/2.jpg' alt='' />
-        </div>
-        <div className='relative p-2'>
-          <h3 className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white'>
-            bodycare
-          </h3>
-          <img className='category-pic' src='/5.jpg' alt='' />
-        </div>
-        <div className='relative p-2'>
-          <h3 className='image-categories-titles text-center absolute inset-0 self-center font-bold text-white'>
-            skincare
-          </h3>
-          <img className='category-pic' src='/3.jpg' alt='' />
-        </div>
-      </section>
+  {categories.map((category, index) => (
+    <div className='relative p-2 overflow-hidden' key={index}>
+      <h3 className='image-categories-titles text-center absolute inset-0 text-white font-extrabold'>
+        {category.title}
+      </h3>
+      <img
+        className='category-pic transform transition-transform duration-300 group-hover:scale-110'
+        src={category.image}
+        alt={category.title}
+      />
+      <div className="text-center absolute bottom-0 left-0 w-full h-0 overflow-hidden transition-all duration-500 ease-in-out bg-black bg-opacity-50 group-hover:h-full">
+        <p className="text-white font-bold py-2 transform translate-y-full opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:translate-y-0">{category.description}</p>
+      </div>
+    </div>
+  ))}
+</section>
+
+
+
+
       <section>
         <TwoProductList />
       </section>
@@ -149,7 +158,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <SocialVideos/>
+      {/* <SocialVideos/> */}
       <VitapharmFooter />
     </div>
   );
