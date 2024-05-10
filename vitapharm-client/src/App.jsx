@@ -8,6 +8,7 @@ import SingleProductCard from './components/SingleProductCard';
 import SignUpPage from './pages/SigupPage';
 import CheckoutPage from './pages/CheckoutPage';
 import Cart from './pages/Cart';
+import SideMenu from './components/SideMenu';
 
 
 
@@ -24,6 +25,7 @@ function App() {
       <Route path="/333" element={<SignUpPage />} />  
       <Route path="/444" element={<CheckoutPage />} />  
       <Route path="/555" element={<Cart />} />  
+      <Route path="/666" element={<SideMenu />} />
 
 
      
