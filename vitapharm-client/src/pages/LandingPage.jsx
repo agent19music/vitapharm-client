@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TextTransition, { presets } from 'react-text-transition';
-import { Input } from '@chakra-ui/react';
+import { InputGroup, Input, InputRightElement, IconButton } from '@chakra-ui/react';
 import WithSubnavigation from '../components/Navbar';
 import Carousel from '../components/2Carousel';
 import VitapharmFooter from '../components/Footer';
@@ -55,13 +55,24 @@ export default function LandingPage() {
             <img src='/logo.png' alt='' className='logo' />
           </div>
           <div className='search-bar align-bottom min-h-max mx-4'>
-            <Input
-              variant='outline'
-              borderColor='black.400'
-              focusBorderColor='pink.400'
-              placeholder='Search product or brand'
-              size='md'
-            />
+          <InputGroup size="lg">
+      <Input
+        placeholder="Search products or brands"
+        border="2px"
+        borderColor="black.400"
+        focusBorderColor='pink.400'
+        borderRadius="lg"
+        py="6"
+        pr="12"
+        fontSize="lg"
+      />
+      <InputRightElement
+        pointerEvents="none"
+        children={<Search color="gray" />}
+        
+        mr="2"
+      />
+    </InputGroup>
           </div>
           <div className='whatsapp-info-holder '>
             <div className='whatsapp-info'>
