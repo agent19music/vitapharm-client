@@ -8,6 +8,9 @@ import SingleProductCard from './components/SingleProductCard';
 import CustomerForm from './pages/AppointmentPage';
 import CheckoutPage from './pages/CheckoutPage';
 import Cart from './pages/Cart';
+import SideMenu from './components/SideMenu';
+
+
 import { CookiesProvider } from 'react-cookie';
 import ProductProvider from './context/ProductContext';
 import Cookies from 'js-cookie'; // Import Cookies from js-cookie
@@ -21,6 +24,7 @@ function App() {
 
   return (
     <BrowserRouter>
+
       <ProductProvider>
         <UserProvider>
         <CookiesProvider>
