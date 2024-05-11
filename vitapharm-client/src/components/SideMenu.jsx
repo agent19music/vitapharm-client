@@ -1,16 +1,29 @@
 import React, { useState } from 'react';
-import { slide as Menu } from 'react-burger-menu';
 import { Link } from 'react-router-dom';
+import { ShoppingBag } from 'react-feather';
+import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay } from "@chakra-ui/react";
 
-const SideMenu = ({ mode }) => {
+const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const renderCart = () => {
-   
-      return (
-        <div>
+    return (
+      <Drawer isOpen={isOpen} onClose={toggleMenu} placement="right" size="lg">
+        <DrawerOverlay>
+          <DrawerContent width="90px">
+            <DrawerCloseButton />
+            <DrawerHeader>Your Cart</DrawerHeader>
+
+            <DrawerBody>
+              <div className="mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center justify-center">
+                  <h1 className="text-2xl font-semibold text-gray-900">Your Cart</h1>
+                </div>
+
+                <div className="mx-auto mt-8 max-w-md md:mt-12">
+                <div>
         <section class="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
   <div class="mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-center">
@@ -97,12 +110,12 @@ const SideMenu = ({ mode }) => {
           </div>
 
           <div class="mt-6 text-center">
-            <button type="button" class="group inline-flex w-full items-center justify-center rounded-md bg-orange-500 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
+            <Link to={'/444'} type="button" class="group inline-flex w-full items-center justify-center rounded-md bg-orange-500 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
               Place Order
               <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:ml-8 ml-4 h-6 w-6 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -110,31 +123,33 @@ const SideMenu = ({ mode }) => {
   </div>
 </section>
 
-    </div>
-      );
-    } 
+</div>
+                </div>
+              </div>
+            </DrawerBody>
 
- 
+            <DrawerFooter>
+              <div className="mt-6 text-center">
+                <Link to={'/444'} type="button" className="group inline-flex w-full items-center justify-center rounded-md bg-orange-500 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
+                  Place Order
+                  <svg xmlns="http://www.w3.org/2000/svg" className="group-hover:ml-8 ml-4 h-6 w-6 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </Link>
+              </div>
+            </DrawerFooter>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
+    );
+  };
 
   return (
     <div>
-      <button className="btn btn-dark lg" onClick={toggleMenu}>
-        <i className='fas fa-bars'></i>
-      </button>
-      <Menu
-        right
-        width={'24vw'}
-        disableAutoFocus
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        styles={{
-          overlay: { background: 'rgba(0, 0, 0, 0.3)' },
-          bmMenu: { background: 'white', boxShadow: 'none'  }
-        }}
-      >
-        {renderCart()}
-      
-      </Menu>
+      <div>
+        <ShoppingBag onClick={toggleMenu} />
+      </div>
+      {renderCart()}
     </div>
   );
 };

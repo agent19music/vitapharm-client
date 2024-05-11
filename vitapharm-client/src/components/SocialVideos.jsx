@@ -1,18 +1,19 @@
-import React from 'react';
-import InstagramEmbed from 'react-instagram-embed';
+import { InstagramEmbed } from 'react-social-media-embed';
 
 export default function SocialVideos() {
   return (
-    <div>
-      <div className='flex w-full'>
-        <InstagramEmbed
-          url='https://www.instagram.com/reel/Ct1dmi9LwDV/'
-          maxWidth={540}
-          hideCaption={false}
-          containerTagName='div'
-          protocol=''
-          injectScript
-        />
+    <div className="flex flex-wrap justify-center gap-4 p-4 rounded-lg bg-gray-100">
+      <div className="max-w-xs">
+        <InstagramEmbed url="https://www.instagram.com/p/C6OlMFGq0Ht/" width={328} hideCaption={true} />
+      </div>
+      <div className="max-w-xs">
+        <InstagramEmbed url="https://www.instagram.com/p/C6L8Mx-M5rX/" width={328} hideCaption={true} />
+      </div>
+      <div className="max-w-xs">
+        <InstagramEmbed url="https://www.instagram.com/p/Ct1dmi9LwDV/" width={328} hideCaption={true} />
+      </div>
+      <div className="max-w-xs">
+        <InstagramEmbed url="https://www.instagram.com/p/C53AOV9MMEs/" width={328} hideCaption={true} />
       </div>
     </div>
   );
