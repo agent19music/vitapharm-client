@@ -13,20 +13,106 @@ import {
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
 export default function NavbarWithExtensions() {
-  // Define the nav items and their sub-items here
   const NAV_ITEMS = [
     {
       label: 'BRANDS',
       children: [
         {
-          label: 'Brand A',
+          label: 'Absolute Repair',
           href: '#',
         },
         {
-          label: 'Brand B',
+          label: 'Baki',
           href: '#',
         },
-        // More brands...
+        {
+          label: 'Bio Balance',
+          href: '#',
+        },
+        {
+          label: 'Bio-Oil',
+          href: '#',
+        },
+        {
+          label: 'Cerave',
+          href: '#',
+        },
+        {
+          label: 'Curl Expression',
+          href: '#',
+        },
+        {
+          label: 'DANG!',
+          href: '#',
+        },
+        {
+          label: 'Garnier',
+          href: '#',
+        },
+        {
+          label: 'Goatee',
+          href: '#',
+        },
+        {
+          label: 'Korean Skincare Brands',
+          href: '#',
+        },
+        {
+          label: 'L\'Oréal Professionnel Paris',
+          href: '#',
+        },
+        {
+          label: 'La Roche Posay',
+          href: '#',
+        },
+        {
+          label: 'L’ORÉAL',
+          href: '#',
+        },
+        {
+          label: 'L’ORÉAL PARIS',
+          href: '#',
+        },
+        {
+          label: 'Mandevu',
+          href: '#',
+        },
+        {
+          label: 'Marini Naturals',
+          href: '#',
+        },
+        {
+          label: 'Mizani',
+          href: '#',
+        },
+        {
+          label: 'ORS',
+          href: '#',
+        },
+        {
+          label: 'Products for Him: BaKi Bros',
+          href: '#',
+        },
+        {
+          label: 'Qasil',
+          href: '#',
+        },
+        {
+          label: 'Routine Bundles',
+          href: '#',
+        },
+        {
+          label: 'Scalp Advanced',
+          href: '#',
+        },
+        {
+          label: 'Shea Moisture Hair',
+          href: '#',
+        },
+        {
+          label: 'Uncover',
+          href: '#',
+        },
       ],
     },
     {
@@ -44,7 +130,6 @@ export default function NavbarWithExtensions() {
           label: 'Hands',
           href: '#',
         },
-        // More categories...
       ],
     },
     {
@@ -62,7 +147,6 @@ export default function NavbarWithExtensions() {
           label: 'Combination',
           href: '#',
         },
-        // More skin types...
       ],
     },
     {
@@ -80,13 +164,25 @@ export default function NavbarWithExtensions() {
           label: 'Fenty',
           href: '#',
         },
-        // More skin types...
       ],
-    },{
+    },
+    {
       label: 'OFFERS',
-     
-    }
-    // More nav items...
+      children: [
+        {
+          label: 'Discounts',
+          href: '#',
+        },
+        {
+          label: 'Promotions',
+          href: '#',
+        },
+        {
+          label: 'Limited Time Offers',
+          href: '#',
+        },
+      ],
+    },
   ];
 
   return (
@@ -99,13 +195,6 @@ export default function NavbarWithExtensions() {
         px={{ base: 4 }}
         align={'center'}>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          {/* <Text
-            textAlign={useColorModeValue('start', 'center')}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-            My App 
-          </Text> */}
-
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav navItems={NAV_ITEMS} />
           </Flex>
