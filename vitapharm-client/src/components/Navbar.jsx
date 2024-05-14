@@ -11,109 +11,19 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import Brands from './Brands';
+import brandsWithLetters from './BrandsWithLetters';
+import { brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 export default function NavbarWithExtensions() {
   const NAV_ITEMS = [
     {
       label: 'BRANDS',
-      children: [
-        {
-          label: 'Absolute Repair',
-          href: '#',
-        },
-        {
-          label: 'Baki',
-          href: '#',
-        },
-        {
-          label: 'Bio Balance',
-          href: '#',
-        },
-        {
-          label: 'Bio-Oil',
-          href: '#',
-        },
-        {
-          label: 'Cerave',
-          href: '#',
-        },
-        {
-          label: 'Curl Expression',
-          href: '#',
-        },
-        {
-          label: 'DANG!',
-          href: '#',
-        },
-        {
-          label: 'Garnier',
-          href: '#',
-        },
-        {
-          label: 'Goatee',
-          href: '#',
-        },
-        {
-          label: 'Korean Skincare Brands',
-          href: '#',
-        },
-        {
-          label: 'L\'Oréal Professionnel Paris',
-          href: '#',
-        },
-        {
-          label: 'La Roche Posay',
-          href: '#',
-        },
-        {
-          label: 'L’ORÉAL',
-          href: '#',
-        },
-        {
-          label: 'L’ORÉAL PARIS',
-          href: '#',
-        },
-        {
-          label: 'Mandevu',
-          href: '#',
-        },
-        {
-          label: 'Marini Naturals',
-          href: '#',
-        },
-        {
-          label: 'Mizani',
-          href: '#',
-        },
-        {
-          label: 'ORS',
-          href: '#',
-        },
-        {
-          label: 'Products for Him: BaKi Bros',
-          href: '#',
-        },
-        {
-          label: 'Qasil',
-          href: '#',
-        },
-        {
-          label: 'Routine Bundles',
-          href: '#',
-        },
-        {
-          label: 'Scalp Advanced',
-          href: '#',
-        },
-        {
-          label: 'Shea Moisture Hair',
-          href: '#',
-        },
-        {
-          label: 'Uncover',
-          href: '#',
-        },
-      ],
+      children: brandsWithLetters.slice(0, 5).map(brand => ({
+        label: brand.name,
+        href: '#',
+      })),
+      moreLink: '/brands',
     },
     {
       label: 'CATEGORY',
@@ -184,6 +94,7 @@ export default function NavbarWithExtensions() {
       ],
     },
   ];
+  
 
   return (
     <Box>
@@ -242,6 +153,13 @@ const DesktopNav = ({ navItems }) => {
                       </Text>
                     </Link>
                   ))}
+                  {navItem.moreLink && (
+                    <Link key="more" href={navItem.moreLink} role={'group'} display={'block'} p={2} rounded={'md'} _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+                      <Text transition={'all .3s ease'} _groupHover={{ color: 'pink.400' }} fontWeight={500}>
+                        More Brands
+                      </Text>
+                    </Link>
+                  )}
                 </Stack>
               </PopoverContent>
             )}
@@ -251,3 +169,5 @@ const DesktopNav = ({ navItems }) => {
     </Stack>
   );
 };
+
+export { Brands };
