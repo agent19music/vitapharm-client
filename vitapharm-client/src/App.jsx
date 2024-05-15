@@ -9,6 +9,7 @@ import CustomerForm from './pages/AppointmentPage';
 import CheckoutPage from './pages/CheckoutPage';
 import Cart from './pages/Cart';
 import SideMenu from './components/SideMenu';
+import Brands from './components/Brands';
 
 
 import { CookiesProvider } from 'react-cookie';
@@ -36,6 +37,7 @@ function App() {
               <Route path="/444" element={<CheckoutPage />} />
               <Route path="/555" element={<Cart />} />
               <Route path="/777" element={<Header />} />
+              <Route path="/brands" element={<Brands />} />
             </Routes>
           </ChakraProvider>
         </CookiesProvider>
