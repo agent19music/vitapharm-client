@@ -11,7 +11,6 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import Brands from './Brands';
 import brandsWithLetters from './BrandsWithLetters';
 // import { brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 
@@ -170,4 +169,4 @@ const DesktopNav = ({ navItems }) => {
   );
 };
 
-export { Brands };
+

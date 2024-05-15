@@ -9,7 +9,7 @@ import CustomerForm from './pages/AppointmentPage';
 import CheckoutPage from './pages/CheckoutPage';
 import Cart from './pages/Cart';
 import SideMenu from './components/SideMenu';
-import Brands from './components/Brands';
+import Brands from './pages/Brands'
 
 
 import { CookiesProvider } from 'react-cookie';

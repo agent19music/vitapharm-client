@@ -47,7 +47,7 @@ export default function SingleProductCard({ productId }) {
     useEffect(() => {
         const fetchProducts = async (token) => {
             try {
-                const response = await fetch(`http://localhost:5000/api/vitapharm/products/16`, {
+                const response = await fetch(`http://localhost:5000/api/vitapharm/products/1`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -76,7 +76,7 @@ export default function SingleProductCard({ productId }) {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${sessionToken}`
                 },
-                body: JSON.stringify({ product_id: 16, quantity: 1 })
+                body: JSON.stringify({ product_id: 1, quantity: 1 })
             });
             const data = await response.json();
             console.log(data);

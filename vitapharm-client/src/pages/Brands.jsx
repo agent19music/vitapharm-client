@@ -1,6 +1,9 @@
 import React from 'react';
+import brandsWithLetters from '../components/BrandsWithLetters';
+import Header from '../components/Header';
 
-const Brands = ({ brands }) => {
+const Brands = () => {
+  let brands = brandsWithLetters
   const groupedBrands = brands.reduce((acc, brand) => {
     const firstLetter = brand.name.charAt(0).toUpperCase();
     if (!acc[firstLetter]) {
@@ -11,6 +14,8 @@ const Brands = ({ brands }) => {
   }, {});
 
   return (
+   <div>
+    <Header/>
     <div className="flex flex-wrap justify-center">
       {Object.entries(groupedBrands).map(([letter, brands]) => (
         <div key={letter} className="w-full my-4">
@@ -24,6 +29,7 @@ const Brands = ({ brands }) => {
           </ul>
         </div>
       ))}
+    </div>
     </div>
   );
 };
