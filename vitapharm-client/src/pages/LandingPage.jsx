@@ -10,6 +10,7 @@ import SideMenu from '../components/SideMenu';
 import { Search } from 'react-feather';
 import SocialVideos from '../components/SocialVideos';
 import WhatsappFloatingActionButton from '../components/WhatsappFloatingActionButton';
+import ImageWithOverlay from '../components/ImageWithOverlay';
 
 export default function LandingPage() {
  
@@ -77,10 +78,10 @@ export default function LandingPage() {
           </div>
           <div className='whatsapp-info-holder '>
             <div className='whatsapp-info'>
-              <a href='' className='whatsapp'>
-                Whatsapp
-              </a>
-              <a href=''>0745071299</a>
+            <div className=' flex align-middle'>
+            <SideMenu/>
+            </div>
+              
             </div>
             <div className='free-shipping-banner'>
               <h6>Free shipping</h6>
@@ -90,9 +91,7 @@ export default function LandingPage() {
         </div>
         <section className='navbar'>
 <WithSubnavigation/>
-<div className=' flex align-middle'>
- <SideMenu/>
-</div>
+
 
   
 </section>
@@ -104,6 +103,7 @@ export default function LandingPage() {
           ))}
         </Carousel>
       </section>
+      <ImageWithOverlay/>
       <section className='image-categories flex justify-center m-3'>
   {categories.map((category, index) => (
     <div className='relative p-2 overflow-hidden' key={index}>

@@ -2,6 +2,9 @@
 a{
 	text-decoration: none;
 }
+a:hover{
+	color: rgb(150,50,7);
+}
 div.info-bar{
 	min-width: 100vw;
 	display: flex;
@@ -58,7 +61,6 @@ min-width: 20vw;
 }
 div.whatsapp-info{
 	display: flex;
-	flex-direction: column;
 	margin: auto;
 }
 a.whatsapp {

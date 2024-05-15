@@ -53,7 +53,7 @@ const TwoProductList = () => {
       'id': 3,
       'image': '/prod3.jpg',
       'zoom_image':'/slide3.jpg',
-      'brand' : "ORS",
+      'brand' : "ORS", 
       'product_type': 'Sheen Spray',
       'price': '700' },
     {
@@ -64,7 +64,6 @@ const TwoProductList = () => {
       'product_type': 'Moisturizing Cream',
       'price': '4,100' },
     {
-      'id': 5,
       'image': '/prod5.jpg',
       'zoom_image':'slide5.jpeg',
       'brand' : "Dior",
