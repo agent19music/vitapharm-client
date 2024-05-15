@@ -9,9 +9,10 @@ import { Link } from 'react-router-dom';
 import SideMenu from '../components/SideMenu';
 import { Search } from 'react-feather';
 import SocialVideos from '../components/SocialVideos';
+import WhatsappFloatingActionButton from '../components/WhatsappFloatingActionButton';
 
 export default function LandingPage() {
-
+ 
   const TEXTS = [
     '30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS',
     'BANKAI SENBOZAKURA KAGEYOSHI',
@@ -51,9 +52,9 @@ export default function LandingPage() {
           </div>
         </div>
         <div className='primary-bar'>
-          <div className='logo-holder '>
+          <Link className='logo-holder ' to={'/111'}>
             <img src='/logo.png' alt='' className='logo' />
-          </div>
+          </Link>
           <div className='search-bar align-bottom min-h-max mx-4'>
           <InputGroup size="lg">
       <Input
@@ -168,6 +169,7 @@ export default function LandingPage() {
       </div>
     </div>
   </div>
+  <WhatsappFloatingActionButton/>
 </section>
 
       {/* <SocialVideos/> */}
