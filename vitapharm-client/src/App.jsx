@@ -9,7 +9,7 @@ import CustomerForm from './pages/AppointmentPage';
 import CheckoutPage from './pages/CheckoutPage';
 import Cart from './pages/Cart';
 import SideMenu from './components/SideMenu';
-import Brands from './components/Brands';
+import Brands from './pages/Brands'
 
 
 import { CookiesProvider } from 'react-cookie';
@@ -17,6 +17,7 @@ import ProductProvider from './context/ProductContext';
 import Cookies from 'js-cookie'; // Import Cookies from js-cookie
 import Header from './components/Header';
 import UserProvider from './context/UserContext';
+
 
 function App() {
   // Correctly setting and getting session_id cookie
