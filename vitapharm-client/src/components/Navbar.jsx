@@ -11,23 +11,19 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import Brands from './Brands';
+import brandsWithLetters from './BrandsWithLetters';
+import { brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 export default function NavbarWithExtensions() {
-  // Define the nav items and their sub-items here
   const NAV_ITEMS = [
     {
       label: 'BRANDS',
-      children: [
-        {
-          label: 'Brand A',
-          href: '#',
-        },
-        {
-          label: 'Brand B',
-          href: '#',
-        },
-        // More brands...
-      ],
+      children: brandsWithLetters.slice(0, 5).map(brand => ({
+        label: brand.name,
+        href: '#',
+      })),
+      moreLink: '/brands',
     },
     {
       label: 'CATEGORY',
@@ -44,7 +40,6 @@ export default function NavbarWithExtensions() {
           label: 'Hands',
           href: '#',
         },
-        // More categories...
       ],
     },
     {
@@ -62,7 +57,6 @@ export default function NavbarWithExtensions() {
           label: 'Combination',
           href: '#',
         },
-        // More skin types...
       ],
     },
     {
@@ -80,14 +74,27 @@ export default function NavbarWithExtensions() {
           label: 'Fenty',
           href: '#',
         },
-        // More skin types...
       ],
-    },{
+    },
+    {
       label: 'OFFERS',
-     
-    }
-    // More nav items...
+      children: [
+        {
+          label: 'Discounts',
+          href: '#',
+        },
+        {
+          label: 'Promotions',
+          href: '#',
+        },
+        {
+          label: 'Limited Time Offers',
+          href: '#',
+        },
+      ],
+    },
   ];
+  
 
   return (
     <Box>
@@ -99,13 +106,6 @@ export default function NavbarWithExtensions() {
         px={{ base: 4 }}
         align={'center'}>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          {/* <Text
-            textAlign={useColorModeValue('start', 'center')}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-            My App 
-          </Text> */}
-
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav navItems={NAV_ITEMS} />
           </Flex>
@@ -153,6 +153,13 @@ const DesktopNav = ({ navItems }) => {
                       </Text>
                     </Link>
                   ))}
+                  {navItem.moreLink && (
+                    <Link key="more" href={navItem.moreLink} role={'group'} display={'block'} p={2} rounded={'md'} _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+                      <Text transition={'all .3s ease'} _groupHover={{ color: 'pink.400' }} fontWeight={500}>
+                        More Brands
+                      </Text>
+                    </Link>
+                  )}
                 </Stack>
               </PopoverContent>
             )}
@@ -162,3 +169,5 @@ const DesktopNav = ({ navItems }) => {
     </Stack>
   );
 };
+
+export { Brands };
