@@ -7,7 +7,7 @@ export default function VitapharmFooter() {
         <div className="mx-auto grid max-w-screen-xl gap-y-8 gap-x-12 px-4 py-10 sm:px-20 md:grid-cols-2 xl:grid-cols-4 xl:px-10">
           <div className="max-w-sm">
             <div className="mb-6 flex h-10 items-center space-x-2">
-              <img className="h-full object-contain" src="seanandprincelogo.jpg" alt="" />
+              <img className="h-full object-contain" src="logo.png" alt="" />
               <span className="text-lg font-medium">Vitapharm</span>
             </div>
             <div className="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ad a officia ea expedita!</div>

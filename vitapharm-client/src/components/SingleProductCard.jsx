@@ -80,7 +80,7 @@ export default function SingleProductCard({ productId }) {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${sessionToken}`
                 },
-                body: JSON.stringify({ product_id: 1, quantity: 1 })
+                body: JSON.stringify({ product_id: 5, quantity: 2 })
             });
             const data = await response.json();
             console.log(data);

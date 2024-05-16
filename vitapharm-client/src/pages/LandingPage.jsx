@@ -103,7 +103,7 @@ export default function LandingPage() {
           ))}
         </Carousel>
       </section>
-      <ImageWithOverlay/>
+      {/* <ImageWithOverlay/> */}
       <section className='image-categories flex justify-center m-3'>
   {categories.map((category, index) => (
     <div className='relative p-2 overflow-hidden' key={index}>
