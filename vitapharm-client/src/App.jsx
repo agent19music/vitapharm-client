@@ -26,11 +26,12 @@ function App() {
 
   return (
     <BrowserRouter>
+     <ChakraProvider>
 
       <ProductProvider>
         <UserProvider>
         <CookiesProvider>
-          <ChakraProvider>
+         
             <Routes>
               <Route path="/111" element={<LandingPage />} />
               <Route path="/222" element={<SingleProductCard />} />
@@ -40,10 +41,11 @@ function App() {
               <Route path="/777" element={<Header />} />
               <Route path="/brands" element={<Brands />} />
             </Routes>
-          </ChakraProvider>
+          
         </CookiesProvider>
         </UserProvider>
       </ProductProvider>
+      </ChakraProvider>
     </BrowserRouter>
   );
 }
