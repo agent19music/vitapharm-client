@@ -5,53 +5,53 @@ import { ProductContext } from '../context/ProductContext';
 
 
 export default function SingleProductCard({ productId }) {
-    const {sessionToken} = useContext(ProductContext)   
+    // const {sessionToken} = useContext(ProductContext)   
  
     const [product, setProducts] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedSize, setSelectedSize] = useState('100ml');
-    // const [sessionToken, setSessionToken] = useState(null);
+    const [sessionToken, setSessionToken] = useState(null);
     const [loading, setLoading] = useState(true)
 
 
-    // useEffect(() => {
-    //     const fetchSessionToken = async () => {
-    //         try {
-    //             let storedToken = localStorage.getItem('session_token')
-    //             let tokenExpiration = localStorage.getItem('token_expiration')
+    useEffect(() => {
+        const fetchSessionToken = async () => {
+            try {
+                let storedToken = localStorage.getItem('session_token')
+                let tokenExpiration = localStorage.getItem('token_expiration')
 
-    //             if (storedToken && tokenExpiration && new Date(tokenExpiration) > new Date()) {
-    //                 setSessionToken(storedToken);
-    //             } else {
-    //                 const response = await fetch('http://localhost:5000/api/vitapharm/session');
-    //                 const { session_token } = await response.json();
-    //                 storedToken = session_token
-    //                 tokenExpiration = new Date(Date.now() + 2 * 60 * 60 * 1000);
-    //                 localStorage.setItem('session_token', session_token);
-    //                 localStorage.setItem('token_expiration', tokenExpiration)
-    //                 setSessionToken(session_token);
+                if (storedToken && tokenExpiration && new Date(tokenExpiration) > new Date()) {
+                    setSessionToken(storedToken);
+                } else {
+                    const response = await fetch('http://localhost:5000/api/vitapharm/session');
+                    const { session_token } = await response.json();
+                    storedToken = session_token
+                    tokenExpiration = new Date(Date.now() + 2 * 60 * 60 * 1000);
+                    localStorage.setItem('session_token', session_token);
+                    localStorage.setItem('token_expiration', tokenExpiration)
+                    setSessionToken(session_token);
 
-    //             }
-    //         } catch (error) {
-    //             console.error('Error fetching session token:', error);
-    //         }
-    //     };
+                }
+            } catch (error) {
+                console.error('Error fetching session token:', error);
+            }
+        };
 
-    //     fetchSessionToken(); // Fetch token on component mount
+        fetchSessionToken(); // Fetch token on component mount
 
-    //     // expiration timer for the token
-    //     const expirationTimer = setTimeout(() => {
-    //         // Token expired, fetch a new token
-    //         fetchSessionToken();
-    //     }, 2 * 60 * 60 * 1000); // 2 hours timer
+        // expiration timer for the token
+        const expirationTimer = setTimeout(() => {
+            // Token expired, fetch a new token
+            fetchSessionToken();
+        }, 2 * 60 * 60 * 1000); // 2 hours timer
 
-    //     return () => clearTimeout(expirationTimer); // clears timer on component unmount
-    // }, []);
+        return () => clearTimeout(expirationTimer); // clears timer on component unmount
+    }, []);
 
     useEffect(() => {
         const fetchProducts = async (token) => {
             try {
-                const response = await fetch(`http://localhost:5000/api/vitapharm/products/1`, {
+                const response = await fetch(`http://localhost:5000/api/vitapharm/products/4`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -80,7 +80,8 @@ export default function SingleProductCard({ productId }) {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${sessionToken}`
                 },
-                body: JSON.stringify({ product_id: 5, quantity: 2 })
+                body: JSON.stringify({ product_id: 4, quantity: 2 })
+                
             });
             const data = await response.json();
             console.log(data);

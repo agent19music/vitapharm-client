@@ -16,9 +16,9 @@ export default function LandingPage() {
  
   const TEXTS = [
     '30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS',
-    'BANKAI SENBOZAKURA KAGEYOSHI',
-    'KATON GYOKYAKU NO JUTSU',
-    'RASEN SHIRUKEN'
+    'ALL YOUR FAVOURITE SKIN CARE BRANDS FOUND HERE',
+    'NEED A SERVICE ? BOOK AN APPOINTMENT FOR FREE !',
+    'THE BEST DEALS IN TOWN'
   ];
   const [index, setIndex] = useState(0);
 

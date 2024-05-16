@@ -14,62 +14,62 @@ export default function ProductProvider({ children }) {
     const [onChange, setOnChange] = useState(false);
 
 
-    useEffect(() => {
-        const fetchSessionToken = async () => {
-            try {
-                let storedToken = localStorage.getItem('session_token')
-                let tokenExpiration = localStorage.getItem('token_expiration')
+    // useEffect(() => {
+    //     const fetchSessionToken = async () => {
+    //         try {
+    //             let storedToken = localStorage.getItem('session_token')
+    //             let tokenExpiration = localStorage.getItem('token_expiration')
 
-                if (storedToken && tokenExpiration && new Date(tokenExpiration) > new Date()) {
-                    setSessionToken(storedToken);
-                } else {
-                    const response = await fetch('http://localhost:5000/api/vitapharm/session');
-                    const { session_token } = await response.json();
-                    storedToken = session_token
-                    tokenExpiration = new Date(Date.now() + 2 * 60 * 60 * 1000);
-                    localStorage.setItem('session_token', session_token);
-                    localStorage.setItem('token_expiration', tokenExpiration)
-                    setSessionToken(session_token);
+    //             if (storedToken && tokenExpiration && new Date(tokenExpiration) > new Date()) {
+    //                 setSessionToken(storedToken);
+    //             } else {
+    //                 const response = await fetch('http://localhost:5000/api/vitapharm/session');
+    //                 const { session_token } = await response.json();
+    //                 storedToken = session_token
+    //                 tokenExpiration = new Date(Date.now() + 2 * 60 * 60 * 1000);
+    //                 localStorage.setItem('session_token', session_token);
+    //                 localStorage.setItem('token_expiration', tokenExpiration)
+    //                 setSessionToken(session_token);
 
-                }
-            } catch (error) {
-                console.error('Error fetching session token:', error);
-            }
-        };
+    //             }
+    //         } catch (error) {
+    //             console.error('Error fetching session token:', error);
+    //         }
+    //     };
 
-        fetchSessionToken(); // Fetch token on component mount
+    //     fetchSessionToken(); // Fetch token on component mount
 
-        // expiration timer for the token
-        const expirationTimer = setTimeout(() => {
-            // Token expired, fetch a new token
-            fetchSessionToken();
-        }, 2 * 60 * 60 * 1000); // 2 hours timer
+    //     // expiration timer for the token
+    //     const expirationTimer = setTimeout(() => {
+    //         // Token expired, fetch a new token
+    //         fetchSessionToken();
+    //     }, 2 * 60 * 60 * 1000); // 2 hours timer
 
-        return () => clearTimeout(expirationTimer); // clears timer on component unmount
-    }, []);
+    //     return () => clearTimeout(expirationTimer); // clears timer on component unmount
+    // }, []);
 
 
-    useEffect(() => {
-        const fetchData = async (token) => {
-            try {
-                const response = await fetch(`${apiEndpoint}/products`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                         'Authorization': `Bearer ${token}`
-                    },
-                });
-                const data = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-    //      if (sessionToken) {
-    //   fetchData(sessionToken);
-    // }
+    // useEffect(() => {
+    //     const fetchData = async (token) => {
+    //         try {
+    //             const response = await fetch(`${apiEndpoint}/products`, {
+    //                 method: 'GET',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                      'Authorization': `Bearer ${token}`
+    //                 },
+    //             });
+    //             const data = await response.json();
+    //             setProducts(data);
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    // //      if (sessionToken) {
+    // //   fetchData(sessionToken);
+    // // }
 
-      }, [products, sessionToken]);
+    //   }, [products, sessionToken]);
 
     function addToCart2(productId) {
         console.log('productId:', productId);
@@ -114,7 +114,7 @@ export default function ProductProvider({ children }) {
     const contextData = {
         products,
         apiEndpoint,
-        addToCart,
+        addToCart2,
         sessionToken
     };
 
