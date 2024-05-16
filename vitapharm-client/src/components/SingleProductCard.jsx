@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { ProductContext } from '../context/ProductContext';
+
 
 
 
 export default function SingleProductCard({ productId }) {
+    // const {sessionToken} = useContext(ProductContext)   
+ 
     const [product, setProducts] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedSize, setSelectedSize] = useState('100ml');
@@ -47,7 +51,7 @@ export default function SingleProductCard({ productId }) {
     useEffect(() => {
         const fetchProducts = async (token) => {
             try {
-                const response = await fetch(`http://localhost:5000/api/vitapharm/products/1`, {
+                const response = await fetch(`http://localhost:5000/api/vitapharm/products/4`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -76,7 +80,8 @@ export default function SingleProductCard({ productId }) {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${sessionToken}`
                 },
-                body: JSON.stringify({ product_id: 1, quantity: 1 })
+                body: JSON.stringify({ product_id: 4, quantity: 2 })
+                
             });
             const data = await response.json();
             console.log(data);
