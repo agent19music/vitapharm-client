@@ -10,7 +10,7 @@ export default function VitapharmFooter() {
               <img className="h-full object-contain" src="logo.png" alt="" />
               <span className="text-lg font-medium">Vitapharm</span>
             </div>
-            <div className="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ad a officia ea expedita!</div>
+            <div className="text-white">Vitapharm cosmetics and pharmacy. Your one stop shop for quality skin care products and services.</div>
           </div>
           <div className="">
             <div className="mt-4 mb-2 font-medium xl:mb-4">Guides</div>
@@ -38,7 +38,7 @@ export default function VitapharmFooter() {
         </div>
         <div className="border-t">
           <div className="mx-auto flex max-w-screen-xl flex-col gap-y-4 px-4 py-3 text-center text-gray-500 sm:px-20 lg:flex-row lg:justify-between lg:text-left xl:px-10">
-            <p className="text-white">© 2022 Viapharm Cosmeics And Pharmacy | All Rights Reserved</p>
+            <p className="text-white">© 2024 Viapharm Cosmeics And Pharmacy | All Rights Reserved</p>
             <p className="">
               <a className="text-white" href="#">Privacy Policy</a>
               <span className='text-white'>|</span>

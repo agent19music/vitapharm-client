@@ -2,14 +2,12 @@
 a{
 	text-decoration: none;
 }
-a:hover{
-	color: rgb(150,50,7);
-}
+
 div.info-bar{
 	min-width: 100vw;
 	display: flex;
 	justify-content:center;
-	background: rgb(150,50,7);
+	background: rgb(105, 63, 45);
 	
 	
 }
@@ -18,7 +16,7 @@ div.info-item{
 	margin: auto;
 	height: 3vh;
 	padding: 0.3rem;
-	background: rgb(150,50,7);
+	background: rgb(105, 63, 45);
 	color: white;
 }
 /* CSS Inspector (https://www.baki.co.ke) */ 
@@ -163,7 +161,7 @@ cursor: pointer;
 }
 
 .vp-bo{
-	background-color: rgb(150,50,7);
+	background-color:  rgb(105, 63, 45);
 }
 /* h3.image-categories-titles{
 	text-transform: uppercase;
