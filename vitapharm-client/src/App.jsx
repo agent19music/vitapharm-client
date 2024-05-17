@@ -34,7 +34,7 @@ function App() {
          
             <Routes>
               <Route path="/111" element={<LandingPage />} />
-              <Route path="/222" element={<SingleProductCard />} />
+              <Route path="/product/:productId" element={<SingleProductCard />} />
               <Route path="/333" element={<CustomerForm />} />
               <Route path="/444" element={<CheckoutPage />} />
               <Route path="/555" element={<Cart />} />
