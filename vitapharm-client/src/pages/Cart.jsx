@@ -8,14 +8,23 @@ export default function Cart() {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-
         const fetchCartItems = async () => {
+            if (!sessionToken) return;
             try {
+                console.log('Session Token:', sessionToken);
                 const response = await fetch(`${apiEndpoint}/cart`, {
                     headers: {
+                        'Content-Type': 'application/json',
                         'Authorization': `Bearer ${sessionToken}`
                     }
                 });
+    
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error(`Error ${response.status}: ${response.statusText}`, errorData);
+                    return;
+                }
+    
                 const data = await response.json();
                 setCartItems(data);
                 calculateCartTotal(data);
@@ -23,19 +32,20 @@ export default function Cart() {
                 console.error('Error fetching cart items:', error);
             }
         };
-
+    
         const calculateCartTotal = (cartData) => {
             let subtotalPrice = 0;
             cartData.forEach((item) => {
                 subtotalPrice += item.total_price;
             });
             setSubtotal(subtotalPrice);
-            setTotal(subtotalPrice); // Assuming no additional charges for now
+            setTotal(subtotalPrice);
         };
-
+    
         fetchCartItems();
-
     }, [apiEndpoint, sessionToken]);
+    
+    
 
     const updateCartItemQuantity = async (productId, quantity) => {
         // Add your logic for updating cart item quantity here
