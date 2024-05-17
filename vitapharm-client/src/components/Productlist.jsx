@@ -24,9 +24,9 @@ const ProductCard = ({ product, addToCart }) => {
         </a>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-bold text-black">${price !== null ? price : "N/A"}</span>
+            <span className="text-3xl font-bold text-black">{price !== null ? price : "N/A"}</span>
             {price !== null && (
-              <span className="text-sm text-black line-through">${(price * 1.75).toFixed(2)}</span>
+              <span className="text-sm text-black line-through">Ksh {(price * 1.75).toFixed(2)}</span>
             )}
           </p>
         </div>
