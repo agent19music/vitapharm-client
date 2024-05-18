@@ -12,7 +12,7 @@ import SocialVideos from '../components/SocialVideos';
 import WhatsappFloatingActionButton from '../components/WhatsappFloatingActionButton';
 import ImageWithOverlay from '../components/ImageWithOverlay';
 
-export default function LandingPage() {
+export default function LandingPage({setUpdateCart, updateCart,cartItems,setCartItems}) {
  
   const TEXTS = [
     '30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS',
@@ -79,7 +79,7 @@ export default function LandingPage() {
           <div className='whatsapp-info-holder '>
             <div className='whatsapp-info'>
             <div className=' flex align-middle'>
-            <SideMenu/>
+            <SideMenu updateCart={updateCart} cartItems={cartItems} setCartItems={setCartItems} />
             </div>
               
             </div>
@@ -126,7 +126,7 @@ export default function LandingPage() {
 
 
       <section>
-        <TwoProductList />
+        <TwoProductList setUpdateCart={setUpdateCart} updateCart={updateCart}/>
       </section>
       <section className='my-4'>
   <div className='container flex justify-center items-center mx-auto services'>
