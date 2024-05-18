@@ -20,6 +20,8 @@ export default function ProductProvider({ children }) {
     const [cartItemCount, setCartItemCount] = useState(0); // State to track number of items in cart
     const [cartEmpty, setCartEmpty] = useState(true); // State to track if cart is empty
 
+    const toast = useToast();
+
 
 
 

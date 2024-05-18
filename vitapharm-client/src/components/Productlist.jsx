@@ -43,44 +43,44 @@ const ProductCard = ({ product, addToCart }) => {
 
 
 const TwoProductList = ({setUpdateCart, updateCart}) => {
-  const { products, sessionToken, apiEndpoint } = useContext(ProductContext);
+  const { products, sessionToken, apiEndpoint, addToCart } = useContext(ProductContext);
   
   const [start, setStart] = React.useState(0);
-  const toast = useToast();
+ 
 
-  const addToCart = async (id) => {
-    if (!sessionToken) return; // Handle missing token
+  // const addToCart = async (id) => {
+  //   if (!sessionToken) return; // Handle missing token
 
-    try {
-      const response = await fetch(`${apiEndpoint}/cart/add`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionToken}`
-        },
-        body: JSON.stringify({ product_id: id, quantity: 1 })
-      });
-      const data = await response.json();
-      console.log(data);
+  //   try {
+  //     const response = await fetch(`${apiEndpoint}/cart/add`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': `Bearer ${sessionToken}`
+  //       },
+  //       body: JSON.stringify({ product_id: id, quantity: 1 })
+  //     });
+  //     const data = await response.json();
+  //     console.log(data);
 
-      // Add the toast here
-      toast({
-        title: "Product added.",
-        description: "The product has been added to your cart.",
-        status: "success",
-        duration: 1200,
-        isClosable: true,
-        position: "top-right",
-        variant: "subtle",
-        colorScheme: "green",
-      });
+  //     // Add the toast here
+  //     toast({
+  //       title: "Product added.",
+  //       description: "The product has been added to your cart.",
+  //       status: "success",
+  //       duration: 1200,
+  //       isClosable: true,
+  //       position: "top-right",
+  //       variant: "subtle",
+  //       colorScheme: "green",
+  //     });
 
-    } catch (error) {
-      console.error('Error adding to cart:', error);
-    }
-    setUpdateCart(true); // Trigger cart update
-    setUpdateCart(false); // Reset trigger
-  };
+  //   } catch (error) {
+  //     console.error('Error adding to cart:', error);
+  //   }
+  //   setUpdateCart(true); // Trigger cart update
+  //   setUpdateCart(false); // Reset trigger
+  // };
 
   const scrollLeft = () => {
     setStart(Math.max(0, start - 4));
