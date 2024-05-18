@@ -12,7 +12,15 @@ export default function ProductProvider({ children }) {
 
     const [products, setProducts] = useState([]);
     const [sessionToken, setSessionToken] = useState(null);
+    const [updateCart, setUpdateCart] = useState(false);
+    const [cartItems, setCartItems] = useState([]);
     const [onChange, setOnChange] = useState(false);
+    const [subtotal, setSubtotal] = useState(0);
+    const [total, setTotal] = useState(0);
+    const [cartItemCount, setCartItemCount] = useState(0); // State to track number of items in cart
+    const [cartEmpty, setCartEmpty] = useState(true); // State to track if cart is empty
+
+
 
 
     useEffect(() => {
@@ -75,61 +83,94 @@ export default function ProductProvider({ children }) {
     }, [sessionToken]);
     
 
-    function addToCart2(productId) {
-        console.log('productId:', productId);
-        console.log('sessionId:', sessionId);
-        fetch(`${apiEndpoint}/cart/add`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sessionId}`
-            },
-            body: JSON.stringify({ productId })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Item added to cart:', data);
-        })
-        .catch(error => {
-            console.error('Error adding item to cart:', error);
-        });
-    }
 
     const addToCart = async (id) => {
-      const toast = useToast()
-      if (!sessionToken) return; // Handle missing token
-  
-      try {
+        if (!sessionToken) return; // Handle missing token
+    
+        try {
           const response = await fetch(`${apiEndpoint}/cart/add`, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${sessionToken}`
-              },
-              body: JSON.stringify({ product_id: id, quantity: 1 })
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${sessionToken}`
+            },
+            body: JSON.stringify({ product_id: id, quantity: 1 })
           });
           const data = await response.json();
           console.log(data);
-  
+    
           // Add the toast here
           toast({
-              title: "Product added.",
-              description: "The product has been successfully added to your cart.",
-              status: "success",
-              duration: 5000,
-              isClosable: true,
+            title: "Product added.",
+            description: "The product has been added to your cart.",
+            status: "success",
+            duration: 1200,
+            isClosable: true,
+            position: "top-right",
+            variant: "subtle",
+            colorScheme: "green",
           });
-      } catch (error) {
+    
+        } catch (error) {
           console.error('Error adding to cart:', error);
-      }
-  };
+        }
+        setUpdateCart(true); // Trigger cart update
+        setUpdateCart(false); // Reset trigger
+      };
+
+      const calculateCartTotal = (cartData) => {
+        let subtotalPrice = 0;
+        cartData.forEach((item) => {
+          subtotalPrice += item.total_price;
+        });
+        setSubtotal(subtotalPrice);
+        setTotal(subtotalPrice);
+      };
+    
   
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      if (!sessionToken) return;
+      try {
+        const response = await fetch(`${apiEndpoint}/cart`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionToken}`
+          }
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error(`Error ${response.status}: ${response.statusText}`, errorData);
+          return;
+        }
+
+        const data = await response.json();
+        setCartItems(data);
+        calculateCartTotal(data);
+        setCartItemCount(data.length); // Update cart item count
+        setCartEmpty(data.length === 0); // Update cart empty status
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      }
+    };
+
+    fetchCartItems();
+  }, [updateCart, sessionToken]);
 
     const contextData = {
         products,
         apiEndpoint,
         addToCart,
-        sessionToken
+        sessionToken,
+        updateCart,
+        setCartItems,
+        cartItems,
+        setUpdateCart,
+        cartItems,
+        subtotal,
+        total,cartItemCount,
+        cartEmpty
     };
 
     return (

@@ -42,8 +42,9 @@ const ProductCard = ({ product, addToCart }) => {
 };
 
 
-const TwoProductList = () => {
+const TwoProductList = ({setUpdateCart, updateCart}) => {
   const { products, sessionToken, apiEndpoint } = useContext(ProductContext);
+  
   const [start, setStart] = React.useState(0);
   const toast = useToast();
 
@@ -77,6 +78,8 @@ const TwoProductList = () => {
     } catch (error) {
       console.error('Error adding to cart:', error);
     }
+    setUpdateCart(true); // Trigger cart update
+    setUpdateCart(false); // Reset trigger
   };
 
   const scrollLeft = () => {
