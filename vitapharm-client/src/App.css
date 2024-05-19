@@ -97,6 +97,11 @@ section.navbar{
 	padding: 4px 8px;
 	border-radius: 50%;
   }
+
+  .custom-hover:hover {
+    background-color: rgb(105, 63, 45);
+}
+
   
   /* Animation for gentle shaking */
   /* @keyframes gentle-shake {
