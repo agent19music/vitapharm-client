@@ -6,68 +6,18 @@ import { ProductContext } from '../context/ProductContext';
 
 
 const SideMenu = () => {
- 
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const { sessionToken, apiEndpoint,cartItems, subtotal, total, setCartItems,cartItemCount, cartEmpty } = useContext(ProductContext);
-  
-
-  
-  
-
-  const updateCartItemQuantity = async (productId, quantityChange) => {
-    if (!sessionToken) return;
-    try {
-      const response = await fetch(`${apiEndpoint}/cart/update`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionToken}`
-        },
-        body: JSON.stringify({
-          product_id: productId,
-          quantity_change: quantityChange
-        })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error(`Error ${response.status}: ${response.statusText}`, errorData);
-        return;
-      }
-
-      const updatedCart = await response.json();
-      setCartItems((prevItems) =>
-        prevItems.map((item) =>
-          item.product_id === productId ? { ...item, quantity: item.quantity + quantityChange } : item
-        )
-      );
-      calculateCartTotal(updatedCart);
-    } catch (error) {
-      console.error('Error updating cart item quantity:', error);
-    }
-  };
-
-  const incrementQuantity = (productId) => {
-    updateCartItemQuantity(productId, 1);
-  };
-
-  const decrementQuantity = (productId) => {
-    updateCartItemQuantity(productId, -1);
-  };
-
-
+  const { cartItems, subtotal, total, cartItemCount, cartEmpty, incrementQuantity, decrementQuantity } = useContext(ProductContext);
 
   const renderCart = () => {
-    return (
-      <Drawer isOpen={isOpen} onClose={toggleMenu} placement="right" size="lg">
-        <DrawerOverlay>
-          <DrawerContent width="90px">
-            <DrawerCloseButton />
-
-            <DrawerBody>
+      return (
+          <Drawer isOpen={isOpen} onClose={toggleMenu} placement="right" size="lg">
+              <DrawerOverlay>
+                  <DrawerContent width="90px">
+                      <DrawerCloseButton />
+                      <DrawerBody>
             <section className="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
             <div className="mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-center">
@@ -105,7 +55,7 @@ const SideMenu = () => {
                                                 </div>
         
                                                 <div className="absolute top-0 right-0 flex sm:bottom-0 sm:top-auto">
-                                                    <button type="button" className="flex rounded p-2 text-center text-gray-500 transition-all duration-200 ease-in-out focus:shadow hover:text-gray-900" onClick={() => updateCartItemQuantity(item.product_id, -1)}>
+                                                    <button type="button" className="flex rounded p-2 text-center text-gray-500 transition-all duration-200 ease-in-out focus:shadow hover:text-gray-900">
                                                         <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4" />
                                                         </svg>
@@ -133,12 +83,13 @@ const SideMenu = () => {
                             </div>
         
                             <div className="mt-6 text-center">
-                            <Link to={`/checkout`} className="group inline-flex w-full items-center justify-center rounded-md bg-orange-500 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
+                            <Link to={`/checkout`} className="group inline-flex w-full items-center justify-center rounded-md vp-bo px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover">
                               Place Order
                               <svg xmlns="http://www.w3.org/2000/svg" className="group-hover:ml-8 ml-4 h-6 w-6 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                               </svg>
-                            </Link>
+                          </Link>
+
                             </div>
                         </div>
                     </div>
@@ -165,13 +116,13 @@ const SideMenu = () => {
 
   return (
     <div>
-    <div onClick={toggleMenu} className={`shopping-bag ${!cartEmpty ? 'gentle-shake' : ''}`}>
-      <span className="item-count">{cartItemCount}</span>
-      <ShoppingBag  />
+        <div onClick={toggleMenu} className={`shopping-bag ${!cartEmpty ? 'gentle-shake' : ''}`}>
+            <span className="item-count">{cartItemCount}</span>
+            <ShoppingBag />
+        </div>
+        {renderCart()}
     </div>
-    {renderCart()}
-  </div>
-  );
+);
 };
 
 export default SideMenu;
