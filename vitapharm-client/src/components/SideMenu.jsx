@@ -11,54 +11,8 @@ const SideMenu = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const { sessionToken, apiEndpoint,cartItems, subtotal, total, setCartItems,cartItemCount, cartEmpty } = useContext(ProductContext);
+  const { sessionToken, apiEndpoint,cartItems, subtotal, total, setCartItems,cartItemCount, cartEmpty,incrementQuantity, decrementQuantity } = useContext(ProductContext);
   
-
-  
-  
-
-  const updateCartItemQuantity = async (productId, quantityChange) => {
-    if (!sessionToken) return;
-    try {
-      const response = await fetch(`${apiEndpoint}/cart/update`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionToken}`
-        },
-        body: JSON.stringify({
-          product_id: productId,
-          quantity_change: quantityChange
-        })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error(`Error ${response.status}: ${response.statusText}`, errorData);
-        return;
-      }
-
-      const updatedCart = await response.json();
-      setCartItems((prevItems) =>
-        prevItems.map((item) =>
-          item.product_id === productId ? { ...item, quantity: item.quantity + quantityChange } : item
-        )
-      );
-      calculateCartTotal(updatedCart);
-    } catch (error) {
-      console.error('Error updating cart item quantity:', error);
-    }
-  };
-
-  const incrementQuantity = (productId) => {
-    updateCartItemQuantity(productId, 1);
-  };
-
-  const decrementQuantity = (productId) => {
-    updateCartItemQuantity(productId, -1);
-  };
-
-
 
   const renderCart = () => {
     return (
@@ -105,7 +59,7 @@ const SideMenu = () => {
                                                 </div>
         
                                                 <div className="absolute top-0 right-0 flex sm:bottom-0 sm:top-auto">
-                                                    <button type="button" className="flex rounded p-2 text-center text-gray-500 transition-all duration-200 ease-in-out focus:shadow hover:text-gray-900" onClick={() => updateCartItemQuantity(item.product_id, -1)}>
+                                                    <button type="button" className="flex rounded p-2 text-center text-gray-500 transition-all duration-200 ease-in-out focus:shadow hover:text-gray-900">
                                                         <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4" />
                                                         </svg>

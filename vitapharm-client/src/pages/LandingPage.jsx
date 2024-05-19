@@ -172,7 +172,7 @@ export default function LandingPage({setUpdateCart, updateCart,cartItems,setCart
   <WhatsappFloatingActionButton/>
 </section>
 
-      {/* <SocialVideos/> */}
+      <SocialVideos/>
       <VitapharmFooter />
     </div>
   );
