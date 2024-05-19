@@ -6,22 +6,18 @@ import { ProductContext } from '../context/ProductContext';
 
 
 const SideMenu = () => {
- 
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const { sessionToken, apiEndpoint,cartItems, subtotal, total, setCartItems,cartItemCount, cartEmpty,incrementQuantity, decrementQuantity } = useContext(ProductContext);
-  
+  const { cartItems, subtotal, total, cartItemCount, cartEmpty, incrementQuantity, decrementQuantity } = useContext(ProductContext);
 
   const renderCart = () => {
-    return (
-      <Drawer isOpen={isOpen} onClose={toggleMenu} placement="right" size="lg">
-        <DrawerOverlay>
-          <DrawerContent width="90px">
-            <DrawerCloseButton />
-
-            <DrawerBody>
+      return (
+          <Drawer isOpen={isOpen} onClose={toggleMenu} placement="right" size="lg">
+              <DrawerOverlay>
+                  <DrawerContent width="90px">
+                      <DrawerCloseButton />
+                      <DrawerBody>
             <section className="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
             <div className="mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-center">
@@ -120,13 +116,13 @@ const SideMenu = () => {
 
   return (
     <div>
-    <div onClick={toggleMenu} className={`shopping-bag ${!cartEmpty ? 'gentle-shake' : ''}`}>
-      <span className="item-count">{cartItemCount}</span>
-      <ShoppingBag  />
+        <div onClick={toggleMenu} className={`shopping-bag ${!cartEmpty ? 'gentle-shake' : ''}`}>
+            <span className="item-count">{cartItemCount}</span>
+            <ShoppingBag />
+        </div>
+        {renderCart()}
     </div>
-    {renderCart()}
-  </div>
-  );
+);
 };
 
 export default SideMenu;

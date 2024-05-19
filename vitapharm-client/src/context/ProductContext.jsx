@@ -119,19 +119,21 @@ export default function ProductProvider({ children }) {
         setUpdateCart(true); // Trigger cart update
         setUpdateCart(false); // Reset trigger
       };
+
       const calculateCartTotal = (cartData) => {
         if (!Array.isArray(cartData)) {
-          console.error('calculateCartTotal expected an array, but received:', cartData);
-          return;
+            console.error('calculateCartTotal expected an array, but received:', cartData);
+            return;
         }
         
         let subtotalPrice = 0;
         cartData.forEach((item) => {
-          subtotalPrice += item.total_price;
+            subtotalPrice += item.quantity * item.variation_price; // Ensure correct calculation
         });
         setSubtotal(subtotalPrice);
         setTotal(subtotalPrice);
-      };
+    };
+    
       
     
   
@@ -163,45 +165,44 @@ export default function ProductProvider({ children }) {
     };
 
     fetchCartItems();
-  }, [updateCart, sessionToken]);
+  }, [updateCart, sessionToken, cartItems]);
 
   const updateCartItemQuantity = async (productId, quantityChange) => {
     if (!sessionToken) return;
     try {
-      const response = await fetch(`${apiEndpoint}/cart/update`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionToken}`
-        },
-        body: JSON.stringify({
-          product_id: productId,
-          quantity_change: quantityChange
-        })
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error(`Error ${response.status}: ${response.statusText}`, errorData);
-        return;
-      }
-  
-      const updatedCart = await response.json();
-      console.log('Updated Cart Response:', updatedCart); // Add this line for debugging
-      if (Array.isArray(updatedCart)) {
-        setCartItems((prevItems) =>
-          prevItems.map((item) =>
-            item.product_id === productId ? { ...item, quantity: item.quantity + quantityChange } : item
-          )
-        );
-        calculateCartTotal(updatedCart);
-      } else {
-        console.error('Unexpected response format:', updatedCart);
-      }
+        const response = await fetch(`${apiEndpoint}/cart/update`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionToken}`
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                quantity_change: quantityChange
+            })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error(`Error ${response.status}: ${response.statusText}`, errorData);
+            return;
+        }
+
+        const updatedCart = await response.json();
+        console.log('Updated Cart Response:', updatedCart); // Debugging
+
+        if (Array.isArray(updatedCart)) {
+            setCartItems(updatedCart); // Set updated cart items directly
+            calculateCartTotal(updatedCart); // Calculate the total based on updated cart
+        } else {
+            console.error('Unexpected response format:', updatedCart);
+        }
     } catch (error) {
-      console.error('Error updating cart item quantity:', error);
+        console.error('Error updating cart item quantity:', error);
     }
-  };
+};
+
+
   
   const incrementQuantity = (productId) => {
     updateCartItemQuantity(productId, 1);
@@ -211,23 +212,24 @@ export default function ProductProvider({ children }) {
     updateCartItemQuantity(productId, -1);
   };
 
-    const contextData = {
-        products,
-        apiEndpoint,
-        addToCart,
-        sessionToken,
-        updateCart,
-        setCartItems,
-        cartItems,
-        setUpdateCart,
-        subtotal,
-        total,cartItemCount,
-        cartEmpty,
-        calculateCartTotal,
-        decrementQuantity,
-        incrementQuantity,
-        updateCartItemQuantity
-    };
+  const contextData = {
+    products,
+    apiEndpoint,
+    addToCart,
+    sessionToken,
+    setCartItems,
+    cartItems,
+    subtotal,
+    total,
+    cartItemCount,
+    cartEmpty,
+    calculateCartTotal,
+    decrementQuantity,
+    incrementQuantity,
+    updateCartItemQuantity,
+     
+};
+
 
     return (
         <ProductContext.Provider value={contextData}>
