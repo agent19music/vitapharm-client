@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from "react-feather";
 import '../App.css';
-import { useContext } from 'react';
 import { ProductContext } from '../context/ProductContext';
-import { useToast } from '@chakra-ui/react';
+import { useToast, Skeleton, SkeletonText, Box } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product, addToCart }) => {
@@ -12,7 +11,7 @@ const ProductCard = ({ product, addToCart }) => {
 
   return (
     <div className="group border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border bg-zinc-100 shadow-md">
-      <Link to={`/product/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  {/* Use Link here */}
+      <Link to={`/product/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
         <img className="peer absolute top-0 right-0 h-full w-full object-cover" src={`data:image/png;base64, ${product.images[0]?.data}`} alt="product image" />
         <img className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0" src={`data:image/png;base64, ${product.images[1]?.data}`} alt="product image" />
         <svg className="group-hover:animate-ping group-hover:opacity-30 peer-hover:opacity-0 pointer-events-none absolute inset-x-0 bottom-5 mx-auto text-3xl text-white transition-opacity" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M2 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v10a4 4 0 0 1-2.328 3.635a2.996 2.996 0 0 0-.55-.756l-8-8A3 3 0 0 0 14 17v7H6a4 4 0 0 1-4-4V10Zm14 19a1 1 0 0 0 1.8.6l2.7-3.6H25a1 1 0 0 0 .707-1.707l-8-8A1 1 0 0 0 16 17v12Z" /></svg>
@@ -41,46 +40,30 @@ const ProductCard = ({ product, addToCart }) => {
   );
 };
 
+const SkeletonCard = () => (
+  <div className="group border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border bg-zinc-100 shadow-md">
+    <Box className="relative mx-3 mt-3 flex h-60 overflow-hidden">
+      <Skeleton height="100%" width="100%" />
+    </Box>
+    <div className="mt-4 px-5 pb-5">
+      <Skeleton height="20px" my="2" />
+      {/* <SkeletonText mt="4" noOfLines={2} spacing="4" /> */}
+      <Skeleton height="36px" mt="4" />
+    </div>
+  </div>
+);
 
-const TwoProductList = ({setUpdateCart, updateCart}) => {
-  const { products, sessionToken, apiEndpoint, addToCart } = useContext(ProductContext);
+const TwoProductList = () => {
+  const { products, addToCart } = useContext(ProductContext);
+  const [start, setStart] = useState(0);
+  const [loading, setLoading] = useState(true);
   
-  const [start, setStart] = React.useState(0);
- 
 
-  // const addToCart = async (id) => {
-  //   if (!sessionToken) return; // Handle missing token
-
-  //   try {
-  //     const response = await fetch(`${apiEndpoint}/cart/add`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Authorization': `Bearer ${sessionToken}`
-  //       },
-  //       body: JSON.stringify({ product_id: id, quantity: 1 })
-  //     });
-  //     const data = await response.json();
-  //     console.log(data);
-
-  //     // Add the toast here
-  //     toast({
-  //       title: "Product added.",
-  //       description: "The product has been added to your cart.",
-  //       status: "success",
-  //       duration: 1200,
-  //       isClosable: true,
-  //       position: "top-right",
-  //       variant: "subtle",
-  //       colorScheme: "green",
-  //     });
-
-  //   } catch (error) {
-  //     console.error('Error adding to cart:', error);
-  //   }
-  //   setUpdateCart(true); // Trigger cart update
-  //   setUpdateCart(false); // Reset trigger
-  // };
+  useEffect(() => {
+    if (products.length > 0) {
+      setLoading(false);
+    }
+  }, [products]);
 
   const scrollLeft = () => {
     setStart(Math.max(0, start - 4));
@@ -92,7 +75,7 @@ const TwoProductList = ({setUpdateCart, updateCart}) => {
 
   return (
     <div className=''>
-      <div className="flex flex-col justify-center  min-w-screen items-center">
+      <div className="flex flex-col justify-center min-w-screen items-center">
         <div className='space-1 align-bottom self-end mr-24'>
           <button
             onClick={scrollLeft}
@@ -108,9 +91,11 @@ const TwoProductList = ({setUpdateCart, updateCart}) => {
           </button>
         </div>
         <div className="flex p-9 transition-all duration-500 ease-in-out w-full items-center justify-evenly ">
-          {products.slice(start, start + 4).map((product, index) => (
-            <ProductCard key={index} product={product} addToCart={addToCart} />
-          ))}
+          {loading
+            ? [1, 2, 3, 4].map((i) => <SkeletonCard key={i} />)
+            : products.slice(start, start + 4).map((product, index) => (
+                <ProductCard key={index} product={product} addToCart={addToCart} />
+              ))}
         </div>
       </div>
     </div>
