@@ -121,7 +121,7 @@ export default function CheckoutPage() {
                     <img className="w-14 object-contain" src="/images/naorrAeygcJzX0SyNI4Y0.png" alt="" />
                     <div className="ml-5">
                       <span className="mt-2 font-semibold">Pick Up Mtaani Delivery</span>
-                      <p className="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
+                      <p className="text-slate-500 text-sm leading-6">Delivery: 1-2 Days</p>
                     </div>
                   </label>
                 </div>

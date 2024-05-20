@@ -2,6 +2,16 @@
 a{
 	text-decoration: none;
 }
+body{
+	text-decoration-line: none ;
+}
+
+.Link:hover {
+	text-decoration-line: none!important;
+  }
+  .custom-link, .custom-link:hover, .custom-link:focus, .custom-link:active {
+	text-decoration: none !important;
+  }
 
 div.info-bar{
 	min-width: 100vw;

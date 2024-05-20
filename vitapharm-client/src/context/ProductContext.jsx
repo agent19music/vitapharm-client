@@ -165,7 +165,7 @@ export default function ProductProvider({ children }) {
     };
 
     fetchCartItems();
-  }, [updateCart, sessionToken, cartItems]);
+  }, [updateCart, sessionToken]);
 
   const updateCartItemQuantity = async (productId, quantityChange) => {
     if (!sessionToken) return;
