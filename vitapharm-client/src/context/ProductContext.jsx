@@ -26,38 +26,51 @@ export default function ProductProvider({ children }) {
 
 
     useEffect(() => {
-        const fetchSessionToken = async () => {
-            try {
-                let storedToken = localStorage.getItem('session_token')
-                let tokenExpiration = localStorage.getItem('token_expiration')
-
-                if (storedToken && tokenExpiration && new Date(tokenExpiration) > new Date()) {
-                    setSessionToken(storedToken);
-                } else {
-                    const response = await fetch('http://localhost:5000/api/vitapharm/session');
-                    const { session_token } = await response.json();
-                    storedToken = session_token
-                    tokenExpiration = new Date(Date.now() + 2 * 60 * 60 * 1000);
-                    localStorage.setItem('session_token', session_token);
-                    localStorage.setItem('token_expiration', tokenExpiration)
-                    setSessionToken(session_token);
-
-                }
-            } catch (error) {
-                console.error('Error fetching session token:', error);
+      const fetchSessionToken = async () => {
+        try {
+            let storedToken = localStorage.getItem('session_token');
+            let refreshToken = localStorage.getItem('refresh_token');
+            let tokenExpiration = localStorage.getItem('token_expiration');
+    
+            if (storedToken && tokenExpiration && new Date(tokenExpiration) > new Date()) {
+                setSessionToken(storedToken);
+            } else if (refreshToken) {
+                const response = await fetch('http://localhost:5000/api/vitapharm/session/refresh', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${refreshToken}`
+                    }
+                });
+                const data = await response.json();
+                const newToken = data.session_token;
+                const newExpiration = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+                localStorage.setItem('session_token', newToken);
+                localStorage.setItem('token_expiration', newExpiration);
+                setSessionToken(newToken);
+            } else {
+                const response = await fetch('http://localhost:5000/api/vitapharm/session');
+                const { session_token, refresh_token } = await response.json();
+                const expiration = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+                localStorage.setItem('session_token', session_token);
+                localStorage.setItem('refresh_token', refresh_token);
+                localStorage.setItem('token_expiration', expiration);
+                setSessionToken(session_token);
             }
-        };
+        } catch (error) {
+            console.error('Error fetching session token:', error);
+        }
+    };
 
         fetchSessionToken(); // Fetch token on component mount
 
         // expiration timer for the token
-        const expirationTimer = setTimeout(() => {
-            // Token expired, fetch a new token
-            fetchSessionToken();
-        }, 2 * 60 * 60 * 1000); // 2 hours timer
-
-        return () => clearTimeout(expirationTimer); // clears timer on component unmount
-    }, []);
+        const refreshInterval = setInterval(() => {
+          fetchSessionToken();
+      }, 55 * 60 * 1000); // 55 minutes
+  
+      return () => clearInterval(refreshInterval);
+  }, []);
 
 
     useEffect(() => {
@@ -112,12 +125,14 @@ export default function ProductProvider({ children }) {
             variant: "subtle",
             colorScheme: "green",
           });
+
+          setUpdateCart(prev => !prev); // Trigger cart update
     
         } catch (error) {
           console.error('Error adding to cart:', error);
         }
-        setUpdateCart(true); // Trigger cart update
-        setUpdateCart(false); // Reset trigger
+        // setUpdateCart(true); // Trigger cart update
+        // setUpdateCart(false); // Reset trigger
       };
 
       const calculateCartTotal = (cartData) => {
@@ -165,7 +180,7 @@ export default function ProductProvider({ children }) {
     };
 
     fetchCartItems();
-  }, [updateCart, sessionToken, cartItems]);
+  }, [updateCart, sessionToken, apiEndpoint]);
 
   const updateCartItemQuantity = async (productId, quantityChange) => {
     if (!sessionToken) return;
