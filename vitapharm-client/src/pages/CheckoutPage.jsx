@@ -46,7 +46,7 @@ export default function CheckoutPage() {
       address: address,
     };
   
-    console.log('Form Data:', formData, sessionToken); // Log the form data
+    // console.log('Form Data:', formData, sessionToken); // Log the form data
   
     if (!isFirstNameError && !isLastNameError && !isEmailError && !isTownError && !isPhoneError && !isAddressError) {
       try {
