@@ -226,9 +226,41 @@ export default function ProductProvider({ children }) {
     }
 };
 
+  const removeCartItem = async (productId) => {
+    try {
+        const response = await fetch(`${apiEndpoint}/cart/remove`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionToken}`
+            },
+            body: JSON.stringify({
+                product_id: productId
+            })
+        });
 
-
-
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error(`Error ${response.status}: ${response.statusText}`, errorData);
+            // Handle error as needed
+        } else {
+            // Item removed successfully, update cart
+            setUpdateCart(prev => !prev);
+            // Optionally show a success message
+            toast({
+                title: "Item removed from cart.",
+                status: "success",
+                duration: 1200,
+                isClosable: true,
+                position: "top-right",
+                variant: "subtle",
+                colorScheme: "green",
+            });
+        }
+    } catch (error) {
+        console.error('Error removing cart item:', error);
+    }
+  };
   
   const incrementQuantity = (productId) => {
     updateCartItemQuantity(productId, 1);
@@ -249,6 +281,7 @@ export default function ProductProvider({ children }) {
     total,
     cartItemCount,
     cartEmpty,
+    removeCartItem,
     calculateCartTotal,
     decrementQuantity,
     incrementQuantity,
