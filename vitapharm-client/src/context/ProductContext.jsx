@@ -185,6 +185,17 @@ export default function ProductProvider({ children }) {
   const updateCartItemQuantity = async (productId, quantityChange) => {
     if (!sessionToken) return;
     try {
+        // Optimistically update the cart items in the state
+        setCartItems(prevCartItems => {
+            const updatedCartItems = prevCartItems.map(item => 
+                item.product_id === productId ? { ...item, quantity: item.quantity + quantityChange } : item
+            ).filter(item => item.quantity > 0); // Remove items with quantity <= 0
+
+            calculateCartTotal(updatedCartItems); // Update totals
+            return updatedCartItems;
+        });
+
+        // Send the update request to the server
         const response = await fetch(`${apiEndpoint}/cart/update`, {
             method: 'POST',
             headers: {
@@ -200,22 +211,22 @@ export default function ProductProvider({ children }) {
         if (!response.ok) {
             const errorData = await response.json();
             console.error(`Error ${response.status}: ${response.statusText}`, errorData);
-            return;
-        }
-
-        const updatedCart = await response.json();
-        console.log('Updated Cart Response:', updatedCart); // Debugging
-
-        if (Array.isArray(updatedCart)) {
-            setCartItems(updatedCart); // Set updated cart items directly
-            calculateCartTotal(updatedCart); // Calculate the total based on updated cart
+            // Revert the optimistic update in case of error
+            setUpdateCart(prev => !prev);
         } else {
-            console.error('Unexpected response format:', updatedCart);
+            const updatedCart = await response.json();
+            // setCartItems(updatedCart)
+            console.log('Updated Cart Response:', updatedCart);
+            // You can optionally set the state again here based on the server response
         }
     } catch (error) {
         console.error('Error updating cart item quantity:', error);
+        // Revert the optimistic update in case of error
+        setUpdateCart(prev => !prev);
     }
 };
+
+
 
 
   
