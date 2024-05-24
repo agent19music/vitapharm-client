@@ -10,6 +10,7 @@ import CustomerForm from './pages/AppointmentPage';
 import CheckoutPage from './pages/CheckoutPage';
 import SideMenu from './components/SideMenu';
 import Brands from './pages/Brands'
+import Cart from './pages/Cart';
 
 
 import { CookiesProvider } from 'react-cookie';
@@ -39,6 +40,7 @@ function App() {
               <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems}/>} />
               <Route path="/777" element={<Header />} />
               <Route path="/brands" element={<Brands />} />
+              <Route path="/555" element={<Cart />} />
             </Routes>
           
         </CookiesProvider>
