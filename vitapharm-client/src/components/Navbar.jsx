@@ -39,6 +39,10 @@ export default function NavbarWithExtensions() {
           label: 'Hands',
           href: '#',
         },
+        {
+          label: 'Hair',
+          href: '#',
+        }
       ],
     },
     {
