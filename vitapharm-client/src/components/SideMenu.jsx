@@ -55,7 +55,7 @@ const SideMenu = () => {
 
                                       <div className="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
                                         <div className="relative flex space-x-2">
-                                          <p className="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">Ksh {item.variation_price}</p>
+                                          <p className="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">Ksh {item.quantity * item.variation_price}</p>
                                         </div>
                                       </div>
                                     </div>

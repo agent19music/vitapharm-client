@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TextTransition, { presets } from 'react-text-transition';
-import { InputGroup, Input, InputRightElement, IconButton, Popover, PopoverTrigger, PopoverContent, Box, Stack, Text, Link, Flex, Image } from '@chakra-ui/react';
+import { InputGroup, Input, InputRightElement,  Popover, PopoverTrigger, PopoverContent, Box, Stack, Text, Link, Flex, Image } from '@chakra-ui/react';
 import WithSubnavigation from '../components/Navbar';
 import Carousel from '../components/2Carousel';
 import VitapharmFooter from '../components/Footer';
