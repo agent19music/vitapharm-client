@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../components/Header'
+import Header from '../components/Header';
 
 export default function SingleProductCard() {
     const { productId } = useParams();
@@ -96,64 +96,70 @@ export default function SingleProductCard() {
 
     return (
         <div>
-            <Header/>
-        <div className="flex justify-center m-auto self-center w-full py-12 sm:py-16">
-            <section className="w-full max-w-6xl">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-wrap items-center lg:space-x-8">
-                        <div className="w-full lg:w-1/2">
-                            <div className="relative mb-6 lg:mb-0 flex items-center justify-center">
-                                {selectedImage ? (
-                                    <img className="w-full lg:h-96 h-80 object-contain bg-white" src={`data:image/png;base64, ${selectedImage}`} alt="selected product" />
-                                ) : (
-                                    <img className="w-full lg:h-96 h-80 object-contain bg-white" src={`data:image/png;base64, ${product.images[0]?.data}`} alt="product image" />
-                                )}
-                                <div className="absolute bottom-0 left-0 w-full flex justify-center space-x-2 p-2">
-                                    {product.images.map((image, index) => (
-                                        <img key={index} className="w-16 h-16 object-cover cursor-pointer border-2 border-transparent hover:border-[#693f2d]" src={`data:image/png;base64, ${image.data}`} alt={`thumbnail ${index}`} onClick={() => setSelectedImage(image.data)} />
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="w-full lg:w-1/2">
-                            <div className="lg:pl-16">
-                                <h1 className="mb-2 text-3xl font-bold text-black">
-                                    {product.name}
-                                </h1>
-                                <p className="mb-6 text-sm text-gray-500">
-                                    {product.description}
-                                </p>
-                                <div className="flex items-center mb-4">
-                                    <span className="text-3xl font-bold text-black">Ksh {selectedVariation ? selectedVariation.price : "N/A"}</span>
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block mb-2 text-sm font-medium text-gray-700">
-                                        Select size:
-                                    </label>
-                                    <div className="flex space-x-4">
-                                        {product.variations.map((variation) => (
-                                            <button
-                                                key={variation.id}
-                                                onClick={() => handleVariationChange(variation)}
-                                                className={`px-4 py-2 border ${selectedVariation && selectedVariation.id === variation.id ? 'border-[#693f2d] bg-[#693f2d] text-white' : 'border-gray-300 bg-white text-gray-700'} hover:bg-[#693f2d] hover:text-white`}
-                                            >
-                                                {variation.size}
-                                            </button>
+            <Header />
+            <div className="flex justify-center m-auto self-center w-full py-12 sm:py-16">
+                <section className="w-full max-w-6xl">
+                    <div className="container mx-auto px-4">
+                        <div className="flex flex-wrap items-center lg:space-x-8">
+                            <div className="w-full lg:w-1/2">
+                                <div className="relative mb-6 lg:mb-0 flex items-center justify-center">
+                                    <img
+                                        className="w-full lg:h-96 h-80 object-contain bg-white"
+                                        src={selectedImage || product.images[0]?.url}
+                                        alt="product"
+                                    />
+                                    <div className="absolute bottom-0 left-0 w-full flex justify-center space-x-2 p-2">
+                                        {product.images.map((image, index) => (
+                                            <img
+                                                key={index}
+                                                className="w-16 h-16 object-cover cursor-pointer border-2 border-transparent hover:border-[#693f2d]"
+                                                src={image.url}
+                                                alt={`thumbnail ${index}`}
+                                                onClick={() => setSelectedImage(image.url)}
+                                            />
                                         ))}
                                     </div>
                                 </div>
-                                <button onClick={addToCart} className="flex items-center justify-center bg-[#693f2d] text-white px-5 py-3 text-center text-sm font-medium focus:outline-none focus:ring-4 focus:ring-[#693f2d] hover:bg-[#5a3524]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                                    </svg>
-                                    Add to cart
-                                </button>
+                            </div>
+                            <div className="w-full lg:w-1/2">
+                                <div className="lg:pl-16">
+                                    <h1 className="mb-2 text-3xl font-bold text-black">
+                                        {product.name}
+                                    </h1>
+                                    <p className="mb-6 text-sm text-gray-500">
+                                        {product.description}
+                                    </p>
+                                    <div className="flex items-center mb-4">
+                                        <span className="text-3xl font-bold text-black">Ksh {selectedVariation ? selectedVariation.price : "N/A"}</span>
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="block mb-2 text-sm font-medium text-gray-700">
+                                            Select size:
+                                        </label>
+                                        <div className="flex space-x-4">
+                                            {product.variations.map((variation) => (
+                                                <button
+                                                    key={variation.id}
+                                                    onClick={() => handleVariationChange(variation)}
+                                                    className={`px-4 py-2 border ${selectedVariation && selectedVariation.id === variation.id ? 'border-[#693f2d] bg-[#693f2d] text-white' : 'border-gray-300 bg-white text-gray-700'} hover:bg-[#693f2d] hover:text-white`}
+                                                >
+                                                    {variation.size}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <button onClick={addToCart} className="flex items-center justify-center bg-[#693f2d] text-white px-5 py-3 text-center text-sm font-medium focus:outline-none focus:ring-4 focus:ring-[#693f2d] hover:bg-[#5a3524]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                        </svg>
+                                        Add to cart
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
+                </section>
+            </div>
         </div>
     );
 }

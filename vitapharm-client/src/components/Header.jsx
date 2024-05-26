@@ -31,15 +31,17 @@ export default function Header() {
   }, []);
  
   const handleSearch = async (query) => {
-    if (query.length > 2) { // Only search if query length is more than 2
+    if (query.length > 1) { // Only search if query length is more than 2
       try {
         const response = await axios.get('http://127.0.0.1:5000/api/vitapharm/products/search', {
           params: {
             brand: query,
             category: query,
-            sub_category: query
+            sub_category: query,
+            name: query
           }
         });
+        console.log(response.data);
         setSearchResults(response.data);
       } catch (error) {
         console.error(error);
@@ -50,8 +52,9 @@ export default function Header() {
   };
 
   const handleChange = (e) => {
-    setSearchQuery(e.target.value);
-    handleSearch(e.target.value);
+    const query = e.target.value;
+    setSearchQuery(query);
+    handleSearch(query);
   };
   
   // Render the categories
