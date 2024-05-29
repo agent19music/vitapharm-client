@@ -39,7 +39,7 @@ const SideMenu = () => {
                                 <li key={index} className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
                                   <div className="shrink-0 relative">
                                     <span className="absolute top-1 left-1 flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow sm:-top-2 sm:-right-2">{item.quantity}</span>
-                                    <img className="h-24 w-24 max-w-full rounded-lg object-cover mr-4" src={`data:image/png;base64,${item.image_data[0].data}`} alt="" />
+                                    <img className="h-24 w-24 max-w-full rounded-lg object-cover mr-4" src={`${item.image_data[0].url}`} alt="" />
                                     <div className="absolute top-8 left-1 flex flex-col space-y-1">
                                       <span className="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount" onClick={() => incrementQuantity(item.product_id)}>+</span>
                                       <span className="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount" onClick={() => decrementQuantity(item.product_id)}>-</span>

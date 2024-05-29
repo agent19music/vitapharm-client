@@ -120,7 +120,7 @@ export default function LandingPage() {
               style={{ textDecoration: 'none' }}
             >
               <Image
-                src={`data:image/png;base64,${result.images[0].data}`}
+                src={`${result.images[0].url}`}
                 alt={result.name}
                 boxSize="50px"
                 objectFit="cover"
@@ -152,7 +152,7 @@ export default function LandingPage() {
           <WithSubnavigation/>
         </section>
       </header>
-      <section className='bg max-w-screen m-3'>
+      <section className='bg max-w-screen m-3 carousel'>
         <Carousel autoSlide={true}>
           {slides.map((s, i) => (
             <img className='banner-slide' key={i} src={s} />
