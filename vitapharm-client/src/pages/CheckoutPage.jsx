@@ -102,7 +102,7 @@ export default function CheckoutPage() {
               <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
                 {cartItems.map((item, index) => (
                   <div key={index} className="flex flex-col rounded-lg bg-white sm:flex-row">
-                    <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={`data:image/png;base64,${item.image_data[0].data}`} alt="" />
+                    <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={`${item.image_data[0].url}`} alt="" />
                     <div className="flex w-full flex-col px-4 py-4">
                       <span className="font-semibold">{item.product_name}</span>
                       <span className="float-right text-gray-400">{item.quantity}</span>
