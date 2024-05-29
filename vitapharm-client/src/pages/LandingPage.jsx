@@ -152,7 +152,7 @@ export default function LandingPage() {
           <WithSubnavigation/>
         </section>
       </header>
-      <section className='bg max-w-screen m-3'>
+      <section className='bg max-w-screen m-3 carousel'>
         <Carousel autoSlide={true}>
           {slides.map((s, i) => (
             <img className='banner-slide' key={i} src={s} />

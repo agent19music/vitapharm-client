@@ -29,7 +29,7 @@ div.info-item{
 	background: rgb(105, 63, 45);
 	color: white;
 }
-/* CSS Inspector (https://www.baki.co.ke) */ 
+
 div.primary-bar{
 	min-width: 100vw;
 	display: flex;
@@ -113,34 +113,6 @@ section.navbar{
 }
 
   
-  /* Animation for gentle shaking */
-  /* @keyframes gentle-shake {
-	0% { transform: translate(1px, 1px) rotate(0deg); }
-	10% { transform: translate(-1px, -2px) rotate(-1deg); }
-	20% { transform: translate(-3px, 0px) rotate(1deg); }
-	30% { transform: translate(3px, 2px) rotate(0deg); }
-	40% { transform: translate(1px, -1px) rotate(1deg); }
-	50% { transform: translate(-1px, 2px) rotate(-1deg); }
-	60% { transform: translate(-3px, 1px) rotate(0deg); }
-	70% { transform: translate(3px, 1px) rotate(-1deg); }
-	80% { transform: translate(-1px, -1px) rotate(1deg); }
-	90% { transform: translate(1px, 2px) rotate(0deg); }
-	100% { transform: translate(1px, -2px) rotate(-1deg); }
-  }
-  
-  .gentle-shake {
-	animation: gentle-shake 0.5s ease-in-out 2s infinite alternate;
-  } */
-  
-  
-  
-/* .banner-slide {
-	box-sizing: border-box;
-	overflow: hidden;
-	position: absolute;
-	user-select: none;
-	z-index: 20;
-} */
 .banner-slide {
 	width: 100%;
 	height: 100%;
@@ -186,11 +158,6 @@ span.edit-cartamount:hover{
 	color: rgb(150,50,7) ;
 }
 
-/* img.category-pic:hover{
-	transform: scale(1.2);
-transition: transform 0.3s ease;
-cursor: pointer;
-} */
 
 @media screen and (max-width: 601px){
 	div.whatsapp-info-holder{
@@ -215,147 +182,23 @@ cursor: pointer;
 		margin-right: none;
 	}
 
+	div.info-bar{
+		padding-bottom: 15px;
+		
+	}
+	div.free-shipping-banner{
+		display: none;
+	}
+	img.logo{
+		max-height: 100px;
+		max-width: 125px ;
+	}
+   section.carousel{
+	margin-top: auto;
+   }
+
 }
 
 .vp-bo{
 	background-color:  rgb(105, 63, 45);
 }
-/* h3.image-categories-titles{
-	text-transform: uppercase;
-	margin-bottom: 0%;
-	position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-color: white;
-	font-weight: bold;
-} */
-/*
-div.whb-main-header {
-    position: relative;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 390;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-header.whb-header {
-    margin-bottom: 40px;
-}
-
-
-
-div.whb-row.whb-top-bar.whb-not-sticky-row.whb-with-bg.whb-without-border.whb-color-dark.whb-flex-equal-sides {
-	background-color: #000000;
-	color: rgb(91, 168, 39);
-	box-sizing: border-box;
-	transition-duration: 0.2s;
-	transition-property: background-color;
-}
-div.web-flex{
-	display: flex;
-	justify-content: space-between;
-}
-
-
-div.whb-column.whb-col-left.whb-visible-lg.whb-empty-column {
-	align-items: center;
-	box-sizing: border-box;
-	display: flex;
-	flex: 1 1 0%;
-	flex-basis: 0%;
-	flex-grow: 1;
-	justify-content: flex-start;
-	margin: 0px 0px 0px -10px;
-	max-height: 40px;
-	place-content: normal flex-start;
-	place-items: center normal;
-}
-
-div.whb-column.whb-col-center.whb-visible-lg {
-	align-items: center;
-	box-sizing: border-box;
-	display: flex;
-	max-height: 40px;
-	place-items: center normal;
-}
-
-div.wd-header-text.set-cont-mb-s.reset-last-child.animation-effect-outer {
-	box-sizing: border-box;
-	flex: 1 1 auto;
-	flex-grow: 1;
-	overflow: hidden;
-	padding: 0px 10px;
-}
-
-
-div.whb-column.whb-col-right.whb-visible-lg {
-	align-items: center;
-	box-sizing: border-box;
-	display: flex;
-	flex: 1 1 0%;
-	flex-basis: 0%;
-	flex-grow: 1;
-	justify-content: flex-end;
-	margin: 0px -10px 0px 0px;
-	max-height: 40px;
-	place-content: normal flex-end;
-	place-items: center normal;
-}
-
-
-img.banner-slide {
-	aspect-ratio: auto 1972 / 320;
-	background-position: 0px 0px;
-	box-sizing: border-box;
-	display: inline;
-	overflow: clip;
-	position: relative;
-	transition-property: none;
-	user-select: none;
-	vertical-align: top;
-} */
-
-
-
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-} */
