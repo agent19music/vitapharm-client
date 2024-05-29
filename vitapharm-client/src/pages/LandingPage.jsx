@@ -120,7 +120,7 @@ export default function LandingPage() {
               style={{ textDecoration: 'none' }}
             >
               <Image
-                src={`data:image/png;base64,${result.images[0].data}`}
+                src={`${result.images[0].url}`}
                 alt={result.name}
                 boxSize="50px"
                 objectFit="cover"
