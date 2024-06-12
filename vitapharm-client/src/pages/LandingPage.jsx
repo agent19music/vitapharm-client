@@ -49,7 +49,8 @@ export default function LandingPage() {
           params: {
             brand: query,
             category: query,
-            sub_category: query
+            sub_category: query,
+            name: query
           }
         });
         setSearchResults(response.data);
