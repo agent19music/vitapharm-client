@@ -155,6 +155,7 @@ export default function ProductProvider({ children }) {
         }
 
         const data = await response.json();
+        console.log(data);
         setCartItems(data);
         calculateCartTotal(data);
         setCartItemCount(data.length); // Update cart item count
@@ -255,6 +256,24 @@ export default function ProductProvider({ children }) {
     updateCartItemQuantity(productId, -1);
   };
 
+  function extractBrands(data) {
+    const brands = data.map(item => item.brand);
+    return [...new Set(brands)];
+  }
+  
+  let brands = extractBrands(products)
+
+  const extractFirstLetter = (str) => {
+    return str[0].toUpperCase();
+  };
+
+  const brandsWithLetters = brands.map((brand) => ({
+    name: brand,
+    letter: extractFirstLetter(brand),
+  }));
+  console.log(brandsWithLetters);
+  console.log(brands);
+
   const contextData = {
     products,
     apiEndpoint,
@@ -271,6 +290,8 @@ export default function ProductProvider({ children }) {
     decrementQuantity,
     incrementQuantity,
     updateCartItemQuantity,
+    brands,
+    brandsWithLetters
      
 };
 

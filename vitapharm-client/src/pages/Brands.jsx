@@ -1,10 +1,22 @@
-import React from 'react';
-import brandsWithLetters from '../components/BrandsWithLetters';
+import {React, useContext} from 'react';
 import Header from '../components/Header';
+import { ProductContext } from '../context/ProductContext';
 
 const Brands = () => {
-  let brands = brandsWithLetters;
-  const groupedBrands = brands.reduce((acc, brand) => {
+  const {brands} = useContext(ProductContext)
+
+const extractFirstLetter = (str) => {
+  return str[0].toUpperCase();
+};
+
+const brandsWithLetters = brands.map((brand) => ({
+  name: brand,
+  letter: extractFirstLetter(brand),
+}));
+
+
+  
+  const groupedBrands = brandsWithLetters.reduce((acc, brand) => {
     const firstLetter = brand.name.charAt(0).toUpperCase();
     if (!acc[firstLetter]) {
       acc[firstLetter] = [];
