@@ -5,7 +5,7 @@ import SideMenu from '../components/SideMenu'
 import { Link as RouterLink } from 'react-router-dom';
 import { Search } from 'react-feather';
 import WhatsappFloatingActionButton from './WhatsappFloatingActionButton'
-import { InputGroup, Input, InputRightElement, IconButton, Popover, PopoverTrigger, PopoverContent, Box, Stack, Text, Link, Flex, Image } from '@chakra-ui/react';
+import { InputGroup, Input, InputRightElement, IconButton, Popover, PopoverTrigger, PopoverContent, Box, SimpleGrid, Text, Link, Flex, Image } from '@chakra-ui/react';
 import axios from 'axios';
 
 
@@ -31,18 +31,15 @@ export default function Header() {
   }, []);
  
   const handleSearch = async (query) => {
-    if (query.length > 1) { // Only search if query length is more than 2
+    if (query.length > 2) { // Only search if query length is more than 2
       try {
         const response = await axios.get('http://127.0.0.1:5000/api/vitapharm/products/search', {
           params: {
-            brand: query,
-            category: query,
-            sub_category: query,
-            name: query
+            query: query
           }
         });
-        console.log(response.data);
         setSearchResults(response.data);
+        console.log(response);
       } catch (error) {
         console.error(error);
       }
@@ -62,89 +59,89 @@ export default function Header() {
 
   return (
     <header>
-    <div className='info-bar'>
-      <div className='info-item'>
-        <TextTransition springConfig={presets.wobbly}>
-          {TEXTS[index % TEXTS.length]}
-        </TextTransition>
-      </div>
-    </div>
-    <div className='primary-bar'>
-      <RouterLink className='logo-holder ' to={'/111'}>
-        <img src='/logo.png' alt='' className='logo' />
-      </RouterLink>
-      <div className='search-bar align-bottom min-h-max mx-4'>
-        <Popover isOpen={searchResults.length > 0}>
-          <PopoverTrigger>
-            <InputGroup size="lg">
-              <Input
-                placeholder="Search products or brands"
-                border="2px"
-                borderColor="black.400"
-                focusBorderColor='#693F2D'
-                borderRadius="lg"
-                py="6"
-                pr="12"
-                fontSize="lg"
-                value={searchQuery}
-                onChange={handleChange}
-              />
-              <InputRightElement
-                pointerEvents="none"
-                children={<Search color="gray" />}
-                mr="2"
-              />
-            </InputGroup>
-          </PopoverTrigger>
-          <PopoverContent>
-<Box p={4}>
-  <Stack>
-    {searchResults.map((result, index) => (
-      <Link
-        as={RouterLink}
-        to={`/product/${result.id}`}
-        key={index}
-        style={{ textDecoration: 'none' }}
-        className='custom-link'
-      >
-        <Flex
-          align="center"
-          className='bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white'
-          style={{ textDecoration: 'none' }}
-        >
-          <Image
-            src={`data:image/png;base64,${result.images[0].data}`}
-            alt={result.name}
-            boxSize="50px"
-            objectFit="cover"
-            borderRadius="md"
-            mr={3}
-          />
-          <Text style={{ textDecoration: 'none' }}>{result.name}</Text>
-        </Flex>
-      </Link>
-    ))}
-  </Stack>
-</Box>
-</PopoverContent>
-        </Popover>
-      </div>
-      <div className='whatsapp-info-holder '>
-        <div className='whatsapp-info'>
-          <div className=' flex align-middle'>
-            <SideMenu />
+        <div className='info-bar'>
+          <div className='info-item'>
+            <TextTransition springConfig={presets.wobbly}>
+              {TEXTS[index % TEXTS.length]}
+            </TextTransition>
           </div>
         </div>
-        <div className='free-shipping-banner'>
-          <h6>Free shipping</h6>
-          <p>Orders above 3000 bob</p>
+        <div className='primary-bar'>
+          <RouterLink className='logo-holder ' to={'/111'}>
+            <img src='/logo.png' alt='' className='logo' />
+          </RouterLink>
+          <div className='search-bar align-bottom min-h-max mx-4'>
+  <Popover isOpen={searchResults.length > 0}>
+    <PopoverTrigger>
+      <InputGroup size="lg">
+        <Input
+          placeholder="Search products or brands"
+          border="2px"
+          borderColor="black.400"
+          focusBorderColor='#693F2D'
+          borderRadius="lg"
+          py="6"
+          pr="12"
+          fontSize="lg"
+          value={searchQuery}
+          onChange={handleChange}
+        />
+        <InputRightElement
+          pointerEvents="none"
+          children={<Search color="gray" />}
+          mr="2"
+        />
+      </InputGroup>
+    </PopoverTrigger>
+    <PopoverContent  width="75vw">
+      <Box p={4} w='100%'  >
+        <SimpleGrid columns={[3, null, 3]} spacing='40px' width='100%'>
+          {searchResults.map((result, index) => (
+            <Link
+              as={RouterLink}
+              to={`/product/${result.id}`}
+              key={index}
+              style={{ textDecoration: 'none' }}
+              className='custom-link'
+            >
+              <Flex
+                align="center"
+                className='bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white'
+                style={{ textDecoration: 'none' }}
+              >
+                <Image
+                  src={`data:image/png;base64, ${result.images[0]?.data}`}
+                  alt={result.name}
+                  boxSize="50px"
+                  objectFit="cover"
+                  borderRadius="md"
+                  mr={3}
+                />
+                <Text style={{ textDecoration: 'none' }}>{result.name}</Text>
+              </Flex>
+            </Link>
+          ))}
+        </SimpleGrid>
+      </Box>
+    </PopoverContent>
+  </Popover>
+</div>
+
+          <div className='whatsapp-info-holder '>
+            <div className='whatsapp-info'>
+              <div className=' flex align-middle'>
+                <SideMenu />
+              </div>
+            </div>
+            <div className='free-shipping-banner'>
+              <h6>Free shipping</h6>
+              <p>Orders above 3000 bob</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <section className='navbar'>
-      <WithSubnavigation/>
-    </section>
-    <WhatsappFloatingActionButton/>
-  </header>
+        <section className='navbar'>
+          <WithSubnavigation/>
+        </section>
+      </header>
   )
 }
