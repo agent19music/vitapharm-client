@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from '../components/2Carousel';
 import VitapharmFooter from '../components/Footer';
-import TwoProductList from '../components/Productlist';
+import ProductList from '../components/Productlist';
 import { Link as RouterLink } from 'react-router-dom';
 import SocialVideos from '../components/SocialVideos';
 import WhatsappFloatingActionButton from '../components/WhatsappFloatingActionButton';
@@ -57,7 +57,7 @@ export default function LandingPage() {
         ))}
       </section>
       <section>
-        <TwoProductList />
+        <ProductList />
       </section>
       <section className='my-4'>
         <div className='container flex justify-center items-center mx-auto services'>

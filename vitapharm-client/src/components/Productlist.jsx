@@ -53,7 +53,7 @@ const SkeletonCard = () => (
   </div>
 );
 
-const TwoProductList = () => {
+const ProductList = () => {
   const { products, addToCart } = useContext(ProductContext);
   const [start, setStart] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -102,4 +102,4 @@ const TwoProductList = () => {
   );
 };
 
-export default TwoProductList;
+export default ProductList;
