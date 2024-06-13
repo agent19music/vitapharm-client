@@ -260,6 +260,12 @@ export default function ProductProvider({ children }) {
     const brands = data.map(item => item.brand);
     return [...new Set(brands)];
   }
+
+  function extractCategories(data) {
+    const brands = data.map(item => item.category);
+    return [...new Set(brands)];
+  }
+  let categories =extractCategories(products)
   
   let brands = extractBrands(products)
 
@@ -291,7 +297,8 @@ export default function ProductProvider({ children }) {
     incrementQuantity,
     updateCartItemQuantity,
     brands,
-    brandsWithLetters
+    brandsWithLetters,
+    categories
      
 };
 
