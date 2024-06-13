@@ -16,8 +16,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 
 export default function NavbarWithExtensions() {
 
-const {brandsWithLetters} = useContext(ProductContext)
-  
+const {brandsWithLetters, categories} = useContext(ProductContext)
 
   const NAV_ITEMS = [
     {
@@ -30,24 +29,10 @@ const {brandsWithLetters} = useContext(ProductContext)
     },
     {
       label: 'CATEGORY',
-      children: [
-        {
-          label: 'Face',
-          href: '#',
-        },
-        {
-          label: 'Body',
-          href: '#',
-        },
-        {
-          label: 'Hands',
-          href: '#',
-        },
-        {
-          label: 'Hair',
-          href: '#',
-        }
-      ],
+    children: categories.map(category => ({
+      label: category,
+      href: `#`, // Update this with the actual link to the category
+    })),
     },
     {
       label: 'SKIN TYPE',
