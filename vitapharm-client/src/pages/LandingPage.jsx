@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TextTransition, { presets } from 'react-text-transition';
-import { InputGroup, Input, InputRightElement,  Popover, PopoverTrigger, PopoverContent, Box, Stack, Text, Link, Flex, Image } from '@chakra-ui/react';
+import { InputGroup, Input, InputRightElement,  Popover, PopoverTrigger, PopoverContent, Box, Stack, Text, Link, Flex, Image, SimpleGrid } from '@chakra-ui/react';
 import WithSubnavigation from '../components/Navbar';
 import Carousel from '../components/2Carousel';
 import VitapharmFooter from '../components/Footer';
@@ -47,13 +47,11 @@ export default function LandingPage() {
       try {
         const response = await axios.get('http://127.0.0.1:5000/api/vitapharm/products/search', {
           params: {
-            brand: query,
-            category: query,
-            sub_category: query,
-            name: query
+            query: query
           }
         });
         setSearchResults(response.data);
+        console.log(response);
       } catch (error) {
         console.error(error);
       }
@@ -61,6 +59,7 @@ export default function LandingPage() {
       setSearchResults([]);
     }
   };
+;
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
@@ -82,61 +81,62 @@ export default function LandingPage() {
             <img src='/logo.png' alt='' className='logo' />
           </RouterLink>
           <div className='search-bar align-bottom min-h-max mx-4'>
-            <Popover isOpen={searchResults.length > 0}>
-              <PopoverTrigger>
-                <InputGroup size="lg">
-                  <Input
-                    placeholder="Search products or brands"
-                    border="2px"
-                    borderColor="black.400"
-                    focusBorderColor='#693F2D'
-                    borderRadius="lg"
-                    py="6"
-                    pr="12"
-                    fontSize="lg"
-                    value={searchQuery}
-                    onChange={handleChange}
-                  />
-                  <InputRightElement
-                    pointerEvents="none"
-                    children={<Search color="gray" />}
-                    mr="2"
-                  />
-                </InputGroup>
-              </PopoverTrigger>
-              <PopoverContent>
-    <Box p={4}>
-      <Stack>
-        {searchResults.map((result, index) => (
-          <Link
-            as={RouterLink}
-            to={`/product/${result.id}`}
-            key={index}
-            style={{ textDecoration: 'none' }}
-            className='custom-link'
-          >
-            <Flex
-              align="center"
-              className='bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white'
+  <Popover isOpen={searchResults.length > 0}>
+    <PopoverTrigger>
+      <InputGroup size="lg">
+        <Input
+          placeholder="Search products or brands"
+          border="2px"
+          borderColor="black.400"
+          focusBorderColor='#693F2D'
+          borderRadius="lg"
+          py="6"
+          pr="12"
+          fontSize="lg"
+          value={searchQuery}
+          onChange={handleChange}
+        />
+        <InputRightElement
+          pointerEvents="none"
+          children={<Search color="gray" />}
+          mr="2"
+        />
+      </InputGroup>
+    </PopoverTrigger>
+    <PopoverContent  width="75vw">
+      <Box p={4} w='100%'  >
+        <SimpleGrid columns={[3, null, 3]} spacing='40px' width='100%'>
+          {searchResults.map((result, index) => (
+            <Link
+              as={RouterLink}
+              to={`/product/${result.id}`}
+              key={index}
               style={{ textDecoration: 'none' }}
+              className='custom-link'
             >
-              <Image
-                src={`${result.images[0].url}`}
-                alt={result.name}
-                boxSize="50px"
-                objectFit="cover"
-                borderRadius="md"
-                mr={3}
-              />
-              <Text style={{ textDecoration: 'none' }}>{result.name}</Text>
-            </Flex>
-          </Link>
-        ))}
-      </Stack>
-    </Box>
-  </PopoverContent>
-            </Popover>
-          </div>
+              <Flex
+                align="center"
+                className='bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white'
+                style={{ textDecoration: 'none' }}
+              >
+                <Image
+                  src={`data:image/png;base64, ${result.images[0]?.data}`}
+                  alt={result.name}
+                  boxSize="50px"
+                  objectFit="cover"
+                  borderRadius="md"
+                  mr={3}
+                />
+                <Text style={{ textDecoration: 'none' }}>{result.name}</Text>
+              </Flex>
+            </Link>
+          ))}
+        </SimpleGrid>
+      </Box>
+    </PopoverContent>
+  </Popover>
+</div>
+
           <div className='whatsapp-info-holder '>
             <div className='whatsapp-info'>
               <div className=' flex align-middle'>
