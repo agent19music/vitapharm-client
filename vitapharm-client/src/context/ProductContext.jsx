@@ -19,6 +19,7 @@ export default function ProductProvider({ children }) {
     const [total, setTotal] = useState(0);
     const [cartItemCount, setCartItemCount] = useState(0); // State to track number of items in cart
     const [cartEmpty, setCartEmpty] = useState(true); // State to track if cart is empty
+    const [category, setCategory] = useState('');
 
     const toast = useToast();
 
@@ -277,10 +278,19 @@ export default function ProductProvider({ children }) {
     name: brand,
     letter: extractFirstLetter(brand),
   }));
-  console.log(brandsWithLetters);
-  console.log(brands);
+ 
+
+  useEffect(() => {
+    if (category) {
+      const filtered = products.filter(product => product.category === category);
+      setFilteredEvents(filtered);
+    } else {
+      setFilteredEvents(events);
+    }
+  }, [category, events]);
 
   const contextData = {
+  
     products,
     apiEndpoint,
     addToCart,
