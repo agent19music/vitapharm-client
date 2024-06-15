@@ -11,6 +11,7 @@ export default function ProductProvider({ children }) {
     const apiEndpoint = 'http://127.0.0.1:5000/api/vitapharm';
 
     const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
     const [sessionToken, setSessionToken] = useState(null);
     const [updateCart, setUpdateCart] = useState(false);
     const [cartItems, setCartItems] = useState([]);
@@ -71,6 +72,7 @@ export default function ProductProvider({ children }) {
                 });
                 const data = await response.json();
                 setProducts(data);
+                setFilteredProducts([]);
                 console.log("Data fetched:", data); // Log the data here
             } catch (error) {
                 console.log(error);
@@ -283,11 +285,11 @@ export default function ProductProvider({ children }) {
   useEffect(() => {
     if (category) {
       const filtered = products.filter(product => product.category === category);
-      setFilteredEvents(filtered);
+      setFilteredProducts(filtered);
     } else {
-      setFilteredEvents(events);
+      setFilteredProducts(products);
     }
-  }, [category, events]);
+  }, [category, products]);
 
   const contextData = {
   
