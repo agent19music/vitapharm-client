@@ -142,6 +142,7 @@ export default function Header() {
         <section className='navbar'>
           <WithSubnavigation/>
         </section>
+        <WhatsappFloatingActionButton/>
       </header>
   )
 }

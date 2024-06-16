@@ -9,6 +9,7 @@ import {
 import Category from '../components/Category'
 import { useParams } from 'react-router-dom'
 import { ProductContext } from '../context/ProductContext'
+import VitapharmFooter from '../components/Footer'
 
 export default function Categories() {
   const {category} = useParams();
@@ -24,6 +25,7 @@ export default function Categories() {
           <Category/>
          
         </section>
+        <VitapharmFooter/>
     </div>
   )
 }
