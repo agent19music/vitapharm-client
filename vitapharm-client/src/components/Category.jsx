@@ -54,23 +54,23 @@ const SkeletonCard = () => (
 );
 
 const Category = () => {
-  const { products, addToCart } = useContext(ProductContext);
+  const { filteredProducts, addToCart } = useContext(ProductContext);
   const [start, setStart] = useState(0);
   const [loading, setLoading] = useState(true);
   
 
   useEffect(() => {
-    if (products.length > 0) {
+    if (filteredProducts.length > 0) {
       setLoading(false);
     }
-  }, [products]);
+  }, [filteredProducts]);
 
   const scrollLeft = () => {
     setStart(Math.max(0, start - 4));
   };
 
   const scrollRight = () => {
-    setStart(Math.min(products.length - 4, start + 4));
+    setStart(Math.min(filteredProducts.length - 4, start + 4));
   };
 
   return (
@@ -93,7 +93,7 @@ const Category = () => {
         <div className="flex p-9 transition-all duration-500 ease-in-out w-full items-center justify-evenly ">
           {loading
             ? [1, 2, 3, 4].map((i) => <SkeletonCard key={i} />)
-            : products.slice(start, start + 4).map((product, index) => (
+            : filteredProducts.slice(start, start + 4).map((product, index) => (
                 <ProductCard key={index} product={product} addToCart={addToCart} />
               ))}
         </div>

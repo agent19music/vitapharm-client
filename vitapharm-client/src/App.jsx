@@ -38,7 +38,7 @@ function App() {
               <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems}/>} />
               <Route path="/777" element={<Header />} />
               <Route path="/brands" element={<Brands />} />
-              <Route path="/555" element={<Categories />} />
+              <Route path="/categories/:category" element={<Categories />} />
             </Routes>
           
         </CookiesProvider>

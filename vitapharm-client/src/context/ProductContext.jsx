@@ -158,7 +158,6 @@ export default function ProductProvider({ children }) {
         }
 
         const data = await response.json();
-        console.log(data);
         setCartItems(data);
         calculateCartTotal(data);
         setCartItemCount(data.length); // Update cart item count
@@ -310,7 +309,10 @@ export default function ProductProvider({ children }) {
     updateCartItemQuantity,
     brands,
     brandsWithLetters,
-    categories
+    categories,
+    filteredProducts,
+    setCategory
+    
      
 };
 
