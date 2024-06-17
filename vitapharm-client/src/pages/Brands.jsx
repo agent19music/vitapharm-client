@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Header from '../components/Header';
 import { ProductContext } from '../context/ProductContext';
 import { Link } from 'react-router-dom';
+import VitapharmFooter from '../components/Footer';
 
 const Brands = () => {
   const { brands } = useContext(ProductContext);
@@ -45,7 +46,7 @@ const Brands = () => {
                   <Link
                     to={`/brands/${brand.name}`}
                     key={index}
-                    className="mx-2 my-1 px-4 py-2 bg-gray-200 rounded-full"
+                    className="mx-2 my-1 px-4 py-2 bg-brown-custom text-white hover:text-white rounded-full"
                   >
                     {brand.name}
                   </Link>
@@ -55,6 +56,7 @@ const Brands = () => {
           ))}
         </div>
       </div>
+      <VitapharmFooter/>
     </div>
   );
 };

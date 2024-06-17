@@ -87,8 +87,8 @@ export default function ProductProvider({ children }) {
         }
     
     }, [sessionToken]);
-    
 
+    
 
     const addToCart = async (id) => {
         if (!sessionToken) return; // Handle missing token
