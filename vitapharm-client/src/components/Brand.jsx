@@ -57,6 +57,14 @@ const Brand = () => {
   const { filteredBrands, addToCart } = useContext(ProductContext);
   const [start, setStart] = useState(0);
   const [loading, setLoading] = useState(true);
+
+  const groupedByCategory = filteredBrands.reduce((acc, product) => {
+    if (!acc[product.category]) {
+      acc[product.category] = [];
+    }
+    acc[product.category].push(product);
+    return acc;
+  }, {});
   
 
   useEffect(() => {
@@ -75,30 +83,39 @@ const Brand = () => {
 
   return (
     <div className=''>
-      <div className="flex flex-col justify-center min-w-screen items-center">
-        <div className='space-1 align-bottom self-end mr-24'>
-          <button
-            onClick={scrollLeft}
-            className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
-          >
-            <ChevronLeft size={40} />
-          </button>
-          <button
-            onClick={scrollRight}
-            className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
-          >
-            <ChevronRight size={40} />
-          </button>
-        </div>
-        <div className="flex p-9 transition-all duration-500 ease-in-out w-full items-center justify-evenly ">
-          {loading
-            ? [1, 2, 3, 4].map((i) => <SkeletonCard key={i} />)
-            : filteredBrands.slice(start, start + 4).map((product, index) => (
-                <ProductCard key={index} product={product} addToCart={addToCart} />
-              ))}
-        </div>
+    <div className="flex flex-col justify-center min-w-screen items-center">
+      <div className='space-1 align-bottom self-end mr-24'>
+        <button
+          onClick={scrollLeft}
+          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
+        >
+          <ChevronLeft size={40} />
+        </button>
+        <button
+          onClick={scrollRight}
+          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
+        >
+          <ChevronRight size={40} />
+        </button>
+      </div>
+      <div className="flex flex-col w-full items-center justify-evenly p-9 transition-all duration-500 ease-in-out">
+        {loading ? (
+          [1, 2, 3, 4].map((i) => <SkeletonCard key={i} />)
+        ) : (
+          Object.keys(groupedByCategory).map((category) => (
+            <div key={category} className="w-full mb-6">
+              <h3 className="text-xl font-semibold mb-4">{category}</h3>
+              <div className="flex w-full items-center justify-evenly">
+                {groupedByCategory[category].slice(start, start + 4).map((product, index) => (
+                  <ProductCard key={index} product={product} addToCart={addToCart} />
+                ))}
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
+  </div>
   );
 };
 

@@ -57,7 +57,6 @@ const Category = () => {
   const { filteredCategories, addToCart } = useContext(ProductContext);
   const [start, setStart] = useState(0);
   const [loading, setLoading] = useState(true);
-  console.log(filteredCategories);
 
   const groupedByBrand = filteredCategories.reduce((acc, product) => {
     if (!acc[product.brand]) {
