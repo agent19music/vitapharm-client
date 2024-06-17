@@ -19,7 +19,7 @@ export default function LandingPage() {
     return () => clearTimeout(intervalId);
   }, []);
 
-  const slides = ['/pic3.png', '/pic3.png', '/pic3.png', '/pic3.png'];
+  const slides = ['/C1.png', '/C2.png', '/C3.png', '/C1.png'];
 
   const categories = [
     { title: "Makeup", image: "/1.jpg", description: "Makeup products" },

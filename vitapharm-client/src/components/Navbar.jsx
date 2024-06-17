@@ -23,17 +23,17 @@ const {brandsWithLetters, categories} = useContext(ProductContext)
       label: 'BRANDS',
       children: brandsWithLetters.slice(0, 5).map(brand => ({
         label: brand.name,
-        href: '#',
+        href: `/brands/${brand.name}`,
       })),
       moreLink: '/brands',
     },
     {
       label: 'CATEGORY',
-    children: categories.map(category => ({
-      label: category,
-      href: `#`, // Update this with the actual link to the category
-    })),
-    },
+      children: categories.map(category => ({
+        label: category,
+        href: `/categories/${category}`, // This will dynamically set the href
+      })),
+    },    
     {
       label: 'SKIN TYPE',
       children: [

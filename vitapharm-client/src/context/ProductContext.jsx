@@ -11,7 +11,8 @@ export default function ProductProvider({ children }) {
     const apiEndpoint = 'http://127.0.0.1:5000/api/vitapharm';
 
     const [products, setProducts] = useState([]);
-    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [filteredCategories, setFilteredCategories] = useState([]);
+    const [filteredBrands,setFiltredBrands]= useState([])
     const [sessionToken, setSessionToken] = useState(null);
     const [updateCart, setUpdateCart] = useState(false);
     const [cartItems, setCartItems] = useState([]);
@@ -21,6 +22,7 @@ export default function ProductProvider({ children }) {
     const [cartItemCount, setCartItemCount] = useState(0); // State to track number of items in cart
     const [cartEmpty, setCartEmpty] = useState(true); // State to track if cart is empty
     const [category, setCategory] = useState('');
+    const [brand, setBrand] = useState('');
 
     const toast = useToast();
 
@@ -72,7 +74,8 @@ export default function ProductProvider({ children }) {
                 });
                 const data = await response.json();
                 setProducts(data);
-                setFilteredProducts([]);
+                setFilteredCategories([]);
+                setFiltredBrands([]);
                 console.log("Data fetched:", data); // Log the data here
             } catch (error) {
                 console.log(error);
@@ -84,8 +87,8 @@ export default function ProductProvider({ children }) {
         }
     
     }, [sessionToken]);
-    
 
+    
 
     const addToCart = async (id) => {
         if (!sessionToken) return; // Handle missing token
@@ -158,7 +161,6 @@ export default function ProductProvider({ children }) {
         }
 
         const data = await response.json();
-        console.log(data);
         setCartItems(data);
         calculateCartTotal(data);
         setCartItemCount(data.length); // Update cart item count
@@ -285,11 +287,20 @@ export default function ProductProvider({ children }) {
   useEffect(() => {
     if (category) {
       const filtered = products.filter(product => product.category === category);
-      setFilteredProducts(filtered);
+      setFilteredCategories(filtered);
     } else {
-      setFilteredProducts(products);
+      setFilteredCategories(products);
     }
   }, [category, products]);
+
+  useEffect(() => {
+    if (brand) {
+      const filtered = products.filter(product => product.brand === brand);
+      setFiltredBrands(filtered);
+    } else {
+      setFiltredBrands(products);
+    }
+  }, [brand, products]);
 
   const contextData = {
   
@@ -310,7 +321,12 @@ export default function ProductProvider({ children }) {
     updateCartItemQuantity,
     brands,
     brandsWithLetters,
-    categories
+    categories,
+    filteredCategories,
+    setCategory,
+    setBrand,
+    filteredBrands,
+    
      
 };
 
