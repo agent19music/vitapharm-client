@@ -17,7 +17,6 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 export default function NavbarWithExtensions() {
 
 const {brandsWithLetters, categories} = useContext(ProductContext)
-console.log(brandsWithLetters);
 
   const NAV_ITEMS = [
     {
