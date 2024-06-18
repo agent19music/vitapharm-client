@@ -60,7 +60,7 @@ export default function Header() {
   return (
     <header>
         <div className='info-bar'>
-          <div className='info-item'>
+          <div className='info-item '>
             <TextTransition springConfig={presets.wobbly}>
               {TEXTS[index % TEXTS.length]}
             </TextTransition>
