@@ -147,22 +147,42 @@ h3.image-categories-titles{
 	transition: height 0.5s ease-out;
 }
 
+.drawer-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	border-bottom: 1px solid #e2e8f0;
+  }
   
-  
-  
-
+  .drawer-content {
+	padding: 1rem;
+  }
+  @media screen and (min-width: 601px){
+  section.mobileslides{
+	display: none;
+  }
+  }
 span.edit-cartamount:hover{
 	transform: scale(1.2);
 	transition: transform 0.3s ease;
 	cursor: pointer;
 	color: rgb(150,50,7) ;
 }
-
+.product-card {
+	transition: transform 0.2s;
+  }
+  .buttons {
+	display: flex;
+  }
 
 @media screen and (max-width: 601px){
-	div.whatsapp-info-holder{
+	div.free-shipping-banner{
 		display: none ;
 		
+	}
+	section.desktopslides{
+      display: none;
 	}
 	section.image-categories{
 		display: flex;
@@ -181,7 +201,17 @@ span.edit-cartamount:hover{
 		margin: auto;
 		margin-right: none;
 	}
-
+	.product-card {
+		transform: scale(0.8);
+		margin-right: 1rem;
+	  }
+	  
+	  .buttons {
+		display: none;
+	  }
+	  .wrxx{
+		display: none;
+	  }
 	div.info-bar{
 		padding-bottom: 15px;
 		
@@ -195,6 +225,12 @@ span.edit-cartamount:hover{
 	}
    section.carousel{
 	margin-top: auto;
+	
+   }
+
+   div.crxl{
+    background-color: #25d366;
+	margin-top: 0;
    }
 
 }

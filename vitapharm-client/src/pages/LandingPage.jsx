@@ -4,7 +4,6 @@ import VitapharmFooter from '../components/Footer';
 import ProductList from '../components/Productlist';
 import { Link as RouterLink } from 'react-router-dom';
 import SocialVideos from '../components/SocialVideos';
-import WhatsappFloatingActionButton from '../components/WhatsappFloatingActionButton';
 import Header from '../components/Header';
 
 export default function LandingPage() {
@@ -20,6 +19,7 @@ export default function LandingPage() {
   }, []);
 
   const slides = ['/C1.png', '/C2.png', '/C3.png', '/C1.png'];
+  const mobileSlides = ['/CM1.png', '/CM1.png', '/CM1.png', '/CM1.png'];
 
   const categories = [
     { title: "Makeup", image: "/1.jpg", description: "Makeup products" },
@@ -32,10 +32,17 @@ export default function LandingPage() {
   return (
     <div>
       <Header/>
-      <section className='bg max-w-screen m-3 carousel'>
+      <section className='bg max-w-screen m-3 carousel desktopslides'>
         <Carousel autoSlide={true}>
           {slides.map((s, i) => (
-            <img className='banner-slide' key={i} src={s} />
+            <img className='banner-slide ' key={i} src={s} />
+          ))}
+        </Carousel>
+      </section>
+      <section className='bg max-w-screen m-3 carousel mobileslides'>
+        <Carousel autoSlide={true}>
+          {mobileSlides.map((s, i) => (
+            <img className='banner-slide ' key={i} src={s} />
           ))}
         </Carousel>
       </section>
@@ -56,7 +63,7 @@ export default function LandingPage() {
           </div>
         ))}
       </section>
-      <section>
+      <section className='wrxx'>  
         <ProductList />
       </section>
       <section className='my-4'>
@@ -100,7 +107,6 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-        <WhatsappFloatingActionButton/>
       </section>
       <SocialVideos/>
       <VitapharmFooter />
