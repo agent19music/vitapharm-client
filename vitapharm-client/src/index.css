@@ -8,9 +8,15 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Futura';
+  src: url('/futura- light- bt.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
-  font-family: 'Urbanist',Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Futura','Urbanist';
   line-height: 1.5;
   font-weight: 400;
 
