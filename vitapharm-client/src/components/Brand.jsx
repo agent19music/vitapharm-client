@@ -107,7 +107,7 @@ const Brand = () => {
         ) : (
           Object.keys(groupedByCategory).map((category) => (
             <div key={category} className="w-full mb-6">
-              <h3 className="text-xl font-semibold font-futurabold mb-4">{category.toUpperCase()}</h3>
+              <h3 className="text-xl font-semibold font-futuramedbold mb-4">{category.toUpperCase()}</h3>
               <div className="flex w-full items-center justify-evenly">
                 {groupedByCategory[category].slice(start, start + 4).map((product, index) => (
                   <ProductCard key={index} product={product} addToCart={addToCart} />

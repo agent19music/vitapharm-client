@@ -23,11 +23,11 @@ const ProductCard = ({ product, addToCart }) => {
       </Link>
       <div className="mt-4 px-5 pb-5">
         <a href="#">
-          <h5 className="text-xl tracking-tight text-black">{product.name}</h5>
+          <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>
         </a>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-bold text-black">{price !== null ? price : "N/A"}</span>
+            <span className="text-3xl font-futura font-bold text-black">{price !== null ? price : "N/A"}</span>
             {/* {price !== null && (
               <span className="text-sm text-black line-through">Ksh {(price * 1.75).toFixed(2)}</span>
             )} */}
@@ -102,7 +102,7 @@ const Category = () => {
           ) : (
             Object.keys(groupedByBrand).map((brand) => (
               <div key={brand} className="w-full mb-6">
-                <h4 className="text-xl font-semibold mb-4">{brand.toUpperCase()}</h4>
+                <h4 className="text-xl font-futuramedbold font-semibold mb-4">{brand.toUpperCase()}</h4>
                 {groupedByBrand[brand].length > 4 && (
                   <div className='space-1 align-bottom self-end mr-24'>
                     <button
