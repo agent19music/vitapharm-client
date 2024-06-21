@@ -21,12 +21,6 @@ export default function LandingPage() {
   const slides = ['/C1.png', '/C2.png', '/C3.png', '/C1.png'];
   const mobileSlides = ['/CM1.png', '/CM1.png', '/CM1.png', '/CM1.png'];
 
-  const categories = [
-    { title: "Makeup", image: "/1.jpg", description: "Makeup products" },
-    { title: "Haircare", image: "/2.jpg", description: "Haircare products" },
-    { title: "Bodycare", image: "/5.jpg", description: "Bodycare products" },
-    { title: "Skincare", image: "/3.jpg", description: "Skincare products" }
-  ];
   
 
   return (
@@ -47,21 +41,7 @@ export default function LandingPage() {
         </Carousel>
       </section>
       <section className='image-categories flex flex-wrap justify-center m-3'>
-  {categories.map((category, index) => (
-    <div className='relative p-2 overflow-hidden w-full sm:w-1/2  xsm:w-1/2 lg:w-auto' key={index}>
-      <h3 className='image-categories-titles text-center absolute inset-0 text-white font-extrabold'>
-        {category.title}
-      </h3>
-      <img
-        className='category-pic w-full transform transition-transform duration-300 group-hover:scale-110'
-        src={category.image}
-        alt={category.title}
-      />
-      <div className="text-center absolute bottom-0 left-0 w-full h-0 overflow-hidden transition-all duration-500 ease-in-out bg-black bg-opacity-50 group-hover:h-full">
-        <p className="text-white font-bold py-2 transform translate-y-full opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:translate-y-0">{category.description}</p>
-      </div>
-    </div>
-  ))}
+  
 </section>
 
       <section className='wrxx'>  
@@ -74,20 +54,16 @@ export default function LandingPage() {
           </div>
           <div className='container flex flex-col items-center text-wrap max-w-80'>
             <div>
-              <h4 className=' font-futurabold p-4'>
-               SESH JJIIF FKFKDDOD DKIDKDKDKDDKDDJKDD
-               JJHUHU JUJIJ IJIJIJN IJJIJIJ KIDKDKDKDKIDKDKDKD
+              <h4 className=' font-futuramedbold p-4'>
+               VITAPHARM SKIN CONSULTATION AND BEAUTY SERVICES CENTER
               </h4>
             </div>
             <div className=''>
               <p className='py-4 font-futura'>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
-                reprehenderit facilis sequi laborum repudiandae, enim beatae
-                neque itaque blanditiis illum expedita sapiente exercitationem,
-                dolores suscipit molestiae ea a nulla illo dolor sunt earum ullam
-                magni nesciunt. Laborum magni possimus deleniti natus rem animi
-                dolorum enim nobis labore, nemo nihil atque aliquid necessitatibus
-                consectetur adipisci sint m
+                Our skin consultation and beauty services center offers personalized skin care solutions,
+                tailored to address your unique skin concerns and needs. Our team of experts will guide
+                you through a comprehensive skin analysis, providing you with a customized treatment
+                plan to achieve healthy, glowing skin.
               </p>
             </div>
             <div className='group flex w-full cursor-pointer items-center justify-center vp-bo px-6 py- text-white transition'>
