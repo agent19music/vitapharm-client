@@ -60,7 +60,7 @@ export default function Header() {
   return (
     <header>
         <div className='info-bar'>
-          <div className='info-item '>
+          <div className='info-item font-futurabold'>
             <TextTransition springConfig={presets.wobbly}>
               {TEXTS[index % TEXTS.length]}
             </TextTransition>
@@ -85,6 +85,7 @@ export default function Header() {
           fontSize="lg"
           value={searchQuery}
           onChange={handleChange}
+          className='font-futurabold'
         />
         <InputRightElement
           pointerEvents="none"
@@ -102,7 +103,7 @@ export default function Header() {
               to={`/product/${result.id}`}
               key={index}
               style={{ textDecoration: 'none' }}
-              className='custom-link'
+              className='custom-link font-futura'
             >
               <Flex
                 align="center"
@@ -134,8 +135,8 @@ export default function Header() {
               </div>
             </div>
             <div className='free-shipping-banner'>
-              <h6>Free shipping</h6>
-              <p>Orders above 3000 bob</p>
+              <h6 className='font-futurabold'>Free shipping</h6>
+              <p className='font-futurabold'>Orders above 3000 bob</p>
             </div>
           </div>
         </div>

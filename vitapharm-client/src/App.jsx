@@ -19,6 +19,7 @@ import UserProvider from './context/UserContext';
 import SingleBrand from './pages/SingleBrand';
 
 
+
 function App() {
   const [updateCart, setUpdateCart] = useState(false);
   const [cartItems, setCartItems] = useState([]);

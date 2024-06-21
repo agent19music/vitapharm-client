@@ -16,17 +16,17 @@ const ProductCard = ({ product, addToCart }) => {
         <img className="peer absolute top-0 right-0 h-full w-full object-cover" src={`${product.images[0]?.url}`} alt="product image" />
         <img className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0" src={`${product.images[1]?.url}`} alt="product image" />
         <svg className="group-hover:animate-ping group-hover:opacity-30 peer-hover:opacity-0 pointer-events-none absolute inset-x-0 bottom-5 mx-auto text-3xl text-white transition-opacity" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M2 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v10a4 4 0 0 1-2.328 3.635a2.996 2.996 0 0 0-.55-.756l-8-8A3 3 0 0 0 14 17v7H6a4 4 0 0 1-4-4V10Zm14 19a1 1 0 0 0 1.8.6l2.7-3.6H25a1 1 0 0 0 .707-1.707l-8-8A1 1 0 0 0 16 17v12Z" /></svg>
-        <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">15% OFF</span>
+        <span className="absolute top-0 left-0 m-2 rounded-full bg-black font-futurabold px-2 text-center text-sm font-medium text-white">15% OFF</span>
       </Link>
       <div className="mt-4 px-5 pb-5">
         <a href="#">
-          <h5 className="text-xl tracking-tight text-black">{product.name}</h5>
+          <h5 className="text-xl tracking-tight font-futurabold text-black">{product.name}</h5>
         </a>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-bold text-black">{price !== null ? price : "N/A"}</span>
+            <span className="text-3xl font-bold font-futura text-black">{price !== null ? price : "N/A"}</span>
             {price !== null && (
-              <span className="text-sm text-black line-through">Ksh {(price * 1.75).toFixed(2)}</span>
+              <span className="text-sm text-black  font-futura line-through">Ksh {(price * 1.75).toFixed(2)}</span>
             )}
           </p>
         </div>
