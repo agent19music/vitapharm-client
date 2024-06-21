@@ -5,6 +5,7 @@ import { formatInTimeZone } from 'date-fns-tz';
 import { UserContext } from '../context/UserContext';
 import logo from '/logo.png'; // Import your logo image
 import Header from '../components/Header';
+import Footer from '../components/ModernFooter';
 
 const countries = [
   { label: 'Kenya (+254)', value: '+254' },
@@ -142,6 +143,7 @@ function CustomerForm() {
         )}
       </Box>
     </div>
+    <Footer/>
     </div>
 
   );
