@@ -74,7 +74,7 @@ function CustomerForm() {
   
 
   return (
-    <div>
+<div>
       <Header/>
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 mx-auto">
       <div className="mb-8">
@@ -143,6 +143,7 @@ function CustomerForm() {
       </Box>
     </div>
     </div>
+
   );
 }
 

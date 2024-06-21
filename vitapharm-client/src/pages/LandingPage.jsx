@@ -46,23 +46,24 @@ export default function LandingPage() {
           ))}
         </Carousel>
       </section>
-      <section className='image-categories flex justify-center m-3'>
-        {categories.map((category, index) => (
-          <div className='relative p-2 overflow-hidden' key={index}>
-            <h3 className='image-categories-titles text-center absolute inset-0 text-white font-extrabold'>
-              {category.title}
-            </h3>
-            <img
-              className='category-pic transform transition-transform duration-300 group-hover:scale-110'
-              src={category.image}
-              alt={category.title}
-            />
-            <div className="text-center absolute bottom-0 left-0 w-full h-0 overflow-hidden transition-all duration-500 ease-in-out bg-black bg-opacity-50 group-hover:h-full">
-              <p className="text-white font-bold py-2 transform translate-y-full opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:translate-y-0">{category.description}</p>
-            </div>
-          </div>
-        ))}
-      </section>
+      <section className='image-categories flex flex-wrap justify-center m-3'>
+  {categories.map((category, index) => (
+    <div className='relative p-2 overflow-hidden w-full sm:w-1/2  xsm:w-1/2 lg:w-auto' key={index}>
+      <h3 className='image-categories-titles text-center absolute inset-0 text-white font-extrabold'>
+        {category.title}
+      </h3>
+      <img
+        className='category-pic w-full transform transition-transform duration-300 group-hover:scale-110'
+        src={category.image}
+        alt={category.title}
+      />
+      <div className="text-center absolute bottom-0 left-0 w-full h-0 overflow-hidden transition-all duration-500 ease-in-out bg-black bg-opacity-50 group-hover:h-full">
+        <p className="text-white font-bold py-2 transform translate-y-full opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:translate-y-0">{category.description}</p>
+      </div>
+    </div>
+  ))}
+</section>
+
       <section className='wrxx'>  
         <ProductList />
       </section>
@@ -74,9 +75,7 @@ export default function LandingPage() {
           <div className='container flex flex-col items-center text-wrap max-w-80'>
             <div>
               <h4 className='font-bold p-4'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-                temporibus aliquid sunt recusandae corrupti, ipsa possimus modi,
-                expedita quod hic dolorem aliquam perspiciatis.
+               Vitapharm Skin Services
               </h4>
             </div>
             <div className=''>

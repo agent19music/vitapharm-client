@@ -1,9 +1,14 @@
-
+@font-face {
+    font-family: 'Urbanist Font';
+    src: url('/Urbanist-VariableFont_wght.ttf') format('truetype');
+  }
+  
 a{
 	text-decoration: none;
 }
 body{
 	text-decoration-line: none ;
+	font-family: 'Urbanist Font', sans-serif;
 }
 
 .Link:hover {
@@ -162,6 +167,9 @@ h3.image-categories-titles{
   section.mobileslides{
 	display: none;
   }
+  .image-category-container {
+    width: 25%; /* Four items per row on screens wider than 1024px */
+  }
   }
 span.edit-cartamount:hover{
 	transform: scale(1.2);
@@ -190,6 +198,9 @@ span.edit-cartamount:hover{
 		align-items: center;
 		
 	}
+	.image-category-container {
+		width: 50%; /* Two items per row on screens wider than 640px */
+	  }
 	
 	div.services{
 		display: flex;

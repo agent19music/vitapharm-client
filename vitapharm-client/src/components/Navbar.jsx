@@ -18,6 +18,7 @@ import {
   DrawerCloseButton,
   useDisclosure,
   VStack,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 
@@ -70,8 +71,8 @@ export default function NavbarWithExtensions() {
   return (
     <Box>
       <Flex
-        bg="white"
-        color="gray-600"
+        bg={useColorModeValue('white', 'gray.800')}
+        color={useColorModeValue('gray.600', 'white')}
         minH="60px"
         py={{ base: 2 }}
         px={{ base: 4 }}
@@ -117,67 +118,44 @@ const DesktopNav = ({ navItems }) => {
             <PopoverTrigger>
               <Link
                 p={2}
-                href="#"
-                fontSize="sm"
+                href={'#'}
+                fontSize={'sm'}
                 fontWeight={500}
-                className="text-gray-600 hover:text-gray-800"
-              >
+                color={useColorModeValue('gray.600', 'gray.200')}
+                _hover={{
+                  textDecoration: 'none',
+                  color: useColorModeValue('gray.800', 'white'),
+                }}>
                 {navItem.label}
                 <ChevronDownIcon />
               </Link>
             </PopoverTrigger>
 
             {navItem.children && (
-              <PopoverContent
+                <PopoverContent
                 border={0}
-                boxShadow="xl"
-                bg="white"
+                boxShadow={'xl'}
+                bg={useColorModeValue('white', 'gray.800')}
                 p={4}
-                rounded="xl"
-                minW="sm"
-                className="bg-zinc-100 rounded-md"
-              >
+                rounded={'xl'}
+                minW={'sm'}>
                 <Stack>
                   {navItem.children.map((child) => (
-                    <Link
-                      key={child.label}
-                      href={child.href}
-                      role="group"
-                      display="block"
-                      p={2}
-                      rounded="md"
-                      className="hover:bg-zinc-200"
-                    >
-                      <Text
-                        transition="all .3s ease"
-                        _groupHover={{ color: 'pink-400' }}
-                        fontWeight={500}
-                      >
+                      <Link key={child.label} href={child.href} role={'group'} display={'block'} p={2} rounded={'md'} _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+                      <Text transition={'all .3s ease'} _groupHover={{ color: 'pink.400' }} fontWeight={500}>
                         {child.label}
                       </Text>
                     </Link>
                   ))}
                   {navItem.moreLink && (
-                    <Link
-                      key="more"
-                      href={navItem.moreLink}
-                      role="group"
-                      display="block"
-                      p={2}
-                      rounded="md"
-                      className="hover:bg-zinc-200"
-                    >
-                      <Text
-                        transition="all .3s ease"
-                        _groupHover={{ color: 'pink-400' }}
-                        fontWeight={500}
-                      >
-                        More Brands
-                      </Text>
-                    </Link>
-                  )}
-                </Stack>
-              </PopoverContent>
+                       <Link key="more" href={navItem.moreLink} role={'group'} display={'block'} p={2} rounded={'md'} _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+                       <Text transition={'all .3s ease'} _groupHover={{ color: 'brown.400' }} fontWeight={500}>
+                         More Brands
+                       </Text>
+                     </Link>
+                   )}
+                 </Stack>
+               </PopoverContent>
             )}
           </Popover>
         </Box>
