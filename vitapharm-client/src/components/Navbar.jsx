@@ -119,8 +119,9 @@ const DesktopNav = ({ navItems }) => {
               <Link
                 p={2}
                 href={'#'}
-                fontSize={'sm'}
+                fontSize={'md'}
                 fontWeight={500}
+                className='font-futurabold'
                 color={useColorModeValue('gray.600', 'gray.200')}
                 _hover={{
                   textDecoration: 'none',
@@ -142,14 +143,14 @@ const DesktopNav = ({ navItems }) => {
                 <Stack>
                   {navItem.children.map((child) => (
                       <Link key={child.label} href={child.href} role={'group'} display={'block'} p={2} rounded={'md'} _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
-                      <Text transition={'all .3s ease'} _groupHover={{ color: 'pink.400' }} fontWeight={500}>
+                      <Text transition={'all .3s ease'} _groupHover={{ color: 'pink.400' }} fontWeight={500} className='font-futura'>
                         {child.label}
                       </Text>
                     </Link>
                   ))}
                   {navItem.moreLink && (
                        <Link key="more" href={navItem.moreLink} role={'group'} display={'block'} p={2} rounded={'md'} _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
-                       <Text transition={'all .3s ease'} _groupHover={{ color: 'brown.400' }} fontWeight={500}>
+                       <Text transition={'all .3s ease'} _groupHover={{ color: 'brown.400' }} fontWeight={500} className='font-futurabold'>
                          More Brands
                        </Text>
                      </Link>

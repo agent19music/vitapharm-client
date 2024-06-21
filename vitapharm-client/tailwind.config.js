@@ -11,7 +11,8 @@ module.exports = {
       fontFamily: {
         'urbanist': ['Urbanist', 'sans-serif'],
         'futura': ['Futura', 'sans-serif'],
-        'futurabold': ['Futura-Bold' ,'sans-serif']
+        'futurabold': ['Futura-Bold' ,'sans-serif'],
+        'futuramedbold': ['Futura-Medium-Bold', 'sans-serif']
       },
     },
     screens: {
