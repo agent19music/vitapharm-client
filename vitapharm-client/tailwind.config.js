@@ -10,7 +10,8 @@ module.exports = {
       },
       fontFamily: {
         'urbanist': ['Urbanist', 'sans-serif'],
-        'futura': ['Futura', 'sans-serif']
+        'futura': ['Futura', 'sans-serif'],
+        'futurabold': ['Futura-Bold' ,'sans-serif']
       },
     },
     screens: {

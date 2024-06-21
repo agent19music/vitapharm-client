@@ -74,13 +74,13 @@ export default function LandingPage() {
           </div>
           <div className='container flex flex-col items-center text-wrap max-w-80'>
             <div>
-              <h4 className='font-bold font-futura p-4'>
+              <h4 className=' font-futurabold p-4'>
                SESH JJIIF FKFKDDOD DKIDKDKDKDDKDDJKDD
                JJHUHU JUJIJ IJIJIJN IJJIJIJ KIDKDKDKDKIDKDKDKD
               </h4>
             </div>
             <div className=''>
-              <p className='py-4'>
+              <p className='py-4 font-futura'>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
                 reprehenderit facilis sequi laborum repudiandae, enim beatae
                 neque itaque blanditiis illum expedita sapiente exercitationem,
