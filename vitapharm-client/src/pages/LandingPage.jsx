@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from '../components/2Carousel';
-import VitapharmFooter from '../components/Footer';
+import Footer from '../components/ModernFooter';
 import ProductList from '../components/Productlist';
 import { Link as RouterLink } from 'react-router-dom';
 import SocialVideos from '../components/SocialVideos';
@@ -109,7 +109,7 @@ export default function LandingPage() {
         </div>
       </section>
       <SocialVideos/>
-      <VitapharmFooter />
+      <Footer />
     </div>
   );
 }
