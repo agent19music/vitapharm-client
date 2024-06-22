@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Header from '../components/Header';
 import { ProductContext } from '../context/ProductContext';
 import { Link } from 'react-router-dom';
-import VitapharmFooter from '../components/Footer';
+import Footer from '../components/ModernFooter'
 
 const Brands = () => {
   const { brands } = useContext(ProductContext);
@@ -56,7 +56,7 @@ const Brands = () => {
           ))}
         </div>
       </div>
-      <VitapharmFooter/>
+      <Footer/>
     </div>
   );
 };
