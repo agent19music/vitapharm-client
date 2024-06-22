@@ -46,7 +46,7 @@ export default function SingleProductCard() {
     useEffect(() => {
         const fetchProduct = async (token) => {
             try {
-                const response = await fetch(`/products/${productId}`, {
+                const response = await fetch(`${apiEndpoint}/products/${productId}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -64,6 +64,8 @@ export default function SingleProductCard() {
             fetchProduct(sessionToken);
         }
     }, [productId, sessionToken]);
+    console.log(product);
+    console.log(productId);
 
     // const addToCart = async () => {
     //     if (!sessionToken) return;
@@ -125,17 +127,17 @@ export default function SingleProductCard() {
                             </div>
                             <div className="w-full lg:w-1/2">
                                 <div className="lg:pl-16">
-                                    <h1 className="mb-2 text-3xl font-bold text-black">
+                                    <h1 className="mb-2 text-3xl font-futurabold text-black">
                                         {product.name}
                                     </h1>
-                                    <p className="mb-6 text-sm text-gray-500">
+                                    <p className="mb-6 text-sm font-futura text-gray-500">
                                         {product.description}
                                     </p>
                                     <div className="flex items-center mb-4">
-                                        <span className="text-3xl font-bold text-black">Ksh {selectedVariation ? selectedVariation.price : "N/A"}</span>
+                                        <span className="text-3xl font-futurabold text-black">Ksh {selectedVariation ? selectedVariation.price : "N/A"}</span>
                                     </div>
                                     <div className="mb-4">
-                                        <label className="block mb-2 text-sm font-medium text-gray-700">
+                                        <label className="block mb-2 text-sm font-futurabold text-gray-700">
                                             Select size:
                                         </label>
                                         <div className="flex space-x-4">
@@ -143,14 +145,14 @@ export default function SingleProductCard() {
                                                 <button
                                                     key={variation.id}
                                                     onClick={() => handleVariationChange(variation)}
-                                                    className={`px-4 py-2 border ${selectedVariation && selectedVariation.id === variation.id ? 'border-[#693f2d] bg-[#693f2d] text-white' : 'border-gray-300 bg-white text-gray-700'} hover:bg-[#693f2d] hover:text-white`}
+                                                    className={`px-4 py-2 border ${selectedVariation && selectedVariation.id === variation.id ? 'border-[#693f2d] bg-[#693f2d] text-white' : 'border-gray-300 bg-white font-futurabold text-gray-700'} hover:bg-[#693f2d] hover:text-white`}
                                                 >
                                                     {variation.size}
                                                 </button>
                                             ))}
                                         </div>
                                     </div>
-                                    <button  onClick={() => addToCart(productId)}  className="flex items-center justify-center bg-[#693f2d] text-white px-5 py-3 text-center text-sm font-medium focus:outline-none focus:ring-4 focus:ring-[#693f2d] hover:bg-[#5a3524]">
+                                    <button  onClick={() => addToCart(productId)}  className="flex items-center font-futurabold justify-center bg-[#693f2d] text-white px-5 py-3 text-center text-sm font-medium focus:outline-none focus:ring-4 focus:ring-[#693f2d] hover:bg-[#5a3524]">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                                         </svg>

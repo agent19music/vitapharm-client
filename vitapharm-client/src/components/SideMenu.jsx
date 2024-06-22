@@ -20,7 +20,7 @@ const SideMenu = () => {
               <section className="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
                 <div className="mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="flex items-center justify-center">
-                    <h1 className="text-2xl font-semibold text-gray-900">Your Cart</h1>
+                    <h1 className="text-2xl font-semibold font-futuramedbold text-gray-900">Your Cart</h1>
                   </div>
 
                   <div className="mx-auto mt-8 max-w-md md:mt-12">
@@ -31,7 +31,7 @@ const SideMenu = () => {
                             <Alert status="warning">
                               <AlertIcon />
                               <AlertTitle mr={2}>Oops!</AlertTitle>
-                              <AlertDescription>Looks like your cart is empty. Please shop around.</AlertDescription>
+                              <AlertDescription className='font-futurabold'>Looks like your cart is empty. Please shop around.</AlertDescription>
                             </Alert>
                           ) : (
                             <ul className="-my-8">
@@ -49,13 +49,13 @@ const SideMenu = () => {
                                   <div className="relative flex flex-1 flex-col justify-between">
                                     <div className="sm:col-gap-5 sm:grid sm:grid-cols-2">
                                       <div className="pr-8 sm:pr-5">
-                                        <p className="text-base font-semibold text-gray-900">{item.product_name}</p>
-                                        <p className="mx-0 mt-1 mb-0 text-sm text-gray-400">{item.variation_size}</p>
+                                        <p className="text-base font-semibold font-futurabold text-gray-900">{item.product_name}</p>
+                                        <p className="mx-0 mt-1 mb-0 text-sm font-futurabold text-gray-400">{item.variation_size}</p>
                                       </div>
 
                                       <div className="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
                                         <div className="relative flex space-x-2">
-                                          <p className="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">Ksh {item.quantity * item.variation_price}</p>
+                                          <p className="shrink-0 w-20 text-base font-futurabold font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">Ksh {item.quantity * item.variation_price}</p>
                                         </div>
                                       </div>
                                     </div>
@@ -78,21 +78,21 @@ const SideMenu = () => {
                           <>
                             <div className="mt-6 space-y-3 border-t border-b py-8">
                               <div className="flex items-center justify-between">
-                                <p className="text-gray-400">Subtotal</p>
-                                <p className="text-lg font-semibold text-gray-900">Ksh {subtotal}</p>
+                                <p className="text-gray-400 font-futurabold">Subtotal</p>
+                                <p className="text-lg font-futurabold font-semibold text-gray-900">Ksh {subtotal}</p>
                               </div>
                               <div className="flex items-center justify-between">
-                                <p className="text-gray-400">Shipping</p>
-                                <p className="text-lg font-semibold text-gray-900">Free</p>
+                                <p className="text-gray-400 font-futurabold">Shipping</p>
+                                <p className="text-lg font-semibold font-futurabold text-gray-900">Free</p>
                               </div>
                             </div>
                             <div className="mt-6 flex items-center justify-between">
-                              <p className="text-sm font-medium text-gray-900">Total</p>
-                              <p className="text-2xl font-semibold text-gray-900"><span className="text-xs font-normal text-gray-400">KSH</span> {total}</p>
+                              <p className="text-sm font-futurabold font-medium text-gray-900">Total</p>
+                              <p className="text-2xl font-semibold font-futuramedbold text-gray-900"><span className="text-xs font-normal text-gray-400">KSH</span> {total}</p>
                             </div>
 
                             <div className="mt-6 text-center">
-                              <Link to={`/checkout`} className="group inline-flex w-full items-center justify-center rounded-md vp-bo px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover">
+                              <Link to={`/checkout`} className="group inline-flex w-full items-center font-futuramedbold justify-center rounded-md vp-bo px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover">
                                 Place Order
                                 <svg xmlns="http://www.w3.org/2000/svg" className="group-hover:ml-8 ml-4 h-6 w-6 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
