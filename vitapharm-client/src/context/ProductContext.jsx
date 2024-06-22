@@ -8,7 +8,7 @@ export default function ProductProvider({ children }) {
 
   
 
-    const apiEndpoint = 'http://127.0.0.1:5000/api/vitapharm';
+    const apiEndpoint = 'http://server-env.eba-8hpawwgj.eu-north-1.elasticbeanstalk.com/api/vitapharm';
 
     const [products, setProducts] = useState([]);
     const [filteredCategories, setFilteredCategories] = useState([]);
@@ -38,7 +38,7 @@ export default function ProductProvider({ children }) {
               if (storedToken && tokenExpiration && new Date(tokenExpiration) > new Date()) {
                   setSessionToken(storedToken);
               } else {
-                  const response = await fetch('http://localhost:5000/api/vitapharm/session');
+                  const response = await fetch(`${apiEndpoint}/session`);
                   const { session_token } = await response.json();
                   const expiration = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
                   localStorage.setItem('session_token', session_token);

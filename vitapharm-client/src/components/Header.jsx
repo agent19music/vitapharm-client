@@ -33,7 +33,7 @@ export default function Header() {
   const handleSearch = async (query) => {
     if (query.length > 2) { // Only search if query length is more than 2
       try {
-        const response = await axios.get('http://127.0.0.1:5000/api/vitapharm/products/search', {
+        const response = await axios.get('/products/search', {
           params: {
             query: query
           }

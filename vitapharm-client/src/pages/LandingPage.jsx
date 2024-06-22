@@ -34,7 +34,7 @@ export default function LandingPage() {
       <section className='wrxx'>  
         <ProductList />
       </section>
-      <section className='my-5'>
+      <section className='my-5 '>
         <div className='container flex justify-center items-center mx-auto services'>
           <div className='items-center service-woman mr-24'>
             <img src='/service.webp' alt='lady' className='rounded-md w-140 h-70 object-cover mx-auto' />
