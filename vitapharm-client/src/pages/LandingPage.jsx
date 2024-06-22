@@ -5,6 +5,7 @@ import ProductList from '../components/Productlist';
 import { Link as RouterLink } from 'react-router-dom';
 import SocialVideos from '../components/SocialVideos';
 import Header from '../components/Header';
+import BannerCarousel from '../components/Carousel';
 
 export default function LandingPage() {
 
@@ -26,28 +27,14 @@ export default function LandingPage() {
   return (
     <div>
       <Header/>
-      <section className='bg max-w-screen m-3 carousel desktopslides'>
-        <Carousel autoSlide={true}>
-          {slides.map((s, i) => (
-            <img className='banner-slide ' key={i} src={s} />
-          ))}
-        </Carousel>
+      <section className='bg max-w-screen  carousel desktopslides'>
+      <BannerCarousel/>
       </section>
-      <section className='bg max-w-screen m-3 carousel mobileslides'>
-        <Carousel autoSlide={true}>
-          {mobileSlides.map((s, i) => (
-            <img className='banner-slide ' key={i} src={s} />
-          ))}
-        </Carousel>
-      </section>
-      <section className='image-categories flex flex-wrap justify-center m-3'>
-  
-</section>
-
+   
       <section className='wrxx'>  
         <ProductList />
       </section>
-      <section className='my-4'>
+      <section className='my-5'>
         <div className='container flex justify-center items-center mx-auto services'>
           <div className='items-center service-woman mr-24'>
             <img src='/service.webp' alt='lady' className='rounded-md w-140 h-70 object-cover mx-auto' />
