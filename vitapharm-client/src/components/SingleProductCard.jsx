@@ -5,7 +5,7 @@ import { ProductContext } from '../context/ProductContext';
 
 export default function SingleProductCard() {
     const { productId } = useParams();
-    const {addToCart} = useContext(ProductContext)
+    const {addToCart, apiEndpoint} = useContext(ProductContext)
     const [product, setProduct] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedVariation, setSelectedVariation] = useState(null);
@@ -21,7 +21,7 @@ export default function SingleProductCard() {
                 if (storedToken && tokenExpiration && new Date(tokenExpiration) > new Date()) {
                     setSessionToken(storedToken);
                 } else {
-                    const response = await fetch('http://localhost:5000/api/vitapharm/session');
+                    const response = await fetch(`${apiEndpoint}/session`);
                     const { session_token } = await response.json();
                     storedToken = session_token;
                     tokenExpiration = new Date(Date.now() + 2 * 60 * 60 * 1000);
@@ -46,7 +46,7 @@ export default function SingleProductCard() {
     useEffect(() => {
         const fetchProduct = async (token) => {
             try {
-                const response = await fetch(`http://localhost:5000/api/vitapharm/products/${productId}`, {
+                const response = await fetch(`/products/${productId}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

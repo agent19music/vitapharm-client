@@ -23,19 +23,21 @@ const BannerCarousel = () => {
         }}
         effect="fade"
         className="mySwiper"
+        loop={true}
       >
         {/* Add SwiperSlide components here */}
         <SwiperSlide className="">
           <img
-            src="/pic1.png"
+            src="/C1.png"
             alt="Banner"
             className="banner-slide"
            
           />
+
         </SwiperSlide>
         <SwiperSlide className="">
           <img
-            src="/pic2.png"
+            src="/C2.png"
             alt="Banner"
             className="banner-slide"
             
@@ -43,9 +45,10 @@ const BannerCarousel = () => {
         </SwiperSlide>
         <SwiperSlide className="">
           <img
-            src="../assets/pic4.png"
+            src="/C2.png"
             alt="Banner"
             className="banner-slide"
+            
             
           />
         </SwiperSlide>

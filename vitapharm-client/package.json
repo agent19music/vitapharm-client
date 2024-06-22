@@ -1,6 +1,6 @@
 {
 
-  "proxy": "http://127.0.0.1:5000/api/vitapharm",
+  "proxy": "http://server-env.eba-8hpawwgj.eu-north-1.elasticbeanstalk.com/api/vitapharm",
 
   "name": "vitapharm",
 
