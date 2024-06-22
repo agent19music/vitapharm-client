@@ -40,13 +40,13 @@ const Brands = () => {
         <div className="flex flex-wrap justify-center">
           {Object.entries(sortedGroupedBrands).map(([letter, brands]) => (
             <div key={letter} className="w-full mb-8">
-              <h2 className="text-3xl font-bold mb-4">{letter}</h2>
+              <h2 className="text-3xl font-bold font-futuramedbold mb-4">{letter}</h2>
               <ul className="flex flex-wrap">
                 {brands.map((brand, index) => (
                   <Link
                     to={`/brands/${brand.name}`}
                     key={index}
-                    className="mx-2 my-1 px-4 py-2 bg-brown-custom text-white hover:text-white rounded-full"
+                    className="mx-2 my-1 px-4 py-2 bg-brown-custom text-white hover:text-white rounded-full font-futurabold"
                   >
                     {brand.name}
                   </Link>
