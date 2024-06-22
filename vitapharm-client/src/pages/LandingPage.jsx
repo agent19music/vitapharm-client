@@ -66,7 +66,7 @@ export default function LandingPage() {
                 plan to achieve healthy, glowing skin.
               </p>
             </div>
-            <div className='group flex w-full cursor-pointer items-center justify-center vp-bo px-6 py- text-white transition'>
+            <div className='group flex w-full cursor-pointer items-center justify-center vp-bo font-futurabold px-6 py- text-white transition'>
               <RouterLink to={'/333'} className='group flex w-full items-center justify-center rounded py-1 text-center font-bold hover:text-white h-14'>
                 Book an appointment
               </RouterLink>
