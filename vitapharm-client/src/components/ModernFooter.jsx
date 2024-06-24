@@ -1,7 +1,48 @@
-import React from 'react';
+import {React, useState, useContext} from 'react';
 import { Mail, Facebook, Twitter, Instagram, MessageCircle } from 'react-feather';
+import { ProductContext } from '../context/ProductContext';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const{apiEndpoint} = useContext(ProductContext)
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Simple validation to check if the input is an email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
+    setError(''); // Clear any previous errors
+
+    try {
+      const response = await fetch(`${apiEndpoint}/customeremails`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        throw new Error('There was a problem submitting your email.');
+      }
+
+      // Clear the email input after successful submission
+      setEmail('');
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <footer className="bg-brown-custom text-white p-10 font-futura">
       <div className="flex justify-between items-center mb-10">
@@ -22,8 +63,17 @@ const Footer = () => {
         </div>
         <div>
           <h3 className="font-bold text-lg mb-2">STAY IN THE LOOP</h3>
-          <input className="w-full px-3 py-2 mb-2 border border-gray-300 text-brown-custom rounded-md focus:outline-none focus:ring-2 focus:ring-brown-custom" type="email" placeholder="Email Address" />
-          <button className="w-full px-3 py-2 bg-white text-brown-custom font-bold hover:border-brown-custom">Subscribe</button>
+          <form onSubmit={handleSubmit}>
+        <input
+          className="w-full px-3 py-2 mb-2 border border-gray-300 text-brown-custom rounded-md focus:outline-none focus:ring-2 focus:ring-brown-custom"
+          type="email"
+          placeholder="Email Address"
+          value={email}
+          onChange={handleEmailChange}
+        />
+        {error && <p className="text-red-500">{error}</p>}
+        <button type="submit" className="w-full px-3 py-2 bg-white text-brown-custom font-bold hover:border-brown-custom">Subscribe</button>
+      </form>
         </div>
         <div>
           <h3 className="font-bold text-lg mb-2">GET TO KNOW US</h3>
