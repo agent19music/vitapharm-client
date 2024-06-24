@@ -17,6 +17,9 @@ export default function CheckoutPage() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [shippingOption, setShippingOption] = useState('within_nairobi');
+  const [shippingCost, setShippingCost] = useState(150);
+  const [paymentOption, setPaymentOption] = useState('pod');
 
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleLastNameChange = (e) => setLastName(e.target.value);
@@ -24,6 +27,23 @@ export default function CheckoutPage() {
   const handleTownChange = (e) => setTown(e.target.value);
   const handlePhoneChange = (e) => setPhone(e.target.value);
   const handleAddressChange = (e) => setAddress(e.target.value);
+
+  const handleShippingChange = (e) => {
+    setShippingOption(e.target.value);
+    if (e.target.value === 'within_nairobi') {
+      setShippingCost(150);
+    } else if (e.target.value === 'outskirts') {
+      setShippingCost(250);
+    } else {
+      setShippingCost(0);
+    }
+  };
+
+  const handlePaymentChange = (e) => {
+    setPaymentOption(e.target.value);
+  };
+  
+
 
   const isFirstNameError = submitted && firstName.trim() === '';
   const isLastNameError = submitted && lastName.trim() === '';
@@ -44,6 +64,7 @@ export default function CheckoutPage() {
       town,
       phone,
       address: address,
+      delivery_cost: shippingCost
     };
   
     // console.log('Form Data:', formData, sessionToken); // Log the form data
@@ -86,7 +107,6 @@ export default function CheckoutPage() {
       setIsLoading(false);
     }
   };
-
   return (
     <div>
       <Header />
@@ -112,16 +132,64 @@ export default function CheckoutPage() {
                 ))}
               </div>
 
-              <p className="mt-8 text-lg font-futurabold">Shipping Methods</p>
-              <form className="mt-5 grid gap-6" onSubmit={handleSubmit}>
+              <p className="mt-8 text-lg font-futurabold">Payment Options</p>
+              <form className="mt-5 grid gap-6">
+  <div className="relative">
+    <input className="peer hidden" id="payment_1" type="radio" name="payment" value='pod' checked={paymentOption === 'pod'} onChange={handlePaymentChange}/>
+    <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+    <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="payment_1">
+      <img className="w-14 object-contain" src="/podlogo.png" alt="" />
+      <div className="ml-5">
+        <span className="mt-2 font-futuramedbold">Pay On Delivery</span>
+      </div>
+    </label>
+  </div>
+  <div className="relative">
+    <input className="peer hidden" id="payment_2" type="radio" name="payment" value='m-pesa' checked={paymentOption === 'm-pesa'} onChange={handlePaymentChange} />
+    <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+    <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="payment_2">
+      <img className="w-14 object-contain" src="/mpesalogo.png" alt="" />
+      <div className="ml-5">
+        <span className="mt-2 font-futuramedbold">Lipa na M-pesa</span>
+      </div>
+    </label>
+  </div>
+</form>
+
+
+    <p className="mt-8 text-lg font-futurabold">Your Delivery Details</p>
+              <p className="mt-1 text-smd font-futurabold">*Orders above 3000 bob qualify for free delivery</p>
+              <form className="mt-5 grid gap-6">
                 <div className="relative">
-                  <input className="peer hidden" id="radio_1" type="radio" name="radio" defaultChecked />
+                  <input className="peer hidden" id="shipping_1" type="radio" name="shipping" value="within_nairobi" checked={shippingOption === 'within_nairobi'} onChange={handleShippingChange} />
                   <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                  <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_1">
-                    <img className="w-14 object-contain" src="/images/naorrAeygcJzX0SyNI4Y0.png" alt="" />
+                  <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="shipping_1">
                     <div className="ml-5">
-                      <span className="mt-2 font-futurabold">Pick Up Mtaani Delivery</span>
-                      <p className="text-slate-500 text-sm leading-6 font-futurabold">Delivery: 1-2 Days</p>
+                      <span className="mt-2 font-futuramedbold">Within Nairobi</span>
+                      <p className="text-smd text-gray-400 font-futurabold">Delivered within 24 Hours</p>
+                      <p className="text-smd text-gray-400 font-futurabold">Ksh 150</p>
+                    </div>
+                  </label>
+                </div>
+                <div className="relative">
+                  <input className="peer hidden" id="shipping_2" type="radio" name="shipping" value="outskirts" checked={shippingOption === 'outskirts'} onChange={handleShippingChange} />
+                  <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                  <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="shipping_2">
+                    <div className="ml-5">
+                      <span className="mt-2 font-futuramedbold">Outskirts of Nairobi</span>
+                      <p className="text-smd text-gray-400 font-futurabold">Delivered within 48 Hours</p>
+                      <p className="text-smd text-gray-400 font-futurabold">Ksh 250</p>
+                    </div>
+                  </label>
+                </div>
+                <div className="relative">
+                  <input className="peer hidden" id="shipping_3" type="radio" name="shipping" value="pickup" checked={shippingOption === 'pickup'} onChange={handleShippingChange} />
+                  <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                  <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="shipping_3">
+                    <div className="ml-5">
+                      <span className="mt-2 font-futuramedbold">Store Pickup</span>
+                      <p className="text-smd text-gray-400 font-futurabold">Pick up from our store</p>
+                      <p className="text-smd text-gray-400 font-futurabold">Free</p>
                     </div>
                   </label>
                 </div>
@@ -241,19 +309,21 @@ export default function CheckoutPage() {
                           </div>
                           <div className="flex items-center justify-between">
                             <p className="text-sm font-futurabold text-gray-900">Shipping</p>
-                            <p className="font-futuramedbold text-gray-900">Free</p>
+                            <p className="font-futuramedbold text-gray-900">{shippingCost}</p>
                           </div>
                         </div>
                         <div className="mt-6 flex items-center justify-between">
                           <p className="text-sm font-futurabold text-gray-900">Total</p>
-                          <p className="text-2xl font-futurabold text-gray-900">Ksh {total}</p>
+                          <p className="text-2xl font-futurabold text-gray-900">Ksh {total+shippingCost}</p>
                         </div>
           
                         {error && <p className="text-red-500 font-futurabold text-sm mt-4">{error}</p>}
           
-                        <button type="submit" className="mt-4 mb-8 w-full font-futuramedbold bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
-                      </form>
+                        {paymentOption === 'pod' && <button type="submit" className="mt-4 mb-8 w-full font-futuramedbold bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>}
+                        </form>
                     )}
+                    {paymentOption === 'm-pesa' && <button type="submit" className="mt-4 mb-8 w-full font-futuramedbold bg-green-600 px-6 py-3 font-medium text-white">Proceed to pay with M-pesa</button>}
+
                   </div>
                 </>
               )}
