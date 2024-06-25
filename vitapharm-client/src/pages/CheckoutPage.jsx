@@ -67,11 +67,12 @@ export default function CheckoutPage() {
       delivery_cost: shippingCost
     };
   
-    // console.log('Form Data:', formData, sessionToken); // Log the form data
+    // Determine the endpoint based on the payment option
+    const endpoint = paymentOption === 'm-pesa' ? '/order/pay' : '/order/place';
   
     if (!isFirstNameError && !isLastNameError && !isEmailError && !isTownError && !isPhoneError && !isAddressError) {
       try {
-        const response = await fetch(`${apiEndpoint}/order/place`, {
+        const response = await fetch(`${apiEndpoint}${endpoint}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -107,6 +108,7 @@ export default function CheckoutPage() {
       setIsLoading(false);
     }
   };
+  
   return (
     <div>
       <Header />

@@ -76,7 +76,7 @@ export default function ProductProvider({ children }) {
                 setProducts(data);
                 setFilteredCategories([]);
                 setFiltredBrands([]);
-                console.log("Data fetched:", data); // Log the data here
+                // console.log("Data fetched:", data); // Log the data here
             } catch (error) {
                 console.log(error);
             }
@@ -103,7 +103,7 @@ export default function ProductProvider({ children }) {
             body: JSON.stringify({ product_id: id, quantity: 1 })
           });
           const data = await response.json();
-          console.log(data);
+          // console.log(data);
     
           // Add the toast here
           toast({
@@ -134,7 +134,7 @@ export default function ProductProvider({ children }) {
         
         let subtotalPrice = 0;
         cartData.forEach((item) => {
-            subtotalPrice += item.quantity * item.variation_price; // Ensure correct calculation
+            subtotalPrice += item.quantity * item.total_price; // Ensure correct calculation
         });
         setSubtotal(subtotalPrice);
         setTotal(subtotalPrice);
