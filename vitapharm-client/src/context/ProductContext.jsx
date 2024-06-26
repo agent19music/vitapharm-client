@@ -76,7 +76,7 @@ export default function ProductProvider({ children }) {
                 setProducts(data);
                 setFilteredCategories([]);
                 setFiltredBrands([]);
-                console.log("Data fetched:", data); // Log the data here
+                // console.log("Data fetched:", data); // Log the data here
             } catch (error) {
                 console.log(error);
             }
@@ -103,7 +103,7 @@ export default function ProductProvider({ children }) {
             body: JSON.stringify({ product_id: id, quantity: 1 })
           });
           const data = await response.json();
-          console.log(data);
+          // console.log(data);
     
           // Add the toast here
           toast({
