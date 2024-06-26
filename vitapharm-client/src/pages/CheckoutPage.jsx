@@ -64,7 +64,7 @@ export default function CheckoutPage() {
       town,
       phone,
       address: address,
-      delivery_cost: shippingCost
+      deliverycost: shippingCost
     };
   
     // Determine the endpoint based on the payment option
