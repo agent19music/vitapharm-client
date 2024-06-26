@@ -58,8 +58,8 @@ const Footer = () => {
       <div className="grid grid-cols-4 gap-10">
         <div>
           <h3 className="font-bold text-lg mb-2">OUR LOCATIONS</h3>
-          <p>Nairobi- Adlife Plaza, Chania</p>
-          <p>Nairobi Sasa Mall, CBD Shop</p>
+          <p>Nairobi- Adlife Plaza, Chania Rd</p>
+          <p>Nairobi Sawa Mall, CBD Shop A14</p>
         </div>
         <div>
           <h3 className="font-bold text-lg mb-2">STAY IN THE LOOP</h3>
