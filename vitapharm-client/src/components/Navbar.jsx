@@ -54,7 +54,7 @@ export default function NavbarWithExtensions() {
       label: 'BEST SELLERS',
       children: [
         { label: 'Cera Ve', href: '#' },
-        { label: 'Ganier', href: '#' },
+        { label: 'QRX', href: '#' },
         { label: 'Fenty', href: '#' },
       ],
     },
@@ -144,7 +144,7 @@ const DesktopNav = ({ navItems }) => {
                   {navItem.children.map((child) => (
                       <Link key={child.label} href={child.href} role={'group'} display={'block'} p={2} rounded={'md'} _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
                       <Text transition={'all .3s ease'} _groupHover={{ color: 'pink.400' }} fontWeight={500} className='font-futura'>
-                        {child.label}
+                        {child.label.toUpperCase()} 
                       </Text>
                     </Link>
                   ))}
@@ -164,7 +164,6 @@ const DesktopNav = ({ navItems }) => {
     </Stack>
   );
 };
-
 const MobileNav = ({ navItems, onClose }) => {
   return (
     <VStack align="start" className="space-y-4">
