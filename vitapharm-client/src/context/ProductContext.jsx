@@ -327,6 +327,7 @@ export default function ProductProvider({ children }) {
     setBrand,
     filteredBrands,
     
+    
      
 };
 

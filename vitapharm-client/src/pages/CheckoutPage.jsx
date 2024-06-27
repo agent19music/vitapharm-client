@@ -42,8 +42,14 @@ export default function CheckoutPage() {
   const handlePaymentChange = (e) => {
     setPaymentOption(e.target.value);
   };
-  
-
+   
+  function transformPhoneNumber(phoneNumber) {
+    // Check if the phone number starts with '0' and replace it with '+254'
+    if (phoneNumber.startsWith('0')) {
+      return '+254' + phoneNumber.substring(1);
+    }
+    return phoneNumber; // Return the original if it doesn't start with '0'
+  }
 
   const isFirstNameError = submitted && firstName.trim() === '';
   const isLastNameError = submitted && lastName.trim() === '';
@@ -62,10 +68,12 @@ export default function CheckoutPage() {
       customerLastName: lastName,
       customerEmail: email,
       town,
-      phone,
+      phone : transformPhoneNumber(phone),
       address: address,
-      delivery_cost: shippingCost
+      deliverycost: shippingCost
     };
+  
+    console.log('Form Data:', formData); // Log the formData
   
     // Determine the endpoint based on the payment option
     const endpoint = paymentOption === 'm-pesa' ? '/order/pay' : '/order/place';
@@ -108,6 +116,7 @@ export default function CheckoutPage() {
       setIsLoading(false);
     }
   };
+  
   
   return (
     <div>
@@ -230,7 +239,7 @@ export default function CheckoutPage() {
                         size='xl'
                       />
                     ) : (
-                      <form onSubmit={handleSubmit}>
+                      <form >
                         <label htmlFor="first-name" className="mt-4 mb-2 block text-sm font-futurabold">First Name</label>
                         <input
                           type="text"
@@ -320,11 +329,13 @@ export default function CheckoutPage() {
                         </div>
           
                         {error && <p className="text-red-500 font-futurabold text-sm mt-4">{error}</p>}
+
+                        {paymentOption === 'm-pesa' && <button  onClick={handleSubmit} className="mt-4 mb-8 w-full font-futuramedbold bg-green-600 px-6 py-3 font-medium text-white">Proceed to pay with M-pesa</button>}
+
           
-                        {paymentOption === 'pod' && <button type="submit" className="mt-4 mb-8 w-full font-futuramedbold bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>}
+                        {paymentOption === 'pod' && <button  onClick={handleSubmit}className="mt-4 mb-8 w-full font-futuramedbold bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>}
                         </form>
                     )}
-                    {paymentOption === 'm-pesa' && <button type="submit" className="mt-4 mb-8 w-full font-futuramedbold bg-green-600 px-6 py-3 font-medium text-white">Proceed to pay with M-pesa</button>}
 
                   </div>
                 </>

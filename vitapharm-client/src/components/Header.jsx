@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
 import WithSubnavigation from '../components/Navbar'
 import TextTransition,{presets} from 'react-text-transition'
 import SideMenu from '../components/SideMenu'
@@ -7,10 +7,12 @@ import { Search } from 'react-feather';
 import WhatsappFloatingActionButton from './WhatsappFloatingActionButton'
 import { InputGroup, Input, InputRightElement, IconButton, Popover, PopoverTrigger, PopoverContent, Box, SimpleGrid, Text, Link, Flex, Image } from '@chakra-ui/react';
 import axios from 'axios';
+import { ProductContext } from '../context/ProductContext';
 
 
 export default function Header() {
 
+  const {products} = useContext(ProductContext)
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
@@ -30,30 +32,31 @@ export default function Header() {
     return () => clearTimeout(intervalId);
   }, []);
  
-  const handleSearch = async (query) => {
-    if (query.length > 2) { // Only search if query length is more than 2
-      try {
-        const response = await axios.get('/products/search', {
-          params: {
-            query: query
-          }
-        });
-        setSearchResults(response.data);
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
-    } else {
-      setSearchResults([]);
-    }
-  };
+  function handleSearch(query) {
+    let lowerCaseQuery = query.toLowerCase();
 
-  const handleChange = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
+    let filtered = products.filter(product => {
+        let name = product.name.toLowerCase();
+        let description = product.description.toLowerCase();
+        let category = product.category.toLowerCase();
+        let subCategory = product.sub_category.toLowerCase();
+
+        return name.includes(lowerCaseQuery) || description.includes(lowerCaseQuery) || category.includes(lowerCaseQuery) || subCategory.includes(lowerCaseQuery);
+    });
+
+    setSearchResults(filtered);
+}
+
+const handleChange = (e) => {
+  const query = e.target.value;
+  setSearchQuery(query);
+  if (query.length >= 2) {
     handleSearch(query);
-  };
-  
+  } else {
+    setSearchResults([]); // clear results when query is less than 2 characters
+  }
+};
+
   // Render the categories
   
 
