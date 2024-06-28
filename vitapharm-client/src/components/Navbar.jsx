@@ -43,26 +43,17 @@ export default function NavbarWithExtensions() {
       })),
     },
     {
-      label: 'SKIN TYPE',
-      children: [
-        { label: 'Oily', href: '#' },
-        { label: 'Dry', href: '#' },
-        { label: 'Combination', href: '#' },
-      ],
-    },
-    {
       label: 'BEST SELLERS',
       children: [
         { label: 'Cera Ve', href: '#' },
         { label: 'QRX', href: '#' },
-        { label: 'Fenty', href: '#' },
+        
       ],
     },
     {
       label: 'OFFERS',
       children: [
-        { label: 'Discounts', href: '#' },
-        { label: 'Promotions', href: '#' },
+       
         { label: 'Limited Time Offers', href: '#' },
       ],
     },
