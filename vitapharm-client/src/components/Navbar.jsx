@@ -142,7 +142,7 @@ const DesktopNav = ({ navItems }) => {
                   {navItem.moreLink && (
                        <Link key="more" href={navItem.moreLink} role={'group'} display={'block'} p={2} rounded={'md'} _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
                        <Text transition={'all .3s ease'} _groupHover={{ color: 'brown.400' }} fontWeight={500} className='font-futurabold'>
-                         More Brands
+                         All brands A-Z
                        </Text>
                      </Link>
                    )}
