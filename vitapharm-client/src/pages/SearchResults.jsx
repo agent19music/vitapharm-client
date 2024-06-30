@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { ProductContext } from '../context/ProductContext';
 import { SimpleGrid } from '@chakra-ui/react';
 import ProductCard from '../components/ProductCard';
+import Header from '../components/Header';
 
 const SearchResultsPage = () => {
   const { products } = useContext(ProductContext);
@@ -22,6 +23,7 @@ const SearchResultsPage = () => {
 
   return (
     <div className="search-results-page">
+      <Header/>
       <SimpleGrid columns={[1, 2, 3]} spacing="40px" width="100%">
         {filteredProducts.map((product, index) => (
           <ProductCard key={index} product={product} addToCart={() => {}} />

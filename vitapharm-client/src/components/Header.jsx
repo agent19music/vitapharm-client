@@ -155,7 +155,7 @@ export default function Header() {
           </div>
           <div className='free-shipping-banner'>
             <h6 className='font-futurabold'>Free shipping</h6>
-            <p className='font-futurabold'>Orders above 3000 bob</p>
+            <p className='font-futurabold'>Orders above 8000 bob</p>
           </div>
         </div>
       </div>

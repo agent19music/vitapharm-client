@@ -76,18 +76,9 @@ const SideMenu = () => {
 
                         {!cartEmpty && (
                           <>
-                            <div className="mt-6 space-y-3 border-t border-b py-8">
-                              <div className="flex items-center justify-between">
-                                <p className="text-gray-400 font-futurabold">Subtotal</p>
-                                <p className="text-lg font-futurabold font-semibold text-gray-900">Ksh {subtotal}</p>
-                              </div>
-                              <div className="flex items-center justify-between">
-                                <p className="text-gray-400 font-futurabold">Shipping</p>
-                                <p className="text-lg font-semibold font-futurabold text-gray-900">Free</p>
-                              </div>
-                            </div>
+                           
                             <div className="mt-6 flex items-center justify-between">
-                              <p className="text-sm font-futurabold font-medium text-gray-900">Total</p>
+                              <p className="text-sm font-futurabold font-medium text-gray-900">Subtotal</p>
                               <p className="text-2xl font-semibold font-futuramedbold text-gray-900"><span className="text-xs font-normal text-gray-400">KSH</span> {total}</p>
                             </div>
 
