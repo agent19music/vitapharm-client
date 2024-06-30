@@ -1,11 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Header from '../components/Header';
 import { ProductContext } from '../context/ProductContext';
 import Footer from '../components/ModernFooter';
 import { Spinner, Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
+import { PaystackButton } from 'react-paystack';
 
 export default function CheckoutPage() {
   const { cartItems, total, sessionToken, apiEndpoint, setCartItems } = useContext(ProductContext);
+  const publicKey = "pk_test_a7c91eeae679fb1edd7b7c3bb1126e964147713b";
+  const [orderCreated, setOrderCreated] = useState(false)
   
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -20,6 +23,23 @@ export default function CheckoutPage() {
   const [shippingOption, setShippingOption] = useState('within_nairobi');
   const [shippingCost, setShippingCost] = useState(150);
   const [paymentOption, setPaymentOption] = useState('pod');
+  const [formData, setFormData] = useState(null);
+  const [orderID, setOrderID] = useState(null);
+
+    // Update formData whenever relevant fields change
+  useEffect(() => {
+    setFormData({
+      customerFirstName: firstName,
+      customerLastName: lastName,
+      customerEmail: email,
+      town,
+      phone,
+      address: address,
+      deliverycost: shippingCost,
+      total: total + shippingCost,
+
+    });
+  }, [firstName, lastName, email, town, phone, address, shippingCost]);
 
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleLastNameChange = (e) => setLastName(e.target.value);
@@ -42,14 +62,86 @@ export default function CheckoutPage() {
   const handlePaymentChange = (e) => {
     setPaymentOption(e.target.value);
   };
-   
-  function transformPhoneNumber(phoneNumber) {
-    // Check if the phone number starts with '0' and replace it with '+254'
-    if (phoneNumber.startsWith('0')) {
-      return '+254' + phoneNumber.substring(1);
+
+  const createOrder = async () => {
+    try {
+      const response = await fetch(`${apiEndpoint}/create-order`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionToken}`
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        setOrderID(result.order_id);
+      } else {
+        setError(result.error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('An unexpected error occurred. Please try again.');
     }
-    return phoneNumber; // Return the original if it doesn't start with '0'
-  }
+  };
+
+  const handlePayButtonClick = async () => {
+    createOrder()
+      .then(() => {
+        setOrderCreated(true); // Set order created flag to true
+        // Additional logic if needed after order creation
+      })
+      .catch((error) => {
+        console.error('Error creating order:', error);
+        // Handle error if needed
+      });
+  };
+
+  const componentProps = {
+    email,
+    amount: total * 100, 
+    currency: 'KES',
+    publicKey,
+    metadata: {
+      firstName,
+      phone,
+      order_id: orderID,
+      ...formData,
+    },
+    order_id: orderID,
+    text: "Pay Now",
+    onSuccess: (reference) => {
+      verifyPayment(reference);
+      console.log(reference)
+    },
+    onClose: () => alert("Wait! You need to finish up, don't go!!!!"),
+    channels: ['card', 'mobile_money'], 
+  };
+
+  const verifyPayment = async (reference) => {
+    try {
+        const response = await fetch(`${apiEndpoint}/verify-payment`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionToken}`
+            },
+            body: JSON.stringify({ reference: reference.reference, formData, order_id:orderID })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            alert("Payment verified successfully!");
+        } else {
+            alert(result.error);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An unexpected error occurred. Please try again.');
+    }
+
+};
 
   const isFirstNameError = submitted && firstName.trim() === '';
   const isLastNameError = submitted && lastName.trim() === '';
@@ -63,17 +155,6 @@ export default function CheckoutPage() {
     setSubmitted(true);
     setIsLoading(true); // Set loading to true when form is submitted
   
-    const formData = {
-      customerFirstName: firstName,
-      customerLastName: lastName,
-      customerEmail: email,
-      town,
-      phone : transformPhoneNumber(phone),
-      address: address,
-      deliverycost: shippingCost
-    };
-  
-    console.log('Form Data:', formData); // Log the formData
   
     // Determine the endpoint based on the payment option
     const endpoint = paymentOption === 'm-pesa' ? '/order/pay' : '/order/place';
@@ -116,7 +197,7 @@ export default function CheckoutPage() {
       setIsLoading(false);
     }
   };
-  
+
   
   return (
     <div>
@@ -336,6 +417,15 @@ export default function CheckoutPage() {
                         {paymentOption === 'pod' && <button  onClick={handleSubmit}className="mt-4 mb-8 w-full font-futuramedbold bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>}
                         </form>
                     )}
+                          <button
+                          className="mt-4 mb-8 w-full font-futuramedbold bg-green-600 px-6 py-3 font-medium text-white"
+                          onClick={handlePayButtonClick}
+                        >
+                          Proceed to pay
+                        </button>
+                        {orderCreated && (
+                          <PaystackButton {...componentProps} />
+                        )}
 
                   </div>
                 </>

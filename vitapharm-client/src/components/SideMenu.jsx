@@ -9,6 +9,7 @@ const SideMenu = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const { cartItems, subtotal, total, cartItemCount, cartEmpty, incrementQuantity, decrementQuantity, removeCartItem } = useContext(ProductContext);
+  console.log(cartItems)
 
   const renderCart = () => {
     return (

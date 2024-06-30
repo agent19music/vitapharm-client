@@ -17,7 +17,7 @@ import ProductProvider from './context/ProductContext';
 import Header from './components/Header';
 import UserProvider from './context/UserContext';
 import SingleBrand from './pages/SingleBrand';
-import SearchResultsPage from './pages/SearchResults';
+
 
 
 
@@ -43,7 +43,7 @@ function App() {
               <Route path="/brands" element={<Brands />} />
               <Route path="/categories/:category" element={<Categories />} />
               <Route path="/brands/:brand" element={<SingleBrand />} />
-              <Route path="/search-results" element={<SearchResultsPage />} />
+
             </Routes>
           
         </CookiesProvider>

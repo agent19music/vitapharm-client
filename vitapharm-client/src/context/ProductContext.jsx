@@ -4,7 +4,10 @@ import { useToast } from "@chakra-ui/react";
 export const ProductContext = createContext();
 
 export default function ProductProvider({ children }) {
-  const apiEndpoint = 'http://server-env.eba-8hpawwgj.eu-north-1.elasticbeanstalk.com/api/vitapharm';
+
+  
+
+    const apiEndpoint = 'http://127.0.0.1:5000/api/vitapharm';
 
   const [products, setProducts] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState([]);
