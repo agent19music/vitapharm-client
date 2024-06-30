@@ -43,7 +43,7 @@ function App() {
               <Route path="/brands" element={<Brands />} />
               <Route path="/categories/:category" element={<Categories />} />
               <Route path="/brands/:brand" element={<SingleBrand />} />
-              <Route path="/search-results" element={SearchResultsPage} />
+              <Route path="/search-results" element={<SearchResultsPage />} />
             </Routes>
           
         </CookiesProvider>
