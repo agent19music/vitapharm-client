@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import WithSubnavigation from '../components/Navbar';
 import TextTransition, { presets } from 'react-text-transition';
 import SideMenu from '../components/SideMenu';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { Search } from 'react-feather';
 import WhatsappFloatingActionButton from './WhatsappFloatingActionButton';
 import { InputGroup, Input, InputRightElement, Popover, PopoverTrigger, PopoverContent, Box, SimpleGrid, Text, Link, Flex, Image, Button } from '@chakra-ui/react';
@@ -12,7 +12,6 @@ export default function Header() {
   const { products } = useContext(ProductContext);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const navigate = useNavigate();
 
   const TEXTS = [
     '30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS',
@@ -44,6 +43,7 @@ export default function Header() {
 
     setSearchResults(filtered);
   }
+  console.log(searchResults);
 
   const handleChange = (e) => {
     const query = e.target.value;
@@ -53,10 +53,6 @@ export default function Header() {
     } else {
       setSearchResults([]); // clear results when query is less than 2 characters
     }
-  };
-
-  const handleViewAll = () => {
-    navigate('/search-results', { state: { results: searchResults } });
   };
 
   return (
@@ -124,13 +120,13 @@ export default function Header() {
                           <Flex direction="column">
                             <Text style={{ textDecoration: 'none' }}>{result.name}</Text>
                             {price && size && (
-                              <Text>{`KSH ${price} ${size}`}</Text>
+                              <Text>{`${price} ${size}`}</Text>
                             )}
                           </Flex>
                           <Image
                             src={`${result.images[0]?.url}`}
                             alt={result.name}
-                            boxSize="70px"
+                            boxSize="50px"
                             objectFit="cover"
                             borderRadius="md"
                           />
@@ -140,9 +136,11 @@ export default function Header() {
                   })}
                 </SimpleGrid>
                 {searchResults.length > 9 && (
-                  <Button mt={4} onClick={handleViewAll} className='font-futurabold align-middle'>
-                    View All Results
-                  </Button>
+                  <RouterLink to={`/search-results?query=${searchQuery}`}>
+                    <Button mt={4} colorScheme="teal" variant="outline">
+                      View All Results
+                    </Button>
+                  </RouterLink>
                 )}
               </Box>
             </PopoverContent>
