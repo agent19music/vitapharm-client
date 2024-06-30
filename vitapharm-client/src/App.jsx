@@ -17,8 +17,7 @@ import ProductProvider from './context/ProductContext';
 import Header from './components/Header';
 import UserProvider from './context/UserContext';
 import SingleBrand from './pages/SingleBrand';
-import Pay from './pages/paystack';
-import Payment from './pages/paystackfull';
+
 
 
 
@@ -44,8 +43,6 @@ function App() {
               <Route path="/brands" element={<Brands />} />
               <Route path="/categories/:category" element={<Categories />} />
               <Route path="/brands/:brand" element={<SingleBrand />} />
-              <Route path='/pay' element={<Pay />} />
-              <Route path='/payment' element={<Payment />} />
 
             </Routes>
           

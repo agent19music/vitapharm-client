@@ -8,6 +8,7 @@ import { PaystackButton } from 'react-paystack';
 export default function CheckoutPage() {
   const { cartItems, total, sessionToken, apiEndpoint, setCartItems } = useContext(ProductContext);
   const publicKey = "pk_test_a7c91eeae679fb1edd7b7c3bb1126e964147713b";
+  const [orderCreated, setOrderCreated] = useState(false)
   
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -23,6 +24,7 @@ export default function CheckoutPage() {
   const [shippingCost, setShippingCost] = useState(150);
   const [paymentOption, setPaymentOption] = useState('pod');
   const [formData, setFormData] = useState(null);
+  const [orderID, setOrderID] = useState(null);
 
     // Update formData whenever relevant fields change
   useEffect(() => {
@@ -33,7 +35,9 @@ export default function CheckoutPage() {
       town,
       phone,
       address: address,
-      deliverycost: shippingCost
+      deliverycost: shippingCost,
+      total: total + shippingCost,
+
     });
   }, [firstName, lastName, email, town, phone, address, shippingCost]);
 
@@ -59,6 +63,41 @@ export default function CheckoutPage() {
     setPaymentOption(e.target.value);
   };
 
+  const createOrder = async () => {
+    try {
+      const response = await fetch(`${apiEndpoint}/create-order`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionToken}`
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        setOrderID(result.order_id);
+      } else {
+        setError(result.error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('An unexpected error occurred. Please try again.');
+    }
+  };
+
+  const handlePayButtonClick = async () => {
+    createOrder()
+      .then(() => {
+        setOrderCreated(true); // Set order created flag to true
+        // Additional logic if needed after order creation
+      })
+      .catch((error) => {
+        console.error('Error creating order:', error);
+        // Handle error if needed
+      });
+  };
+
   const componentProps = {
     email,
     amount: total * 100, 
@@ -67,9 +106,10 @@ export default function CheckoutPage() {
     metadata: {
       firstName,
       phone,
-      formData,
-
+      order_id: orderID,
+      ...formData,
     },
+    order_id: orderID,
     text: "Pay Now",
     onSuccess: (reference) => {
       verifyPayment(reference);
@@ -87,7 +127,7 @@ export default function CheckoutPage() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${sessionToken}`
             },
-            body: JSON.stringify({ reference: reference.reference, formData })
+            body: JSON.stringify({ reference: reference.reference, formData, order_id:orderID })
         });
 
         const result = await response.json();
@@ -100,9 +140,8 @@ export default function CheckoutPage() {
         console.error('Error:', error);
         alert('An unexpected error occurred. Please try again.');
     }
-};
 
-  
+};
 
   const isFirstNameError = submitted && firstName.trim() === '';
   const isLastNameError = submitted && lastName.trim() === '';
@@ -158,6 +197,7 @@ export default function CheckoutPage() {
       setIsLoading(false);
     }
   };
+
   
   return (
     <div>
@@ -374,7 +414,15 @@ export default function CheckoutPage() {
                         {paymentOption === 'pod' && <button type="submit" className="mt-4 mb-8 w-full font-futuramedbold bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>}
                         </form>
                     )}
-                    {<PaystackButton {...componentProps} className="mt-4 mb-8 w-full font-futuramedbold bg-green-600 px-6 py-3 font-medium text-white">Proceed to pay with M-pesa</PaystackButton>}
+                          <button
+                          className="mt-4 mb-8 w-full font-futuramedbold bg-green-600 px-6 py-3 font-medium text-white"
+                          onClick={handlePayButtonClick}
+                        >
+                          Proceed to pay
+                        </button>
+                        {orderCreated && (
+                          <PaystackButton {...componentProps} />
+                        )}
 
                   </div>
                 </>
