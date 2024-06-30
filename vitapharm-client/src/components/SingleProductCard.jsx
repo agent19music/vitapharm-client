@@ -70,6 +70,10 @@ export default function SingleProductCard() {
         }
     }, [apiEndpoint, productId, sessionToken]);
 
+    useEffect(() => {
+        setSelectedImage(null);
+    }, [productId]);
+
     const handleVariationChange = (variation) => {
         setSelectedVariation(variation);
     };
