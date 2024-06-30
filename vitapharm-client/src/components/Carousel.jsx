@@ -13,7 +13,6 @@ const BannerCarousel = () => {
     <div style={{ maxWidth: '100vw' }}>
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
-        navigation
         pagination={{ clickable: true }}
         spaceBetween={30}
         centeredSlides={true}

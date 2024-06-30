@@ -64,6 +64,8 @@
 
     "react-hook-form": "^7.51.4",
 
+    "react-medium-image-zoom": "^5.2.5",
+
     "react-select": "^5.8.0",
 
     "react-select-country-list": "^2.2.3",
