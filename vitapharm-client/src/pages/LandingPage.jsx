@@ -31,7 +31,7 @@ export default function LandingPage() {
       <BannerCarousel/>
       </section>
    
-      <section className='wrxx'>  
+      <section className='wrxx' id='wrxx'>  
         <ProductList />
       </section>
       <section className='my-5 '>

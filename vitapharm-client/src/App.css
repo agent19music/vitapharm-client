@@ -10,6 +10,9 @@ body{
 	text-decoration-line: none ;
 	font-family: 'Urbanist Font', sans-serif;
 }
+html{
+	scroll-behavior: smooth;
+}
 
 .Link:hover {
 	text-decoration-line: none!important;

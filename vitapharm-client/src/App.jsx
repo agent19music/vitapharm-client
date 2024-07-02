@@ -17,6 +17,7 @@ import ProductProvider from './context/ProductContext';
 import Header from './components/Header';
 import UserProvider from './context/UserContext';
 import SingleBrand from './pages/SingleBrand';
+import PromoCode from './components/PromoCode';
 
 
 
@@ -39,7 +40,7 @@ function App() {
               <Route path="/product/:productId" element={<SingleProductCard />} />
               <Route path="/333" element={<CustomerForm />} />
               <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems}/>} />
-              <Route path="/777" element={<Header />} />
+              <Route path="/777" element={<PromoCode />} />
               <Route path="/brands" element={<Brands />} />
               <Route path="/categories/:category" element={<Categories />} />
               <Route path="/brands/:brand" element={<SingleBrand />} />

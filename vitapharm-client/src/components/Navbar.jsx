@@ -45,8 +45,8 @@ export default function NavbarWithExtensions() {
     {
       label: 'BEST SELLERS',
       children: [
-        { label: 'Cera Ve', href: '#' },
-        { label: 'QRX', href: '#' },
+        { label: 'Cera Ve', href: '/brands/Cerave' },
+        { label: 'QRX', href: '/brands/Qrx' },
         
       ],
     },
@@ -54,7 +54,7 @@ export default function NavbarWithExtensions() {
       label: 'OFFERS',
       children: [
        
-        { label: 'Limited Time Offers', href: '#' },
+        { label: 'Limited Time Offers', href: '#wrxx' },
       ],
     },
   ];

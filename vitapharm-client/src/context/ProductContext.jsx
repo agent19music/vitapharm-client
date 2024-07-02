@@ -7,7 +7,7 @@ export default function ProductProvider({ children }) {
 
   
 
-    const apiEndpoint = 'http://127.0.0.1:5000/api/vitapharm';
+    const apiEndpoint = 'http://127.0.0.1:8080/api/vitapharm';
 
   const [products, setProducts] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState([]);
@@ -325,6 +325,7 @@ export default function ProductProvider({ children }) {
     setCategory,
     setBrand,
     filteredBrands,
+    setTotal
   };
 
   return (

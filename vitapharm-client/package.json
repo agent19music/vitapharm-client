@@ -70,6 +70,8 @@
 
     "react-hook-form": "^7.51.4",
 
+    "react-medium-image-zoom": "^5.2.5",
+
     "react-paystack": "^5.0.0",
 
     "react-select": "^5.8.0",
