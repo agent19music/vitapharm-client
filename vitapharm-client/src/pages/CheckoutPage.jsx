@@ -10,6 +10,7 @@ import {
   FormControl,
   Input,
 } from '@chakra-ui/react';
+import { useToast } from "@chakra-ui/react";
 
 export default function CheckoutPage() {
   const { cartItems, total, sessionToken, apiEndpoint, setCartItems, setTotal } = useContext(ProductContext);

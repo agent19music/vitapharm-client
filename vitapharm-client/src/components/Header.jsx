@@ -106,7 +106,7 @@ export default function Header() {
                     return (
                       <Link
                         as={RouterLink}
-                        to={`/product/${result.id}`}
+                        to={`products/${result.id}`}
                         key={index}
                         style={{ textDecoration: 'none' }}
                         className='custom-link font-futura'
