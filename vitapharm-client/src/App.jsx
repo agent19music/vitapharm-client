@@ -41,7 +41,7 @@ function App() {
             <Routes>
               <Route path="/" element={<LandingPage setUpdateCart={setUpdateCart} updateCart={updateCart} setCartItems={setCartItems} cartItems={cartItems}/>} />
               <Route path="/products/:productId" element={<SingleProductCard />} />
-              <Route path="/333" element={<CustomerForm />} />
+              <Route path="/bookappointment" element={<CustomerForm />} />
               <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems}/>} />
               <Route path="/777" element={<PromoCode />} />
               <Route path="/photogallery" element={<PhotoGallery />} />
