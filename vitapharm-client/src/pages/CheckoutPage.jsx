@@ -38,6 +38,8 @@ export default function CheckoutPage() {
   const [promoError, setPromoError] = useState('');
   const [promoSubmitted, setPromoSubmitted] = useState(false);
   const [discountedTotal, setDiscountedTotal] = useState(total);
+  const [originalTotal, setOriginalTotal] = useState(total);
+  const [promocodeApplied, setPromoCodeApplied] = useState('')
 
 
     // Update formData whenever relevant fields change
@@ -50,9 +52,12 @@ export default function CheckoutPage() {
         phone,
         address,
         deliverycost: shippingCost,
-        total: discountedTotal + shippingCost,
+        discounted_total: discountedTotal + shippingCost,
+        discount_percentage: discountPercentage,
+        original_total: originalTotal,
+        discount_code_applied: promocodeApplied
       });
-    }, [firstName, lastName, email, town, phone, address, shippingCost, discountedTotal]);
+    }, [firstName, lastName, email, town, phone, address, shippingCost, discountedTotal, discountPercentage, originalTotal]);
 
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleLastNameChange = (e) => setLastName(e.target.value);
@@ -189,6 +194,7 @@ export default function CheckoutPage() {
             if (response.ok) {
                 setPromoApplied(true);
                 setDiscountPercentage(result.discount_percentage);
+                setPromoCodeApplied(result.code)
                 setPromoError('')
             } else {
                 setPromoError(result.error);
@@ -206,6 +212,7 @@ export default function CheckoutPage() {
 
 useEffect(() => {
   setDiscountedTotal(promoApplied ? total - (total * discountPercentage / 100) : total);
+  setOriginalTotal(total + shippingCost);
 }, [total, promoApplied, discountPercentage]);
 
   return (

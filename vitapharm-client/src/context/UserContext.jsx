@@ -109,7 +109,7 @@ export default function UserProvider({ children }) {
             },
             body: JSON.stringify(data),
         });
-
+        console.log(response)
         if (!response.ok) {
             throw new Error('Failed to add appointment');
         }
