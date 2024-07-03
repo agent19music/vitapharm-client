@@ -67,7 +67,7 @@ export default function Header() {
         </div>
       </div>
       <div className='primary-bar'>
-        <RouterLink className='logo-holder ' to={'/111'}>
+        <RouterLink className='logo-holder ' to={'/'}>
           <img src='/logo.png' alt='' className='logo' />
         </RouterLink>
         <div className='search-bar align-bottom min-h-max mx-4'>

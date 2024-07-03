@@ -18,6 +18,8 @@ import Header from './components/Header';
 import UserProvider from './context/UserContext';
 import SingleBrand from './pages/SingleBrand';
 import PromoCode from './components/PromoCode';
+import PhotoGallery from './pages/PhotoGallery';
+import Breadcrumbs from './components/Breadcrumb';
 
 
 
@@ -34,13 +36,15 @@ function App() {
       <ProductProvider>
         <UserProvider>
         <CookiesProvider>
-         
+          <Header/>
+        <Breadcrumbs/> 
             <Routes>
-              <Route path="/111" element={<LandingPage setUpdateCart={setUpdateCart} updateCart={updateCart} setCartItems={setCartItems} cartItems={cartItems}/>} />
+              <Route path="/" element={<LandingPage setUpdateCart={setUpdateCart} updateCart={updateCart} setCartItems={setCartItems} cartItems={cartItems}/>} />
               <Route path="/product/:productId" element={<SingleProductCard />} />
               <Route path="/333" element={<CustomerForm />} />
               <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems}/>} />
               <Route path="/777" element={<PromoCode />} />
+              <Route path="/photogallery" element={<PhotoGallery />} />
               <Route path="/brands" element={<Brands />} />
               <Route path="/categories/:category" element={<Categories />} />
               <Route path="/brands/:brand" element={<SingleBrand />} />

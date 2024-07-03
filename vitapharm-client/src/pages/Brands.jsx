@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import Header from '../components/Header';
 import { ProductContext } from '../context/ProductContext';
 import { Link } from 'react-router-dom';
-import Footer from '../components/ModernFooter'
+import Footer from '../components/ModernFooter';
+import { Skeleton, Box, VStack, HStack } from '@chakra-ui/react';
 
 const Brands = () => {
   const { brands } = useContext(ProductContext);
@@ -10,6 +10,27 @@ const Brands = () => {
   const extractFirstLetter = (str) => {
     return str[0].toUpperCase();
   };
+
+  if (!brands) {
+    // Render skeletons while loading
+    return (
+      <div className="container mx-auto py-8">
+        <VStack spacing={8}>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <Box key={index} width="full">
+              <Skeleton height="40px" width="20%" mb="4" />
+              <HStack spacing={4}>
+                {Array.from({ length: 6 }).map((_, idx) => (
+                  <Skeleton key={idx} height="40px" width="120px" />
+                ))}
+              </HStack>
+            </Box>
+          ))}
+        </VStack>
+        <Footer />
+      </div>
+    );
+  }
 
   const brandsWithLetters = brands.map((brand) => ({
     name: brand,
@@ -35,7 +56,6 @@ const Brands = () => {
 
   return (
     <div className="">
-      <Header />
       <div className="container mx-auto py-8">
         <div className="flex flex-wrap justify-center">
           {Object.entries(sortedGroupedBrands).map(([letter, brands]) => (
@@ -56,7 +76,7 @@ const Brands = () => {
           ))}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
