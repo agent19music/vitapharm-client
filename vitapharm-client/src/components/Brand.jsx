@@ -11,7 +11,7 @@ const ProductCard = ({ product, addToCart }) => {
 
   return (
     <div className="group border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border shadow-md">
-      <Link to={`/product/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
+      <Link to={`/products/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
         <img className="peer absolute top-0 right-0 h-full w-full object-cover" src={`${product.images[0]?.url}`} alt="product image" />
         {product.images.length > 1 && (
           <>

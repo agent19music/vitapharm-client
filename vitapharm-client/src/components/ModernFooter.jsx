@@ -52,13 +52,13 @@ const Footer = () => {
           <h3 className="font-bold text-lg mb-2">STAY IN THE LOOP</h3>
           <form onSubmit={handleSubmit}>
             <input
-              className="w-full px-3 py-2 mb-2 border border-gray-300 text-brown-custom rounded-md focus:outline-none focus:ring-2 focus:ring-brown-custom"
+              className="w-full px-3 py-2 mb-2 border border-gray-300 text-brown-custom rounded-md focus:outline-none focus:ring-2 focus:ring-brown-custom subinput"
               type="email"
               placeholder="Email Address"
               value={email}
               onChange={handleEmailChange}
             />
-            <button type="submit" className="w-full px-3 py-2 bg-white text-brown-custom font-bold hover:border-brown-custom">Subscribe</button>
+            <button type="submit" className="w-full px-3 py-2 bg-white text-brown-custom font-bold hover:border-brown-custom  subbtn">Subscribe</button>
             {error && <p className="text-red-500">{error}</p>}
             {isEmailError && <p className="text-red-500 font-futurabold text-sm">Email is required and should include '@'.</p>}
             {success && <p className="text-green-400 font-futurabold text-sm">We have received your email!</p>}
@@ -80,9 +80,10 @@ const Footer = () => {
         </div>
         <div className="md:order-5 order-2">
           <h3 className="font-bold text-lg mb-2">SOCIAL LINKS</h3>
-          <p>Instagram</p>
-          <p>TikTok</p>
-          <p>Facebook</p>
+          <a className="block mb-1 text-gray-100 hover:text-white"  target='blank' href="https://www.instagram.com/vitapharmcosmeticsandpharmacy/">Instagram</a>
+          <a className="block mb-1 text-gray-100 hover:text-white"  target='blank' href="https://www.tiktok.com/@vitapharmcosmetics?lang=en">Tiktok</a>
+          <a className="block mb-1 text-gray-100 hover:text-white"  target='blank' href="https://www.facebook.com/vitapharmpharmacyandcosmetics">Facebook</a>
+         
         </div>
       </div>
       <div className="flex justify-between items-center mt-10">

@@ -57,15 +57,16 @@ export default function Header() {
 
   return (
     <header>
-      <div className='info-bar'>
-        <div className='info-item font-futurabold'>
-          {TEXTS.map((text, idx) => (
-            <TextTransition key={idx} springConfig={presets.wobbly}>
-              {TEXTS[(index + idx) % TEXTS.length]}
-            </TextTransition>
-          ))}
-        </div>
-      </div>
+    <div className='info-bar md:flex md:flex-row md:justify-between'>
+  <div className='info-item font-futurabold text-sm md:text-base'>
+    {TEXTS.map((text, idx) => (
+      <TextTransition key={idx} springConfig={presets.wobbly}>
+        {TEXTS[(index + idx) % TEXTS.length]}
+      </TextTransition>
+    ))}
+  </div>
+</div>
+
       <div className='primary-bar'>
         <RouterLink className='logo-holder ' to={'/'}>
           <img src='/logo.png' alt='' className='logo' />

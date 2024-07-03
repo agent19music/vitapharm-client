@@ -40,7 +40,7 @@ function App() {
         <Breadcrumbs/> 
             <Routes>
               <Route path="/" element={<LandingPage setUpdateCart={setUpdateCart} updateCart={updateCart} setCartItems={setCartItems} cartItems={cartItems}/>} />
-              <Route path="/product/:productId" element={<SingleProductCard />} />
+              <Route path="/products/:productId" element={<SingleProductCard />} />
               <Route path="/333" element={<CustomerForm />} />
               <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems}/>} />
               <Route path="/777" element={<PromoCode />} />

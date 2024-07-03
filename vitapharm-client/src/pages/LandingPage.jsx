@@ -19,15 +19,26 @@ export default function LandingPage() {
     return () => clearTimeout(intervalId);
   }, []);
 
-  const slides = ['/C1.png', '/C2.png', '/C3.png', '/C1.png'];
+  const slides = ['/C1.png'];
   const mobileSlides = ['/CM1.png', '/CM1.png', '/CM1.png', '/CM1.png'];
 
   
 
   return (
     <div>
-      <section className='bg max-w-screen  carousel desktopslides'>
-      <BannerCarousel/>
+      <section className='bg max-w-screen m-3 carousel desktopslides'>
+        <Carousel autoSlide={true}>
+          {slides.map((s, i) => (
+            <img className='banner-slide ' key={i} src={s} />
+          ))}
+        </Carousel>
+      </section>
+      <section className='bg max-w-screen m-3 carousel mobileslides'>
+        <Carousel autoSlide={true}>
+          {mobileSlides.map((s, i) => (
+            <img className='banner-slide ' key={i} src={s} />
+          ))}
+        </Carousel>
       </section>
    
       <section className='wrxx' id='wrxx'>  

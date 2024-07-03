@@ -13,6 +13,11 @@ body{
 html{
 	scroll-behavior: smooth;
 }
+button.spbs{
+	border-radius: 0%;
+	outline: none;
+
+}
 
 .Link:hover {
 	text-decoration-line: none!important;
@@ -218,16 +223,16 @@ span.edit-cartamount:hover{
 	.product-card {
 		transform: scale(0.8);
 		margin-right: 1rem;
+		min-width: 50vw;
+		user-select: none;
 	  }
 	  
 	  .buttons {
 		display: none;
 	  }
 	
-	div.info-bar{
-		padding-bottom: 15px;
-		
-	}
+	
+
 	div.free-shipping-banner{
 		display: none;
 	}
@@ -243,6 +248,12 @@ span.edit-cartamount:hover{
    div.crxl{
     background-color: #25d366;
 	margin-top: 0;
+   }
+   .subinput{
+	max-width: 70vw;
+   }
+   .subbtn{
+	max-width: 70vw;
    }
 
 }

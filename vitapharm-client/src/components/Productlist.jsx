@@ -5,8 +5,10 @@ import { useSwipeable } from 'react-swipeable';
 import { Skeleton, SkeletonText, Box } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import '../App.css';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product, addToCart }) => {
+  const navigate = useNavigate()
   const firstVariation = product.variations?.[0];
   const price = firstVariation ? firstVariation.price : null;
   const size = firstVariation ? firstVariation.size : null;
@@ -21,18 +23,25 @@ const ProductCard = ({ product, addToCart }) => {
             <svg className="group-hover:animate-ping group-hover:opacity-30 peer-hover:opacity-0 pointer-events-none absolute inset-x-0 bottom-5 mx-auto text-3xl text-white transition-opacity" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M2 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v10a4 4 0 0 1-2.328 3.635a2.996 2.996 0 0 0-.55-.756l-8-8A3 3 0 0 0 14 17v7H6a4 4 0 0 1-4-4V10Zm14 19a1 1 0 0 0 1.8.6l2.7-3.6H25a1 1 0 0 0 .707-1.707l-8-8A1 1 0 0 0 16 17v12Z" /></svg>
           </>
         )}
-        <div className="absolute -right-16 bottom-0 space-y-2 transition-all duration-300 group-hover:right-0">
-          <button className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-brown-custom">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-            </svg>
-          </button>
-          <button onClick={()=>addToCart(product.id)} className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-brown-custom ">
-            <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-            </svg>
-          </button>
-        </div>
+          <div className="absolute -right-16 bottom-0 space-y-2 transition-all duration-300 group-hover:right-0">
+            <Link to={`/products/${product.id}`} >
+      <button className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-brown-custom">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+      </Link>
+      <button onClick={()=>addToCart(product.id)} className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-brown-custom ">
+        <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h12.72a2 2 0 002-1.61L23 6H6"></path>
+        </svg>
+      </button>
+    </div>
+
+
       </Link>
       <div className="mt-4 px-5 pb-5">
         <a href="#">

@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import { useParams } from 'react-router-dom'
 import { ProductContext } from '../context/ProductContext'
 import Brand from '../components/Brand'
-import VitapharmFooter from '../components/Footer'
+import Footer from '../components/ModernFooter'
 
 export default function SingleBrand() {
   const {brand} = useParams()
@@ -13,11 +13,10 @@ export default function SingleBrand() {
 
   return (
     <div>
-    <Header/>
     <section>
       <Brand/>
     </section>
-    <VitapharmFooter/>
+    <Footer/>
     </div>
   )
 }
