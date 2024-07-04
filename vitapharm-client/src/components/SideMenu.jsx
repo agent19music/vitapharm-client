@@ -9,23 +9,22 @@ const SideMenu = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const { cartItems, subtotal, total, cartItemCount, cartEmpty, incrementQuantity, decrementQuantity, removeCartItem } = useContext(ProductContext);
-  console.log(cartItems)
 
   const renderCart = () => {
     return (
-      <Drawer isOpen={isOpen} onClose={toggleMenu} placement="right" size="lg">
+      <Drawer isOpen={isOpen} onClose={toggleMenu} placement="right" size="md">
         <DrawerOverlay>
-          <DrawerContent width="90px">
+          <DrawerContent width="70px">
             <DrawerCloseButton />
-            <DrawerBody>
-              <section className="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
-                <div className="mx-auto px-4 sm:px-6 lg:px-8">
-                  <div className="flex items-center justify-center">
+            <DrawerBody className='m-0 p-0' >
+              <section className="h-screen ">
+                <div className="mx-none px-0 sm:px-6 lg:px-0 max-w-">
+                  <div className="flex items-start justify-start"> {/* Change here */}
                     <h1 className="text-2xl font-semibold font-futuramedbold text-gray-900">Your Cart</h1>
                   </div>
 
-                  <div className="mx-auto mt-8 max-w-md md:mt-12">
-                    <div className="rounded-3xl bg-white shadow-lg">
+                  <div className="mt-8 max-w-full md:mt-12  ">
+                    <div className="rounded-none bg-white shadow-lg mx-0 ">
                       <div className="px-4 py-6 sm:px-8 sm:py-10">
                         <div className="flow-root">
                           {cartEmpty ? (
@@ -84,7 +83,7 @@ const SideMenu = () => {
                             </div>
 
                             <div className="mt-6 text-center">
-                              <Link to={`/checkout`} className="group inline-flex w-full items-center font-futuramedbold justify-center rounded-md vp-bo px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover">
+                              <Link to={`/checkout`} className="group inline-flex w-full items-center font-futuramedbold justify-center rounded-none vp-bo px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover">
                                 Place Order
                                 <svg xmlns="http://www.w3.org/2000/svg" className="group-hover:ml-8 ml-4 h-6 w-6 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
