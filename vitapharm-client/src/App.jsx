@@ -21,6 +21,7 @@ import PromoCode from './components/PromoCode';
 import PhotoGallery from './pages/PhotoGallery';
 import Breadcrumbs from './components/Breadcrumb';
 import Blogs from './pages/Blogs';
+import FAQPage from './pages/FAQPage';
 
 
 
@@ -50,6 +51,7 @@ function App() {
               <Route path="/categories/:category" element={<Categories />} />
               <Route path="/brands/:brand" element={<SingleBrand />} />
               <Route path="/blogs" element={<Blogs />} />
+              <Route path="/FAQ" element={<FAQPage />} />
 
             </Routes>
           
