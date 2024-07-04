@@ -80,7 +80,7 @@ export default function Header() {
                   border="2px"
                   borderColor="black.400"
                   focusBorderColor='#693F2D'
-                  borderRadius="lg"
+                  borderRadius={0}
                   py="6"
                   pr="12"
                   fontSize="lg"
