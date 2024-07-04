@@ -1,8 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import { ProductContext } from '../context/ProductContext';
 import Footer from '../components/ModernFooter';
 import { Spinner, Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
+import { useDisclosure, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter } from "@chakra-ui/react";
 import { PaystackButton } from 'react-paystack';
 import {
   Box,
@@ -10,12 +11,14 @@ import {
   FormControl,
   Input,
 } from '@chakra-ui/react';
-import { useToast } from "@chakra-ui/react";
 
 export default function CheckoutPage() {
   const { cartItems, total, sessionToken, apiEndpoint, setCartItems, setTotal } = useContext(ProductContext);
   const publicKey = "pk_test_a7c91eeae679fb1edd7b7c3bb1126e964147713b";
   const [orderCreated, setOrderCreated] = useState(false)
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [dialogContent, setDialogContent] = useState("");
+  const cancelRef = useRef();
   
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -84,6 +87,17 @@ export default function CheckoutPage() {
     setPaymentOption(e.target.value);
   };
 
+  const onSuccess = (reference) => {
+    verifyPayment(reference);
+    console.log(reference);
+  };
+  
+  const onCloseHandler = () => {
+    setDialogContent("Wait! You need to finish up, don't go!!!!");
+    onOpen();
+  };
+  
+
   const createOrder = async () => {
   
     if (!isFirstNameError && !isLastNameError && !isEmailError && !isTownError && !isPhoneError && !isAddressError) {
@@ -131,7 +145,7 @@ export default function CheckoutPage() {
 
   const componentProps = {
     email,
-    amount: (discountedTotal+shippingCost) * 100, 
+    amount: (discountedTotal + shippingCost) * 100, 
     currency: 'KES',
     publicKey,
     metadata: {
@@ -144,35 +158,40 @@ export default function CheckoutPage() {
     text: "Pay Now",
     onSuccess: (reference) => {
       verifyPayment(reference);
-      console.log(reference)
+      console.log(reference);
     },
-    onClose: () => alert("Wait! You need to finish up, don't go!!!!"),
+    onClose: () => {
+      setDialogContent("Wait! You need to finish up, don't go!!!!");
+      onOpen();
+    },
     channels: ['card', 'mobile_money'], 
   };
 
   const verifyPayment = async (reference) => {
     try {
-        const response = await fetch(`${apiEndpoint}/verify-payment`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sessionToken}`
-            },
-            body: JSON.stringify({ reference: reference.reference, formData, order_id:orderID })
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-            alert("Payment verified successfully!");
-        } else {
-            alert(result.error);
-        }
+      const response = await fetch(`${apiEndpoint}/verify-payment`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionToken}`
+        },
+        body: JSON.stringify({ reference: reference.reference, formData, order_id: orderID })
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        setDialogContent("Payment verified successfully!");
+      } else {
+        setDialogContent(result.error);
+      }
+      onOpen();
     } catch (error) {
-        console.error('Error:', error);
-        alert('An unexpected error occurred. Please try again.');
+      console.error('Error:', error);
+      setDialogContent('An unexpected error occurred. Please try again.');
+      onOpen();
     }
-
-};
+  };
+  
 
   const isFirstNameError = submitted && firstName.trim() === '';
   const isLastNameError = submitted && lastName.trim() === '';
@@ -491,6 +510,25 @@ useEffect(() => {
           )}
         </div>
       </div>
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader>Alert</AlertDialogHeader>
+            <AlertDialogBody>
+              {dialogContent}
+            </AlertDialogBody>
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                OK
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
       <Footer />
     </div>
   );

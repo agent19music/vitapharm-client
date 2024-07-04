@@ -171,6 +171,16 @@ h3.image-categories-titles{
   .drawer-content {
 	padding: 1rem;
   }
+
+  .overflow-container {
+	overflow-x: hidden;
+  }
+
+  .skeleton-card {
+	width: 17vw; /* Default width for larger screens */
+	height: 43vh; /* Default height for larger screens */
+  }
+  
   @media screen and (min-width: 601px){
   section.mobileslides{
 	display: none;
@@ -187,6 +197,7 @@ span.edit-cartamount:hover{
 }
 .product-card {
 	transition: transform 0.2s;
+	
   }
   .buttons {
 	display: flex;
@@ -220,17 +231,19 @@ span.edit-cartamount:hover{
 		margin: auto;
 		margin-right: none;
 	}
-	.product-card {
-		transform: scale(0.8);
-		margin-right: 1rem;
-		min-width: 50vw;
-		user-select: none;
+	div.overflow-container {
+		overflow-x: hidden ;
+		
+	  }
+	.product-card, .skeleton-card {
+		width: 50vw; /* Adjust the width as needed */
+		height: 47vh; /* Adjust the height as needed */
+		margin-right: 27px;
 	  }
 	  
 	  .buttons {
 		display: none;
 	  }
-	
 	
 
 	div.free-shipping-banner{
