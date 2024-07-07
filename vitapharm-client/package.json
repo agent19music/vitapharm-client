@@ -70,6 +70,8 @@
 
     "react-hook-form": "^7.51.4",
 
+    "react-hot-toast": "^2.4.1",
+
     "react-medium-image-zoom": "^5.2.5",
 
     "react-paystack": "^5.0.0",
@@ -84,7 +86,7 @@
 
     "react-text-transition": "^3.1.0",
 
-    "sweetalert2": "^11.11.0",
+    "sweetalert2": "^11.12.2",
 
     "swiper": "^11.1.1",
 

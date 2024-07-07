@@ -99,9 +99,14 @@ function CustomerForm() {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+
   return (
-    <div>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 mx-auto">
+    <div className=''>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 mx-auto py-28">
         <div className="mb-8">
           <img src={logo} alt="Logo" className="w-24 h-24 mx-auto" />
           <h1 className="text-2xl font-bold text-center mt-4 font-futurabold">

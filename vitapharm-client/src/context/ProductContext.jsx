@@ -7,8 +7,8 @@ export default function ProductProvider({ children }) {
 
   
 
-    // const apiEndpoint = 'http://127.0.0.1:5000/api/vitapharm';
-    const apiEndpoint = 'http://server-env.eba-8hpawwgj.eu-north-1.elasticbeanstalk.com/api/vitapharm'
+    const apiEndpoint = 'http://127.0.0.1:5000/api/vitapharm';
+    // const apiEndpoint = 'http://server-env.eba-8hpawwgj.eu-north-1.elasticbeanstalk.com/api/vitapharm'
 
 
   const [products, setProducts] = useState([]);
@@ -56,6 +56,7 @@ export default function ProductProvider({ children }) {
 
     return () => clearInterval(refreshInterval);
   }, []);
+  
 
   useEffect(() => {
     const fetchData = async (token) => {
@@ -80,6 +81,8 @@ export default function ProductProvider({ children }) {
       fetchData(sessionToken);
     }
   }, [sessionToken]);
+
+  console.log(products);
 
   const addToCart = async (id) => {
     if (!sessionToken) return; // Handle missing token

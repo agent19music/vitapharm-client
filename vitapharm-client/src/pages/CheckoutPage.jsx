@@ -11,6 +11,7 @@ import {
   FormControl,
   Input,
 } from '@chakra-ui/react';
+import { useToast } from "@chakra-ui/react";
 
 export default function CheckoutPage() {
   const { cartItems, total, sessionToken, apiEndpoint, setCartItems, setTotal } = useContext(ProductContext);
@@ -19,6 +20,7 @@ export default function CheckoutPage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [dialogContent, setDialogContent] = useState("");
   const cancelRef = useRef();
+  const toast = useToast()
   
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -92,9 +94,11 @@ export default function CheckoutPage() {
     console.log(reference);
   };
   
-  const onCloseHandler = () => {
-    setDialogContent("Wait! You need to finish up, don't go!!!!");
-    onOpen();
+  const handleClose = () => {
+    if (dialogContent === "Payment verified successfully!") {
+      setIsSuccess(true);
+    }
+    onClose();
   };
   
 
@@ -161,8 +165,17 @@ export default function CheckoutPage() {
       console.log(reference);
     },
     onClose: () => {
-      setDialogContent("Wait! You need to finish up, don't go!!!!");
-      onOpen();
+      toast({
+        title: "Payment not completed.",
+        description: "You cancelled the payment",
+        status: "error",
+        duration: 1700,
+        isClosable: true,
+        position: "top-right",
+        variant: "subtle",
+        colorScheme: "red",
+      });
+
     },
     channels: ['card', 'mobile_money'], 
   };
@@ -249,7 +262,7 @@ useEffect(() => {
               <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
                 {cartItems.map((item, index) => (
                   <div key={index} className="flex flex-col rounded-lg bg-white sm:flex-row">
-                    <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={`${item.image_data[0].url}`} alt="" />
+                    <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={`${item.image_data[0]}`} alt="" />
                     <div className="flex w-full flex-col px-4 py-4">
                       <span className=" font-futurabold">{item.product_name}</span>
                       <span className="float-right font-futurabold text-gray-400">{item.quantity}</span>
@@ -320,7 +333,7 @@ useEffect(() => {
         </div>
         <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
           {isSuccess ? (
-            <Alert status="success">
+            <Alert status="success" className='min-h-32'>
               <AlertIcon />
               <AlertTitle className='font-futuramedbold' mr={2}>Your order has been placed!</AlertTitle>
               <AlertDescription className='font-futurabold'>You will receive a confirmation email shortly. Thank you for shopping with us.</AlertDescription>
@@ -511,24 +524,24 @@ useEffect(() => {
         </div>
       </div>
       <AlertDialog
-        isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-      >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader>Alert</AlertDialogHeader>
-            <AlertDialogBody>
-              {dialogContent}
-            </AlertDialogBody>
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                OK
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
+    isOpen={isOpen}
+    leastDestructiveRef={cancelRef}
+    onClose={handleClose}
+  >
+    <AlertDialogOverlay>
+      <AlertDialogContent>
+        <AlertDialogHeader>Alert</AlertDialogHeader>
+        <AlertDialogBody>
+          {dialogContent}
+        </AlertDialogBody>
+        <AlertDialogFooter>
+          <Button ref={cancelRef} onClick={handleClose}>
+            OK
+          </Button>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialogOverlay>
+  </AlertDialog>
       <Footer />
     </div>
   );

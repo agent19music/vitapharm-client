@@ -66,9 +66,9 @@ const Footer = () => {
         </div>
         <div className="md:order-3 order-4">
           <h3 className="font-bold text-lg mb-2">GET TO KNOW US</h3>
-          <a className="block mb-1 text-gray-100 hover:text-white" href="#">Home</a>
+          <a className="block mb-1 text-gray-100 hover:text-white" href="/">Home</a>
           <a className="block mb-1 text-gray-100 hover:text-white" href="#">Who We Are</a>
-          <a className="block mb-1 text-gray-100 hover:text-white" href="#">Blog</a>
+          <a className="block mb-1 text-gray-100 hover:text-white" href="/blogs">Blog</a>
           <a className="block mb-1 text-gray-100 hover:text-white" href="/photogallery">Photo Gallery</a>
         </div>
         <div className="md:order-4 order-5">

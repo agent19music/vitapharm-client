@@ -27,11 +27,7 @@ export default function LandingPage() {
   return (
     <div>
       <section className='bg max-w-screen m-3 carousel desktopslides'>
-        <Carousel autoSlide={true}>
-          {slides.map((s, i) => (
-            <img className='banner-slide ' key={i} src={s} />
-          ))}
-        </Carousel>
+       <BannerCarousel/>
       </section>
       <section className='bg max-w-screen m-3 carousel mobileslides'>
         <Carousel autoSlide={true}>

@@ -19,27 +19,27 @@ const SideMenu = () => {
             <DrawerBody className='m-0 p-0' >
               <section className="h-screen ">
                 <div className="mx-none px-0 sm:px-6 lg:px-0 max-w-">
-                  <div className="flex items-start justify-start"> {/* Change here */}
-                    <h1 className="text-2xl font-semibold font-futuramedbold text-gray-900">Your Cart</h1>
+                  <div className="flex items-start justify-start"> 
+                    <h1 className="text-2xl font-semibold font-futuramedbold text-gray-900">CART</h1>
+                    
                   </div>
 
-                  <div className="mt-8 max-w-full md:mt-12  ">
-                    <div className="rounded-none bg-white shadow-lg mx-0 ">
-                      <div className="px-4 py-6 sm:px-8 sm:py-10">
-                        <div className="flow-root">
-                          {cartEmpty ? (
-                            <Alert status="warning">
-                              <AlertIcon />
-                              <AlertTitle mr={2}>Oops!</AlertTitle>
-                              <AlertDescription className='font-futurabold'>Looks like your cart is empty. Please shop around.</AlertDescription>
-                            </Alert>
-                          ) : (
-                            <ul className="-my-8">
-                              {cartItems.map((item, index) => (
+                  <div className="mt-8 max-w-full md:mt-12">
+  <div className="rounded-none bg-white shadow-lg mx-0">
+    <div className="px-4 py-6 sm:px-8 sm:py-10">
+      <div className="flow-root">
+        {cartEmpty ? (
+          <div className='flex justify-center items-center h-full'>
+            <h2 className='font-futurabold'> OOPS ! YOUR CART IS EMPTY</h2>
+            {/* <h5 className='font-futura'>Shop around to get product here !!</h5> */}
+          </div>
+        ) : (
+          <ul className="-my-8">
+            {cartItems.map((item, index) => (
                                 <li key={index} className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
                                   <div className="shrink-0 relative">
                                     <span className="absolute top-1 left-1 flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow sm:-top-2 sm:-right-2">{item.quantity}</span>
-                                    <img className="h-24 w-24 max-w-full rounded-lg object-cover mr-4" src={`${item.image_data[0].url}`} alt="" />
+                                    <img className="h-24 w-24 max-w-full rounded-lg object-cover mr-4" src={`${item.image_data[0]}`} alt="" />
                                     <div className="absolute top-8 left-1 flex flex-col space-y-1">
                                       <span className="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount select-none" onClick={() => incrementQuantity(item.product_id)}>+</span>
                                       <span className="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount select-none" onClick={() => decrementQuantity(item.product_id)}>-</span>

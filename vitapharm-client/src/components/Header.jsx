@@ -7,6 +7,7 @@ import { Search } from 'react-feather';
 import WhatsappFloatingActionButton from './WhatsappFloatingActionButton';
 import { InputGroup, Input, InputRightElement, Popover, PopoverTrigger, PopoverContent, Box, SimpleGrid, Text, Link, Flex, Image, Button } from '@chakra-ui/react';
 import { ProductContext } from '../context/ProductContext';
+import Navbar from './MegaMenu';
 
 export default function Header() {
   const { products } = useContext(ProductContext);
@@ -161,7 +162,8 @@ export default function Header() {
         </div>
       </div>
       <section className='navbar'>
-        <WithSubnavigation />
+        {/* <WithSubnavigation /> */}
+       <WithSubnavigation/>
       </section>
       <WhatsappFloatingActionButton />
     </header>
