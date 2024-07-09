@@ -70,6 +70,8 @@ const Footer = () => {
           <a className="block mb-1 text-gray-100 hover:text-white" href="#">Who We Are</a>
           <a className="block mb-1 text-gray-100 hover:text-white" href="/blogs">Blog</a>
           <a className="block mb-1 text-gray-100 hover:text-white" href="/photogallery">Photo Gallery</a>
+
+
         </div>
         <div className="md:order-4 order-5">
           <h3 className="font-bold text-lg mb-2">HELP & INFO</h3>
@@ -88,6 +90,7 @@ const Footer = () => {
       </div>
       <div className="flex justify-between items-center mt-10">
         <p>© 2024 - Vitapharm Cosmetics and Pharmacy</p>
+
       </div>
     </footer>
   );
