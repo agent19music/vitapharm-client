@@ -12,9 +12,10 @@ const ProductCard = ({ product, addToCart }) => {
   const firstVariation = product.variations?.[0];
   const price = firstVariation ? firstVariation.price : null;
   const size = firstVariation ? firstVariation.size : null;
+  const dealPrice = product.deal_price
 
   return (
-    <div className="product-card group relative border-zinc-100/30 flex flex-col self-center overflow-hidden border shadow-md">
+    <div className="product-card group relative border-zinc-100/30  lg:w-72  flex flex-col self-center overflow-hidden border shadow-md">
       <Link to={`/products/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">
         <img className="peer absolute top-0 right-0 h-full w-full object-cover" src={`data:image/jpeg;base64,${product.images[0]?.data}`} alt="product image" />
         {product.images.length > 1 && (
@@ -43,7 +44,9 @@ const ProductCard = ({ product, addToCart }) => {
         <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-futura font-bold text-black">Ksh {price !== null ? price : "N/A"}</span>
+            <span className="text-3xl font-futura font-bold text-black">Ksh {dealPrice !== null ? dealPrice : "N/A"}</span>
+            <span className="text-md font-futura font-bold text-black line-through ml-2">{price !== null ? price : "N/A"}</span>
+
             <span className="text-1.5xl font-futura font-bold text-black ml-3" style={{ lineHeight: '0.5' }}>{size !== null ? size.toUpperCase() : "N/A"}</span>
           </p>
         </div>
@@ -65,15 +68,15 @@ const SkeletonCard = () => (
 );
 
 const ProductList = () => {
-  const { products, addToCart } = useContext(ProductContext);
+  const { productsOnOffer, addToCart } = useContext(ProductContext);
   const [start, setStart] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (products.length > 0) {
+    if (productsOnOffer.length > 0) {
       setLoading(false);
     }
-  }, [products]);
+  }, [productsOnOffer]);
 
   const scrollLeft = () => {
     setStart(Math.max(0, start - 1));
@@ -91,7 +94,7 @@ const ProductList = () => {
   });
 
   return (
-    <div className="overflow-container">
+    <div className="overflow-container sm:ml-10">
       <div className="flex flex-col justify-center min-w-screen items-center">
         <div className="space-1 align-bottom self-end mr-24 buttons">
           <button
@@ -113,7 +116,7 @@ const ProductList = () => {
         >
           {loading
             ? [1, 2, 3, 4].map((i) => <SkeletonCard key={i} />)
-            : products.slice(start, start + 4).map((product, index) => (
+            : productsOnOffer.slice(start, start + 4).map((product, index) => (
                 <ProductCard key={index} product={product} addToCart={addToCart} />
               ))}
         </div>

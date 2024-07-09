@@ -12,6 +12,7 @@ export default function ProductProvider({ children }) {
 
 
   const [products, setProducts] = useState([]);
+  const [productsOnOffer, setProductsOnOffer] =useState([])
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [filteredBrands, setFiltredBrands] = useState([]);
   const [sessionToken, setSessionToken] = useState(null);
@@ -81,8 +82,30 @@ export default function ProductProvider({ children }) {
       fetchData(sessionToken);
     }
   }, [sessionToken]);
-
   console.log(products);
+
+  useEffect(() => {
+    const fetchData = async (token) => {
+      try {
+        const response = await fetch(`${apiEndpoint}/products/offer`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+        });
+        const data = await response.json();
+        setProductsOnOffer(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (sessionToken) {
+      fetchData(sessionToken);
+    }
+  }, [sessionToken]);
+  console.log(productsOnOffer);
 
   const addToCart = async (id) => {
     if (!sessionToken) return; // Handle missing token
@@ -188,7 +211,7 @@ export default function ProductProvider({ children }) {
 
       const response = await fetch(`${apiEndpoint}/cart/update`, {
         method: 'POST',
-        headers: {
+        headers: {        
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${sessionToken}`
         },
@@ -330,7 +353,10 @@ export default function ProductProvider({ children }) {
     setCategory,
     setBrand,
     filteredBrands,
-    setTotal
+    setTotal,
+    setCartEmpty,
+    setCartItemCount,
+    productsOnOffer
   };
 
   return (

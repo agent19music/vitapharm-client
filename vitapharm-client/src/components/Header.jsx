@@ -14,6 +14,9 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
+
+
+
   const TEXTS = [
     '30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS',
     'ALL YOUR FAVOURITE SKIN CARE BRANDS FOUND HERE',
@@ -73,7 +76,7 @@ export default function Header() {
           <img src='/logo.png' alt='' className='logo' />
         </RouterLink>
         <div className='search-bar align-bottom min-h-max mx-4'>
-          <Popover isOpen={searchResults.length > 0}>
+          <Popover isOpen={searchResults.length > 0} closeOnBlur>
             <PopoverTrigger>
               <InputGroup size="lg">
                 <Input
