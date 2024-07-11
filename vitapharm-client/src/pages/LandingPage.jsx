@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from '../components/2Carousel';
 import Footer from '../components/ModernFooter';
-import ProductList from '../components/Productlist';
+import ProductsOnOffer from '../components/ProducsOnOffer';
 import { Link as RouterLink } from 'react-router-dom';
 import SocialVideos from '../components/SocialVideos';
 import Header from '../components/Header';
@@ -38,7 +38,7 @@ export default function LandingPage() {
       </section>
    
       <section className='wrxx' id='wrxx'>  
-        <ProductList />
+        <ProductsOnOffer />
       </section>
       <section className='my-5 '>
         <div className='container flex justify-center items-center mx-auto services'>

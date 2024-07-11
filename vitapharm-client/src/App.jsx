@@ -11,7 +11,6 @@ import Brands from './pages/Brands'
 import Cart from './pages/Cart';
 import Categories from './pages/Categories';
 
-
 import { CookiesProvider } from 'react-cookie';
 import ProductProvider from './context/ProductContext';
 import Header from './components/Header';
