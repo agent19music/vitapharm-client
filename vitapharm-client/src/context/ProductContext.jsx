@@ -7,8 +7,8 @@ export default function ProductProvider({ children }) {
 
   
 
-    const apiEndpoint = 'http://127.0.0.1:5000/api/vitapharm';
-    // const apiEndpoint = 'http://server-env.eba-8hpawwgj.eu-north-1.elasticbeanstalk.com/api/vitapharm'
+    // const apiEndpoint = 'http://127.0.0.1:5000/api/vitapharm';
+    const apiEndpoint = 'http://vitapharm-server-env.eba-k5q68s3p.eu-north-1.elasticbeanstalk.com/api/vitapharm'
 
 
   const [products, setProducts] = useState([]);
@@ -58,7 +58,6 @@ export default function ProductProvider({ children }) {
     return () => clearInterval(refreshInterval);
   }, []);
   
-
   useEffect(() => {
     const fetchData = async (token) => {
       try {
@@ -302,6 +301,8 @@ export default function ProductProvider({ children }) {
 
   let categories = extractCategories(products);
   let brands = extractBrands(products);
+  console.log(brands);
+
 
   const extractFirstLetter = (str) => {
     return str[0].toUpperCase();
@@ -329,6 +330,7 @@ export default function ProductProvider({ children }) {
       setFiltredBrands(products);
     }
   }, [brand, products]);
+
 
   const contextData = {
     products,

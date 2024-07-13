@@ -97,7 +97,7 @@ export default function SingleProductCard() {
                             <img
                                 key={index}
                                 className={`w-16 h-16 object-cover cursor-pointer border-2 ${selectedImage === image.url ? 'border-black' : 'border-transparent'} hover:border-black`}
-                                src={`data:image/jpeg;base64,${image.data}`}
+                                src={`${image.url}`}
                                 alt={`thumbnail ${index}`}
                                 onClick={() => setSelectedImage(image.url)}
                             />
@@ -113,7 +113,7 @@ export default function SingleProductCard() {
                         <Zoom>
                             <img
                                 className="w-full lg:h-[38rem] h-[30rem] object-contain bg-white"
-                                src={selectedImage || `data:image/jpeg;base64,${product.images[0]?.data}`}
+                                src={selectedImage || `${product.images[0]?.url}`}
                                 alt="product"
                             />
                         </Zoom>
