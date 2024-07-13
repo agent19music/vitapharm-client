@@ -1,11 +1,26 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import { ProductContext } from '../context/ProductContext';
 import Footer from '../components/ModernFooter';
 import { Spinner, Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
+import { useDisclosure, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter } from "@chakra-ui/react";
+import { PaystackButton } from 'react-paystack';
+import {
+  Box,
+  Button,
+  FormControl,
+  Input,
+} from '@chakra-ui/react';
+import { useToast } from "@chakra-ui/react";
 
 export default function CheckoutPage() {
-  const { cartItems, total, sessionToken, apiEndpoint, setCartItems } = useContext(ProductContext);
+  const { cartItems, total, sessionToken, apiEndpoint, setCartItems, setTotal, setCartEmpty, setCartItemCount } = useContext(ProductContext);
+  const publicKey = "pk_test_a7c91eeae679fb1edd7b7c3bb1126e964147713b";
+  const [orderCreated, setOrderCreated] = useState(false)
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [dialogContent, setDialogContent] = useState("");
+  const cancelRef = useRef();
+  const toast = useToast()
   
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -16,10 +31,39 @@ export default function CheckoutPage() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [promoLoading, setPromoLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [shippingOption, setShippingOption] = useState('within_nairobi');
   const [shippingCost, setShippingCost] = useState(150);
-  const [paymentOption, setPaymentOption] = useState('pod');
+  const [paymentOption, setPaymentOption] = useState('m-pesa');
+  const [formData, setFormData] = useState(null);
+  const [orderID, setOrderID] = useState(null);
+  const [promoCode, setPromoCode] = useState('');
+  const [discountPercentage, setDiscountPercentage] = useState(0);
+  const [promoApplied, setPromoApplied] = useState(false);
+  const [promoError, setPromoError] = useState('');
+  const [promoSubmitted, setPromoSubmitted] = useState(false);
+  const [discountedTotal, setDiscountedTotal] = useState(total);
+  const [originalTotal, setOriginalTotal] = useState(total);
+  const [promocodeApplied, setPromoCodeApplied] = useState('')
+
+
+    // Update formData whenever relevant fields change
+    useEffect(() => {
+      setFormData({
+        customerFirstName: firstName,
+        customerLastName: lastName,
+        customerEmail: email,
+        town,
+        phone,
+        address,
+        deliverycost: shippingCost,
+        discounted_total: discountedTotal + shippingCost,
+        discount_percentage: discountPercentage,
+        original_total: originalTotal,
+        discount_code_applied: promocodeApplied
+      });
+    }, [firstName, lastName, email, town, phone, address, shippingCost, discountedTotal, discountPercentage, originalTotal]);
 
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleLastNameChange = (e) => setLastName(e.target.value);
@@ -27,6 +71,8 @@ export default function CheckoutPage() {
   const handleTownChange = (e) => setTown(e.target.value);
   const handlePhoneChange = (e) => setPhone(e.target.value);
   const handleAddressChange = (e) => setAddress(e.target.value);
+  const handlePromoCodeChange = (e) => setPromoCode(e.target.value);
+ 
 
   const handleShippingChange = (e) => {
     setShippingOption(e.target.value);
@@ -42,14 +88,125 @@ export default function CheckoutPage() {
   const handlePaymentChange = (e) => {
     setPaymentOption(e.target.value);
   };
-   
-  function transformPhoneNumber(phoneNumber) {
-    // Check if the phone number starts with '0' and replace it with '+254'
-    if (phoneNumber.startsWith('0')) {
-      return '+254' + phoneNumber.substring(1);
+
+  const onSuccess = (reference) => {
+    verifyPayment(reference);
+    console.log(reference);
+  };
+  
+  const handleClose = () => {
+    if (dialogContent === "Payment verified successfully!") {
+      setIsSuccess(true);
+      setCartEmpty(true)
+      setCartItemCount(0)
     }
-    return phoneNumber; // Return the original if it doesn't start with '0'
-  }
+    onClose();
+  };
+  
+
+  const createOrder = async () => {
+  
+    if (!isFirstNameError && !isLastNameError && !isEmailError && !isTownError && !isPhoneError && !isAddressError) {
+      try {
+        console.log(formData);
+        console.log(discountedTotal+shippingCost);
+        const response = await fetch(`${apiEndpoint}/create-order`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionToken}`
+          },
+          body: JSON.stringify(formData)
+        });
+  
+        const result = await response.json();
+        if (response.ok) {
+          setOrderID(result.order_id);
+        } else {
+          setError(result.error);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        setError('An unexpected error occurred. Please try again.');
+      }
+    } else {
+      throw new Error('Form validation failed');
+    }
+  };
+  
+  
+
+  const handlePayButtonClick = async () => {
+    setSubmitted(true);
+    try {
+      await createOrder(); // Wait for createOrder to complete
+      setOrderCreated(true); // Set order created flag to true only if createOrder was successful
+      // Additional logic if needed after order creation
+    } catch (error) {
+      console.error('Error creating order:', error);
+      // Handle error if needed
+    }
+  };
+  
+
+  const componentProps = {
+    email,
+    amount: (discountedTotal + shippingCost) * 100, 
+    currency: 'KES',
+    publicKey,
+    metadata: {
+      firstName,
+      phone,
+      order_id: orderID,
+      ...formData,
+    },
+    order_id: orderID,
+    text: "Pay Now",
+    onSuccess: (reference) => {
+      verifyPayment(reference);
+      console.log(reference);
+    },
+    onClose: () => {
+      toast({
+        title: "Payment not completed.",
+        description: "You cancelled the payment",
+        status: "error",
+        duration: 1700,
+        isClosable: true,
+        position: "top-right",
+        variant: "subtle",
+        colorScheme: "red",
+      });
+
+    },
+    channels: ['card', 'mobile_money'], 
+  };
+
+  const verifyPayment = async (reference) => {
+    try {
+      const response = await fetch(`${apiEndpoint}/verify-payment`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionToken}`
+        },
+        body: JSON.stringify({ reference: reference.reference, formData, order_id: orderID })
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        setDialogContent("Payment verified successfully!");
+      } else {
+        setDialogContent(result.error);
+      }
+      onOpen();
+    } catch (error) {
+      console.error('Error:', error);
+      setDialogContent('An unexpected error occurred. Please try again.');
+      onOpen();
+    }
+  };
+  
 
   const isFirstNameError = submitted && firstName.trim() === '';
   const isLastNameError = submitted && lastName.trim() === '';
@@ -57,70 +214,44 @@ export default function CheckoutPage() {
   const isTownError = submitted && town.trim() === '';
   const isPhoneError = submitted && phone.length !== 10;
   const isAddressError = submitted && address.trim() === '';
+  const isPromoCodeError = promoSubmitted && promoCode.trim() === '';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setIsLoading(true); // Set loading to true when form is submitted
-  
-    const formData = {
-      customerFirstName: firstName,
-      customerLastName: lastName,
-      customerEmail: email,
-      town,
-      phone : transformPhoneNumber(phone),
-      address: address,
-      deliverycost: shippingCost
-    };
-  
-    console.log('Form Data:', formData); // Log the formData
-  
-    // Determine the endpoint based on the payment option
-    const endpoint = paymentOption === 'm-pesa' ? '/order/pay' : '/order/place';
-  
-    if (!isFirstNameError && !isLastNameError && !isEmailError && !isTownError && !isPhoneError && !isAddressError) {
-      try {
-        const response = await fetch(`${apiEndpoint}${endpoint}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionToken}`
-          },
-          body: JSON.stringify(formData),
-          credentials: 'include', // Include cookies in the request
-        });
-  
-        const result = await response.json();
-  
-        console.log('Response:', result); // Log the response
-  
-        if (response.ok) {
-          setIsSuccess(true); // Set success to true when response is ok
-          setFirstName('');
-          setLastName('');
-          setEmail('');
-          setTown('');
-          setPhone('');
-          setAddress('');
-          setCartItems([]);
-        } else {
-          setError(result.error);
+    console.log(promoCode);
+    setPromoSubmitted(true)
+    setPromoLoading(true);
+    if (promoCode !== '') {
+        try {
+            const response = await fetch(`${apiEndpoint}/discount/validate/${promoCode}`);
+            const result = await response.json();
+            console.log(result);
+            if (response.ok) {
+                setPromoApplied(true);
+                setDiscountPercentage(result.discount_percentage);
+                setPromoCodeApplied(result.code)
+                setPromoError('')
+            } else {
+                setPromoError(result.error);
+            }
+        } catch (error) {
+            setPromoError('Invalid promo code. Please try again.');
+        } finally {
+            setPromoLoading(false);
         }
-      } catch (error) {
-        console.error('Error:', error); // Log the error
-        setError('An unexpected error occurred. Please try again.');
-      } finally {
-        setIsLoading(false); // Set loading to false after response is received
-      }
     } else {
-      setIsLoading(false);
+        setPromoLoading(false);
     }
-  };
-  
-  
+};
+
+
+useEffect(() => {
+  setDiscountedTotal(promoApplied ? total - (total * discountPercentage / 100) : total);
+  setOriginalTotal(total + shippingCost);
+}, [total, promoApplied, discountPercentage]);
+
   return (
     <div>
-      <Header />
       <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
         <a href="#" className="text-2xl font-futuramedbold text-gray-800">Vitapharm Checkout</a>
       </div>
@@ -145,23 +276,15 @@ export default function CheckoutPage() {
 
               <p className="mt-8 text-lg font-futurabold">Payment Options</p>
               <form className="mt-5 grid gap-6">
-  <div className="relative">
-    <input className="peer hidden" id="payment_1" type="radio" name="payment" value='pod' checked={paymentOption === 'pod'} onChange={handlePaymentChange}/>
-    <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-    <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="payment_1">
-      <img className="w-14 object-contain" src="/podlogo.png" alt="" />
-      <div className="ml-5">
-        <span className="mt-2 font-futuramedbold">Pay On Delivery</span>
-      </div>
-    </label>
-  </div>
+
   <div className="relative">
     <input className="peer hidden" id="payment_2" type="radio" name="payment" value='m-pesa' checked={paymentOption === 'm-pesa'} onChange={handlePaymentChange} />
     <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
     <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="payment_2">
-      <img className="w-14 object-contain" src="/mpesalogo.png" alt="" />
+      <img className="w-14 object-contain" src="/podlogo.png" alt="" />
       <div className="ml-5">
-        <span className="mt-2 font-futuramedbold">Lipa na M-pesa</span>
+        <span className="mt-2 font-futuramedbold">Vitapharm Pay</span>
+        <p className="text-smd text-gray-400 font-futurabold">Accepts card and m-pesa</p>
       </div>
     </label>
   </div>
@@ -169,7 +292,7 @@ export default function CheckoutPage() {
 
 
     <p className="mt-8 text-lg font-futurabold">Your Delivery Details</p>
-              <p className="mt-1 text-smd font-futurabold">*Orders above 3000 bob qualify for free delivery</p>
+              <p className="mt-1 text-smd font-futurabold">*Orders above 8000 bob qualify for free delivery</p>
               <form className="mt-5 grid gap-6">
                 <div className="relative">
                   <input className="peer hidden" id="shipping_1" type="radio" name="shipping" value="within_nairobi" checked={shippingOption === 'within_nairobi'} onChange={handleShippingChange} />
@@ -212,7 +335,7 @@ export default function CheckoutPage() {
         </div>
         <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
           {isSuccess ? (
-            <Alert status="success">
+            <Alert status="success" className='min-h-32'>
               <AlertIcon />
               <AlertTitle className='font-futuramedbold' mr={2}>Your order has been placed!</AlertTitle>
               <AlertDescription className='font-futurabold'>You will receive a confirmation email shortly. Thank you for shopping with us.</AlertDescription>
@@ -231,13 +354,16 @@ export default function CheckoutPage() {
                   <p className="text-gray-400 font-futurabold">Complete your order by providing your payment details.</p>
                   <div>
                     {isLoading ? (
-                      <Spinner
-                        thickness='4px'
-                        speed='0.65s'
-                        emptyColor='gray.200'
-                        color='#693F2D' // Use the hexadecimal color here
-                        size='xl'
-                      />
+                     <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+                     <Spinner
+                       thickness="6px"
+                       speed="0.65s"
+                       emptyColor="gray.200"
+                       color="#693F2D"
+                       size="2xl"
+                     />
+                   </Box>
+                   
                     ) : (
                       <form >
                         <label htmlFor="first-name" className="mt-4 mb-2 block text-sm font-futurabold">First Name</label>
@@ -323,19 +449,74 @@ export default function CheckoutPage() {
                             <p className="font-futuramedbold text-gray-900">{shippingCost}</p>
                           </div>
                         </div>
+                        {promoApplied && (
+                        <div className="flex items-center justify-between">
+                          <p className="text-sm font-futurabold text-gray-900">Discounted Total</p>
+                          <p className="font-futuramedbold text-gray-900">Ksh {total}</p>
+                        </div>
+                      )}
                         <div className="mt-6 flex items-center justify-between">
                           <p className="text-sm font-futurabold text-gray-900">Total</p>
-                          <p className="text-2xl font-futurabold text-gray-900">Ksh {total+shippingCost}</p>
+                          <p className="text-2xl font-futurabold text-gray-900">Ksh {discountedTotal+shippingCost}</p>
+                          
                         </div>
-          
+                        <Box as="form" onSubmit={handleSubmit} mt={4}>
+                    <FormControl display="flex" alignItems="center" justifyContent="space-between">
+                        <Input
+                            type="text"
+                            value={promoCode}
+                            onChange={handlePromoCodeChange}
+                            placeholder="Enter promo code"
+                            w="2/3"
+                            border="1px"
+                            borderRadius="md"
+                            p={2}
+                        />
+                        <Button
+                            type="submit"
+                            onClick={handleSubmit}
+                            ml={2}
+                            py={2}
+                            px={4}
+                            fontWeight="bold"
+                            borderRadius="md"
+                            bg={promoApplied ? 'green.500' : 'black'}
+                            _hover={{ bg: promoApplied ? 'gray.400' : 'blue.700' }}
+                            color="white"
+                            disabled={promoApplied}
+                        >
+                            {promoLoading ? <Spinner size="sm" /> : promoApplied ? 'Applied' : 'Apply'}
+                        </Button>
+                    </FormControl>
+                    {promoError && (
+                        <Alert status="error" mt={4}>
+                            <AlertIcon />
+                            <AlertTitle mr={2}>Error!</AlertTitle>
+                            <AlertDescription>{promoError}</AlertDescription>
+                        </Alert>
+                    )}
+                    {isPromoCodeError && <p className="text-red-500 font-futurabold text-sm">Promocode is required.</p>}
+                    {promoApplied && <p className="text-green-500 font-futurabold text-sm">Promocode accepted.</p>}
+                </Box>
+
+                                 
                         {error && <p className="text-red-500 font-futurabold text-sm mt-4">{error}</p>}
 
-                        {paymentOption === 'm-pesa' && <button  onClick={handleSubmit} className="mt-4 mb-8 w-full font-futuramedbold bg-green-600 px-6 py-3 font-medium text-white">Proceed to pay with M-pesa</button>}
+                        {/* {paymentOption === 'm-pesa' && <button  onClick={handleSubmit} className="mt-4 mb-8 w-full font-futuramedbold bg-green-600 px-6 py-3 font-medium text-white">Proceed to pay with M-pesa</button>}
 
           
-                        {paymentOption === 'pod' && <button  onClick={handleSubmit}className="mt-4 mb-8 w-full font-futuramedbold bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>}
+                        {paymentOption === 'pod' && <button  onClick={handleSubmit}className="mt-4 mb-8 w-full font-futuramedbold bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>} */}
                         </form>
                     )}
+                          <button
+                          className="mt-6 mb-8 w-full font-futuramedbold bg-green-600 px-6 py-3 font-medium text-white"
+                          onClick={handlePayButtonClick}
+                        >
+                          Proceed to pay
+                        </button>
+                        {orderCreated  && !isFirstNameError && !isLastNameError && !isEmailError && !isTownError && !isPhoneError && !isAddressError && (
+                          <PaystackButton className='mt-6 mb-8 w-full font-futuramedbold bg-green-600 px-6 py-3 font-medium text-white' {...componentProps} />
+                        )}
 
                   </div>
                 </>
@@ -344,6 +525,25 @@ export default function CheckoutPage() {
           )}
         </div>
       </div>
+      <AlertDialog
+    isOpen={isOpen}
+    leastDestructiveRef={cancelRef}
+    onClose={handleClose}
+  >
+    <AlertDialogOverlay>
+      <AlertDialogContent>
+        <AlertDialogHeader>Alert</AlertDialogHeader>
+        <AlertDialogBody>
+          {dialogContent}
+        </AlertDialogBody>
+        <AlertDialogFooter>
+          <Button ref={cancelRef} onClick={handleClose}>
+            OK
+          </Button>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialogOverlay>
+  </AlertDialog>
       <Footer />
     </div>
   );

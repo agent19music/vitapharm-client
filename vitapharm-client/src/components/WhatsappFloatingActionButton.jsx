@@ -12,6 +12,7 @@ export default function WhatsappFloatingActionButton() {
       statusMessage="Typically replies within 20 minutes"
       chatMessage="Hello there! 👋 How can we help?"
       
+      
       />
   )
 }

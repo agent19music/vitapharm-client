@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from '../components/2Carousel';
 import Footer from '../components/ModernFooter';
-import ProductList from '../components/Productlist';
+import ProductsOnOffer from '../components/ProducsOnOffer';
 import { Link as RouterLink } from 'react-router-dom';
 import SocialVideos from '../components/SocialVideos';
 import Header from '../components/Header';
@@ -19,20 +19,26 @@ export default function LandingPage() {
     return () => clearTimeout(intervalId);
   }, []);
 
-  const slides = ['/C1.png', '/C2.png', '/C3.png', '/C1.png'];
+  const slides = ['/C1.png'];
   const mobileSlides = ['/CM1.png', '/CM1.png', '/CM1.png', '/CM1.png'];
 
   
 
   return (
     <div>
-      <Header className='sticky'/>
-      <section className='bg max-w-screen  carousel desktopslides'>
-      <BannerCarousel/>
+      <section className='bg max-w-screen m-3 carousel desktopslides'>
+       <BannerCarousel/>
+      </section>
+      <section className='bg max-w-screen m-3 carousel mobileslides'>
+        <Carousel autoSlide={true}>
+          {mobileSlides.map((s, i) => (
+            <img className='banner-slide ' key={i} src={s} />
+          ))}
+        </Carousel>
       </section>
    
-      <section className='wrxx'>  
-        <ProductList />
+      <section className='wrxx' id='wrxx'>  
+        <ProductsOnOffer />
       </section>
       <section className='my-5 '>
         <div className='container flex justify-center items-center mx-auto services'>
@@ -54,7 +60,7 @@ export default function LandingPage() {
               </p>
             </div>
             <div className='group flex w-full cursor-pointer items-center justify-center vp-bo font-futurabold px-6 py- text-white transition'>
-              <RouterLink to={'/333'} className='group flex w-full items-center justify-center rounded py-1 text-center font-bold hover:text-white h-14'>
+              <RouterLink to={'/bookappointment'} className='group flex w-full items-center justify-center rounded py-1 text-center font-bold hover:text-white h-14'>
                 Book an appointment
               </RouterLink>
               <svg

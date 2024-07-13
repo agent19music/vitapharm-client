@@ -11,13 +11,17 @@ import Brands from './pages/Brands'
 import Cart from './pages/Cart';
 import Categories from './pages/Categories';
 
-
 import { CookiesProvider } from 'react-cookie';
 import ProductProvider from './context/ProductContext';
 import Header from './components/Header';
 import UserProvider from './context/UserContext';
 import SingleBrand from './pages/SingleBrand';
-import SearchResultsPage from './pages/SearchResults';
+import PromoCode from './components/PromoCode';
+import PhotoGallery from './pages/PhotoGallery';
+import Breadcrumbs from './components/Breadcrumb';
+import Blogs from './pages/Blogs';
+import FAQPage from './pages/FAQPage';
+
 
 
 
@@ -33,17 +37,21 @@ function App() {
       <ProductProvider>
         <UserProvider>
         <CookiesProvider>
-         
+          <Header/>
+        <Breadcrumbs/> 
             <Routes>
-              <Route path="/111" element={<LandingPage setUpdateCart={setUpdateCart} updateCart={updateCart} setCartItems={setCartItems} cartItems={cartItems}/>} />
-              <Route path="/product/:productId" element={<SingleProductCard />} />
-              <Route path="/333" element={<CustomerForm />} />
+              <Route path="/" element={<LandingPage setUpdateCart={setUpdateCart} updateCart={updateCart} setCartItems={setCartItems} cartItems={cartItems}/>} />
+              <Route path="/products/:productId" element={<SingleProductCard />} />
+              <Route path="/bookappointment" element={<CustomerForm />} />
               <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems}/>} />
-              <Route path="/777" element={<Header />} />
+              <Route path="/777" element={<PromoCode />} />
+              <Route path="/photogallery" element={<PhotoGallery />} />
               <Route path="/brands" element={<Brands />} />
               <Route path="/categories/:category" element={<Categories />} />
               <Route path="/brands/:brand" element={<SingleBrand />} />
-              <Route path="/search-results" element={<SearchResultsPage />} />
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/FAQ" element={<FAQPage />} />
+
             </Routes>
           
         </CookiesProvider>

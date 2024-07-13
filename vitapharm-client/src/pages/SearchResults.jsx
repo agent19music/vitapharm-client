@@ -23,7 +23,6 @@ const SearchResultsPage = () => {
 
   return (
     <div className="search-results-page">
-      <Header/>
       <SimpleGrid columns={[1, 2, 3]} spacing="40px" width="100%">
         {filteredProducts.map((product, index) => (
           <ProductCard key={index} product={product} addToCart={() => {}} />

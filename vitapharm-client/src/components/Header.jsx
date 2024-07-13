@@ -7,11 +7,15 @@ import { Search } from 'react-feather';
 import WhatsappFloatingActionButton from './WhatsappFloatingActionButton';
 import { InputGroup, Input, InputRightElement, Popover, PopoverTrigger, PopoverContent, Box, SimpleGrid, Text, Link, Flex, Image, Button } from '@chakra-ui/react';
 import { ProductContext } from '../context/ProductContext';
+import Navbar from './MegaMenu';
 
 export default function Header() {
   const { products } = useContext(ProductContext);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+
+
+
 
   const TEXTS = [
     '30% OFF ON ALL FACIAL PRODUCTS ON SUNDAYS',
@@ -57,21 +61,22 @@ export default function Header() {
 
   return (
     <header>
-      <div className='info-bar'>
-        <div className='info-item font-futurabold'>
-          {TEXTS.map((text, idx) => (
-            <TextTransition key={idx} springConfig={presets.wobbly}>
-              {TEXTS[(index + idx) % TEXTS.length]}
-            </TextTransition>
-          ))}
-        </div>
-      </div>
+    <div className='info-bar md:flex md:flex-row md:justify-between'>
+  <div className='info-item font-futurabold text-sm md:text-base'>
+    {TEXTS.map((text, idx) => (
+      <TextTransition key={idx} springConfig={presets.wobbly}>
+        {TEXTS[(index + idx) % TEXTS.length]}
+      </TextTransition>
+    ))}
+  </div>
+</div>
+
       <div className='primary-bar'>
-        <RouterLink className='logo-holder ' to={'/111'}>
+        <RouterLink className='logo-holder ' to={'/'}>
           <img src='/logo.png' alt='' className='logo' />
         </RouterLink>
         <div className='search-bar align-bottom min-h-max mx-4'>
-          <Popover isOpen={searchResults.length > 0}>
+          <Popover isOpen={searchResults.length > 0} closeOnBlur>
             <PopoverTrigger>
               <InputGroup size="lg">
                 <Input
@@ -79,7 +84,7 @@ export default function Header() {
                   border="2px"
                   borderColor="black.400"
                   focusBorderColor='#693F2D'
-                  borderRadius="lg"
+                  borderRadius={0}
                   py="6"
                   pr="12"
                   fontSize="lg"
@@ -105,7 +110,7 @@ export default function Header() {
                     return (
                       <Link
                         as={RouterLink}
-                        to={`/product/${result.id}`}
+                        to={`products/${result.id}`}
                         key={index}
                         style={{ textDecoration: 'none' }}
                         className='custom-link font-futura'
@@ -160,7 +165,8 @@ export default function Header() {
         </div>
       </div>
       <section className='navbar'>
-        <WithSubnavigation />
+        {/* <WithSubnavigation /> */}
+       <WithSubnavigation/>
       </section>
       <WhatsappFloatingActionButton />
     </header>

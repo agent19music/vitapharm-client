@@ -16,7 +16,6 @@ export default function Categories() {
   setCategory(category);
   return (
     <div>
-        <Header/>
         <nav>
           {/* Breadcrumb here */}
         </nav>

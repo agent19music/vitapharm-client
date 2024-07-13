@@ -1,11 +1,12 @@
-import {React, useState, useContext} from 'react';
-import { Mail, Facebook, Twitter, Instagram, MessageCircle } from 'react-feather';
+import { React, useState, useContext } from 'react';
 import { ProductContext } from '../context/ProductContext';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
-  const{apiEndpoint} = useContext(ProductContext)
+  const [submitted, setSubmitted] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const { apiEndpoint } = useContext(ProductContext);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -13,86 +14,83 @@ const Footer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitted(true);
+    if (!isEmailError) {
+      try {
+        const response = await fetch(`${apiEndpoint}/customeremails`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
 
-    // Simple validation to check if the input is an email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setError('Please enter a valid email address.');
-      return;
-    }
+        if (!response.ok) {
+          throw new Error('There was a problem submitting your email.');
+        }
 
-    setError(''); // Clear any previous errors
-
-    try {
-      const response = await fetch(`${apiEndpoint}/customeremails`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      if (!response.ok) {
-        throw new Error('There was a problem submitting your email.');
+        // Clear the email input after successful submission
+        setSuccess(true);
+        setEmail('');
+      } catch (error) {
+        setError(error.message);
       }
-
-      // Clear the email input after successful submission
-      setEmail('');
-    } catch (error) {
-      setError(error.message);
     }
   };
 
+  const isEmailError = submitted && !email.includes('@');
+
   return (
     <footer className="bg-brown-custom text-white p-10 font-futura">
-      <div className="flex justify-between items-center mb-10">
-        <div></div>
-        <div className="flex space-x-4">
-          <Facebook className="text-white hover:text-pink-300" />
-          <Twitter className="text-white hover:text-pink-300" />
-          <Instagram className="text-white hover:text-pink-300" />
-          <Mail className="text-white hover:text-pink-300" />
-          <MessageCircle className="text-white hover:text-pink-300" />
-        </div>
-      </div>
-      <div className="grid grid-cols-4 gap-10">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
+        <div className="md:order-1 order-3">
           <h3 className="font-bold text-lg mb-2">OUR LOCATIONS</h3>
           <p>Nairobi- Adlife Plaza, Chania Rd</p>
           <p>Nairobi Sawa Mall, CBD Shop A14</p>
         </div>
-        <div>
+        <div className="md:order-2 order-1">
           <h3 className="font-bold text-lg mb-2">STAY IN THE LOOP</h3>
           <form onSubmit={handleSubmit}>
-        <input
-          className="w-full px-3 py-2 mb-2 border border-gray-300 text-brown-custom rounded-md focus:outline-none focus:ring-2 focus:ring-brown-custom"
-          type="email"
-          placeholder="Email Address"
-          value={email}
-          onChange={handleEmailChange}
-        />
-        {error && <p className="text-red-500">{error}</p>}
-        <button type="submit" className="w-full px-3 py-2 bg-white text-brown-custom font-bold hover:border-brown-custom">Subscribe</button>
-      </form>
+            <input
+              className="w-full px-3 py-2 mb-2 border border-gray-300 text-brown-custom rounded-md focus:outline-none focus:ring-2 focus:ring-brown-custom subinput"
+              type="email"
+              placeholder="Email Address"
+              value={email}
+              onChange={handleEmailChange}
+            />
+            <button type="submit" className="w-full px-3 py-2 bg-white text-brown-custom font-bold hover:border-brown-custom  subbtn">Subscribe</button>
+            {error && <p className="text-red-500">{error}</p>}
+            {isEmailError && <p className="text-red-500 font-futurabold text-sm">Email is required and should include '@'.</p>}
+            {success && <p className="text-green-400 font-futurabold text-sm">We have received your email!</p>}
+          </form>
         </div>
-        <div>
+        <div className="md:order-3 order-4">
           <h3 className="font-bold text-lg mb-2">GET TO KNOW US</h3>
-          <a className="block mb-1 text-gray-100 hover:text-white" href="#">Home</a>
+          <a className="block mb-1 text-gray-100 hover:text-white" href="/">Home</a>
           <a className="block mb-1 text-gray-100 hover:text-white" href="#">Who We Are</a>
-          <a className="block mb-1 text-gray-100 hover:text-white" href="#">Blog</a>
-          <a className="block mb-1 text-gray-100 hover:text-white" href="#">Contact Us</a>
+          <a className="block mb-1 text-gray-100 hover:text-white" href="/blogs">Blog</a>
+          <a className="block mb-1 text-gray-100 hover:text-white" href="/photogallery">Photo Gallery</a>
+
+
         </div>
-        <div>
+        <div className="md:order-4 order-5">
           <h3 className="font-bold text-lg mb-2">HELP & INFO</h3>
-          <a className="block mb-1 text-gray-100 hover:text-white" href="#">FAQ</a>
+          <a className="block mb-1 text-gray-100 hover:text-white" href="/FAQ">FAQ</a>
           <a className="block mb-1 text-gray-100 hover:text-white" href="#">Privacy Policy</a>
           <a className="block mb-1 text-gray-100 hover:text-white" href="#">Cookie Policy</a>
           <a className="block mb-1 text-gray-100 hover:text-white" href="#">Terms of Service</a>
         </div>
+        <div className="md:order-5 order-2">
+          <h3 className="font-bold text-lg mb-2">SOCIAL LINKS</h3>
+          <a className="block mb-1 text-gray-100 hover:text-white"  target='blank' href="https://www.instagram.com/vitapharmcosmeticsandpharmacy/">Instagram</a>
+          <a className="block mb-1 text-gray-100 hover:text-white"  target='blank' href="https://www.tiktok.com/@vitapharmcosmetics?lang=en">Tiktok</a>
+          <a className="block mb-1 text-gray-100 hover:text-white"  target='blank' href="https://www.facebook.com/vitapharmpharmacyandcosmetics">Facebook</a>
+         
+        </div>
       </div>
       <div className="flex justify-between items-center mt-10">
         <p>© 2024 - Vitapharm Cosmetics and Pharmacy</p>
-        <div></div>
+
       </div>
     </footer>
   );

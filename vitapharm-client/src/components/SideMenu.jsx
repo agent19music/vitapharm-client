@@ -12,37 +12,37 @@ const SideMenu = () => {
 
   const renderCart = () => {
     return (
-      <Drawer isOpen={isOpen} onClose={toggleMenu} placement="right" size="lg">
+      <Drawer isOpen={isOpen} onClose={toggleMenu} placement="right" size="md">
         <DrawerOverlay>
-          <DrawerContent width="90px">
+          <DrawerContent width="70px">
             <DrawerCloseButton />
-            <DrawerBody>
-              <section className="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
-                <div className="mx-auto px-4 sm:px-6 lg:px-8">
-                  <div className="flex items-center justify-center">
-                    <h1 className="text-2xl font-semibold font-futuramedbold text-gray-900">Your Cart</h1>
+            <DrawerBody className='m-0 p-0' >
+              <section className="h-screen ">
+                <div className="mx-none px-0 sm:px-6 lg:px-0 max-w-">
+                  <div className="flex items-start justify-start"> 
+                    <h1 className="text-2xl font-semibold font-futuramedbold text-gray-900">CART</h1>
+                    
                   </div>
 
-                  <div className="mx-auto mt-8 max-w-md md:mt-12">
-                    <div className="rounded-3xl bg-white shadow-lg">
-                      <div className="px-4 py-6 sm:px-8 sm:py-10">
-                        <div className="flow-root">
-                          {cartEmpty ? (
-                            <Alert status="warning">
-                              <AlertIcon />
-                              <AlertTitle mr={2}>Oops!</AlertTitle>
-                              <AlertDescription className='font-futurabold'>Looks like your cart is empty. Please shop around.</AlertDescription>
-                            </Alert>
-                          ) : (
-                            <ul className="-my-8">
-                              {cartItems.map((item, index) => (
+                  <div className="mt-8 max-w-full md:mt-12">
+  <div className="rounded-none bg-white shadow-lg mx-0">
+    <div className="px-4 py-6 sm:px-8 sm:py-10">
+      <div className="flow-root">
+        {cartEmpty ? (
+          <div className='flex justify-center items-center h-full'>
+            <h2 className='font-futurabold'> OOPS ! YOUR CART IS EMPTY</h2>
+            {/* <h5 className='font-futura'>Shop around to get product here !!</h5> */}
+          </div>
+        ) : (
+          <ul className="-my-8">
+            {cartItems.map((item, index) => (
                                 <li key={index} className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
                                   <div className="shrink-0 relative">
                                     <span className="absolute top-1 left-1 flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow sm:-top-2 sm:-right-2">{item.quantity}</span>
                                     <img className="h-24 w-24 max-w-full rounded-lg object-cover mr-4" src={`${item.image_data[0].url}`} alt="" />
                                     <div className="absolute top-8 left-1 flex flex-col space-y-1">
-                                      <span className="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount" onClick={() => incrementQuantity(item.product_id)}>+</span>
-                                      <span className="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount" onClick={() => decrementQuantity(item.product_id)}>-</span>
+                                      <span className="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount select-none" onClick={() => incrementQuantity(item.product_id)}>+</span>
+                                      <span className="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount select-none" onClick={() => decrementQuantity(item.product_id)}>-</span>
                                     </div>
                                   </div>
 
@@ -62,9 +62,9 @@ const SideMenu = () => {
 
                                     <div className="absolute top-0 right-0 flex sm:bottom-0 sm:top-auto">
                                     <button type="button" onClick={() => removeCartItem(item.product_id)} className="flex rounded p-2 text-center text-gray-500 transition-all duration-200 ease-in-out focus:shadow hover:text-gray-900">
-                                      <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4" />
-                                      </svg>
+                                    <svg class="block h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class=""></path>
+                      </svg>
                                   </button>
                                     </div>
                                   </div>
@@ -83,7 +83,7 @@ const SideMenu = () => {
                             </div>
 
                             <div className="mt-6 text-center">
-                              <Link to={`/checkout`} className="group inline-flex w-full items-center font-futuramedbold justify-center rounded-md vp-bo px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover">
+                              <Link to={`/checkout`} className="group inline-flex w-full items-center font-futuramedbold justify-center rounded-none vp-bo px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover">
                                 Place Order
                                 <svg xmlns="http://www.w3.org/2000/svg" className="group-hover:ml-8 ml-4 h-6 w-6 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
