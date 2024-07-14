@@ -54,7 +54,7 @@ export default function NavbarWithExtensions() {
       label: 'OFFERS',
       children: [
        
-        { label: 'Limited Time Offers', href: '#wrxx' },
+        { label: 'Limited Time Offers', href: '/limitedtimeoffer' },
       ],
     },
   ];

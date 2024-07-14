@@ -20,6 +20,7 @@ import PhotoGallery from './pages/PhotoGallery';
 import Blogs from './pages/Blogs';
 import FAQPage from './pages/FAQPage';
 import SearchResultsPage from './pages/SearchResults';
+import ProductsOnOfferPage from './pages/ProductsOnOfferPage';
 
 
 
@@ -48,6 +49,7 @@ function App() {
               <Route path="/blogs" element={<Blogs />} />
               <Route path="/FAQ" element={<FAQPage />} />
               <Route path="/search-results" element={<SearchResultsPage />} />
+              <Route path="/limitedtimeoffer" element={<ProductsOnOfferPage />} />
 
             </Routes>
           
