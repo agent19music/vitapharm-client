@@ -29,25 +29,25 @@ const ProductCard = ({ product, addToCart }) => {
           <>
             <img className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0"  src={`${product.images[1]?.url}`} alt="product image" />
             <svg className="group-hover:animate-ping group-hover:opacity-30 peer-hover:opacity-0 pointer-events-none absolute inset-x-0 bottom-5 mx-auto text-3xl text-white transition-opacity" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M2 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v10a4 4 0 0 1-2.328 3.635a2.996 2.996 0 0 0-.55-.756l-8-8A3 3 0 0 0 14 17v7H6a4 4 0 0 1-4-4V10Zm14 19a1 1 0 0 0 1.8.6l2.7-3.6H25a1 1 0 0 0 .707-1.707l-8-8A1 1 0 0 0 16 17v12Z" /></svg>
-            <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">{calculatePercentageOff(dealPrice, price)}% OFF</span> 
+            <span className="absolute top-0 left-0 m-2 rounded-none bg-black px-2 text-center text-sm font-medium text-white">{calculatePercentageOff(dealPrice, price)}% OFF</span> 
 
           </>
         )}
       </Link>
       <div className="absolute -right-16 bottom-0 space-y-2 transition-all duration-300 group-hover:right-0">
-        <button className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-brown-custom">
+        <Link className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-brown-custom hover:text-white">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-        </button>
-        <button onClick={() => addToCart(product.id)} className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-brown-custom">
+        </Link>
+        <Link onClick={() => addToCart(product.id)} className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-brown-custom hover:text-white">
           <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="9" cy="21" r="1"></circle>
             <circle cx="20" cy="21" r="1"></circle>
             <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h12.72a2 2 0 002-1.61L23 6H6"></path>
           </svg>
-        </button>
+        </Link>
       </div>
       <div className="mt-4 px-5 pb-5">
         <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>
@@ -106,7 +106,7 @@ const ProductsOnOffer = () => {
     <div className="overflow-container ">
     <div className="flex flex-col justify-center min-w-screen items-center relative">
       <div className="absolute left-0 top-0 ml-2 mt-2">
-        <span className="relative justify-start m-2 rounded-full bg-red-600 px-2 text-center text-md font-futurabold text-white">HOT DEALS</span>
+        <span className="relative justify-start m-2 rounded-none bg-red-600 px-2 text-center text-md font-futurabold text-white">HOT DEALS</span>
       </div>
       {productsOnOffer.length > 4 && (
         <div className="space-1 align-bottom self-end mr-24 buttons">
