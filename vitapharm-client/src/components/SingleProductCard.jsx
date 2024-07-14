@@ -85,6 +85,7 @@ export default function SingleProductCard() {
 
     return (
         <div>
+            <Header/>
         <div className="flex flex-col md:flex-row justify-center m-auto w-full py-12 sm:py-16 min-h-screen">
             <div className="flex w-full max-w-6xl px-6 h-full flex-col md:flex-row">
                 {/* Image Thumbnails */}

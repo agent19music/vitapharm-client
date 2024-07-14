@@ -26,6 +26,7 @@ export default function LandingPage() {
 
   return (
     <div>
+      <Header/>
       <section className='bg max-w-screen my-3 carousel desktopslides'>
        <BannerCarousel/>
       </section>

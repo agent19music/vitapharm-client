@@ -3,6 +3,7 @@ import { ProductContext } from '../context/ProductContext';
 import { Link } from 'react-router-dom';
 import Footer from '../components/ModernFooter';
 import { Skeleton, Box, VStack, HStack } from '@chakra-ui/react';
+import Header from '../components/Header';
 
 const Brands = () => {
   const { brands } = useContext(ProductContext);
@@ -14,6 +15,7 @@ const Brands = () => {
   if (!brands) {
     // Render skeletons while loading
     return (
+      <>
       <div className="container mx-auto py-8">
         <VStack spacing={8}>
           {Array.from({ length: 5 }).map((_, index) => (
@@ -29,6 +31,7 @@ const Brands = () => {
         </VStack>
         <Footer />
       </div>
+      </>
     );
   }
 
@@ -56,6 +59,7 @@ const Brands = () => {
 
   return (
     <div className="">
+      <Header />
       <div className="container mx-auto py-8">
         <div className="flex flex-wrap justify-center">
           {Object.entries(sortedGroupedBrands).map(([letter, brands]) => (

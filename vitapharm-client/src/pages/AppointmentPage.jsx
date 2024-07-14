@@ -97,6 +97,7 @@ function CustomerForm() {
 
   return (
     <>
+    <Header/>
     <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100 py-28'>
       <div className="mb-8">
         <img src={logo} alt="Logo" className="w-24 h-24 mx-auto" />

@@ -252,8 +252,9 @@ useEffect(() => {
 
   return (
     <div>
+      <Header/>
       <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-        <a href="#" className="text-2xl font-futuramedbold text-gray-800">Vitapharm Checkout</a>
+        <a href="#" className="text-2xl font-futuramedbold text-gray-800 hover:text-brown-custom">Vitapharm Checkout</a>
       </div>
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 mb-10">
         <div className="px-4 pt-8">

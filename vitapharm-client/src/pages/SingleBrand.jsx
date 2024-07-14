@@ -13,6 +13,7 @@ export default function SingleBrand() {
 
   return (
     <div>
+      <Header/>
     <section>
       <Brand/>
     </section>
