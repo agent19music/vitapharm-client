@@ -114,21 +114,24 @@ const Category = () => {
                 <div key={brand} className="w-full mb-6">
                   <h4 className="text-xl font-futuramedbold font-semibold mb-4">{brand.toUpperCase()}</h4>
                   {groupedByBrand[brand].length > 4 && (
-                    <div className='space-1 align-bottom self-end mr-24'>
-                      <button
-                        onClick={() => scrollLeft(brand)}
-                        className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
-                      >
-                        <ChevronLeft size={40} />
-                      </button>
-                      <button
-                        onClick={() => scrollRight(brand)}
-                        className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
-                      >
-                        <ChevronRight size={40} />
-                      </button>
-                    </div>
-                  )}
+                <div className='space-1 align-bottom self-end mr-24'>
+                  <button
+                    onClick={() => scrollLeft(brand)}
+                    className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start[brand] === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    disabled={start[brand] === 0}
+                  >
+                    <ChevronLeft size={40} />
+                  </button>
+                  <button
+                    onClick={() => scrollRight(brand)}
+                    className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start[brand] >= groupedByBrand[brand].length - 4 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    disabled={start[brand] >= groupedByBrand[brand].length - 4}
+                  >
+                    <ChevronRight size={40} />
+                  </button>
+                </div>
+              )}
+
                   <div className="flex w-full items-center justify-evenly">
                     {groupedByBrand[brand].slice(start[brand] || 0, (start[brand] || 0) + 4).map((product, index) => (
                       <ProductCard key={index} product={product} addToCart={addToCart} />
