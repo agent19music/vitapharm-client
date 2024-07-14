@@ -103,7 +103,7 @@ const ProductsOnOffer = () => {
   });
 
   return (
-    <div className="overflow-container sm:ml-10">
+    <div className="overflow-container ">
     <div className="flex flex-col justify-center min-w-screen items-center relative">
       <div className="absolute left-0 top-0 ml-2 mt-2">
         <span className="relative justify-start m-2 rounded-full bg-red-600 px-2 text-center text-md font-futurabold text-white">HOT DEALS</span>
