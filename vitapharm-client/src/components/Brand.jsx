@@ -10,8 +10,8 @@ const ProductCard = ({ product, addToCart }) => {
   const price = firstVariation ? firstVariation.price : null;
 
   return (
-    <div className="group border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border shadow-md">
-      <Link to={`/products/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
+    <div className="border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border shadow-md">
+  <Link to={`/products/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
         <img className="peer absolute top-0 right-0 h-full w-full object-cover"  src={`${product.images[0]?.url}`} alt="product image" />
         {product.images.length > 1 && (
           <>
@@ -20,26 +20,25 @@ const ProductCard = ({ product, addToCart }) => {
           </>
         )}
       </Link>
-      <div className="mt-4 px-5 pb-5">
-        <a href="#">
-          <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>
-        </a>
-        <div className="mt-2 mb-5 flex items-center justify-between">
-          <p>
-            <span className="text-3xl font-futura font-bold text-black">Ksh {price !== null ? price : "N/A"}</span>
-          </p>
-        </div>
-        <button onClick={() => addToCart(product.id)} className="mt-6 text-center inline-flex w-full items-center font-futurabold justify-center rounded-none vp-bo px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover group focus:outline-brown-custom focus:ring-0 hover:outline-none hover:box-shadow-none">
-  <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-5 w-5 group-hover:mr-4 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="9" cy="21" r="1"></circle>
-    <circle cx="20" cy="21" r="1"></circle>
-    <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h12.72a2 2 0 002-1.61L23 6H6"></path>
-  </svg>
-  Add to cart
-</button>
-
-      </div>
+  <div className="mt-4 px-5 pb-5">
+    <a href="#">
+      <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>
+    </a>
+    <div className="mt-2 mb-5 flex items-center justify-between">
+      <p>
+        <span className="text-3xl font-futura font-bold text-black">Ksh {price !== null ? price : "N/A"}</span>
+      </p>
     </div>
+    <Link onClick={() => addToCart(product.id)} className="group mt-6 text-center inline-flex w-full items-center font-futurabold justify-center rounded-none vp-bo px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover  focus:ring-0 hover:outline-none hover:box-shadow-none">
+      <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-5 w-5 group-hover:mr-4 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h12.72a2 2 0 002-1.61L23 6H6"></path>
+      </svg>
+      Add to cart
+    </Link>
+  </div>
+</div>
   );
 };
 

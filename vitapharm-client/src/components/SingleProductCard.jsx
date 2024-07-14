@@ -6,6 +6,7 @@ import Footer from './ModernFooter';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { Skeleton, SkeletonText, Box } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 export default function SingleProductCard() {
     const { productId } = useParams();
@@ -161,9 +162,9 @@ export default function SingleProductCard() {
                                 </div>
                             </div>
                             <div className="flex items-center space-x-6 mb-8">
-                                <button onClick={() => addToCart(product.id)} className="spbs flex items-center font-futurabold justify-center bg-[#693f2d] text-white px-6 py-4 text-center text-sm font-medium focus:outline-none focus:ring-4 focus:ring-[#693f2d] hover:bg-[#5a3524] rounded-0">
+                                <Link onClick={() => addToCart(product.id)} className="spbs flex items-center font-futurabold justify-center bg-[#693f2d] text-white px-6 py-4 text-center text-sm font-medium focus:outline-none hover:bg-[#5a3524] rounded-0 hover:text-white">
                                     ADD TO CART
-                                </button>
+                                </Link>
                             </div>
                         </>
                     )}
