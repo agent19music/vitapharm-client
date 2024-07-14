@@ -19,7 +19,7 @@ import PromoCode from './components/PromoCode';
 import PhotoGallery from './pages/PhotoGallery';
 import Blogs from './pages/Blogs';
 import FAQPage from './pages/FAQPage';
-
+import SearchResultsPage from './pages/SearchResults';
 
 
 
@@ -47,6 +47,7 @@ function App() {
               <Route path="/brands/:brand" element={<SingleBrand />} />
               <Route path="/blogs" element={<Blogs />} />
               <Route path="/FAQ" element={<FAQPage />} />
+              <Route path="/search-results" element={<SearchResultsPage />} />
 
             </Routes>
           
