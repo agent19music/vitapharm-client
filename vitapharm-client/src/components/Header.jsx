@@ -8,6 +8,7 @@ import WhatsappFloatingActionButton from './WhatsappFloatingActionButton';
 import { InputGroup, Input, InputRightElement, Popover, PopoverTrigger, PopoverContent, Box, SimpleGrid, Text, Link, Flex, Image, Button } from '@chakra-ui/react';
 import { ProductContext } from '../context/ProductContext';
 import Navbar from './MegaMenu';
+import Breadcrumbs from '../components/Breadcrumb'
 
 export default function Header() {
   const { products } = useContext(ProductContext);
@@ -110,7 +111,7 @@ export default function Header() {
                     return (
                       <Link
                         as={RouterLink}
-                        to={`products/${result.id}`}
+                        to={`/products/${result.id}`}
                         key={index}
                         style={{ textDecoration: 'none' }}
                         className='custom-link font-futura'
@@ -169,6 +170,7 @@ export default function Header() {
        <WithSubnavigation/>
       </section>
       <WhatsappFloatingActionButton />
+      <Breadcrumbs/>
     </header>
   );
 }

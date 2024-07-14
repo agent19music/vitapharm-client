@@ -232,10 +232,10 @@ span.edit-cartamount:hover{
 		margin-right: none;
 	}
 	.overflow-container {
-		width: 97vw;
+		width: 100vw;
 		overflow-x: scroll;
 		display: flex;
-		justify-content: center;
+		justify-content: flex-start;
 		margin-left: 2vw;
 	  }
 	  

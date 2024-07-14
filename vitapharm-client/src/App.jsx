@@ -13,15 +13,14 @@ import Categories from './pages/Categories';
 
 import { CookiesProvider } from 'react-cookie';
 import ProductProvider from './context/ProductContext';
-import Header from './components/Header';
 import UserProvider from './context/UserContext';
 import SingleBrand from './pages/SingleBrand';
 import PromoCode from './components/PromoCode';
 import PhotoGallery from './pages/PhotoGallery';
-import Breadcrumbs from './components/Breadcrumb';
 import Blogs from './pages/Blogs';
 import FAQPage from './pages/FAQPage';
-
+import SearchResultsPage from './pages/SearchResults';
+import ProductsOnOfferPage from './pages/ProductsOnOfferPage';
 
 
 
@@ -37,8 +36,6 @@ function App() {
       <ProductProvider>
         <UserProvider>
         <CookiesProvider>
-          <Header/>
-        <Breadcrumbs/> 
             <Routes>
               <Route path="/" element={<LandingPage setUpdateCart={setUpdateCart} updateCart={updateCart} setCartItems={setCartItems} cartItems={cartItems}/>} />
               <Route path="/products/:productId" element={<SingleProductCard />} />
@@ -51,6 +48,8 @@ function App() {
               <Route path="/brands/:brand" element={<SingleBrand />} />
               <Route path="/blogs" element={<Blogs />} />
               <Route path="/FAQ" element={<FAQPage />} />
+              <Route path="/search-results" element={<SearchResultsPage />} />
+              <Route path="/limitedtimeoffer" element={<ProductsOnOfferPage />} />
 
             </Routes>
           

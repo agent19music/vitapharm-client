@@ -7,15 +7,6 @@ import logo from '/logo.png'; // Import your logo image
 import Header from '../components/Header';
 import Footer from '../components/ModernFooter';
 
-const countries = [
-  { label: 'Kenya (+254)', value: '+254' },
-  { label: 'United States (+1)', value: '+1' },
-  { label: 'United Kingdom (+44)', value: '+44' },
-  { label: 'India (+91)', value: '+91' },
-  { label: 'United Arab Emirates (+971)', value: '+971' },
-  { label: 'Tanzania (+255)', value: '+255' },
-  { label: 'Rwanda (+250)', value: '+250' },
-];
 
 const appointmentOptions = [
   { label: 'Consultation Service - Skin Attendant Consultation (1000 redeemable)', value: 'consultation_service_1000' },
@@ -105,153 +96,137 @@ function CustomerForm() {
 
 
   return (
-    <div className=''>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 mx-auto py-28">
-        <div className="mb-8">
-          <img src={logo} alt="Logo" className="w-24 h-24 mx-auto" />
-          <h1 className="text-2xl font-bold text-center mt-4 font-futurabold">
-            Welcome to Vitapharm Beauty Appointment Booking
-          </h1>
-        </div>
-        <Box p={5} className="bg-white shadow-md rounded-lg max-w-lg w-full">
-          {!success ? (
-            <VStack as="form" onSubmit={handleSubmit} spacing={5}>
-              <FormControl id="firstName" isInvalid={isFirstNameError}>
-                <FormLabel className="font-futurabold">First Name</FormLabel>
-                <Input
-                  type="text"
-                  value={firstName}
-                  onChange={handleFirstNameChange}
-                  className="font-futura"
-                />
-                {isFirstNameError && (
-                  <FormErrorMessage className="font-futura">
-                    First name is required.
-                  </FormErrorMessage>
-                )}
-              </FormControl>
-
-              <FormControl id="lastName" isInvalid={isLastNameError}>
-                <FormLabel className="font-futurabold">Last Name</FormLabel>
-                <Input
-                  type="text"
-                  value={lastName}
-                  onChange={handleLastNameChange}
-                  className="font-futura"
-                />
-                {isLastNameError && (
-                  <FormErrorMessage className="font-futura">
-                    Last name is required.
-                  </FormErrorMessage>
-                )}
-              </FormControl>
-
-              <FormControl id="email" isInvalid={isEmailError}>
-                <FormLabel className="font-futurabold">Email Address</FormLabel>
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  className="font-futura"
-                />
-                {isEmailError && (
-                  <FormErrorMessage className="font-futura">
-                    Email is required and should include '@'.
-                  </FormErrorMessage>
-                )}
-              </FormControl>
-
-              <FormControl id="phone" isInvalid={isPhoneError}>
-                <FormLabel className="font-futurabold">Phone</FormLabel>
-                <Select
-                  value={countryCode}
-                  onChange={handleCountryCodeChange}
-                  className="font-futura"
-                >
-                  {countries.map((country) => (
-                    <option key={country.value} value={country.value}>
-                      {country.label}
-                    </option>
-                  ))}
-                </Select>
-                <Input
+    <>
+    <Header/>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100 py-28'>
+      <div className="mb-8">
+        <img src={logo} alt="Logo" className="w-24 h-24 mx-auto" />
+        <h1 className="text-2xl font-bold text-center mt-4 font-futurabold">
+          Welcome to Vitapharm Beauty Appointment Booking
+        </h1>
+      </div>
+      <div className="mx-auto w-full max-w-[550px] bg-white p-8 rounded-md shadow-md">
+        {!success ? (
+          <form onSubmit={handleSubmit}>
+            <div className="mb-5">
+              <label htmlFor="firstName" className="mb-3 block text-base font-medium text-[#07074D]">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                value={firstName}
+                onChange={handleFirstNameChange}
+                className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none ${isFirstNameError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
+              />
+              {isFirstNameError && (
+                <p className="text-red-500 text-sm mt-2">First name is required.</p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label htmlFor="lastName" className="mb-3 block text-base font-medium text-[#07074D]">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                value={lastName}
+                onChange={handleLastNameChange}
+                className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none ${isLastNameError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
+              />
+              {isLastNameError && (
+                <p className="text-red-500 text-sm mt-2">Last name is required.</p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label htmlFor="email" className="mb-3 block text-base font-medium text-[#07074D]">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={handleEmailChange}
+                className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none ${isEmailError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
+              />
+              {isEmailError && (
+                <p className="text-red-500 text-sm mt-2">Email is required and should include '@'.</p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label htmlFor="phone" className="mb-3 block text-base font-medium text-[#07074D]">Phone</label>
+              <div className="flex">
+              
+                <input
                   type="tel"
+                  id="phone"
                   value={phone}
                   onChange={handlePhoneChange}
-                  className="font-futura"
+                  className={`w-full rounded-r-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none ${isPhoneError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
                 />
-                {isPhoneError && (
-                  <FormErrorMessage className="font-futura">
-                    Phone number must be 10 digits.
-                  </FormErrorMessage>
-                )}
-              </FormControl>
-
-              <FormControl id="date" isInvalid={isDateError}>
-                <FormLabel className="font-futurabold">Appointment Date</FormLabel>
-                <Input
-                  type="date"
-                  min={today}
-                  value={date}
-                  onChange={handleDateChange}
-                  className="font-futura select-none"
-                />
-                {isDateError && (
-                  <FormErrorMessage className="font-futura">
-                    Date should be later than today.
-                  </FormErrorMessage>
-                )}
-              </FormControl>
-
-              <FormControl id="appointmentType" isInvalid={isAppointmentTypeError}>
-                <FormLabel className="font-futurabold">Appointment Type</FormLabel>
-                <Select
-                  value={appointmentType}
-                  onChange={handleAppointmentTypeChange}
-                  placeholder="Select Appointment Type" // Add placeholder text
-                  className="font-futura"
-                >
-                  {appointmentOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </Select>
-                {isAppointmentTypeError && (
-                  <FormErrorMessage className="font-futura">
-                    Appointment type is required.
-                  </FormErrorMessage>
-                )}
-              </FormControl>
-
-              <Button colorScheme="blue" type="submit" className='font-futuramedbold'>
+              </div>
+              {isPhoneError && (
+                <p className="text-red-500 text-sm mt-2">Phone number must be 10 digits.</p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label htmlFor="date" className="mb-3 block text-base font-medium text-[#07074D]">Appointment Date</label>
+              <input
+                type="date"
+                id="date"
+                min={today}
+                value={date}
+                onChange={handleDateChange}
+                className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none ${isDateError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
+              />
+              {isDateError && (
+                <p className="text-red-500 text-sm mt-2">Date should be later than today.</p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label htmlFor="appointmentType" className="mb-3 block text-base font-medium text-[#07074D]">Appointment Type</label>
+              <select
+                id="appointmentType"
+                value={appointmentType}
+                onChange={handleAppointmentTypeChange}
+                className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none ${isAppointmentTypeError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
+              >
+                <option value="" disabled>Select Appointment Type</option>
+                {appointmentOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              {isAppointmentTypeError && (
+                <p className="text-red-500 text-sm mt-2">Appointment type is required.</p>
+              )}
+            </div>
+            <div>
+              <button className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
                 Submit
-              </Button>
-            </VStack>
-          ) : (
-            <Alert
-              status="success"
-              variant="subtle"
-              flexDirection="column"
-              alignItems="center"
-              justifyContent="center"
-              textAlign="center"
-              height="200px"
-            >
-              <AlertIcon boxSize="40px" mr={0} />
-              <AlertTitle mt={4} mb={1} fontSize="lg" className="font-futurabold">
-                Appointment booking received!
-              </AlertTitle>
-              <AlertDescription maxWidth="sm" className="font-futura">
-                Thanks for submitting your booking. Our team will get back to you
-                soon to discuss further details.
-              </AlertDescription>
-            </Alert>
-          )}
-        </Box>
+              </button>
+            </div>
+          </form>
+        ) : (
+          <Alert
+            status="success"
+            variant="subtle"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            height="200px"
+          >
+            <AlertIcon boxSize="40px" mr={0} />
+            <AlertTitle mt={4} mb={1} fontSize="lg" className="font-futurabold">
+              Appointment booking received!
+            </AlertTitle>
+            <AlertDescription maxWidth="sm" className="font-futura">
+              Thanks for submitting your booking. Our team will get back to you
+              soon to discuss further details.
+            </AlertDescription>
+          </Alert>
+        )}
       </div>
-      <Footer />
+    
     </div>
+    <Footer />
+    </>
   );
 }
 

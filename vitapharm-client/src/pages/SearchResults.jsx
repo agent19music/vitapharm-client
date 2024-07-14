@@ -20,16 +20,17 @@ const SearchResultsPage = () => {
 
     return name.includes(lowerCaseQuery) || description.includes(lowerCaseQuery) || category.includes(lowerCaseQuery) || subCategory.includes(lowerCaseQuery);
   });
-
   return (
-    <div className="search-results-page">
-      <SimpleGrid columns={[1, 2, 3]} spacing="40px" width="100%">
+    <div className="search-results-page mx-auto">
+      <Header/>
+      <SimpleGrid columns={[1, 2, 3]} spacing="40px" width="100%" justifyItems="center">
         {filteredProducts.map((product, index) => (
           <ProductCard key={index} product={product} addToCart={() => {}} />
         ))}
       </SimpleGrid>
     </div>
   );
+  
 };
 
 export default SearchResultsPage;

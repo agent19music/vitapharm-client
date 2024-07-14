@@ -15,7 +15,13 @@ const Breadcrumbs = () => {
     <Breadcrumb separator={<ChevronRightIcon color="gray.500" />}>
       {pathnames.length > 0 && (
         <BreadcrumbItem>
-          <BreadcrumbLink className='ml-8' as={Link} to="/">Home</BreadcrumbLink>
+          <BreadcrumbLink
+            as={Link}
+            to="/"
+            className="ml-8 font-futurabold hover:text-brown-custom hover:no-underline"
+          >
+            Home
+          </BreadcrumbLink>
         </BreadcrumbItem>
       )}
       {pathnames.map((value, index) => {
@@ -23,8 +29,14 @@ const Breadcrumbs = () => {
         const isLast = index === pathnames.length - 1;
 
         return (
-          <BreadcrumbItem key={to} isCurrentPage={isLast}>
-            <BreadcrumbLink as={Link} to={to}>{capitalize(value)}</BreadcrumbLink>
+          <BreadcrumbItem className="font-futurabold" key={to} isCurrentPage={isLast}>
+            <BreadcrumbLink
+              as={Link}
+              to={to}
+              className="hover:text-brown-custom hover:no-underline"
+            >
+              {capitalize(value)}
+            </BreadcrumbLink>
           </BreadcrumbItem>
         );
       })}

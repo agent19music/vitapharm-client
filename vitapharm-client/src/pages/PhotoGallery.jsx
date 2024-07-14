@@ -17,6 +17,7 @@ const images = [
 export default function PhotoGallery() {
   return (
     <div>
+      <Header/>
     <Grid templateColumns="repeat(3, 1fr)" gap={4} p={4}>
       {images.map((src, index) => (
         <GridItem key={index}>
