@@ -60,10 +60,10 @@ const Brand = () => {
   const [loading, setLoading] = useState(true);
 
   const groupedByBrand = filteredBrands.reduce((acc, product) => {
-    if (!acc[product.brand]) {
-      acc[product.brand] = [];
+    if (!acc[product.category]) {
+      acc[product.category] = [];
     }
-    acc[product.brand].push(product);
+    acc[product.category].push(product);
     return acc;
   }, {});
 
