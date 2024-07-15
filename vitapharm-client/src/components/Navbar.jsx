@@ -79,7 +79,11 @@ export default function NavbarWithExtensions() {
           <DesktopNav navItems={NAV_ITEMS} />
         </Flex>
         <Flex display={{ base: 'flex', md: 'none' }}>
-        <Menu onClick={onOpen}/>
+          <IconButton
+            aria-label="Open Menu"
+            icon={<HamburgerIcon />}
+            onClick={onOpen}
+          />
         </Flex>
       </Flex>
 
