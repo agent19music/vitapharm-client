@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ProductContext } from '../context/ProductContext';
 import { Link } from 'react-router-dom';
 import Footer from '../components/ModernFooter';
-import { Skeleton, Box, VStack, HStack } from '@chakra-ui/react';
+import { Skeleton, Box, VStack, HStack, SkeletonCircle } from '@chakra-ui/react';
 import Header from '../components/Header';
 
 const Brands = () => {
@@ -12,25 +12,26 @@ const Brands = () => {
     return str[0].toUpperCase();
   };
 
-  if (!brands) {
+  if (!brands || brands.length === 0) {
     // Render skeletons while loading
     return (
       <>
-      <div className="container mx-auto py-8">
-        <VStack spacing={8}>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <Box key={index} width="full">
-              <Skeleton height="40px" width="20%" mb="4" />
-              <HStack spacing={4}>
-                {Array.from({ length: 6 }).map((_, idx) => (
-                  <Skeleton key={idx} height="40px" width="120px" />
-                ))}
-              </HStack>
-            </Box>
-          ))}
-        </VStack>
+        <Header />
+        <div className="container mx-auto py-8">
+          <VStack spacing={8}>
+            {Array.from({ length: 5 }).map((_, index) => (
+              <Box key={index} width="full" padding='6'  bg='white'>
+                <SkeletonCircle size='14' mb='5' />
+                <HStack spacing={4}>
+                  {Array.from({ length: 3 }).map((_, idx) => (
+                    <Skeleton key={idx} height="40px" width="120px" />
+                  ))}
+                </HStack>
+              </Box>
+            ))}
+          </VStack>
+        </div>
         <Footer />
-      </div>
       </>
     );
   }
