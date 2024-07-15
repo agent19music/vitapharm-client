@@ -5,7 +5,7 @@ import SideMenu from '../components/SideMenu';
 import { Link as RouterLink } from 'react-router-dom';
 import { Search } from 'react-feather';
 import WhatsappFloatingActionButton from './WhatsappFloatingActionButton';
-import { InputGroup, Input, InputRightElement, Popover, PopoverTrigger, PopoverContent, Box, SimpleGrid, Text, Link, Flex, Image, Button } from '@chakra-ui/react';
+import { InputGroup, Input, InputRightElement, Popover, PopoverTrigger, PopoverContent, Box, SimpleGrid, Text, Link, Flex, Image, Button, VStack, StackDivider } from '@chakra-ui/react';
 import { ProductContext } from '../context/ProductContext';
 import Navbar from './MegaMenu';
 import Breadcrumbs from '../components/Breadcrumb'
@@ -111,45 +111,52 @@ export default function Header() {
             </PopoverTrigger>
             <PopoverContent width="75vw">
               <Box p={4} w='100%'>
-                <SimpleGrid columns={[3, null, 3]} spacing='40px' width='100%'>
-                  {searchResults.slice(0, 9).map((result, index) => {
-                    const firstVariation = result.variations?.[0];
-                    const price = firstVariation ? firstVariation.price : null;
-                    const size = firstVariation ? firstVariation.size : null;
+              <VStack
+  divider={<StackDivider borderColor="gray.200" />}
+  spacing={4}
+  align="stretch"
+  width="100%"
+  className=' overflow-x-scroll'
+>
+  {searchResults.slice(0, 3).map((result, index) => {
+    const firstVariation = result.variations?.[0];
+    const price = firstVariation ? firstVariation.price : null;
+    const size = firstVariation ? firstVariation.size : null;
 
-                    return (
-                      <Link
-                        as={RouterLink}
-                        to={`/products/${result.id}`}
-                        key={index}
-                        style={{ textDecoration: 'none' }}
-                        className='custom-link font-futura'
-                      >
-                        <Flex
-                          align="center"
-                          justify="space-between"
-                          className='bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white'
-                          style={{ textDecoration: 'none' }}
-                          p={3}
-                        >
-                          <Flex direction="column">
-                            <Text style={{ textDecoration: 'none' }}>{result.name}</Text>
-                            {price && size && (
-                              <Text>{`${price} ${size}`}</Text>
-                            )}
-                          </Flex>
-                          <Image
-                            src={`${result.images[0]?.url}`}
-                            alt={result.name}
-                            boxSize="50px"
-                            objectFit="cover"
-                            borderRadius="md"
-                          />
-                        </Flex>
-                      </Link>
-                    );
-                  })}
-                </SimpleGrid>
+    return (
+      <Link
+        as={RouterLink}
+        to={`/products/${result.id}`}
+        key={index}
+        style={{ textDecoration: 'none' }}
+        className="custom-link font-futura"
+      >
+        <Flex
+          align="center"
+          justify="space-between"
+          className="bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white"
+          style={{ textDecoration: 'none' }}
+          p={3}
+        >
+          <Flex direction="column">
+            <Text style={{ textDecoration: 'none' }}>{result.name}</Text>
+            {price && size && (
+              <Text>{`${price} ${size}`}</Text>
+            )}
+          </Flex>
+          <Image
+            src={`${result.images[0]?.url}`}
+            alt={result.name}
+            boxSize="50px"
+            objectFit="cover"
+            borderRadius="md"
+          />
+        </Flex>
+      </Link>
+    );
+  })}
+</VStack>
+
                 {searchResults.length > 9 && (
                   <RouterLink to={`/search-results?query=${searchQuery}`}>
                     <Button mt={4} colorScheme="teal" variant="outline">
