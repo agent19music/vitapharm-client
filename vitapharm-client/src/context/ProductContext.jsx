@@ -397,7 +397,8 @@ export default function ProductProvider({ children }) {
     setCartItemCount,
     productsOnOffer,
     subCategories,
-    filteredSubCategories
+    filteredSubCategories,
+    setSubCategory
   };
 
   return (
