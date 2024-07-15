@@ -10,7 +10,7 @@ const ProductCard = ({ product, addToCart }) => {
   const price = firstVariation ? firstVariation.price : null;
 
   return (
-    <div className="border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border shadow-md">
+    <div className="product-card border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border shadow-md">
       <Link to={`/products/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">
         <img className="peer absolute top-0 right-0 h-full w-full object-cover" src={`${product.images[0]?.url}`} alt="product image" />
         {product.images.length > 1 && (
@@ -43,7 +43,7 @@ const ProductCard = ({ product, addToCart }) => {
 };
 
 const SkeletonCard = () => (
-  <div className="group border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border bg-zinc-100 shadow-md product-card">
+  <div className="skeleton-card group border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border bg-zinc-100 shadow-md product-card">
     <Box className="relative mx-3 mt-3 flex h-64 overflow-hidden">
       <Skeleton height="100%" width="100%" />
     </Box>
@@ -101,7 +101,7 @@ const Category = () => {
           ))}
         </div>
       ) : (
-        <div className=''>
+        <div className='overflow-container'>
           <div className="flex flex-col justify-center min-w-screen items-center">
             <div className="flex flex-col w-full items-center justify-evenly p-9 transition-all duration-500 ease-in-out">
               {Object.keys(groupedByCategory).map((category) => (
