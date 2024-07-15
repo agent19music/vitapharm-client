@@ -4,6 +4,7 @@ import { SimpleGrid } from '@chakra-ui/react'
 import { ProductContext } from '../context/ProductContext'
 import ProductOnOfferCard from '../components/ProductsOnOfferCard'
 import { Skeleton, Box } from '@chakra-ui/react';
+import Footer from '../components/ModernFooter'
 
 
 export default function ProductsOnOfferPage() {
@@ -24,7 +25,7 @@ export default function ProductsOnOfferPage() {
     return (
         <div className="search-results-page mx-auto">
           <Header/>
-          <SimpleGrid columns={[1, 2, 3]} spacing="40px" width="100%" justifyItems="center">
+          <SimpleGrid columns={[1, 2, 3]} spacing="40px" width="100%" justifyItems="center" className='my-8'>
             {productsOnOffer.length === 0 ? 
               Array(6).fill().map((_, i) => <SkeletonCard key={i} />) : 
               productsOnOffer.map((product, index) => (
@@ -32,6 +33,7 @@ export default function ProductsOnOfferPage() {
               ))
             }
           </SimpleGrid>
+          <Footer/>
         </div>
       );
 }
