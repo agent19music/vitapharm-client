@@ -71,7 +71,7 @@ export default function Header() {
     ))}
   </div>
 </div>
-<div className='mobile-navbar '>
+<div className='mobile-primary-bar '>
 <div className='flex justify-between items-center'>
   <div className='flex items-center'>
     <nav>

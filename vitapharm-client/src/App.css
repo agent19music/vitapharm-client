@@ -188,6 +188,9 @@ h3.image-categories-titles{
   .image-category-container {
     width: 25%; /* Four items per row on screens wider than 1024px */
   }
+  div.mobile-primary-bar{
+	display: none;
+  }
   }
 span.edit-cartamount:hover{
 	transform: scale(1.2);
