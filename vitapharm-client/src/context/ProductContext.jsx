@@ -14,6 +14,7 @@ export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [productsOnOffer, setProductsOnOffer] =useState([])
   const [filteredCategories, setFilteredCategories] = useState([]);
+  const [filteredSubCategories, setFilteredSubCategories] = useState([]);
   const [filteredBrands, setFiltredBrands] = useState([]);
   const [sessionToken, setSessionToken] = useState(null);
   const [updateCart, setUpdateCart] = useState(false);
@@ -24,7 +25,10 @@ export default function ProductProvider({ children }) {
   const [cartItemCount, setCartItemCount] = useState(0);
   const [cartEmpty, setCartEmpty] = useState(true);
   const [category, setCategory] = useState('');
+  const [subCategory, setSubCategory] = useState('');
   const [brand, setBrand] = useState('');
+  const [subCategories, setSubCategories] = useState([]);
+
 
   const toast = useToast();
 
@@ -299,6 +303,30 @@ export default function ProductProvider({ children }) {
     return [...new Set(categories)];
   }
 
+  useEffect(() => {
+    // Create an object to collect subcategories for each category
+    const categoryMap = {};
+
+    products.forEach(product => {
+      const { category, sub_category } = product;
+      if (categoryMap[category]) {
+        if (!categoryMap[category].includes(sub_category)) {
+          categoryMap[category].push(sub_category);
+        }
+      } else {
+        categoryMap[category] = [sub_category];
+      }
+    });
+
+    // Transform the object into the desired array format
+    const categoryArray = Object.keys(categoryMap).map(category => ({
+      category,
+      sub_categories: categoryMap[category]
+    }));
+
+    setSubCategories(categoryArray);
+  }, [products]);
+
   let categories = extractCategories(products);
   let brands = extractBrands(products);
   console.log(brands);
@@ -319,6 +347,15 @@ export default function ProductProvider({ children }) {
       setFilteredCategories(filtered);
     } else {
       setFilteredCategories(products);
+    }
+  }, [category, products]);
+
+  useEffect(() => {
+    if (subCategory) {
+      const filtered = products.filter(product => product.sub_category === subCategory);
+      setFilteredSubCategories(filtered);
+    } else {
+      setFilteredSubCategories(products);
     }
   }, [category, products]);
 
@@ -358,7 +395,10 @@ export default function ProductProvider({ children }) {
     setTotal,
     setCartEmpty,
     setCartItemCount,
-    productsOnOffer
+    productsOnOffer,
+    subCategories,
+    filteredSubCategories,
+    setSubCategory
   };
 
   return (

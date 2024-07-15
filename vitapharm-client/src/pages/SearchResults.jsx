@@ -4,6 +4,7 @@ import { ProductContext } from '../context/ProductContext';
 import { SimpleGrid } from '@chakra-ui/react';
 import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
+import Footer from '../components/ModernFooter';
 
 const SearchResultsPage = () => {
   const { products } = useContext(ProductContext);
@@ -28,6 +29,7 @@ const SearchResultsPage = () => {
           <ProductCard key={index} product={product} addToCart={() => {}} />
         ))}
       </SimpleGrid>
+      <Footer/>
     </div>
   );
   

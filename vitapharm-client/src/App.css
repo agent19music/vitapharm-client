@@ -43,7 +43,7 @@ div.info-item{
 	color: white;
 }
 
-div.primary-bar{
+div.desktop-primary-bar{
 	min-width: 100vw;
 	display: flex;
 	justify-content: center;
@@ -94,7 +94,7 @@ div.free-shipping-banner{
 	margin: auto;
 }
 
-section.navbar{
+section.desktop-navbar{
 	min-width: 100vw;
 	display: flex;
 	justify-content: center;
@@ -188,6 +188,9 @@ h3.image-categories-titles{
   .image-category-container {
     width: 25%; /* Four items per row on screens wider than 1024px */
   }
+  div.mobile-primary-bar{
+	display: none;
+  }
   }
 span.edit-cartamount:hover{
 	transform: scale(1.2);
@@ -217,10 +220,19 @@ span.edit-cartamount:hover{
 		align-items: center;
 		
 	}
+
 	.image-category-container {
 		width: 50%; /* Two items per row on screens wider than 640px */
 	  }
 	
+	div.desktop-primary-bar{
+		display: none;
+	}   
+
+	section.desktop-navbar{
+		display: none;
+	}
+
 	div.services{
 		display: flex;
 		flex-direction: column;

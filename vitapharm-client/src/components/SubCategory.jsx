@@ -12,7 +12,7 @@ const ProductCard = ({ product, addToCart }) => {
   const size = firstVariation ? firstVariation.size : null;
 
   return (
-    <div className="product-card group relative border-zinc-100/30  lg:w-72  flex flex-col self-center overflow-hidden border shadow-md lg:max-h-96 sm:ml-10">
+    <div className="product-card group relative border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border shadow-md">
       <Link to={`/products/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
         <img className="peer absolute top-0 right-0 h-full w-full object-cover"  src={`${product.images[0]?.url}`} alt="product image" />
         {product.images.length > 1 && (
@@ -60,12 +60,12 @@ const SkeletonCard = () => (
 );
 
 
-const Category = () => {
-  const { filteredCategories, addToCart } = useContext(ProductContext);
+const SubCategory = () => {
+  const { filteredSubCategories, addToCart } = useContext(ProductContext);
   const [start, setStart] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const groupedByBrand = filteredCategories.reduce((acc, product) => {
+  const groupedByBrand = filteredSubCategories.reduce((acc, product) => {
     if (!acc[product.brand]) {
       acc[product.brand] = [];
     }
@@ -74,10 +74,10 @@ const Category = () => {
   }, {});
 
   useEffect(() => {
-    if (filteredCategories.length > 0) {
+    if (filteredSubCategories.length > 0) {
       setLoading(false);
     }
-  }, [filteredCategories]);
+  }, [filteredSubCategories]);
 
   const scrollLeft = (brand) => {
     setStart((prevStart) => ({
@@ -108,43 +108,42 @@ const Category = () => {
         </div>
       ) : (
         <div className='overflow-container'>
-        <div className="flex flex-col justify-center min-w-screen items-center">
-          <div className="flex flex-col w-full items-center justify-evenly p-9 transition-all duration-500 ease-in-out bg-orange-100">
-            {Object.keys(groupedByBrand).map((brand) => (
-              <div key={brand} className="w-full mb-6 bg-blue-200">
-                <h4 className="text-xl font-futuramedbold font-semibold mb-4">{brand.toUpperCase()}</h4>
-                {groupedByBrand[brand].length > 4 && (
-                  <div className='space-1 align-bottom self-end mr-24'>
-                    <button
-                      onClick={() => scrollLeft(brand)}
-                      className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start[brand] === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                      disabled={start[brand] === 0}
-                    >
-                      <ChevronLeft size={40} />
-                    </button>
-                    <button
-                      onClick={() => scrollRight(brand)}
-                      className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start[brand] >= groupedByBrand[brand].length - 4 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                      disabled={start[brand] >= groupedByBrand[brand].length - 4}
-                    >
-                      <ChevronRight size={40} />
-                    </button>
-                  </div>
-                )}
-      
-                <div className="flex w-full items-center justify-evenly overflow-container bg-green-100">
-                  {groupedByBrand[brand].slice(start[brand] || 0, (start[brand] || 0) + 4).map((product, index) => (
-                    <ProductCard key={index} product={product} addToCart={addToCart} />
-                  ))}
+          <div className="flex flex-col justify-center min-w-screen items-center">
+            <div className="flex flex-col w-full items-center justify-evenly p-9 transition-all duration-500 ease-in-out">
+              {Object.keys(groupedByBrand).map((brand) => (
+                <div key={brand} className="w-full mb-6">
+                  <h4 className="text-xl font-futuramedbold font-semibold mb-4">{brand.toUpperCase()}</h4>
+                  {groupedByBrand[brand].length > 4 && (
+                <div className='space-1 align-bottom self-end mr-24'>
+                  <button
+                    onClick={() => scrollLeft(brand)}
+                    className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start[brand] === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    disabled={start[brand] === 0}
+                  >
+                    <ChevronLeft size={40} />
+                  </button>
+                  <button
+                    onClick={() => scrollRight(brand)}
+                    className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start[brand] >= groupedByBrand[brand].length - 4 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    disabled={start[brand] >= groupedByBrand[brand].length - 4}
+                  >
+                    <ChevronRight size={40} />
+                  </button>
                 </div>
-              </div>
-            ))}
+              )}
+
+                  <div className="flex w-full items-center justify-evenly">
+                    {groupedByBrand[brand].slice(start[brand] || 0, (start[brand] || 0) + 4).map((product, index) => (
+                      <ProductCard key={index} product={product} addToCart={addToCart} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-      
       )}
     </>
   );
 }  
-export default Category;
+export default SubCategory;
