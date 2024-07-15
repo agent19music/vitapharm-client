@@ -57,6 +57,7 @@ const Brands = () => {
       acc[letter] = groupedBrands[letter].sort((a, b) => a.name.localeCompare(b.name));
       return acc;
     }, {});
+    
 
   return (
     <div className="">

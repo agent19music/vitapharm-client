@@ -21,7 +21,8 @@ import Blogs from './pages/Blogs';
 import FAQPage from './pages/FAQPage';
 import SearchResultsPage from './pages/SearchResults';
 import ProductsOnOfferPage from './pages/ProductsOnOfferPage';
- import SubCategoriesPage from './pages/SubCategoriesPage';
+import SubCategoriesPage from './pages/SubCategoriesPage';
+import CategoriesPage from './pages/CategoriesPage';
 
 
 
@@ -44,6 +45,7 @@ function App() {
               <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems}/>} />
               <Route path="/photogallery" element={<PhotoGallery />} />
               <Route path="/brands" element={<Brands />} />
+              <Route path="/categories" element={<CategoriesPage />} />
               <Route path="/categories/:category" element={<Categories />} />
               <Route path="/categories/:category/:subcategory" element={<SubCategoriesPage />} />
               <Route path="/brands/:brand" element={<SingleBrand />} />
