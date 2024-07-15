@@ -202,7 +202,7 @@ const DesktopNav = ({ navItems }) => {
                         transition={'all .3s ease'}
                         _groupHover={{ color: 'brown.400' }}
                         fontWeight={500}
-                        className='font-futurabold'>
+                        className='font-futurabold hover:text-brown-custom'>
                         All brands A-Z
                       </Text>
                     </Link>
