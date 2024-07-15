@@ -3,7 +3,7 @@ import { ProductContext } from '../context/ProductContext'
 import { useParams } from 'react-router-dom'
 import Header from '../components/Header';
 import Footer from '../components/ModernFooter';
-import SubCategory from '../components/SubCaegory';
+import SubCategory from '../components/SubCategory';
 
 
 export default function SubCategoriesPage() {
