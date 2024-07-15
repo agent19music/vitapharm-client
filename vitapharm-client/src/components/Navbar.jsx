@@ -245,7 +245,8 @@ const MobileNav = ({ navItems, onClose }) => {
                               href={sub.href}
                               onClick={onClose}
                               height={9}
-                              className="bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white custom-link">
+                              className="bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white custom-link"
+                              style={{ textAlign: 'center', textTransform: 'capitalize' }}>
                               {sub.label}
                             </Link>
                           ))}
@@ -260,7 +261,8 @@ const MobileNav = ({ navItems, onClose }) => {
                     href={navItem.moreLink}
                     height={9}
                     onClick={onClose}
-                    className="bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white custom-link">
+                    className="bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white custom-link"
+                    style={{ textAlign: 'center', textTransform: 'capitalize' }}>
                     More Brands
                   </Link>
                 )}
