@@ -12,7 +12,7 @@ const ProductCard = ({ product, addToCart }) => {
   const size = firstVariation ? firstVariation.size : null;
 
   return (
-    <div className="group relative border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border shadow-md">
+    <div className="product-card group relative border-zinc-100/30  lg:w-72  flex flex-col self-center overflow-hidden border shadow-md lg:max-h-96 sm:ml-10">
       <Link to={`/products/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
         <img className="peer absolute top-0 right-0 h-full w-full object-cover"  src={`${product.images[0]?.url}`} alt="product image" />
         {product.images.length > 1 && (
@@ -48,7 +48,7 @@ const ProductCard = ({ product, addToCart }) => {
 
 
 const SkeletonCard = () => (
-  <div className="group border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border bg-zinc-100 shadow-md product-card">
+  <div className="skeleton-card group border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border bg-zinc-100 shadow-md product-card">
     <Box className="relative mx-3 mt-3 flex h-64 overflow-hidden">
       <Skeleton height="100%" width="100%" />
     </Box>
@@ -99,7 +99,7 @@ const Category = () => {
   return (
     <>
       {loading ? (
-          <div className="grid grid-cols-4 gap-4 mt-20">
+          <div className="grid grid-cols-4 gap-4 mt-20 overflow-container">
           {[...Array(8)].map((_, i) => (
             <div key={i} className={`col-span-1 ${i % 4 === 0 ? 'ml-4' : ''}`}>
               <SkeletonCard />
@@ -107,41 +107,42 @@ const Category = () => {
           ))}
         </div>
       ) : (
-        <div className=''>
-          <div className="flex flex-col justify-center min-w-screen items-center">
-            <div className="flex flex-col w-full items-center justify-evenly p-9 transition-all duration-500 ease-in-out">
-              {Object.keys(groupedByBrand).map((brand) => (
-                <div key={brand} className="w-full mb-6">
-                  <h4 className="text-xl font-futuramedbold font-semibold mb-4">{brand.toUpperCase()}</h4>
-                  {groupedByBrand[brand].length > 4 && (
-                <div className='space-1 align-bottom self-end mr-24'>
-                  <button
-                    onClick={() => scrollLeft(brand)}
-                    className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start[brand] === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    disabled={start[brand] === 0}
-                  >
-                    <ChevronLeft size={40} />
-                  </button>
-                  <button
-                    onClick={() => scrollRight(brand)}
-                    className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start[brand] >= groupedByBrand[brand].length - 4 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    disabled={start[brand] >= groupedByBrand[brand].length - 4}
-                  >
-                    <ChevronRight size={40} />
-                  </button>
-                </div>
-              )}
-
-                  <div className="flex w-full items-center justify-evenly">
-                    {groupedByBrand[brand].slice(start[brand] || 0, (start[brand] || 0) + 4).map((product, index) => (
-                      <ProductCard key={index} product={product} addToCart={addToCart} />
-                    ))}
+        <div className='overflow-container'>
+        <div className="flex flex-col justify-center min-w-screen items-center">
+          <div className="flex flex-col w-full items-center justify-evenly p-9 transition-all duration-500 ease-in-out bg-orange-100">
+            {Object.keys(groupedByBrand).map((brand) => (
+              <div key={brand} className="w-full mb-6 bg-blue-200">
+                <h4 className="text-xl font-futuramedbold font-semibold mb-4">{brand.toUpperCase()}</h4>
+                {groupedByBrand[brand].length > 4 && (
+                  <div className='space-1 align-bottom self-end mr-24'>
+                    <button
+                      onClick={() => scrollLeft(brand)}
+                      className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start[brand] === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      disabled={start[brand] === 0}
+                    >
+                      <ChevronLeft size={40} />
+                    </button>
+                    <button
+                      onClick={() => scrollRight(brand)}
+                      className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start[brand] >= groupedByBrand[brand].length - 4 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      disabled={start[brand] >= groupedByBrand[brand].length - 4}
+                    >
+                      <ChevronRight size={40} />
+                    </button>
                   </div>
+                )}
+      
+                <div className="flex w-full items-center justify-evenly overflow-container bg-green-100">
+                  {groupedByBrand[brand].slice(start[brand] || 0, (start[brand] || 0) + 4).map((product, index) => (
+                    <ProductCard key={index} product={product} addToCart={addToCart} />
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
+      </div>
+      
       )}
     </>
   );
