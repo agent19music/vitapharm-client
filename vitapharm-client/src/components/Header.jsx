@@ -62,7 +62,7 @@ export default function Header() {
 
   return (
     <header>
-    <div className='info-bar md:flex md:flex-row md:justify-between'>
+    <div className='info-bar md:flex md:flex-row md:justify-between '>
   <div className='info-item font-futurabold text-sm md:text-base'>
     {TEXTS.map((text, idx) => (
       <TextTransition key={idx} springConfig={presets.wobbly}>
@@ -71,8 +71,102 @@ export default function Header() {
     ))}
   </div>
 </div>
+<div className='mobile-navbar '>
+<div className='flex justify-between items-center'>
+  <div className='flex items-center'>
+    <nav>
+      <WithSubnavigation/>
+    </nav>
+    <RouterLink className='logo-holder' to={'/'}>
+      <img src='/logo.png' alt='' className='logo' />
+    </RouterLink>
+  </div>
+  <div className='mr-9 flex items-center'>
+    <SideMenu/>
+  </div>
+</div>
+<div className='search-bar align-bottom min-h-max  min-w-80 mx-auto mb-3'>
+          <Popover isOpen={searchResults.length > 0} closeOnBlur>
+            <PopoverTrigger>
+              <InputGroup size="lg">
+                <Input
+                  placeholder="Search products or brands"
+                  border="2px"
+                  borderColor="black.400"
+                  focusBorderColor='#693F2D'
+                  borderRadius={0}
+                  py="6"
+                  pr="12"
+                  fontSize="lg"
+                  value={searchQuery}
+                  onChange={handleChange}
+                  className='font-futurabold'
+                />
+                <InputRightElement
+                  pointerEvents="none"
+                  children={<Search color="gray" />}
+                  mr="2"
+                />
+              </InputGroup>
+            </PopoverTrigger>
+            <PopoverContent width="75vw">
+              <Box p={4} w='100%'>
+                <SimpleGrid columns={[3, null, 3]} spacing='40px' width='100%'>
+                  {searchResults.slice(0, 9).map((result, index) => {
+                    const firstVariation = result.variations?.[0];
+                    const price = firstVariation ? firstVariation.price : null;
+                    const size = firstVariation ? firstVariation.size : null;
 
-      <div className='primary-bar'>
+                    return (
+                      <Link
+                        as={RouterLink}
+                        to={`/products/${result.id}`}
+                        key={index}
+                        style={{ textDecoration: 'none' }}
+                        className='custom-link font-futura'
+                      >
+                        <Flex
+                          align="center"
+                          justify="space-between"
+                          className='bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white'
+                          style={{ textDecoration: 'none' }}
+                          p={3}
+                        >
+                          <Flex direction="column">
+                            <Text style={{ textDecoration: 'none' }}>{result.name}</Text>
+                            {price && size && (
+                              <Text>{`${price} ${size}`}</Text>
+                            )}
+                          </Flex>
+                          <Image
+                            src={`${result.images[0]?.url}`}
+                            alt={result.name}
+                            boxSize="50px"
+                            objectFit="cover"
+                            borderRadius="md"
+                          />
+                        </Flex>
+                      </Link>
+                    );
+                  })}
+                </SimpleGrid>
+                {searchResults.length > 9 && (
+                  <RouterLink to={`/search-results?query=${searchQuery}`}>
+                    <Button mt={4} colorScheme="teal" variant="outline">
+                      View All Results
+                    </Button>
+                  </RouterLink>
+                )}
+              </Box>
+            </PopoverContent>
+          </Popover>
+        </div>
+
+</div>
+
+
+
+      <div className='desktop-primary-bar'>
         <RouterLink className='logo-holder ' to={'/'}>
           <img src='/logo.png' alt='' className='logo' />
         </RouterLink>
@@ -165,7 +259,7 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <section className='navbar'>
+      <section className='desktop-navbar'>
         {/* <WithSubnavigation /> */}
        <WithSubnavigation/>
       </section>

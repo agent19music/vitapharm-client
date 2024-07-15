@@ -21,6 +21,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { Menu } from 'react-feather';
+
 
 export default function NavbarWithExtensions() {
   const { brandsWithLetters, subCategories } = useContext(ProductContext);
@@ -64,14 +66,11 @@ export default function NavbarWithExtensions() {
   return (
     <Box>
       <Flex
-        bg={useColorModeValue('white', 'gray.800')}
-        color={useColorModeValue('gray.600', 'white')}
         minH="60px"
         py={{ base: 2 }}
         px={{ base: 4 }}
         align="center"
         justify="space-between"
-        className="shadow-md"
       >
         <Flex>
           {/* Add your logo or brand name here */}
@@ -80,11 +79,7 @@ export default function NavbarWithExtensions() {
           <DesktopNav navItems={NAV_ITEMS} />
         </Flex>
         <Flex display={{ base: 'flex', md: 'none' }}>
-          <IconButton
-            aria-label="Open Menu"
-            icon={<HamburgerIcon />}
-            onClick={onOpen}
-          />
+        <Menu onClick={onOpen}/>
         </Flex>
       </Flex>
 
