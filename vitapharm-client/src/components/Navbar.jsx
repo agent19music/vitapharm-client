@@ -162,7 +162,7 @@ const DesktopNav = ({ navItems }) => {
                             p={4}
                             rounded={'xl'}
                             minW={'sm'}
-                            maxH={'300px'}
+                            maxH={'315px'}
                             overflowY={child.subCategories.length > 11 ? 'scroll' : 'auto'}>
                             <Stack>
                               {child.subCategories.map(sub => (
