@@ -9,12 +9,12 @@ import CustomerForm from './pages/AppointmentPage';
 import CheckoutPage from './pages/CheckoutPage';
 import Brands from './pages/Brands'
 import Cart from './pages/Cart';
-import Categories from './pages/Categories';
+import Categories from './pages/SingleCategoryPage';
 
 import { CookiesProvider } from 'react-cookie';
 import ProductProvider from './context/ProductContext';
 import UserProvider from './context/UserContext';
-import SingleBrand from './pages/SingleBrand';
+import SingleBrand from './pages/SingleBrandPage';
 import PromoCode from './components/PromoCode';
 import PhotoGallery from './pages/PhotoGallery';
 import Blogs from './pages/Blogs';
