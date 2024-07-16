@@ -38,7 +38,7 @@ export default function LandingPage() {
         </Carousel>
       </section>
    
-      <section className='wrxx' id='wrxx'>  
+      <section className='wrxx my-5' id='wrxx'>  
         <ProductsOnOffer />
       </section>
       <section className='my-5 '>
@@ -78,8 +78,13 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      <section>
       <SocialVideos/>
+      </section>
+      <section>
       <Footer />
+      </section>
+     
     </div>
   );
 }
