@@ -23,7 +23,7 @@ import SearchResultsPage from './pages/SearchResults';
 import ProductsOnOfferPage from './pages/ProductsOnOfferPage';
 import SubCategoriesPage from './pages/SubCategoriesPage';
 import CategoriesPage from './pages/CategoriesPage';
-
+import AllProductsPage from './pages/AllProductsPage';
 
 
 function App() {
@@ -41,6 +41,7 @@ function App() {
             <Routes>
               <Route path="/" element={<LandingPage setUpdateCart={setUpdateCart} updateCart={updateCart} setCartItems={setCartItems} cartItems={cartItems}/>} />
               <Route path="/products/:productId" element={<SingleProductCard />} />
+              <Route path="/products" element={<AllProductsPage />} />
               <Route path="/bookappointment" element={<CustomerForm />} />
               <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems}/>} />
               <Route path="/photogallery" element={<PhotoGallery />} />
