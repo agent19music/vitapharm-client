@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ProductContext } from '../context/ProductContext';
 import {
   Box,
@@ -19,9 +19,12 @@ import {
   useDisclosure,
   VStack,
   useColorModeValue,
+  Collapse,
+  Button
 } from '@chakra-ui/react';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { Menu } from 'react-feather';
+import { Link as  RLink} from 'react-router-dom';
 
 
 export default function NavbarWithExtensions() {
@@ -91,7 +94,7 @@ export default function NavbarWithExtensions() {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Menu</DrawerHeader>
+          <DrawerHeader className='font-futuramedbold'>Menu</DrawerHeader>
           <DrawerBody>
             <MobileNav navItems={NAV_ITEMS} onClose={onClose} />
           </DrawerBody>
@@ -217,58 +220,66 @@ const DesktopNav = ({ navItems }) => {
 };
 
 const MobileNav = ({ navItems, onClose }) => {
+  const [show, setShow] = useState({});
+  const [showSub, setShowSub] = useState({});
+
+  const handleToggle = (label) => {
+    setShow((prevState) => ({
+      ...prevState,
+      [label]: !prevState[label],
+    }));
+  };
+
+  const handleSubToggle = (label) => {
+    setShowSub((prevState) => ({
+      ...prevState,
+      [label]: !prevState[label],
+    }));
+  };
+
   return (
-    <VStack align="start" className="space-y-4">
-      {navItems.map(navItem => (
-        <Box key={navItem.label} className="w-full">
-          <details className="group">
-            <summary className="font-bold mb-2 cursor-pointer list-none">
-              <Text className="group-hover:text-pink-400">{navItem.label}</Text>
-            </summary>
-            {navItem.children && (
-              <Stack pl={4} className="space-y-2">
-                {navItem.children.map(child => (
-                  <Box key={child.label}>
-                    <details className="group">
-                      <summary className="font-bold mb-2 cursor-pointer list-none">
-                        <Text className="group-hover:text-pink-400">{child.label}</Text>
-                      </summary>
-                      {child.subCategories && (
-                        <Stack
-                          pl={4}
-                          className="space-y-2"
-                          maxH={'300px'}
-                          overflowY={child.subCategories.length > 11 ? 'scroll' : 'auto'}>
-                          {child.subCategories.map(sub => (
-                            <Link
-                              key={sub.label}
-                              href={sub.href}
-                              onClick={onClose}
-                              height={9}
-                              className="bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white custom-link"
-                              style={{ textAlign: 'center', textTransform: 'capitalize' }}>
-                              {sub.label}
-                            </Link>
-                          ))}
+    <VStack align="start" spacing={4}>
+      {navItems.map((navItem) => (
+        <Box key={navItem.label} w="full">
+          <Button onClick={() => handleToggle(navItem.label)} w="full" rounded='0' color= '#ffff'  _hover={{ bg: '#ffff' ,color: '#693F2D'}} _focus={{ bg: '#ffff' ,color: '#693F2D'}} bg= '#693F2D'justifyContent="flex-start" variant='solid' className='outline-none font-futuramedbold'>
+            {navItem.label}
+          </Button>
+          <Collapse in={show[navItem.label]}>
+            <Stack pl={4} spacing={2}>
+              {navItem.children?.map((child) => (
+                <Box key={child.label}>
+                  {child.subCategories ? (
+                    <>
+                      <Button onClick={() => handleSubToggle(child.label)} w="full" rounded='0'  color= '#ffff'  _hover={{ bg: '#ffff' ,color: '#693F2D'}} _focus={{ bg: '#ffff' ,color: '#693F2D'}} bg= '#693F2D' justifyContent="flex-start" variant='solid' className='outline-none capitalize font-futuramedbold rounded-none mt-1'>
+                        {child.label}
+                      </Button>
+                      <Collapse in={showSub[child.label]}>
+                      <Stack pl={4} spacing={2} maxH="300px" overflowY={child.subCategories?.length > 11 ? 'scroll' : 'auto'}>
+                    {child.subCategories
+                      ?.sort((a, b) => a.label.localeCompare(b.label))
+                      .map((sub) => (
+                        <RLink key={sub.label} to={sub.href} onClick={onClose} h={9} className="group mt-1 text-center inline-flex w-full items-center font-futurabold justify-center rounded-none vp-bo px-6 py-2 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover  focus:ring-0 hover:outline-none hover:box-shadow-none" style={{ textAlign: 'center', textTransform: 'capitalize' }}>
+                          {sub.label}
+                        </RLink>
+                      ))}
                         </Stack>
-                      )}
-                    </details>
-                  </Box>
-                ))}
-                {navItem.moreLink && (
-                  <Link
-                    key="more"
-                    href={navItem.moreLink}
-                    height={9}
-                    onClick={onClose}
-                    className="bg-zinc-100 rounded-md hover:bg-brown-custom hover:text-white custom-link"
-                    style={{ textAlign: 'center', textTransform: 'capitalize' }}>
-                    More Brands
-                  </Link>
-                )}
-              </Stack>
-            )}
-          </details>
+
+                      </Collapse>
+                    </>
+                  ) : (
+                    <RLink to={child.href} className="group mt-1 text-center inline-flex w-full items-center font-futurabold justify-center rounded-none vp-bo px-6 py-2 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover  focus:ring-0 hover:outline-none hover:box-shadow-none"style={{ textAlign: 'center', textTransform: 'capitalize' }}>
+                      {child.label}
+                    </RLink>
+                  )}
+                </Box>
+              ))}
+              {navItem.moreLink && (
+                <RLink to={navItem.moreLink} onClick={onClose} h={9} className="bg-gray-200 rounded-none hover:bg-brown-custom hover:text-white custom-link py-3" style={{ textAlign: 'center', textTransform: 'capitalize' }}>
+                  More Brands
+                </RLink>
+              )}
+            </Stack>
+          </Collapse>
         </Box>
       ))}
     </VStack>
