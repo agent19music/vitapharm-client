@@ -94,7 +94,7 @@ export default function NavbarWithExtensions() {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Menu</DrawerHeader>
+          <DrawerHeader className='font-futuramedbold'>Menu</DrawerHeader>
           <DrawerBody>
             <MobileNav navItems={NAV_ITEMS} onClose={onClose} />
           </DrawerBody>
@@ -241,7 +241,7 @@ const MobileNav = ({ navItems, onClose }) => {
     <VStack align="start" spacing={4}>
       {navItems.map((navItem) => (
         <Box key={navItem.label} w="full">
-          <Button onClick={() => handleToggle(navItem.label)} w="full" justifyContent="flex-start" variant='solid' className='outline-none'>
+          <Button onClick={() => handleToggle(navItem.label)} w="full" rounded='0' color= '#ffff'  _hover={{ bg: '#ffff' ,color: '#693F2D'}} _focus={{ bg: '#ffff' ,color: '#693F2D'}} bg= '#693F2D'justifyContent="flex-start" variant='solid' className='outline-none font-futuramedbold'>
             {navItem.label}
           </Button>
           <Collapse in={show[navItem.label]}>
@@ -250,17 +250,20 @@ const MobileNav = ({ navItems, onClose }) => {
                 <Box key={child.label}>
                   {child.subCategories ? (
                     <>
-                      <Button onClick={() => handleSubToggle(child.label)} w="full" justifyContent="flex-start" variant='solid' className='outline-none capitalize'>
+                      <Button onClick={() => handleSubToggle(child.label)} w="full" rounded='0'  color= '#ffff'  _hover={{ bg: '#ffff' ,color: '#693F2D'}} _focus={{ bg: '#ffff' ,color: '#693F2D'}} bg= '#693F2D' justifyContent="flex-start" variant='solid' className='outline-none capitalize font-futuramedbold rounded-none mt-1'>
                         {child.label}
                       </Button>
                       <Collapse in={showSub[child.label]}>
-                        <Stack pl={4} spacing={2} maxH="300px" overflowY={child.subCategories?.length > 11 ? 'scroll' : 'auto'}>
-                          {child.subCategories?.map((sub) => (
-                            <RLink key={sub.label} to={sub.href} onClick={onClose} h={9} className="group mt-1 text-center inline-flex w-full items-center font-futurabold justify-center rounded-none vp-bo px-6 py-2 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover  focus:ring-0 hover:outline-none hover:box-shadow-none"style={{ textAlign: 'center', textTransform: 'capitalize' }}>
-                              {sub.label}
-                            </RLink>
-                          ))}
+                      <Stack pl={4} spacing={2} maxH="300px" overflowY={child.subCategories?.length > 11 ? 'scroll' : 'auto'}>
+                    {child.subCategories
+                      ?.sort((a, b) => a.label.localeCompare(b.label))
+                      .map((sub) => (
+                        <RLink key={sub.label} to={sub.href} onClick={onClose} h={9} className="group mt-1 text-center inline-flex w-full items-center font-futurabold justify-center rounded-none vp-bo px-6 py-2 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:text-white custom-hover  focus:ring-0 hover:outline-none hover:box-shadow-none" style={{ textAlign: 'center', textTransform: 'capitalize' }}>
+                          {sub.label}
+                        </RLink>
+                      ))}
                         </Stack>
+
                       </Collapse>
                     </>
                   ) : (
