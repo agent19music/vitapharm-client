@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, VStack, FormErrorMessage, Select, Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Input, VStack, FormErrorMessage, Select, Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react';
 import { format, isFuture } from 'date-fns';
 import { formatInTimeZone } from 'date-fns-tz';
 import { UserContext } from '../context/UserContext';
@@ -98,57 +98,58 @@ function CustomerForm() {
   return (
     <>
     <Header/>
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100 py-28'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100 py-9'>
+      
       <div className="mb-8">
         <img src={logo} alt="Logo" className="w-24 h-24 mx-auto" />
-        <h1 className="text-2xl font-bold text-center mt-4 font-futurabold">
+        <h1 className="text-2xl  text-center mt-4 font-futuramedbold">
           Welcome to Vitapharm Beauty Appointment Booking
         </h1>
       </div>
-      <div className="mx-auto w-full max-w-[550px] bg-white p-8 rounded-md shadow-md">
+      <div className="mx-auto w-full max-w-[550px] bg-white p-8 rounded-none shadow-md">
         {!success ? (
           <form onSubmit={handleSubmit}>
             <div className="mb-5">
-              <label htmlFor="firstName" className="mb-3 block text-base font-medium text-[#07074D]">First Name</label>
+              <label htmlFor="firstName" className="mb-3 block text-base font-futurabold text-[#07074D]">First Name</label>
               <input
                 type="text"
                 id="firstName"
                 value={firstName}
                 onChange={handleFirstNameChange}
-                className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none ${isFirstNameError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
+                className={`w-full rounded-none border border-[#e0e0e0] bg-white py-3 px-6 text-base font-futurabold text-[#6B7280] outline-none ${isFirstNameError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
               />
               {isFirstNameError && (
                 <p className="text-red-500 text-sm mt-2">First name is required.</p>
               )}
             </div>
             <div className="mb-5">
-              <label htmlFor="lastName" className="mb-3 block text-base font-medium text-[#07074D]">Last Name</label>
+              <label htmlFor="lastName" className="mb-3 block text-base font-futurabold text-[#07074D]">Last Name</label>
               <input
                 type="text"
                 id="lastName"
                 value={lastName}
                 onChange={handleLastNameChange}
-                className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none ${isLastNameError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
+                className={`w-full rounded-none border border-[#e0e0e0] bg-white py-3 px-6 text-base font-futurabold text-[#6B7280] outline-none ${isLastNameError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
               />
               {isLastNameError && (
                 <p className="text-red-500 text-sm mt-2">Last name is required.</p>
               )}
             </div>
             <div className="mb-5">
-              <label htmlFor="email" className="mb-3 block text-base font-medium text-[#07074D]">Email Address</label>
+              <label htmlFor="email" className="mb-3 block text-base font-futurabold text-[#07074D]">Email Address</label>
               <input
                 type="email"
                 id="email"
                 value={email}
                 onChange={handleEmailChange}
-                className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none ${isEmailError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
+                className={`w-full rounded-none border border-[#e0e0e0] bg-white py-3 px-6 text-base font-futurabold text-[#6B7280] outline-none ${isEmailError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
               />
               {isEmailError && (
                 <p className="text-red-500 text-sm mt-2">Email is required and should include '@'.</p>
               )}
             </div>
             <div className="mb-5">
-              <label htmlFor="phone" className="mb-3 block text-base font-medium text-[#07074D]">Phone</label>
+              <label htmlFor="phone" className="mb-3 block text-base font-futurabold text-[#07074D]">Phone</label>
               <div className="flex">
               
                 <input
@@ -156,7 +157,7 @@ function CustomerForm() {
                   id="phone"
                   value={phone}
                   onChange={handlePhoneChange}
-                  className={`w-full rounded-r-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none ${isPhoneError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
+                  className={`w-full rounded-r-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-futurabold text-[#6B7280] outline-none ${isPhoneError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
                 />
               </div>
               {isPhoneError && (
@@ -164,30 +165,30 @@ function CustomerForm() {
               )}
             </div>
             <div className="mb-5">
-              <label htmlFor="date" className="mb-3 block text-base font-medium text-[#07074D]">Appointment Date</label>
+              <label htmlFor="date" className="mb-3 block text-base font-futurabold text-[#07074D]">Appointment Date</label>
               <input
                 type="date"
                 id="date"
                 min={today}
                 value={date}
                 onChange={handleDateChange}
-                className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none ${isDateError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
+                className={`w-full rounded-none border border-[#e0e0e0] bg-white py-3 px-6 text-base font-futurabold text-[#6B7280] outline-none ${isDateError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
               />
               {isDateError && (
                 <p className="text-red-500 text-sm mt-2">Date should be later than today.</p>
               )}
             </div>
             <div className="mb-5">
-              <label htmlFor="appointmentType" className="mb-3 block text-base font-medium text-[#07074D]">Appointment Type</label>
+              <label htmlFor="appointmentType" className="mb-3 block text-base font-futurabold text-[#07074D]">Appointment Type</label>
               <select
                 id="appointmentType"
                 value={appointmentType}
                 onChange={handleAppointmentTypeChange}
-                className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none ${isAppointmentTypeError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
+                className={`w-full rounded-none border border-[#e0e0e0] bg-white py-3 px-6 text-base font-futurabold text-[#6B7280] outline-none ${isAppointmentTypeError ? 'border-red-500' : 'focus:border-[#6A64F1] focus:shadow-md'}`}
               >
                 <option value="" disabled>Select Appointment Type</option>
                 {appointmentOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
+                  <option key={option.value} value={option.value} className='hover:bg-brown-custom'>
                     {option.label}
                   </option>
                 ))}
@@ -196,11 +197,12 @@ function CustomerForm() {
                 <p className="text-red-500 text-sm mt-2">Appointment type is required.</p>
               )}
             </div>
-            <div>
-              <button className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                Submit
-              </button>
-            </div>
+            <div className="flex justify-center mt-2">
+  <button className="hover:shadow-form rounded-none bg-brown-custom py-3 w-80 text-center text-base font-futurabold text-white outline-none">
+    Submit
+  </button>
+</div>
+
           </form>
         ) : (
           <Alert
