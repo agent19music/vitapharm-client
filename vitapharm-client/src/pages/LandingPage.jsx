@@ -20,7 +20,7 @@ export default function LandingPage() {
   }, []);
 
   const slides = ['/C1.png'];
-  const mobileSlides = ['/CM1.png', '/CM1.png', '/CM1.png', '/CM1.png'];
+  const mobileSlides = ['/CM3.png', '/CM4.png', '/CM5.png', '/CM1.png', '/CM2.png'];
 
   
 
@@ -33,7 +33,7 @@ export default function LandingPage() {
       <section className='bg max-w-screen my-3 mx-0 carousel mobileslides'>
         <Carousel autoSlide={true}>
           {mobileSlides.map((s, i) => (
-            <img className='banner-slide ' key={i} src={s} />
+            <img className='banner-slide min-w-full ' key={i} src={s} />
           ))}
         </Carousel>
       </section>
