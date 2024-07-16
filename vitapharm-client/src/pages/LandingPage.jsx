@@ -78,7 +78,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section>
+      <section className='my-5'>
       <SocialVideos/>
       </section>
       <section>
