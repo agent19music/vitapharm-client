@@ -6,6 +6,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import SocialVideos from '../components/SocialVideos';
 import Header from '../components/Header';
 import BannerCarousel from '../components/Carousel';
+import RecentlyAddedProducts from '../components/RecentlyAddedProducts'
 
 export default function LandingPage() {
 
@@ -40,6 +41,9 @@ export default function LandingPage() {
    
       <section className='wrxx my-5' id='wrxx'>  
         <ProductsOnOffer />
+      </section>
+       <section className='wrxx my-5' >  
+        <RecentlyAddedProducts />
       </section>
       <section className='my-5 '>
         <div className='container flex justify-center items-center mx-auto services'>
