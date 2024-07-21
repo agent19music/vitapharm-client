@@ -87,7 +87,7 @@ const ProductsOnOffer = () => {
     }
   }, [productsOnOffer]);
 
-  onst scrollLeft = () => {
+  const scrollLeft = () => {
   setStart(Math.max(0, start - 4));
 };
 
