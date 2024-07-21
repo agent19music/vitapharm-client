@@ -8,7 +8,8 @@ import Footer from '../components/ModernFooter'
 
 
 export default function ProductsOnOfferPage() {
-    const {productsOnOffer} = useContext(ProductContext)
+    const {productsOnOffer, addToCart} = useContext(ProductContext)
+    console.log(productsOnOffer);
 
     const SkeletonCard = () => (
       <div className="group border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border bg-zinc-100 shadow-md product-card">
@@ -25,11 +26,16 @@ export default function ProductsOnOfferPage() {
     return (
         <div className="search-results-page mx-auto">
           <Header/>
+          
+         {productsOnOffer.message !== '' && <div className='flex justify-center items-center h-full py-64'>
+            <h2 className='font-futurabold'> OOPS ! NO PRODUCTS CURRENTLY ON OFFER</h2>
+            {/* <h5 className='font-futura'>Shop around to get product here !!</h5> */}
+          </div>}
           <SimpleGrid columns={[1, 2, 3]} spacing="40px" width="100%" justifyItems="center" className='my-8'>
-            {productsOnOffer.length === 0 ? 
+            {productsOnOffer && productsOnOffer.length === 0 ? 
               Array(6).fill().map((_, i) => <SkeletonCard key={i} />) : 
-              productsOnOffer.map((product, index) => (
-                <ProductOnOfferCard key={index} product={product} addToCart={() => {}} />
+              productsOnOffer.length > 1 && productsOnOffer.map((product, index) => (
+                <ProductOnOfferCard key={index} product={product} addToCart={addToCart} />
               ))
             }
           </SimpleGrid>

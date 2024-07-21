@@ -1,4 +1,4 @@
-import React from 'react';
+import {React} from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ShoppingBag } from 'react-feather';
 
@@ -18,7 +18,7 @@ const ProductOnOfferCard = ({ product, addToCart }) => {
 
   return (
     <div className="group relative border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border shadow-md">
-    <Link to={`/products/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
+    <div className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
       <img className="peer absolute top-0 right-0 h-full w-full object-cover"  src={`${product.images[0]?.url}`} alt="product image" />
       {product.images.length > 1 && (
         <>
@@ -36,7 +36,7 @@ const ProductOnOfferCard = ({ product, addToCart }) => {
       <ShoppingBag className=" h-5 w-5" color="currentColor" />
     </Link>
       </div>
-    </Link>
+    </div>
     <div className="mt-4 px-5 pb-5">
       <a href="#">
         <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>

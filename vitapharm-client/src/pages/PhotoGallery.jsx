@@ -8,9 +8,9 @@ const images = [
   'booklady.jpg',
   'booklady.jpg',
   'booklady.jpg',
-  'booklady2.jpg',
-  'booklady2.jpg',
-  'booklady2.jpg',
+  'model2.jpeg',
+  'model3.jpeg',
+  'model1.jpeg',
   // Add more image URLs as needed
 ];
 
@@ -23,7 +23,7 @@ export default function PhotoGallery() {
         <GridItem key={index}>
           <Tooltip label="Zoom In">
             <Zoom>
-              <img src={src} alt={`Image ${index + 1}`} className="w-150 h-50 cursor-pointer object-cover" />
+              <img src={src} alt={`Image ${index + 1}`} className="w-150 max-h-auto cursor-pointer object-cover" />
             </Zoom>
           </Tooltip>
         </GridItem>
