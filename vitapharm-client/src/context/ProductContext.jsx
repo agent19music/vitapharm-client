@@ -13,6 +13,7 @@ export default function ProductProvider({ children }) {
 
   const [products, setProducts] = useState([]);
   const [productsOnOffer, setProductsOnOffer] =useState([])
+  const [recentlyAddedProducts, setRecentlyAddedProducts] =useState([])
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [filteredSubCategories, setFilteredSubCategories] = useState([]);
   const [filteredBrands, setFiltredBrands] = useState([]);
@@ -109,6 +110,13 @@ export default function ProductProvider({ children }) {
     }
   }, [sessionToken]);
   console.log(productsOnOffer);
+
+ useEffect(() => {
+    const topProducts = products
+      .sort((a, b) => b.id - a.id)
+      .slice(0, 8);
+    setRecentlyAddedProducts(topProducts);
+  }, [products]);
 
   const addToCart = async (id) => {
     if (!sessionToken) return; // Handle missing token
@@ -398,7 +406,8 @@ export default function ProductProvider({ children }) {
     productsOnOffer,
     subCategories,
     filteredSubCategories,
-    setSubCategory
+    setSubCategory,
+    recentlyAddedProducts
   };
 
   return (

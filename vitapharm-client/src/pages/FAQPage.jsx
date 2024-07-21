@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { ChevronRightIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import Footer from '../components/ModernFooter';
+import Header from '../components/Header'
 
 const faqData = [
     {
@@ -27,6 +28,7 @@ const FAQPage = () => {
 
     return (
         <div>
+        <Header/>
         <div className="py-24 px-8 max-w-5xl mx-auto flex flex-col md:flex-row gap-12">
             <div className="flex flex-col text-left basis-1/2">
                 <p className="inline-block font-semibold text-primary mb-4">Vitapharm FAQ</p>
