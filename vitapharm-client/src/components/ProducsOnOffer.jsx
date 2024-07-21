@@ -87,13 +87,13 @@ const ProductsOnOffer = () => {
     }
   }, [productsOnOffer]);
 
-  const scrollLeft = () => {
-    setStart(Math.max(0, start - 1));
-  };
+  onst scrollLeft = () => {
+  setStart(Math.max(0, start - 4));
+};
 
-  const scrollRight = () => {
-    setStart(Math.min(products.length - 1, start + 1));
-  };
+const scrollRight = () => {
+  setStart(Math.min(productsOnOffer.length - 4, start + 4));
+};
 
   const handlers = useSwipeable({
     onSwipedLeft: () => scrollRight(),
@@ -110,18 +110,20 @@ const ProductsOnOffer = () => {
       }      </div>
       {productsOnOffer.length > 4 && (
         <div className="space-1 align-bottom self-end mr-24 buttons">
-          <button
-            onClick={scrollLeft}
-            className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
-          >
-            <ChevronLeft size={40} />
-          </button>
-          <button
-            onClick={scrollRight}
-            className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
-          >
-            <ChevronRight size={40} />
-          </button>
+           <button
+        onClick={scrollLeft}
+        className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        disabled={start === 0}
+      >
+        <ChevronLeft size={40} />
+      </button>
+      <button
+        onClick={scrollRight}
+        className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start >= productsOnOffer.length - 4 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        disabled={start >= recentlyAddedProducts.length - 4}
+      >
+        <ChevronRight size={40} />
+      </button>
         </div>
       )}
       <div
