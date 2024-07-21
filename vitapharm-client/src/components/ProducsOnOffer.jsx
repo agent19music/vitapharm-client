@@ -82,7 +82,7 @@ const ProductsOnOffer = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (productsOnOffer.length > 0) {
+    if (productsOnOffer.length !== 0) {
       setLoading(false);
     }
   }, [productsOnOffer]);
@@ -106,8 +106,8 @@ const ProductsOnOffer = () => {
     <div className="overflow-container ">
     <div className="flex flex-col justify-center min-w-screen items-center relative">
       <div className="absolute left-0 top-0 ml-2 mt-2">
-        <span className="relative justify-start m-2 rounded-none bg-red-600 px-2 text-center text-md font-futurabold text-white">HOT DEALS</span>
-      </div>
+{  productsOnOffer.message == ''   &&   <span className="relative justify-start m-2 rounded-none bg-red-600 px-2 text-center text-md font-futurabold text-white">HOT DEALS</span>
+      }      </div>
       {productsOnOffer.length > 4 && (
         <div className="space-1 align-bottom self-end mr-24 buttons">
           <button
@@ -130,7 +130,7 @@ const ProductsOnOffer = () => {
       >
         {loading
           ? [1, 2, 3, 4].map((i) => <SkeletonCard key={i} />)
-          : productsOnOffer.slice(start, start + 4).map((product, index) => (
+          : productsOnOffer.length >1 && productsOnOffer.slice(start, start + 4).map((product, index) => (
               <ProductCard key={index} product={product} addToCart={addToCart} />
             ))}
       </div>
