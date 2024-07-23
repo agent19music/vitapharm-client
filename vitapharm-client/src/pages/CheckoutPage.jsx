@@ -76,7 +76,9 @@ export default function CheckoutPage() {
 
   const handleShippingChange = (e) => {
     setShippingOption(e.target.value);
-    if (e.target.value === 'within_nairobi') {
+    if (discountedTotal >= 8000) {
+      setShippingCost(0);
+    } else if (e.target.value === 'within_nairobi') {
       setShippingCost(150);
     } else if (e.target.value === 'outskirts') {
       setShippingCost(250);
@@ -84,6 +86,7 @@ export default function CheckoutPage() {
       setShippingCost(0);
     }
   };
+
 
   const handlePaymentChange = (e) => {
     setPaymentOption(e.target.value);
@@ -245,10 +248,15 @@ export default function CheckoutPage() {
 };
 
 
-useEffect(() => {
-  setDiscountedTotal(promoApplied ? total - (total * discountPercentage / 100) : total);
-  setOriginalTotal(total + shippingCost);
-}, [total, promoApplied, discountPercentage]);
+ useEffect(() => {
+    setDiscountedTotal(promoApplied ? total - (total * discountPercentage / 100) : total);
+    setOriginalTotal(total + shippingCost);
+
+    // Update shipping cost to 0 if discounted total is 8000 or more
+    if (discountedTotal >= 8000) {
+      setShippingCost(0);
+    }
+  }, [total, promoApplied, discountPercentage, discountedTotal, shippingCost]);
 
   return (
     <div>
