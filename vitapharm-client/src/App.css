@@ -191,7 +191,11 @@ h3.image-categories-titles{
   div.mobile-primary-bar{
 	display: none;
   }
+  div.mobile-scroll-products{
+  	display : none;
   }
+  }
+
 span.edit-cartamount:hover{
 	transform: scale(1.2);
 	transition: transform 0.3s ease;
@@ -206,6 +210,7 @@ span.edit-cartamount:hover{
 	display: flex;
   }
 
+   
 @media screen and (max-width: 601px){
 	div.free-shipping-banner{
 		display: none ;
@@ -213,6 +218,9 @@ span.edit-cartamount:hover{
 	}
 	section.desktopslides{
       display: none;
+	}
+	div.desktop-noscroll-products{
+		display: none;
 	}
 	section.image-categories{
 		display: flex;
@@ -251,6 +259,8 @@ span.edit-cartamount:hover{
 		margin-left: 2vw;
 	  }
 	  
+
+
 	  .product-list {
 		display: flex;
 		flex-direction: row;
@@ -265,6 +275,11 @@ span.edit-cartamount:hover{
 		flex-shrink: 0; /* Prevent the card from shrinking */
 	  }
 	
+	 .overflow-container > div > div > div { /* This is the container holding all brand rows */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 5px;
+  }
+
 	  .buttons {
 		display: none;
 	  }
