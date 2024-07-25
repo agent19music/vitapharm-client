@@ -7,7 +7,7 @@ import Header from '../components/Header';
 import Footer from '../components/ModernFooter';
 
 const SearchResultsPage = () => {
-  const { products } = useContext(ProductContext);
+  const { products, addToCart } = useContext(ProductContext);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get('query');
@@ -26,7 +26,7 @@ const SearchResultsPage = () => {
       <Header/>
       <SimpleGrid columns={[1, 2, 3]} spacing="40px" width="100%" justifyItems="center">
         {filteredProducts.map((product, index) => (
-          <ProductCard key={index} product={product} addToCart={() => {}} />
+          <ProductCard key={index} product={product} addToCart={addToCart} />
         ))}
       </SimpleGrid>
       <Footer/>

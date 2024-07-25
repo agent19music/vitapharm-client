@@ -13,8 +13,8 @@ export default function UserProvider({ children }) {
   );
   const [currentUser, setCurrentUser] = useState(null);
 
-  // const apiEndpoint = 'http://127.0.0.1:5000/api/vitapharm';
-  const apiEndpoint = 'http://vitapharm-server-env.eba-k5q68s3p.eu-north-1.elasticbeanstalk.com/api/vitapharm'
+    const apiEndpoint = 'https://vitapharmcosmetics.co.ke/api/vitapharm';
+  // const apiEndpoint = 'http://vitapharm-server-env.eba-k5q68s3p.eu-north-1.elasticbeanstalk.com/api/vitapharm'
 
 
   // function login(username, password) {
@@ -103,7 +103,6 @@ export default function UserProvider({ children }) {
 
   const submitAppointment = async (data) => {
     try {
-        console.log("Submitting appointment:", data); // Log before sending
         const response = await fetch(`${apiEndpoint}/book`, {
             method: 'POST',
             headers: {
@@ -111,7 +110,6 @@ export default function UserProvider({ children }) {
             },
             body: JSON.stringify(data),
         });
-        console.log(response)
         if (!response.ok) {
             throw new Error('Failed to add appointment');
         }

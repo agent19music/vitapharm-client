@@ -7,7 +7,6 @@ import Footer from '../components/ModernFooter'
 
 export default function SingleBrand() {
   const {brand} = useParams()
-  console.log(brand);
   const {setBrand} = useContext(ProductContext)
   setBrand(brand)
 

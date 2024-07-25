@@ -86,7 +86,6 @@ export default function ProductProvider({ children }) {
       fetchData(sessionToken);
     }
   }, [sessionToken]);
-  console.log(products);
 
   useEffect(() => {
     const fetchData = async (token) => {
@@ -109,7 +108,6 @@ export default function ProductProvider({ children }) {
       fetchData(sessionToken);
     }
   }, [sessionToken]);
-  console.log(productsOnOffer);
 
  useEffect(() => {
     const topProducts = products
@@ -238,7 +236,6 @@ export default function ProductProvider({ children }) {
         setUpdateCart(prev => !prev);
       } else {
         const updatedCart = await response.json();
-        console.log('Updated Cart Response:', updatedCart);
       }
     } catch (error) {
       console.error('Error updating cart item quantity:', error);
@@ -337,7 +334,6 @@ export default function ProductProvider({ children }) {
 
   let categories = extractCategories(products);
   let brands = extractBrands(products);
-  console.log(brands);
 
 
   const extractFirstLetter = (str) => {

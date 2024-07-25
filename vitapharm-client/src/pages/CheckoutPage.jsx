@@ -94,7 +94,6 @@ export default function CheckoutPage() {
 
   const onSuccess = (reference) => {
     verifyPayment(reference);
-    console.log(reference);
   };
   
   const handleClose = () => {
@@ -111,8 +110,6 @@ export default function CheckoutPage() {
   
     if (!isFirstNameError && !isLastNameError && !isEmailError && !isTownError && !isPhoneError && !isAddressError) {
       try {
-        console.log(formData);
-        console.log(discountedTotal+shippingCost);
         const response = await fetch(`${apiEndpoint}/create-order`, {
           method: 'POST',
           headers: {
@@ -167,7 +164,6 @@ export default function CheckoutPage() {
     text: "Pay Now",
     onSuccess: (reference) => {
       verifyPayment(reference);
-      console.log(reference);
     },
     onClose: () => {
       toast({
@@ -221,14 +217,12 @@ export default function CheckoutPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(promoCode);
     setPromoSubmitted(true)
     setPromoLoading(true);
     if (promoCode !== '') {
         try {
             const response = await fetch(`${apiEndpoint}/discount/validate/${promoCode}`);
             const result = await response.json();
-            console.log(result);
             if (response.ok) {
                 setPromoApplied(true);
                 setDiscountPercentage(result.discount_percentage);
@@ -541,7 +535,7 @@ export default function CheckoutPage() {
   >
     <AlertDialogOverlay>
       <AlertDialogContent>
-        <AlertDialogHeader>Alert</AlertDialogHeader>
+        <AlertDialogHeader></AlertDialogHeader>
         <AlertDialogBody>
           {dialogContent}
         </AlertDialogBody>
