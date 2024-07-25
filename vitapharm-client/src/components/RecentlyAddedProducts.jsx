@@ -71,7 +71,6 @@ const RecentlyAddedProducts = () => {
   const [start, setStart] = useState(0);
   const [loading, setLoading] = useState(true);
 
-console.log(recentlyAddedProducts)
   useEffect(() => {
     if (recentlyAddedProducts.length !== 0) {
       setLoading(false);

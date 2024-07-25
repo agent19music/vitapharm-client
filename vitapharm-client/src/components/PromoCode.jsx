@@ -30,14 +30,12 @@ export default function PromoCode() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(promoCode);
         setPromoSubmitted(true)
         setPromoLoading(true);
         if (promoCode !== '') {
             try {
                 const response = await fetch(`${apiEndpoint}/discount/validate/${promoCode}`);
                 const result = await response.json();
-                console.log(result);
                 if (response.ok) {
                     setPromoApplied(true);
                     setDiscountPercentage(result.discount_percentage);

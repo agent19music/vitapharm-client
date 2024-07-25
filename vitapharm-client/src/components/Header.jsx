@@ -7,7 +7,6 @@ import { Search } from 'react-feather';
 import WhatsappFloatingActionButton from './WhatsappFloatingActionButton';
 import { InputGroup, Input, InputRightElement, Popover, PopoverTrigger, PopoverContent, Box, SimpleGrid, Text, Link, Flex, Image, Button, VStack, StackDivider } from '@chakra-ui/react';
 import { ProductContext } from '../context/ProductContext';
-import Navbar from './MegaMenu';
 import Breadcrumbs from '../components/Breadcrumb'
 
 export default function Header() {
@@ -48,7 +47,6 @@ export default function Header() {
 
     setSearchResults(filtered);
   }
-  console.log(searchResults);
 
   const handleChange = (e) => {
     const query = e.target.value;
@@ -159,9 +157,9 @@ export default function Header() {
 
                 {searchResults.length > 9 && (
                   <RouterLink to={`/search-results?query=${searchQuery}`}>
-                    <Button mt={4} colorScheme="teal" variant="outline">
+                    <button className='w-full bg-brown-custom text-white mt-4 py-2 rounded-none font-futurabold'>
                       View All Results
-                    </Button>
+                    </button>
                   </RouterLink>
                 )}
               </Box>
@@ -244,9 +242,9 @@ export default function Header() {
                 </SimpleGrid>
                 {searchResults.length > 9 && (
                   <RouterLink to={`/search-results?query=${searchQuery}`}>
-                    <Button mt={4} colorScheme="teal" variant="outline">
+                    <button  className='w-full bg-brown-custom text-white mt-4 py-2 rounded-none font-futurabold'>
                       View All Results
-                    </Button>
+                    </button>
                   </RouterLink>
                 )}
               </Box>

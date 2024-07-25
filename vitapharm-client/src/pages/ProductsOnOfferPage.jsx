@@ -9,7 +9,6 @@ import Footer from '../components/ModernFooter'
 
 export default function ProductsOnOfferPage() {
     const {productsOnOffer, addToCart} = useContext(ProductContext)
-    console.log(productsOnOffer);
 
     const SkeletonCard = () => (
       <div className="group border-zinc-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden border bg-zinc-100 shadow-md product-card">
