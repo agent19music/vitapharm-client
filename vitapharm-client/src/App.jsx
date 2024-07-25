@@ -24,6 +24,8 @@ import ProductsOnOfferPage from './pages/ProductsOnOfferPage';
 import SubCategoriesPage from './pages/SubCategoriesPage';
 import CategoriesPage from './pages/CategoriesPage';
 import AllProductsPage from './pages/AllProductsPage';
+import WhoWeAre from './pages/WhoWeAre'
+import FounderPage from './pages/OurFounder'
 
 
 function App() {
@@ -54,6 +56,8 @@ function App() {
               <Route path="/FAQ" element={<FAQPage />} />
               <Route path="/search-results" element={<SearchResultsPage />} />
               <Route path="/limitedtimeoffer" element={<ProductsOnOfferPage />} />
+               <Route path="/whoweare" element={<WhoWeAre />} />
+                <Route path="/ourfounder" element={<FounderPage />} />
 
             </Routes>
           
