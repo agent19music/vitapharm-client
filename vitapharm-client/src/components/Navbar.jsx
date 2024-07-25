@@ -64,6 +64,13 @@ export default function NavbarWithExtensions() {
         { label: 'Limited Time Offers', href: '/limitedtimeoffer' },
       ],
     },
+    {
+      label: 'MORE',
+      children: [
+        { label: 'Our Founder', href: '/ourfounder' },
+         { label: 'Who we are', href: '/whoweare' },
+      ],
+    },
   ];
 
   return (
