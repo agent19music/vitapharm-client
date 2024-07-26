@@ -36,7 +36,7 @@ const ProductCard = ({ product, addToCart }) => {
         </a>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-futura font-bold text-black">Ksh {price !== null ? price : "N/A"}</span>
+            <span className="text-3xl font-futura font-bold text-black">{price !== null ? price : "N/A"}</span>
             <span className="text-1.5xl font-futura font-bold text-black ml-3" style={{ lineHeight: '0.5' }}>{size !== null ? size.toUpperCase() : "N/A"}</span>
           </p>
         </div>
@@ -95,6 +95,10 @@ const Category = () => {
       ),
     }));
   };
+
+  useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
   return (
     <>
