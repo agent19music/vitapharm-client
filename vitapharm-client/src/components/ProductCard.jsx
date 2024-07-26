@@ -12,7 +12,7 @@ const ProductCard = ({ product, addToCart }) => {
 
 
   return (
-  <div className="product-card group relative border-zinc-100/30  lg:w-72  flex flex-col self-center overflow-hidden border shadow-md lg:max-h-96 sm:ml-10">
+  <div className="search-results-product-card group relative border-zinc-100/30  lg:w-72  flex flex-col self-center overflow-hidden border shadow-md lg:max-h-96 sm:ml-10">
       <div className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
         <img className="peer absolute top-0 right-0 h-full w-full object-cover"  src={`${product.images[0]?.url}`} alt="product image" />
         {product.images.length > 1 && (
@@ -36,7 +36,7 @@ const ProductCard = ({ product, addToCart }) => {
         </a>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-futura font-bold text-black">Ksh {price !== null ? price : "N/A"}</span>
+            <span className="text-3xl font-futura font-bold text-black">{price !== null ? price : "N/A"}</span>
             <span className="text-1.5xl font-futura font-bold text-black ml-3" style={{ lineHeight: '0.5' }}>{size !== null ? size.toUpperCase() : "N/A"}</span>
           </p>
         </div>
