@@ -309,28 +309,27 @@ export default function ProductProvider({ children }) {
   }
 
   useEffect(() => {
-    // Create an object to collect subcategories for each category
-    const categoryMap = {};
+  const categoryMap = {};
 
-    products.forEach(product => {
-      const { category, sub_category } = product;
-      if (categoryMap[category]) {
-        if (!categoryMap[category].includes(sub_category)) {
-          categoryMap[category].push(sub_category);
-        }
-      } else {
-        categoryMap[category] = [sub_category];
-      }
-    });
+  products.forEach(product => {
+    const category = product.category.toLowerCase(); // Convert to lowercase
+    const sub_category = product.sub_category.toLowerCase(); // Convert to lowercase
+    
+    if (!categoryMap[category]) {
+      categoryMap[category] = new Set(); // Use Set to avoid duplicates
+    }
+    categoryMap[category].add(sub_category);
+  });
 
-    // Transform the object into the desired array format
-    const categoryArray = Object.keys(categoryMap).map(category => ({
-      category,
-      sub_categories: categoryMap[category]
-    }));
+  const categoryArray = Object.entries(categoryMap).map(([category, subCategories]) => ({
+    category,
+    sub_categories: Array.from(subCategories) // Convert Set to array
+  }));
 
-    setSubCategories(categoryArray);
-  }, [products]);
+  setSubCategories(categoryArray);
+}, [products]); 
+
+
 
   let categories = extractCategories(products);
   let brands = extractBrands(products);
@@ -356,12 +355,12 @@ export default function ProductProvider({ children }) {
 
   useEffect(() => {
     if (subCategory) {
-      const filtered = products.filter(product => product.sub_category === subCategory);
+      const filtered = products.filter(product => product.sub_category.toLowerCase() === subCategory.toLowerCase());
       setFilteredSubCategories(filtered);
     } else {
       setFilteredSubCategories(products);
     }
-  }, [category, products]);
+  }, [subCategory, products]);
 
   useEffect(() => {
     if (brand) {
