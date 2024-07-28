@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useEffect} from 'react';
 import founderImage1 from '/cessjourney.webp'; // Replace with your image paths
 import founderImage2 from '/cessjourney2.webp';
 import founderImage3 from '/cessjourney.jpg';
@@ -7,6 +7,17 @@ import Footer from '../components/ModernFooter'
 
 
 const FounderPage = () => {
+  useEffect(() => {
+    const scrollToMiddle = () => {
+      const middleY = Math.round(
+        (document.documentElement.scrollHeight - window.innerHeight) / 2
+      );
+
+      window.scrollTo({ top: middleY, behavior: 'smooth' }); 
+    };
+
+    scrollToMiddle(); // Scroll immediately on mount
+  }, []); // Empty dependency array ensures this runs only once 
   return (
     <>
     <Header/>
