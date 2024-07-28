@@ -9,7 +9,9 @@ import SubCategory from '../components/SubCategory';
 export default function SubCategoriesPage() {
     const {subcategory} = useParams();
     const {setSubCategory} = useContext(ProductContext);
+
     setSubCategory(subcategory);
+
   return (
     <div>
     <Header />

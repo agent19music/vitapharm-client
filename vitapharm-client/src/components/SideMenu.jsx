@@ -36,13 +36,13 @@ const SideMenu = () => {
         ) : (
           <ul className="-my-8">
             {cartItems.map((item, index) => (
-                                <li key={index} className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
-                                  <div className="shrink-0 relative">
-                                    <span className="absolute top-1 left-1 flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow sm:-top-2 sm:-right-2">{item.quantity}</span>
-                                    <img className="h-24 w-24 max-w-full rounded-lg object-cover mr-4" src={`${item.image_data[0].url}`} alt="" />
+                                <li key={index} className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0  py-8">
+                                  <div className="shrink-0 relative ">
+<span className="absolute top-1 left-1 flex h- w-8 items-center justify-center rounded-full border bg-white text-base font-medium text-gray-500 shadow sm:-top-2 sm:-right-2">{item.quantity}</span>
+                                    <img className="h-24 w-24 max-w-full rounded-lg object-cover ml-8" src={`${item.image_data[0].url}`} alt="" />
                                     <div className="absolute top-8 left-1 flex flex-col space-y-1">
-                                      <span className="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount select-none" onClick={() => incrementQuantity(item.product_id)}>+</span>
-                                      <span className="flex h-6 w-6 items-center justify-center rounded-full border bg-white text-sm font-medium text-gray-500 shadow edit-cartamount select-none" onClick={() => decrementQuantity(item.product_id)}>-</span>
+                                      <span className="flex h-8 w-8 items-center justify-center rounded-full border bg-white text-2xl font-medium text-gray-500 shadow edit-cartamount select-none" onClick={() => incrementQuantity(item.product_id)}>+</span>
+                                      <span className="flex h-8 w-8 items-center justify-center rounded-full border bg-white text-3xl font-medium text-gray-500 shadow edit-cartamount select-none" onClick={() => decrementQuantity(item.product_id)}>-</span>
                                     </div>
                                   </div>
 
