@@ -24,7 +24,7 @@ const Brands = () => {
                 <SkeletonCircle size='14' mb='5' />
                 <HStack spacing={4}>
                   {Array.from({ length: 3 }).map((_, idx) => (
-                    <Skeleton key={idx} height="40px" width="120px" />
+                    <Skeleton key={idx} height="40px" width="120px" className="rounded-full" />
                   ))}
                 </HStack>
               </Box>

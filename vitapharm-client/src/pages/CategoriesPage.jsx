@@ -14,7 +14,6 @@ const CategoriesPage = () => {
       const sorted = [...subCategories].sort((a, b) => a.category.localeCompare(b.category));
       sorted.forEach(category => {
         category.sub_categories.sort();
-        category.sub_categories = category.sub_categories.map(subCategory => subCategory.charAt(0).toUpperCase() + subCategory.slice(1));
       });
       setSortedSubCategories(sorted);
     }
@@ -62,7 +61,7 @@ const CategoriesPage = () => {
                   <Link
                     to={`/categories/${category.category}/${subCategory}`}
                     key={subIndex}
-                    className="mx-2 my-1 px-4 py-2 bg-brown-custom text-white hover:text-white rounded-full font-futurabold"
+                    className="mx-2 my-1 px-4 py-2 bg-brown-custom text-white hover:text-white rounded-full font-futurabold capitalize"
                   >
                     {subCategory}
                   </Link>
