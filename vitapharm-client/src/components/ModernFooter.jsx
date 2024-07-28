@@ -1,10 +1,12 @@
 import { React, useState, useContext } from 'react';
 import { ProductContext } from '../context/ProductContext';
+import { Spinner } from '@chakra-ui/react';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const { apiEndpoint } = useContext(ProductContext);
 
@@ -16,6 +18,7 @@ const Footer = () => {
     e.preventDefault();
     setSubmitted(true);
     if (!isEmailError) 
+      setIsLoading(true);
       {
       try {
         const response = await fetch(`${apiEndpoint}/customeremails`, {
@@ -26,20 +29,15 @@ const Footer = () => {
           body: JSON.stringify({ email }),
         });
 
-        if (!response.ok) {
-          throw new Error('There was a problem submitting your email.');
-        }
-
-        // Clear the email input after successful submission
-        setSuccess(true);
-        setEmail('');
-      } catch (error) {
+        } catch (error) {
         setError(error.message);
+      } finally {
+        setIsLoading(false); // Stop loading, regardless of success or failure
       }
     }
   };
 
-  const isEmailError = submitted && !email.includes('@');
+  const isEmailError = !success && submitted && !email.includes('@');
 
   return (
     <footer className="bg-brown-custom text-white p-10 font-futura">
