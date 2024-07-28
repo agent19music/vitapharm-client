@@ -5,6 +5,8 @@ import { SimpleGrid } from '@chakra-ui/react';
 import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
 import Footer from '../components/ModernFooter';
+import { Skeleton, Box } from '@chakra-ui/react';
+
 
 const SearchResultsPage = () => {
   const { products, addToCart } = useContext(ProductContext);
@@ -36,13 +38,21 @@ const SearchResultsPage = () => {
   
   return (
     <div className="search-results-page mx-auto">
-      <Header/>
-      <SimpleGrid columns={[1, 2, 3]} spacing="40px" width="100%" justifyItems="center">
-        {filteredProducts.map((product, index) => (
-          <ProductCard key={index} product={product} addToCart={addToCart} />
-        ))}
+      <Header />
+
+      <SimpleGrid columns={[1, 2, 3, 4]} spacing="40px" width="100%" justifyItems="center" className="py-8">
+        {filteredProducts.length === 0 ? (
+          // Render skeleton cards if filteredProducts is empty
+          Array.from({ length: 8 }).map((_, index) => <SkeletonCard key={index} />)
+        ) : (
+          // Render product cards if filteredProducts has items
+          filteredProducts.map((product, index) => (
+            <ProductCard key={index} product={product} addToCart={addToCart} />
+          ))
+        )}
       </SimpleGrid>
-      <Footer/>
+
+      <Footer />
     </div>
   );
   
