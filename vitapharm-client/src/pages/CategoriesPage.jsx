@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ProductContext } from '../context/ProductContext';
 import { Link } from 'react-router-dom';
-import { Box, VStack, Skeleton, SkeletonCircle, Heading, Text } from '@chakra-ui/react';
+import { Box, VStack, Skeleton, SkeletonCircle, Heading, Text, HStack } from '@chakra-ui/react';
 import Header from '../components/Header';
 import Footer from '../components/ModernFooter';
 
@@ -19,17 +19,22 @@ const CategoriesPage = () => {
     }
   }, [subCategories]);
 
+
   const skeletonLoading = (
-    <VStack spacing={8} align="center">
-      {Array.from({ length: 6 }).map((_, index) => (
-        <Box key={index} p={4} borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="md" width="300px">
-          <SkeletonCircle size="10" mb="4" />
-          <Skeleton height="20px" mb="2" />
-          <Skeleton height="20px" mb="2" />
-          <Skeleton height="20px" mb="2" />
-        </Box>
-      ))}
-    </VStack>
+  <div className="container py-8">
+  <VStack spacing={8}>
+    {Array.from({ length: 5 }).map((_, index) => (
+      <Box key={index} width="full" padding="6" bg="white">
+        <Skeleton height="56px" width="99px" mb="5" /> {/* Box-shaped skeleton */}
+        <HStack spacing={4}>
+          {Array.from({ length: 5 }).map((_, idx) => ( // 8 skeletons
+            <Skeleton key={idx} height="40px" width="80px" className="rounded-full" /> 
+          ))}
+        </HStack>
+      </Box>
+    ))}
+  </VStack>
+</div>
   );
 
   if (!sortedSubCategories || sortedSubCategories.length === 0) {
