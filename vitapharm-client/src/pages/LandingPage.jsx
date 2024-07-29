@@ -7,6 +7,8 @@ import SocialVideos from '../components/SocialVideos';
 import Header from '../components/Header';
 import BannerCarousel from '../components/Carousel';
 import RecentlyAddedProducts from '../components/RecentlyAddedProducts'
+import Popup from '../components/WelcomePopUp'
+
 
 export default function LandingPage() {
 
@@ -27,6 +29,8 @@ export default function LandingPage() {
 
   return (
     <div>
+            <Popup/>
+
       <Header/>
       <section className='bg max-w-screen my-3 carousel desktopslides'>
        <BannerCarousel/>
