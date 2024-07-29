@@ -21,7 +21,7 @@ export default function LandingPage() {
   }, []);
 
   const slides = ['/C1.png'];
-  const mobileSlides = ['/CM3.png', '/CM4.png', '/CM5.png', '/CM1.png', '/CM2.png'];
+  const mobileSlides = ['/CM7.png', '/CM6.png', '/CM1.png', '/CM2.png'];
 
   
 
