@@ -6,9 +6,9 @@ export default function WhatsappFloatingActionButton() {
   return (
       <FloatingWhatsApp
       
-      phoneNumber="+971582301251"
-      accountName="Vitapharm test"
-      avatar="/logo.png"
+      phoneNumber="+254708738083"
+      accountName="Vitapharm"
+      avatar="/logodark.jpeg"
       statusMessage="Typically replies within 20 minutes"
       chatMessage="Hello there! 👋 How can we help?"
       
