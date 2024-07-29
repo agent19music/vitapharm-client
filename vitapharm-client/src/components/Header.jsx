@@ -21,7 +21,8 @@ export default function Header() {
     'HOME OF SKIN CARE SOLUTIONS',
     'ALL YOUR FAVOURITE SKIN CARE BRANDS FOUND HERE',
     'NEED A SERVICE ? BOOK AN APPOINTMENT FOR FREE !',
-    'THE BEST DEALS IN TOWN'
+    'THE BEST DEALS IN TOWN',
+    'USE CODE CEOBDAY10 FOR 10% OFF YOUR PURCHASE '
   ];
   const [index, setIndex] = useState(0);
 
