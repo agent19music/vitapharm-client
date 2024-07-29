@@ -75,9 +75,9 @@ const Footer = () => {
         <div className="md:order-4 order-5">
           <h3 className="font-bold text-lg mb-2">HELP & INFO</h3>
           <a className="block mb-1 text-gray-100 hover:text-white" href="/FAQ">FAQ</a>
-          <a className="block mb-1 text-gray-100 hover:text-white" href="#">Privacy Policy</a>
-          <a className="block mb-1 text-gray-100 hover:text-white" href="#">Cookie Policy</a>
-          <a className="block mb-1 text-gray-100 hover:text-white" href="#">Terms of Service</a>
+          <a className="block mb-1 text-gray-100 hover:text-white" href="/privacypolicy">Privacy Policy</a>
+          {/* <a className="block mb-1 text-gray-100 hover:text-white" href="#">Cookie Policy</a> */}
+          {/* <a className="block mb-1 text-gray-100 hover:text-white" href="#">Terms of Service</a> */}
         </div>
         <div className="md:order-5 order-2">
           <h3 className="font-bold text-lg mb-2">SOCIAL LINKS</h3>
