@@ -7,6 +7,8 @@ import SocialVideos from '../components/SocialVideos';
 import Header from '../components/Header';
 import BannerCarousel from '../components/Carousel';
 import RecentlyAddedProducts from '../components/RecentlyAddedProducts'
+import Popup from '../components/WelcomePopUp'
+
 
 export default function LandingPage() {
 
@@ -21,12 +23,14 @@ export default function LandingPage() {
   }, []);
 
   const slides = ['/C1.png'];
-  const mobileSlides = ['/CM3.png', '/CM4.png', '/CM5.png', '/CM1.png', '/CM2.png'];
+  const mobileSlides = ['/CM7.png', '/CM6.png', '/CM1.png', '/CM2.png'];
 
   
 
   return (
     <div>
+            <Popup/>
+
       <Header/>
       <section className='bg max-w-screen my-3 carousel desktopslides'>
        <BannerCarousel/>

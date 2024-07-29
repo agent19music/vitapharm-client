@@ -15,7 +15,7 @@ import { useToast } from "@chakra-ui/react";
 
 export default function CheckoutPage() {
   const { cartItems, total, sessionToken, apiEndpoint, setCartItems, setTotal, setCartEmpty, setCartItemCount } = useContext(ProductContext);
-  const publicKey = "pk_test_a7c91eeae679fb1edd7b7c3bb1126e964147713b";
+  const publicKey = "";
   const [orderCreated, setOrderCreated] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [dialogContent, setDialogContent] = useState("");
