@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { Skeleton } from '@chakra-ui/react';
 import { Clipboard } from 'react-feather';
+import { X } from 'react-feather';
+
 
 function Popup() {
   const [showPopup, setShowPopup] = useState(false);
@@ -68,7 +70,7 @@ function Popup() {
         <div className="popup-overlay absolute w-full h-full bg-black opacity-50" onClick={handleClose}></div>
         <div className="popup-content relative bg-white rounded-lg shadow-lg p-8 w-96">
           <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onClick={handleClose}>
-            {/* Close button SVG */}
+            <X/>
           </button>
 
           <Skeleton isLoaded={imageLoaded} className="w-full rounded-md mb-4">
