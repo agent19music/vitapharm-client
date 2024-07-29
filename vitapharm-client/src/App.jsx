@@ -26,7 +26,8 @@ import CategoriesPage from './pages/CategoriesPage';
 import AllProductsPage from './pages/AllProductsPage';
 import WhoWeAre from './pages/WhoWeAre'
 import FounderPage from './pages/OurFounder'
-
+import Popup from './components/WelcomePopUp'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 
 function App() {
   const [updateCart, setUpdateCart] = useState(false);
@@ -40,6 +41,7 @@ function App() {
       <ProductProvider>
         <UserProvider>
         <CookiesProvider>
+        <Popup/>
             <Routes>
               <Route path="/" element={<LandingPage setUpdateCart={setUpdateCart} updateCart={updateCart} setCartItems={setCartItems} cartItems={cartItems}/>} />
               <Route path="/products/:productId" element={<SingleProductCard />} />
@@ -58,6 +60,7 @@ function App() {
               <Route path="/limitedtimeoffer" element={<ProductsOnOfferPage />} />
                <Route path="/whoweare" element={<WhoWeAre />} />
                 <Route path="/ourfounder" element={<FounderPage />} />
+                  <Route path="/privacypolicy" element={<PrivacyPolicy />} />
 
             </Routes>
           
