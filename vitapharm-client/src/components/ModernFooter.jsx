@@ -1,6 +1,7 @@
 import { React, useState, useContext } from 'react';
 import { ProductContext } from '../context/ProductContext';
 import { Spinner } from '@chakra-ui/react';
+import {Mail} from 'react-feather'
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -89,6 +90,13 @@ const Footer = () => {
       </div>
       <div className="flex justify-between items-center mt-10">
         <p>© 2024 - Vitapharm Cosmetics and Pharmacy</p>
+
+<p className="mr-24 row items-center">
+  Developed and maintained by eKommerce Ltd 
+   <p className="ml-1.5 hover:text-white hover:"> 
+   +254 745 071 299 / +254 796 564 749
+</p>
+</p>
 
       </div>
     </footer>
