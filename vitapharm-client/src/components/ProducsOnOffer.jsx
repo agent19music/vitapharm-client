@@ -53,7 +53,7 @@ const ProductCard = ({ product, addToCart }) => {
         <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-futura font-bold text-black"> {dealPrice !== null ? dealPrice : "N/A"}</span>
+            <span className="text-3xl font-futura font-bold text-black">Ksh {dealPrice !== null ? dealPrice : "N/A"}</span>
             <span className="text-md font-futura font-bold text-black line-through ml-2">{price !== null ? price : "N/A"}</span>
 
             <span className="text-1.5xl font-futura font-bold text-black ml-3" style={{ lineHeight: '0.5' }}>{size !== null ? size.toUpperCase() : "N/A"}</span>
@@ -106,7 +106,7 @@ const scrollRight = () => {
     <div className="overflow-container ">
     <div className="flex flex-col justify-center min-w-screen items-center relative">
       <div className="absolute left-0 top-0 ml-2 mt-2">
-{  productsOnOffer.message == null   &&   <span className="relative justify-start m-2 rounded-none bg-red-600 px-2 text-center text-md font-futurabold text-white">HOT DEALS</span>
+{  productsOnOffer.message == null   &&   <span className="relative justify-start m-2 rounded-none bg-red-600 p-2 text-center text-md font-futurabold text-white">HOT DEALS</span>
       }      </div>
       {productsOnOffer.length > 4 && (
         <div className="space-1 align-bottom self-end mr-24 buttons">
@@ -120,7 +120,7 @@ const scrollRight = () => {
       <button
         onClick={scrollRight}
         className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start >= productsOnOffer.length - 4 ? 'opacity-50 cursor-not-allowed' : ''}`}
-        disabled={start >= recentlyAddedProducts.length - 4}
+        disabled={start >= productsOnOffer.length - 4}
       >
         <ChevronRight size={40} />
       </button>
