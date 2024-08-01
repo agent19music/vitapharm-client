@@ -44,7 +44,7 @@ const BannerCarousel = () => {
         </SwiperSlide>
         <SwiperSlide className="">
           <img
-            src="/C3.png"
+            src="/C4.png"
             alt="Banner"
             className="banner-slide"
             
