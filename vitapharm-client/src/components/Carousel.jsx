@@ -14,6 +14,7 @@ const BannerCarousel = () => {
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         pagination={{ clickable: true }}
+        navigation
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
