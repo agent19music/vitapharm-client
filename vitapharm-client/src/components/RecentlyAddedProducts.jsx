@@ -39,9 +39,7 @@ const ProductCard = ({ product, addToCart }) => {
         </div>
       </Link>
       <div className="mt-4 px-5 pb-5">
-        <a href="#">
           <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>
-        </a>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
             <span className="text-3xl font-futura font-bold text-black">Ksh {price !== null ? price : "N/A"}</span>
@@ -97,11 +95,12 @@ const scrollRight = () => {
 
   return (
     <>
+    {  recentlyAddedProducts.length > 0   &&   <span className="relative justify-start m-2 rounded-none bg-brown-custom p-2 text-center text-md font-futurabold text-white">NEW ARRIVALS</span>
+      } 
     <div className="overflow-container ">
     <div className="flex flex-col justify-center min-w-screen items-center relative">
       <div className="absolute left-0 top-0 ml-2 mt-2">
-{  recentlyAddedProducts.length > 0   &&   <span className="relative justify-start m-2 rounded-none bg-brown-custom px-2 text-center text-md font-futurabold text-white">NEW ARRIVALS</span>
-      }      </div>
+     </div>
       {recentlyAddedProducts.length > 4 && (
         <div className="space-1 align-bottom self-end mr-24 buttons">
                <button

@@ -1,24 +1,40 @@
-import React, { useEffect } from 'react';
+import { FacebookEmbed } from 'react-social-media-embed'; import Header from '../components/Header';
+import Footer from '../components/ModernFooter';
 
-export default function Blogs() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "//cdn.iframe.ly/embed.js";
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
+export default function SocialPosts() {
+  const facebookPostUrls = [
+    "https://www.facebook.com/vitapharmpharmacyandcosmetics/posts/pfbid022DWgYQbWsNyi32tnDeQGNztrMo6G3rQmPEbbvg93CDbhbDbCdLsjkepJVsxyEV5jl"   
+
+
+
+];
 
   return (
-    <div>
-      <div style={{ maxWidth: "640px" }}>
-        <div style={{ left: 0, width: "100%", height: 0, position: "relative", paddingBottom: "100%" }}>
-          <iframe 
-            src="//cdn.iframe.ly/api/iframe?app=1&url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2FYJZvVZMDhDpwYNdP%2F&key=e35360f26e0814c353599c6856750070" 
-            style={{ top: 0, left: 0, width: "100%", height: "100%", position: "absolute", border: 0 }} 
-            allowFullScreen
-          />
-        </div>
+    <>
+      <Header />
+      <>
+      <div className="flex flex-wrap justify-center gap-4 p-4 sm:max-w- desktop-blog">
+        {facebookPostUrls.map((url, index) => (
+          <div key={index}>
+            <FacebookEmbed 
+              url={url} 
+              width={600}
+            />
+          </div>
+        ))}
       </div>
-    </div>
+        <div className="flex flex-wrap justify-center gap-4 p-4 sm:max-w- mobile-blog">
+        {facebookPostUrls.map((url, index) => (
+          <div key={index}>
+            <FacebookEmbed 
+              url={url} 
+              width={300}
+            />
+          </div>
+        ))}
+      </div>
+      </>
+      <Footer />
+    </>
   );
 }

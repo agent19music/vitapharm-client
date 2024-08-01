@@ -14,6 +14,7 @@ const BannerCarousel = () => {
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         pagination={{ clickable: true }}
+        navigation
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
@@ -44,7 +45,7 @@ const BannerCarousel = () => {
         </SwiperSlide>
         <SwiperSlide className="">
           <img
-            src="/C3.png"
+            src="/C4.png"
             alt="Banner"
             className="banner-slide"
             

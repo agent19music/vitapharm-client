@@ -39,11 +39,11 @@ export default function Header() {
 
     let filtered = products.filter(product => {
       let name = product.name.toLowerCase();
-      let description = product.description.toLowerCase();
+      let brand = product.brand.toLowerCase();
       let category = product.category.toLowerCase();
       let subCategory = product.sub_category.toLowerCase();
 
-      return name.includes(lowerCaseQuery) || description.includes(lowerCaseQuery) || category.includes(lowerCaseQuery) || subCategory.includes(lowerCaseQuery);
+      return name.includes(lowerCaseQuery)||  brand.includes(lowerCaseQuery) ||  category.includes(lowerCaseQuery) || subCategory.includes(lowerCaseQuery);
     });
 
     setSearchResults(filtered);

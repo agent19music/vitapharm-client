@@ -204,17 +204,26 @@ h3.image-categories-titles{
   div.recently-added-mobile{
   	display: none;
   }
+  div.mobile-attr{
+  	display: none;
+  }
+  div.mobile-blog{
+  	display: none;
+  }
+  div.mobile-product-description-accordion{
+  	display: none;
+  }
   div.mobile-scroll-products{
   	display : none;
   }
   }
 
-span.edit-cartamount:hover{
+/*span.edit-cartamount:hover{
 	transform: scale(1.2);
 	transition: transform 0.3s ease;
 	cursor: pointer;
 	color: rgb(150,50,7) ;
-}
+}*/
 .product-card {
 	transition: transform 0.2s;
 	
@@ -258,6 +267,18 @@ span.edit-cartamount:hover{
 		display: none;
 	}
 
+	div.desktop-attr{
+		display: none;
+	}
+	p.desktop-product-description{
+		display: none;
+	}
+div.desktop-blog{
+	display:none;
+}
+div.mobile-blog{
+	max-width: 100vw;
+}
 	div.services{
 		display: flex;
 		flex-direction: column;
@@ -286,8 +307,8 @@ span.edit-cartamount:hover{
 	  }
 	
 	  .product-card, .skeleton-card {
-		width: 59vw; /* Adjust the width as needed */
-		height: 50vh; /* Adjust the height as needed */
+		width: 54vw; /* Adjust the width as needed */
+		height: 47vh;  /* Adjust the height as needed */
 		margin-right: 16px;
 		flex-shrink: 0; /* Prevent the card from shrinking */
 	  }
