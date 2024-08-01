@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import BannerCarousel from '../components/Carousel';
 import RecentlyAddedProducts from '../components/RecentlyAddedProducts'
 import Popup from '../components/WelcomePopUp'
+import FullProductsList from '../components/FullProductsList'
 
 
 export default function LandingPage() {
@@ -23,7 +24,7 @@ export default function LandingPage() {
   }, []);
 
   const slides = ['/C1.png'];
-  const mobileSlides = ['/CM7.png', '/CM6.png', '/CM1.png', '/CM2.png'];
+  const mobileSlides = ['/CM7.png', '/CM6.png', '/CM2.png'];
 
   
 
@@ -49,7 +50,10 @@ export default function LandingPage() {
        <section className='wrxx my-5' >  
         <RecentlyAddedProducts />
       </section>
-      <section className='my-5 '>
+       <section className='wrxx my-5' >  
+        <FullProductsList />
+      </section>
+      <section className='my-8 '>
         <div className='container flex justify-center items-center mx-auto services'>
           <div className='items-center service-woman mr-24'>
             <img src='/service.webp' alt='lady' className='rounded-md w-140 h-70 object-cover mx-auto' />
