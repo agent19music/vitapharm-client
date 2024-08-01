@@ -87,11 +87,21 @@ const Footer = () => {
           <a className="block mb-1 text-gray-100 hover:text-white"  target='blank' href="https://www.facebook.com/vitapharmpharmacyandcosmetics">Facebook</a>
          
         </div>
+
+         <div className="md:order-6 order-6 mobile-attr">
+           <p>© 2024 - Vitapharm Cosmetics and Pharmacy</p>
+          <p className="row items-center desktop-attr mt-4">
+            Developed and maintained by eKommerce Ltd 
+             <p className="ml-1.5 hover:text-white hover:"> 
+             +254 745 071 299 / +254 796 564 749
+          </p>
+          </p>         
+        </div>
       </div>
-      <div className="flex justify-between items-center mt-10">
+      <div className="flex justify-between items-center mt-10 desktop-attr">
         <p>© 2024 - Vitapharm Cosmetics and Pharmacy</p>
 
-<p className="mr-24 row items-center">
+<p className="mr-24 row items-center desktop-attr">
   Developed and maintained by eKommerce Ltd 
    <p className="ml-1.5 hover:text-white hover:"> 
    +254 745 071 299 / +254 796 564 749
