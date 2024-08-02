@@ -221,7 +221,11 @@ export default function CheckoutPage() {
     setPromoLoading(true);
     if (promoCode !== '') {
         try {
-            const response = await fetch(`${apiEndpoint}/discount/validate/${promoCode}`);
+           const response = await fetch(`${apiEndpoint}/discount/validate/${promoCode}`, {
+      headers: {
+        'Authorization': `Bearer ${sessionToken}` // Standard format for session tokens
+      }
+    });
             const result = await response.json();
             if (response.ok) {
                 setPromoApplied(true);
