@@ -15,12 +15,12 @@ export default function Categories() {
   const {setCategory} = useContext(ProductContext);
   setCategory(category);
   return (
-    <div>
+    <div >
       <Header />
         <nav>
           {/* Breadcrumb here */}
         </nav>
-        <section>
+        <section >
           <Category/>
          
         </section>

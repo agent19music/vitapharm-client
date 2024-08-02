@@ -26,7 +26,7 @@ export default function ProductsOnOfferPage() {
         <div className="search-results-page mx-auto">
           <Header/>
           
-         {productsOnOffer.message !== '' && <div className='flex justify-center items-center h-full py-64'>
+         {productsOnOffer.message !== '' && productsOnOffer.length > 0 && <div className='flex justify-center items-center h-full py-64'>
             <h2 className='font-futurabold'> OOPS ! NO PRODUCTS CURRENTLY ON OFFER</h2>
             {/* <h5 className='font-futura'>Shop around to get product here !!</h5> */}
           </div>}
