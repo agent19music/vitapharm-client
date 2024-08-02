@@ -210,6 +210,9 @@ h3.image-categories-titles{
   div.mobile-blog{
   	display: none;
   }
+  div.mobile-skeleton{
+  	display: none;
+  }
   div.mobile-product-description-accordion{
   	display: none;
   }
@@ -269,6 +272,9 @@ h3.image-categories-titles{
 
 	div.desktop-attr{
 		display: none;
+	}
+	div.desktop-skeleton{
+		display:none;
 	}
 	p.desktop-product-description{
 		display: none;
