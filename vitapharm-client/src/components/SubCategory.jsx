@@ -105,7 +105,7 @@ const SubCategory = () => {
       {loading ? (
         <div className="mx-auto">
         <div className="desktop-skeleton">
-          <div className="grid grid-cols-4 gap-4 mt-20 justify-center  ">
+          <div className="grid grid-cols-4 gap-4 mt-20 justify-center ml-20  ">
           {[...Array(8)].map((_, i) => (
             <div key={i} className={`col-span-1 ${i % 4 === 0 ? 'ml-4' : ''}`}>
               <SkeletonCard />
@@ -115,7 +115,7 @@ const SubCategory = () => {
         </div>
        <div className="mobile-skeleton">
   <div className="grid grid-cols-2 gap-4 mt-20">
-    {[...Array(6)].map((_, i) => (
+    {[...Array(8)].map((_, i) => (
       <div key={i} className="col-span-1">
         <SkeletonCard />
       </div>
