@@ -13,7 +13,7 @@ export default function SubCategoriesPage() {
     setSubCategory(subcategory);
 
   return (
-    <div>
+    <div >
     <Header />
       <nav>
         {/* Breadcrumb here */}
