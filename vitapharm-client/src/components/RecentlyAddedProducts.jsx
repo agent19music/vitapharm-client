@@ -42,7 +42,9 @@ const ProductCard = ({ product, addToCart }) => {
           <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-futura font-bold text-black">Ksh {price !== null ? price : "N/A"}</span>
+            <span className="text-3xl font-futura font-bold text-black desktop-price-span">Ksh {price !== null ? price : "N/A"}</span>
+            <span className="text-3xl font-futura font-bold text-black mobile-price-span">{price !== null ? price : "N/A"}</span>
+
             <span className="text-1.5xl font-futura font-bold text-black ml-3" style={{ lineHeight: '0.5' }}>{size !== null ? size.toUpperCase() : "N/A"}</span>
           </p>
         </div>
@@ -65,22 +67,22 @@ const SkeletonCard = () => (
 );
 
 const RecentlyAddedProducts = () => {
-  const { recentlyAddedProducts, addToCart } = useContext(ProductContext);
+  const { highlitedBrand, addToCart } = useContext(ProductContext);
   const [start, setStart] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (recentlyAddedProducts.length !== 0) {
+    if (highlitedBrand.length !== 0) {
       setLoading(false);
     }
-  }, [recentlyAddedProducts]);
+  }, [highlitedBrand]);
 
  const scrollLeft = () => {
   setStart(Math.max(0, start - 4));
 };
 
 const scrollRight = () => {
-  setStart(Math.min(recentlyAddedProducts.length - 4, start + 4));
+  setStart(Math.min(highlitedBrand.length - 4, start + 4));
 };
 
 
@@ -95,13 +97,13 @@ const scrollRight = () => {
 
   return (
     <>
-    {  recentlyAddedProducts.length > 0   &&   <span className="relative justify-start m-2 rounded-none bg-brown-custom p-2 text-center text-md font-futurabold text-white">NEW ARRIVALS</span>
+    {  highlitedBrand.length > 0   &&   <span className="relative justify-start m-2 rounded-none bg-brown-custom p-2 text-center text-md font-futurabold text-white">NEW ARRIVALS</span>
       } 
     <div className="overflow-container ">
     <div className="flex flex-col justify-center min-w-screen items-center relative">
       <div className="absolute left-0 top-0 ml-2 mt-2">
      </div>
-      {recentlyAddedProducts.length > 4 && (
+      {highlitedBrand.length > 4 && (
         <div className="space-1 align-bottom self-end mr-24 buttons">
                <button
         onClick={scrollLeft}
@@ -112,8 +114,8 @@ const scrollRight = () => {
       </button>
       <button
         onClick={scrollRight}
-        className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start >= recentlyAddedProducts.length - 4 ? 'opacity-50 cursor-not-allowed' : ''}`}
-        disabled={start >= recentlyAddedProducts.length - 4}
+        className={`p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white ${start >= highlitedBrand.length - 4 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        disabled={start >= highlitedBrand.length - 4}
       >
         <ChevronRight size={40} />
       </button>
@@ -126,7 +128,7 @@ const scrollRight = () => {
       >
         {loading
           ? [1, 2, 3, 4].map((i) => <SkeletonCard key={i} />)
-          : recentlyAddedProducts.length >1 && recentlyAddedProducts.slice(start, start + 4).map((product, index) => (
+          : highlitedBrand.length >1 && highlitedBrand.slice(start, start + 4).map((product, index) => (
               <ProductCard key={index} product={product} addToCart={addToCart} />
             ))}
       </div>
@@ -134,7 +136,7 @@ const scrollRight = () => {
      <div {...handlers} className="flex p-9 transition-all duration-500 ease-in-out w-full items-center justify-evenly overflow-x-hidden recently-added-mobile">
   {loading 
     ? [1, 2, 3, 4].map((i) => <SkeletonCard key={i} />) 
-    : recentlyAddedProducts.map((product, index) => (
+    : highlitedBrand.map((product, index) => (
         <ProductCard key={index} product={product} addToCart={addToCart} />
       )) 
   }
@@ -147,4 +149,4 @@ const scrollRight = () => {
   );
 };
 
-export default RecentlyAddedProducts;
+export default RecentlyAddedProducts ;

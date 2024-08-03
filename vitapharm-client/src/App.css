@@ -210,6 +210,19 @@ h3.image-categories-titles{
   div.mobile-blog{
   	display: none;
   }
+
+  div.mobile-text-below-image{
+  	display: none;
+  }
+  div.mobile-reels{
+  	display: none;
+  }
+  div.mobile-plus-minus-sidemenu{
+  	display: none;
+  }
+  span.mobile-price-span{
+  	display: none;
+  }
   div.mobile-skeleton{
   	display: none;
   }
@@ -264,8 +277,14 @@ h3.image-categories-titles{
 	
 	div.desktop-primary-bar{
 		display: none;
-	}   
+	} 
 
+	div.desktop-plus-minus-sidemenu{
+		display: none;
+	}  
+div.desktop-reels{
+	display:none;
+}
 	section.desktop-navbar{
 		display: none;
 	}
@@ -273,8 +292,16 @@ h3.image-categories-titles{
 	div.desktop-attr{
 		display: none;
 	}
+
+	span.desktop-price-span{
+		display: none;
+	}
 	div.desktop-skeleton{
 		display:none;
+	}
+
+	div.desktop-image-overlay-text{
+		display: none;
 	}
 	p.desktop-product-description{
 		display: none;
@@ -314,7 +341,7 @@ div.mobile-blog{
 	
 	  .product-card, .skeleton-card {
 		width: 54vw; /* Adjust the width as needed */
-		height: 47vh;  /* Adjust the height as needed */
+		height: 42vh;  /* Adjust the height as needed */
 		margin-right: 16px;
 		flex-shrink: 0; /* Prevent the card from shrinking */
 	  }

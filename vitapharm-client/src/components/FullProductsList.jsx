@@ -44,7 +44,9 @@ const ProductCard = ({ product, addToCart }) => {
         </a>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-futura font-bold text-black">Ksh {price !== null ? price : "N/A"}</span>
+            <span className="text-3xl font-futura font-bold text-black desktop-price-span">Ksh {price !== null ? price : "N/A"}</span>
+            <span className="text-3xl font-futura font-bold text-black mobile-price-span">{price !== null ? price : "N/A"}</span>
+
             <span className="text-1.5xl font-futura font-bold text-black ml-3" style={{ lineHeight: '0.5' }}>{size !== null ? size.toUpperCase() : "N/A"}</span>
           </p>
         </div>
@@ -71,7 +73,6 @@ const FullProductsList = () => {
   const [start, setStart] = useState(0);
   const [loading, setLoading] = useState(true);
   const [sortedProducts, setSortedProducts] = useState(products); 
-console.log(products)
 
   useEffect(() => {
     if (products.length !== 0) {
@@ -85,7 +86,6 @@ console.log(products)
     setSortedProducts(sorted); 
   }, [products]);
 
-   console.log(sortedProducts)
 
 
  const scrollLeft = () => {

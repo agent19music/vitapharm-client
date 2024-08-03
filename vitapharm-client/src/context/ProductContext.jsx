@@ -29,6 +29,7 @@ export default function ProductProvider({ children }) {
   const [subCategory, setSubCategory] = useState('');
   const [brand, setBrand] = useState('');
   const [subCategories, setSubCategories] = useState([]);
+   const [highlitedBrand, setHighlightedBrand] = useState([]);
 
 
   const toast = useToast();
@@ -362,7 +363,16 @@ export default function ProductProvider({ children }) {
     }
   }, [subCategory, products]);
 
-  useEffect(() => {
+useEffect(() => {
+  const filteredProducts = products.filter(
+    (product) => product.brand.toLowerCase() === "la roche posay"
+  );
+    const slicedProducts = filteredProducts.slice(0, 8);
+
+  setHighlightedBrand(slicedProducts);
+}, [products]);
+
+ useEffect(() => {
     if (brand) {
       const filtered = products.filter(product => product.brand === brand);
       setFiltredBrands(filtered);
@@ -370,6 +380,9 @@ export default function ProductProvider({ children }) {
       setFiltredBrands(products);
     }
   }, [brand, products]);
+
+
+
 
 
   const contextData = {
@@ -402,7 +415,8 @@ export default function ProductProvider({ children }) {
     subCategories,
     filteredSubCategories,
     setSubCategory,
-    recentlyAddedProducts
+    recentlyAddedProducts,
+    highlitedBrand
   };
 
   return (

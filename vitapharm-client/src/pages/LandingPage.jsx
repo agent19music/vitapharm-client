@@ -9,6 +9,7 @@ import BannerCarousel from '../components/Carousel';
 import RecentlyAddedProducts from '../components/RecentlyAddedProducts'
 import Popup from '../components/WelcomePopUp'
 import FullProductsList from '../components/FullProductsList'
+import CategoryPreview from '../components/CategoriesPreview'
 
 
 export default function LandingPage() {
@@ -43,6 +44,11 @@ export default function LandingPage() {
           ))}
         </Carousel>
       </section>
+   <section className="container mx-auto mt-20">
+   <CategoryPreview/>
+     
+    </section>
+
    
       <section className='wrxx my-5' id='wrxx'>  
         <ProductsOnOffer />
