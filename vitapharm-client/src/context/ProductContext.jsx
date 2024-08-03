@@ -29,6 +29,7 @@ export default function ProductProvider({ children }) {
   const [subCategory, setSubCategory] = useState('');
   const [brand, setBrand] = useState('');
   const [subCategories, setSubCategories] = useState([]);
+   const [highlitedBrand, setHighlightedBrand] = useState([]);
 
 
   const toast = useToast();
@@ -354,22 +355,27 @@ export default function ProductProvider({ children }) {
   }, [category, products]);
 
   useEffect(() => {
-    if (subCategory) {
-      const filtered = products.filter(product => product.sub_category.toLowerCase() === subCategory.toLowerCase());
-      setFilteredSubCategories(filtered);
-    } else {
-      setFilteredSubCategories(products);
-    }
-  }, [subCategory, products]);
+  const filteredProducts = products.filter(
+    (product) => product.brand.toLowerCase() === "la roche posay"
+  );
+    const slicedProducts = filteredProducts.slice(0, 8);
 
-  useEffect(() => {
-    if (brand) {
-      const filtered = products.filter(product => product.brand === brand);
-      setFiltredBrands(filtered);
-    } else {
-      setFiltredBrands(products);
-    }
-  }, [brand, products]);
+  setHighlightedBrand(slicedProducts);
+}, [products]);
+
+
+ useEffect(() => {
+  const filteredProducts = products.filter(
+    (product) => product.brand.toLowerCase() === "la roche posay"
+  ); 
+  setHighlightedBrand(filteredProducts); 
+}, [products]);
+
+
+
+
+
+
 
 
   const contextData = {
@@ -402,7 +408,8 @@ export default function ProductProvider({ children }) {
     subCategories,
     filteredSubCategories,
     setSubCategory,
-    recentlyAddedProducts
+    recentlyAddedProducts,
+    highlitedBrand
   };
 
   return (
