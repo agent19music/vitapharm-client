@@ -355,6 +355,15 @@ export default function ProductProvider({ children }) {
   }, [category, products]);
 
   useEffect(() => {
+    if (subCategory) {
+      const filtered = products.filter(product => product.sub_category.toLowerCase() === subCategory.toLowerCase());
+      setFilteredSubCategories(filtered);
+    } else {
+      setFilteredSubCategories(products);
+    }
+  }, [subCategory, products]);
+
+useEffect(() => {
   const filteredProducts = products.filter(
     (product) => product.brand.toLowerCase() === "la roche posay"
   );
@@ -363,16 +372,14 @@ export default function ProductProvider({ children }) {
   setHighlightedBrand(slicedProducts);
 }, [products]);
 
-
  useEffect(() => {
-  const filteredProducts = products.filter(
-    (product) => product.brand.toLowerCase() === "la roche posay"
-  ); 
-  setHighlightedBrand(filteredProducts); 
-}, [products]);
-
-
-
+    if (brand) {
+      const filtered = products.filter(product => product.brand === brand);
+      setFiltredBrands(filtered);
+    } else {
+      setFiltredBrands(products);
+    }
+  }, [brand, products]);
 
 
 
