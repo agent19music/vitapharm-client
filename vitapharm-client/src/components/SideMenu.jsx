@@ -40,9 +40,13 @@ const SideMenu = () => {
                                   <div className="shrink-0 relative ">
 <span className="absolute top-1 left-1 flex h- w-8 items-center justify-center rounded-full border bg-white text-base font-medium text-gray-500 shadow sm:-top-2 sm:-right-2">{item.quantity}</span>
                                     <img className="h-24 w-24 max-w-full rounded-lg object-cover ml-8" src={`${item.image_data[0].url}`} alt="" />
-                                    <div className="absolute top-8 left-1 flex flex-col space-y-1">
+                                    <div className="absolute top-8 left-1 flex flex-col space-y-1 desktop-plus-minus-sidemenu">
                                       <span className="flex h-8 w-8 items-center justify-center rounded-full border bg-white text-2xl font-medium text-gray-500 shadow edit-cartamount select-none" onClick={() => incrementQuantity(item.product_id)}>+</span>
                                       <span className="flex h-8 w-8 items-center justify-center rounded-full border bg-white text-3xl font-medium text-gray-500 shadow edit-cartamount select-none" onClick={() => decrementQuantity(item.product_id)}>-</span>
+                                    </div>
+                                     <div className="absolute top-8 left-1 flex flex-col space-y-1 mobile-plus-minus-sidemenu">
+                                      <span className="flex h-8 w-8 items-center justify-center rounded-full border bg-white text-lg font-medium text-gray-500 shadow edit-cartamount select-none" onClick={() => incrementQuantity(item.product_id)}>+</span>
+                                      <span className="flex h-8 w-8 items-center justify-center rounded-full border bg-white text-lg font-medium text-gray-500 shadow edit-cartamount select-none" onClick={() => decrementQuantity(item.product_id)}>-</span>
                                     </div>
                                   </div>
 
