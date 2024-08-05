@@ -135,6 +135,7 @@ export default function UserProvider({ children }) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionToken}`,
             },
             body: JSON.stringify(data),
         });
