@@ -30,14 +30,17 @@ const ProductCard = ({ product, addToCart }) => {
       </Link>
         </div>
       </Link>
-      <div className="mt-4 px-5 pb-5">
-        <a href="#">
+      <div className=" px-5 pb-5">
           <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>
-        </a>
-        <div className="mt-2 mb-5 flex items-center justify-between">
+        <div className="mt-2 flex items-center justify-between">
           <p>
-           <span className="text-3xl font-futura font-bold text-black desktop-price-span">Ksh {price !== null ? price : "N/A"}</span>
-            <span className="text-3xl font-futura font-bold text-black mobile-price-span">{price !== null ? price : "N/A"}</span>            <span className="text-1.5xl font-futura font-bold text-black ml-3" style={{ lineHeight: '0.5' }}>{size !== null ? size.toUpperCase() : "N/A"}</span>
+            <span className="text-3xl font-futura text-black desktop-price-span">Ksh {price !== null ? price : "N/A"}</span>
+            <span className="text-lg font-futura text-black mobile-price-span">Ksh {price !== null ? price : "N/A"}</span>
+
+            <span className="text-xs font-futura font-bold text-black ml-2 mobile-size-span" >{size !== null ? size.toUpperCase() : "N/A"}</span>
+            <span className="text-1.5xl font-futura font-bold text-black ml-3 desktop-size-span" >{size !== null ? size.toUpperCase() : "N/A"}</span>
+
+
           </p>
         </div>
       </div>
