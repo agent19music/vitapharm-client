@@ -29,7 +29,7 @@ export default function ProductProvider({ children }) {
   const [subCategory, setSubCategory] = useState('');
   const [brand, setBrand] = useState('');
   const [subCategories, setSubCategories] = useState([]);
-   const [highlitedBrand, setHighlightedBrand] = useState([]);
+  const [highlitedBrand, setHighlightedBrand] = useState([]);
 
 
   const toast = useToast();
