@@ -29,6 +29,10 @@ button.spbs{
   z-index: 1; /* Make sure it's behind the popup but on top of the rest of the page */
 }
 
+.desktop-image-overlay-text {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+}
+
 .Link:hover {
 	text-decoration-line: none!important;
   }
@@ -226,6 +230,9 @@ h3.image-categories-titles{
   div.mobile-skeleton{
   	display: none;
   }
+  div.desktop-image-bold-text:hover{
+   display: none;
+  }
   div.mobile-product-description-accordion{
   	display: none;
   }
@@ -299,6 +306,9 @@ div.desktop-reels{
 	div.desktop-skeleton{
 		display:none;
 	}
+	div.desktop-image-bold-text{
+		display:none;
+	}
 
 	div.desktop-image-overlay-text{
 		display: none;
@@ -340,7 +350,7 @@ div.mobile-blog{
 	  }
 	
 	  .product-card, .skeleton-card {
-		width: 54vw; /* Adjust the width as needed */
+		width: 41vw; /* Adjust the width as needed */
 		height: 42vh;  /* Adjust the height as needed */
 		margin-right: 16px;
 		flex-shrink: 0; /* Prevent the card from shrinking */
