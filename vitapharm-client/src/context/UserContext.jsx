@@ -6,11 +6,39 @@ export const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const navigate = useNavigate();
+    const [sessionToken, setSessionToken] = useState(null);
+
 
   const [onchange, setOnchange] = useState(false);
-  const [authToken, setAuthToken] = useState(() =>
-    sessionStorage.getItem('authToken') ? sessionStorage.getItem('authToken') : null
-  );
+  useEffect(() => {
+    const fetchSessionToken = async () => {
+      try {
+        let storedToken = localStorage.getItem('session_token');
+        let tokenExpiration = localStorage.getItem('token_expiration');
+
+        if (storedToken && tokenExpiration && new Date(tokenExpiration) > new Date()) {
+          setSessionToken(storedToken);
+        } else {
+          const response = await fetch(`${apiEndpoint}/session`);
+          const { session_token } = await response.json();
+          const expiration = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+          localStorage.setItem('session_token', session_token);
+          localStorage.setItem('token_expiration', expiration);
+          setSessionToken(session_token);
+        }
+      } catch (error) {
+        console.error('Error fetching session token:', error);
+      }
+    };
+
+    fetchSessionToken(); // Fetch token on component mount
+
+    const refreshInterval = setInterval(() => {
+      fetchSessionToken();
+    }, 55 * 60 * 1000); // 55 minutes
+
+    return () => clearInterval(refreshInterval);
+  }, []);
   const [currentUser, setCurrentUser] = useState(null);
 
     const apiEndpoint = 'https://www.vitapharmcosmetics.co.ke/api/vitapharm';
@@ -126,6 +154,7 @@ export default function UserProvider({ children }) {
     setOnchange,
     apiEndpoint,
     submitAppointment,
+    sessionToken
   };
 
   return <UserContext.Provider value={contextData}>{children}</UserContext.Provider>;
