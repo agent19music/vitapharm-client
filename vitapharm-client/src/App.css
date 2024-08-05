@@ -227,6 +227,9 @@ h3.image-categories-titles{
   span.mobile-price-span{
   	display: none;
   }
+  span.mobile-size-span{
+  	display:none;
+  }
   div.mobile-skeleton{
   	display: none;
   }
@@ -309,7 +312,9 @@ div.desktop-reels{
 	div.desktop-image-bold-text{
 		display:none;
 	}
-
+span.desktop-size-span{
+	display:none;
+}
 	div.desktop-image-overlay-text{
 		display: none;
 	}
