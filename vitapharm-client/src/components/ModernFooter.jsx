@@ -1,5 +1,6 @@
 import { React, useState, useContext } from 'react';
 import { ProductContext } from '../context/ProductContext';
+import { UserContext } from '../context/UserContext';
 import { Spinner } from '@chakra-ui/react';
 import {Mail} from 'react-feather'
 
@@ -10,33 +11,47 @@ const Footer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const { apiEndpoint } = useContext(ProductContext);
+  const { sessionToken } = useContext(UserContext);
+
+
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    if (!isEmailError) 
-      setIsLoading(true);
-      {
-      try {
-        const response = await fetch(`${apiEndpoint}/customeremails`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email }),
-        });
+  e.preventDefault();
+  setSubmitted(true);
 
-        } catch (error) {
-        setError(error.message);
-      } finally {
-        setIsLoading(false); // Stop loading, regardless of success or failure
+  if (!isEmailError) {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${apiEndpoint}/customeremails`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionToken}`,
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        setSuccess(true);
+        setError('');
+      } else {
+        setError(result.error);
       }
+    } catch (error) {
+      setError('An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
-  };
+  } else {
+    setIsLoading(false);
+  }
+};
+
 
   const isEmailError = !success && submitted && !email.includes('@');
 
@@ -58,7 +73,7 @@ const Footer = () => {
               value={email}
               onChange={handleEmailChange}
             />
-            <button type="submit" className="w-full px-3 py-2 bg-white text-brown-custom font-bold hover:border-brown-custom rounded-none subbtn">Subscribe</button>
+            <button type="submit" className="w-full px-3 py-2 bg-white text-brown-custom font-bold hover:border-brown-custom rounded-none subbtn">{isLoading ? <Spinner size="sm" /> : success ? 'Subscribe' : 'Subscribed'}</button>
             {error && <p className="text-red-500">{error}</p>}
             {isEmailError && <p className="text-red-500 font-futurabold text-sm">Email is required and should include '@'.</p>}
             {success && <p className="text-green-400 font-futurabold text-sm">We have received your email!</p>}

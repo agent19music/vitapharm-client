@@ -156,7 +156,7 @@ export default function Header() {
   })}
 </VStack>
 
-                {searchResults.length > 9 && (
+                {searchResults.length > 3 && (
                   <RouterLink to={`/search-results?query=${searchQuery}`}>
                     <button className='w-full bg-brown-custom text-white mt-4 py-2 rounded-none font-futurabold'>
                       View All Results
