@@ -27,6 +27,7 @@ import AllProductsPage from './pages/AllProductsPage';
 import WhoWeAre from './pages/WhoWeAre'
 import FounderPage from './pages/OurFounder'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   const [updateCart, setUpdateCart] = useState(false);
@@ -56,9 +57,10 @@ function App() {
               <Route path="/FAQ" element={<FAQPage />} />
               <Route path="/search-results" element={<SearchResultsPage />} />
               <Route path="/limitedtimeoffer" element={<ProductsOnOfferPage />} />
-               <Route path="/whoweare" element={<WhoWeAre />} />
-                <Route path="/ourfounder" element={<FounderPage />} />
-                  <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+              <Route path="/whoweare" element={<WhoWeAre />} />
+              <Route path="/ourfounder" element={<FounderPage />} />
+              <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+              <Route path="*" element={<NotFoundPage />} />
 
             </Routes>
           
