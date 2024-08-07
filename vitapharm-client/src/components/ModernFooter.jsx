@@ -73,7 +73,7 @@ const Footer = () => {
               value={email}
               onChange={handleEmailChange}
             />
-            <button type="submit" className="w-full px-3 py-2 bg-white text-brown-custom font-bold hover:border-brown-custom rounded-none subbtn">{isLoading ? <Spinner size="sm" /> : success ? 'Subscribe' : 'Subscribed'}</button>
+            <button type="submit" className="w-full px-3 py-2 bg-white text-brown-custom font-bold hover:border-brown-custom rounded-none subbtn">{isLoading ? <Spinner size="sm" /> : success ? 'Subscribed' : 'Subscribe'}</button>
             {error && <p className="text-red-500">{error}</p>}
             {isEmailError && <p className="text-red-500 font-futurabold text-sm">Email is required and should include '@'.</p>}
             {success && <p className="text-green-400 font-futurabold text-sm">We have received your email!</p>}
