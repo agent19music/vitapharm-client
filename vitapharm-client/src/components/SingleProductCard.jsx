@@ -179,7 +179,7 @@ export default function SingleProductCard() {
                                 <button
                                     key={variation.id}
                                     onClick={() => handleVariationChange(variation)}
-                                    className={`spbs px-6 py-3 border ${selectedVariation && selectedVariation.id === variation.id ? 'border-[#693f2d] bg-[#693f2d] text-white' : 'border-gray-300 bg-white font-futurabold text-gray-700'} hover:bg-[#693f2d] hover:text-white`}
+                                    className={`spbs px-6 py-3 border ${selectedVariation && selectedVariation.id === variation.id ? 'border-[#4D0A1E] bg-[#4D0A1E] text-white' : 'border-gray-300 bg-white font-futurabold text-gray-700'} hover:bg-[#4D0A1E] hover:text-white`}
                                 >
                                     {variation.size}
                                 </button>
@@ -187,7 +187,7 @@ export default function SingleProductCard() {
                         </div>
                     </div>
                     <div className="flex items-center space-x-6 mb-8">
-                        <Link onClick={() => addToCart(product.id)} className="spbs flex items-center font-futurabold justify-center bg-[#693f2d] text-white px-6 py-4 text-center text-sm font-medium focus:outline-none hover:bg-[#5a3524] rounded-0 hover:text-white">
+                        <Link onClick={() => addToCart(product.id)} className="spbs flex items-center font-futurabold justify-center bg-[#4D0A1E] text-white px-6 py-4 text-center text-sm font-medium focus:outline-none hover:bg-[#5a3524] rounded-0 hover:text-white">
                             ADD TO CART
                         </Link>
                     </div>

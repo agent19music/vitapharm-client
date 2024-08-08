@@ -44,11 +44,11 @@
 
 a {
   font-weight: 500;
-  color: rgb(105, 63, 45);
+  color: rgb(77,10,30);
   text-decoration: inherit;
 }
 a:hover {
-  color: rgb(105, 63, 45);
+  color: rgb(77,10,30);
 }
 
 body {
@@ -88,7 +88,7 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: rgb(105, 63, 45);
+    color: rgb(77,10,30);
   }
   button {
     background-color: #f9f9f9;

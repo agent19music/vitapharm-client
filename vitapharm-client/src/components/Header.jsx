@@ -91,7 +91,7 @@ export default function Header() {
                   placeholder="Search products or brands"
                   border="2px"
                   borderColor="black.400"
-                  focusBorderColor='#693F2D'
+                  focusBorderColor='#4D0A1E'
                   borderRadius={0}
                   py="6"
                   pr="12"
@@ -183,7 +183,7 @@ export default function Header() {
                   placeholder="Search products or brands"
                   border="2px"
                   borderColor="black.400"
-                  focusBorderColor='#693F2D'
+                  focusBorderColor='#4D0A1E'
                   borderRadius={0}
                   py="6"
                   pr="12"

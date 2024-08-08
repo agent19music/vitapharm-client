@@ -31,14 +31,14 @@ function Popup() {
             angle: 60,
             spread: 55,
             origin: { x: 0 },
-            colors: ['#FFD700', '#693F2D'] // Hex colors
+            colors: ['#FFD700', '#4D0A1E'] // Hex colors
           });
           confetti({
             particleCount: 3,
             angle: 120,
             spread: 55,
             origin: { x: 1 },
-            colors: ['#FFD700', '#693F2D'] // Hex colors
+            colors: ['#FFD700', '#4D0A1E'] // Hex colors
           });
 
           if (Date.now() < end) {

@@ -248,7 +248,7 @@ const MobileNav = ({ navItems, onClose }) => {
     <VStack align="start" spacing={4}>
       {navItems.map((navItem) => (
         <Box key={navItem.label} w="full">
-          <Button onClick={() => handleToggle(navItem.label)} w="full" rounded='0' color= '#ffff'  _hover={{ bg: '#ffff' ,color: '#693F2D'}} _focus={{ bg: '#ffff' ,color: '#693F2D'}} bg= '#693F2D'justifyContent="flex-start" variant='solid' className='outline-none font-futuramedbold'>
+          <Button onClick={() => handleToggle(navItem.label)} w="full" rounded='0' color= '#ffff'  _hover={{ bg: '#ffff' ,color: '#4D0A1E'}} _focus={{ bg: '#ffff' ,color: '#4D0A1E'}} bg= '#4D0A1E'justifyContent="flex-start" variant='solid' className='outline-none font-futuramedbold'>
             {navItem.label}
           </Button>
           <Collapse in={show[navItem.label]}>
@@ -257,7 +257,7 @@ const MobileNav = ({ navItems, onClose }) => {
                 <Box key={child.label}>
                   {child.subCategories ? (
                     <>
-                      <Button onClick={() => handleSubToggle(child.label)} w="full" rounded='0'  color= '#ffff'  _hover={{ bg: '#ffff' ,color: '#693F2D'}} _focus={{ bg: '#ffff' ,color: '#693F2D'}} bg= '#693F2D' justifyContent="flex-start" variant='solid' className='outline-none capitalize font-futuramedbold rounded-none mt-1'>
+                      <Button onClick={() => handleSubToggle(child.label)} w="full" rounded='0'  color= '#ffff'  _hover={{ bg: '#ffff' ,color: '#4D0A1E'}} _focus={{ bg: '#ffff' ,color: '#4D0A1E'}} bg= '#4D0A1E' justifyContent="flex-start" variant='solid' className='outline-none capitalize font-futuramedbold rounded-none mt-1'>
                         {child.label}
                       </Button>
                       <Collapse in={showSub[child.label]}>
