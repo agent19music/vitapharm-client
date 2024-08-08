@@ -34,19 +34,27 @@ export default function Header() {
   }, []);
 
   function handleSearch(query) {
-    let lowerCaseQuery = query.toLowerCase();
-
+    // Split the query into individual terms
+    let queryTerms = query.toLowerCase().split(' ');
+  
     let filtered = products.filter(product => {
       let name = product.name.toLowerCase();
       let brand = product.brand.toLowerCase();
       let category = product.category.toLowerCase();
       let subCategory = product.sub_category.toLowerCase();
-
-      return name.includes(lowerCaseQuery)||  brand.includes(lowerCaseQuery) ||  category.includes(lowerCaseQuery) || subCategory.includes(lowerCaseQuery);
+  
+      // Check if all query terms are present in any of the product fields
+      return queryTerms.every(term => 
+        name.includes(term) || 
+        brand.includes(term) || 
+        category.includes(term) || 
+        subCategory.includes(term)
+      );
     });
-
+  
     setSearchResults(filtered);
   }
+  
 
   const handleChange = (e) => {
     const query = e.target.value;

@@ -1,6 +1,9 @@
 import { createContext, useState, useEffect } from 'react';
 import { useToast } from "@chakra-ui/react";
 import HighlitedSubCategory from '../components/HighlitedSubcategory';
+import { nanoid } from 'nanoid'
+
+
 
 export const ProductContext = createContext();
 
@@ -32,6 +35,7 @@ export default function ProductProvider({ children }) {
   const [subCategories, setSubCategories] = useState([]);
   const [highlitedBrand, setHighlightedBrand] = useState([]);
   const [highlitedSubCategory, setHighlightedSubCategory] = useState([]);
+
 
 
   const toast = useToast();
@@ -391,6 +395,16 @@ useEffect(() => {
       setFiltredBrands(products);
     }
   }, [brand, products]);
+
+  
+  function slugify(text) {
+      const baseSlug = text
+          .toLowerCase()
+          .replace(/ /g, "-")
+          .replace(/[^\w-]+/g, "");
+      
+      return `${baseSlug}-${nanoid()}`; 
+  }
 
 
 

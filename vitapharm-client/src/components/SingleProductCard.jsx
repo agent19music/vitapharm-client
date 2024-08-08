@@ -148,7 +148,19 @@ export default function SingleProductCard() {
                     <h1 className="mb-4 text-4xl font-futurabold text-black uppercase">
                         {product.name}
                     </h1>
-                    <p className="font-futura  text-xl leading-relaxed desktop-product-description">{product.description}</p>
+                    <div className=''>
+    <span className='   rounded-full font-futurabold'>
+        {product.brand.toUpperCase()}
+        <span className='ml-1.5 text-3xl relative bottom-1'>.</span> </span>
+
+    <span className='ml-2 my-1 py-2  rounded-full font-futurabold'>
+        {product.category.toUpperCase()}
+        <span className='ml-1.5 text-3xl relative bottom-1'>.</span> </span>
+    <span className='ml-2 my-1 py-2  rounded-full font-futurabold'>
+        {product.sub_category.toUpperCase()} </span>
+</div>
+
+                    <p className="mt-2.5 font-futura  text-xl leading-relaxed desktop-product-description">{product.description}</p>
                     <div className="mobile-product-description-accordion">
                     <Accordion allowToggle className="my-10">
       <AccordionItem>
