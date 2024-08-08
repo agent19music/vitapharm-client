@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from "react-feather";
 import '../App.css';
 import { ProductContext } from '../context/ProductContext';
+import { UserContext } from '../context/UserContext';
 import { Skeleton, Box } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { Search, ShoppingBag } from 'react-feather';
@@ -11,9 +12,14 @@ const ProductCard = ({ product, addToCart }) => {
   const price = firstVariation ? firstVariation.price : null;
   const size = firstVariation ? firstVariation.size : null;
 
+
+
+ 
+
+
   return (
     <div className="product-card group relative border-zinc-100/30  lg:w-72  flex flex-col self-center overflow-hidden border shadow-md lg:max-h-96 sm:ml-10">
-      <Link to={`/products/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
+      <Link  to={`/products/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
         <img className="peer absolute top-0 right-0 h-full w-full object-cover"  src={`${product.images[0]?.url}`} alt="product image" />
         {product.images.length > 1 && (
           <>
@@ -65,8 +71,10 @@ const SkeletonCard = () => (
 
 const AllProducts = () => {
   const { products, addToCart } = useContext(ProductContext);
+  const {sessionToken} = useContext(UserContext)
   const [start, setStart] = useState({});
   const [loading, setLoading] = useState(true);
+
 
   const groupedByBrand = products.reduce((acc, product) => {
     if (!acc[product.brand]) {
@@ -98,6 +106,10 @@ const AllProducts = () => {
       ),
     }));
   };
+
+
+
+  
 
   return (
      <>

@@ -60,6 +60,8 @@
 
     "lodash": "^4.17.21",
 
+    "nanoid": "^5.0.7",
+
     "react": "^18.2.0",
 
     "react-burger-menu": "^3.0.9",
