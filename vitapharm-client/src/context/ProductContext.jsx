@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import { useToast } from "@chakra-ui/react";
+import HighlitedSubCategory from '../components/HighlitedSubcategory';
 
 export const ProductContext = createContext();
 
@@ -30,6 +31,7 @@ export default function ProductProvider({ children }) {
   const [brand, setBrand] = useState('');
   const [subCategories, setSubCategories] = useState([]);
   const [highlitedBrand, setHighlightedBrand] = useState([]);
+  const [highlitedSubCategory, setHighlightedSubCategory] = useState([]);
 
 
   const toast = useToast();
@@ -372,6 +374,15 @@ useEffect(() => {
   setHighlightedBrand(slicedProducts);
 }, [products]);
 
+useEffect(() => {
+  const filteredProducts = products.filter(
+    (product) => product.sub_category.toLowerCase() === "powder"
+  );
+   
+
+  setHighlightedSubCategory(filteredProducts);
+}, [products]);
+
  useEffect(() => {
     if (brand) {
       const filtered = products.filter(product => product.brand === brand);
@@ -416,7 +427,8 @@ useEffect(() => {
     filteredSubCategories,
     setSubCategory,
     recentlyAddedProducts,
-    highlitedBrand
+    highlitedBrand,
+    highlitedSubCategory
   };
 
   return (

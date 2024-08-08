@@ -10,6 +10,7 @@ import RecentlyAddedProducts from '../components/RecentlyAddedProducts'
 import Popup from '../components/WelcomePopUp'
 import FullProductsList from '../components/FullProductsList'
 import CategoryPreview from '../components/CategoriesPreview'
+import HighlitedSubCategory from '../components/HighlitedSubcategory';
 
 
 export default function LandingPage() {
@@ -56,6 +57,9 @@ export default function LandingPage() {
       </section>
        <section className='wrxx my-5' >  
         <FullProductsList />
+      </section>
+      <section className='wrxx my-5' >  
+        <HighlitedSubCategory />
       </section>
       <section className='my-8 '>
         <div className='container flex justify-center items-center mx-auto services'>
