@@ -66,7 +66,7 @@ const Brands = () => {
         <div className="flex flex-wrap justify-center">
           {Object.entries(sortedGroupedBrands).map(([letter, brands]) => (
             <div key={letter} className="w-full mb-8">
-              <h2 className="text-3xl font-bold font-futuramedbold mb-4">{letter}</h2>
+              <h2 className="text-3xl font-futuramedbold mb-4">{letter}</h2>
               <ul className="flex flex-wrap">
                 {brands.map((brand, index) => (
                   <Link

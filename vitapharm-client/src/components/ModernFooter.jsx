@@ -59,12 +59,12 @@ const Footer = () => {
     <footer className="bg-brown-custom text-white p-10 font-futura">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
         <div className="md:order-1 order-3">
-          <h3 className="font-bold text-lg mb-2">OUR LOCATIONS</h3>
+          <h3 className="text-lg mb-2">OUR LOCATIONS</h3>
           <p>Nairobi- Adlife Plaza, Chania Rd</p>
           <p>Nairobi Sawa Mall, CBD Shop A14</p>
         </div>
         <div className="md:order-2 order-1">
-          <h3 className="font-bold text-lg mb-2">STAY IN THE LOOP</h3>
+          <h3 className="text-lg mb-2">STAY IN THE LOOP</h3>
           <form onSubmit={handleSubmit}>
             <input
               className="w-full px-3 py-2 mb-2 border border-gray-300 text-brown-custom rounded-none focus:outline-none focus:ring-2 focus:ring-brown-custom subinput"
@@ -73,14 +73,14 @@ const Footer = () => {
               value={email}
               onChange={handleEmailChange}
             />
-            <button type="submit" className="w-full px-3 py-2 bg-white text-brown-custom font-bold hover:border-brown-custom rounded-none subbtn">{isLoading ? <Spinner size="sm" /> : success ? 'Subscribe' : 'Subscribed'}</button>
+            <button type="submit" className="w-full px-3 py-2 bg-white text-brown-custom hover:border-brown-custom rounded-none subbtn">{isLoading ? <Spinner size="sm" /> : success ? 'Subscribed !' : 'Subscribe'}</button>
             {error && <p className="text-red-500">{error}</p>}
             {isEmailError && <p className="text-red-500 font-futurabold text-sm">Email is required and should include '@'.</p>}
             {success && <p className="text-green-400 font-futurabold text-sm">We have received your email!</p>}
           </form>
         </div>
         <div className="md:order-3 order-4">
-          <h3 className="font-bold text-lg mb-2">GET TO KNOW US</h3>
+          <h3 className="text-lg mb-2">GET TO KNOW US</h3>
           <a className="block mb-1 text-gray-100 hover:text-white" href="/">Home</a>
           <a className="block mb-1 text-gray-100 hover:text-white" href="/whoweare">Who We Are</a>
           <a className="block mb-1 text-gray-100 hover:text-white" href="/blogs">Blog</a>
@@ -89,14 +89,14 @@ const Footer = () => {
 
         </div>
         <div className="md:order-4 order-5">
-          <h3 className="font-bold text-lg mb-2">HELP & INFO</h3>
+          <h3 className="text-lg mb-2">HELP & INFO</h3>
           <a className="block mb-1 text-gray-100 hover:text-white" href="/FAQ">FAQ</a>
           <a className="block mb-1 text-gray-100 hover:text-white" href="/privacypolicy">Privacy Policy</a>
           {/* <a className="block mb-1 text-gray-100 hover:text-white" href="#">Cookie Policy</a> */}
           {/* <a className="block mb-1 text-gray-100 hover:text-white" href="#">Terms of Service</a> */}
         </div>
         <div className="md:order-5 order-2">
-          <h3 className="font-bold text-lg mb-2">SOCIAL LINKS</h3>
+          <h3 className="text-lg mb-2">SOCIAL LINKS</h3>
           <a className="block mb-1 text-gray-100 hover:text-white"  target='blank' href="https://www.instagram.com/vitapharmcosmeticsandpharmacy/">Instagram</a>
           <a className="block mb-1 text-gray-100 hover:text-white"  target='blank' href="https://www.tiktok.com/@vitapharmcosmetics?lang=en">Tiktok</a>
           <a className="block mb-1 text-gray-100 hover:text-white"  target='blank' href="https://www.facebook.com/vitapharmpharmacyandcosmetics">Facebook</a>

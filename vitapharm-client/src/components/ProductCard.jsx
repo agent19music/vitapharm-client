@@ -36,8 +36,8 @@ const ProductCard = ({ product, addToCart }) => {
         </a>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
-            <span className="text-3xl font-futura font-bold text-black">{price !== null ? price : "N/A"}</span>
-            <span className="text-1.5xl font-futura font-bold text-black ml-3" style={{ lineHeight: '0.5' }}>{size !== null ? size.toUpperCase() : "N/A"}</span>
+            <span className="text-3xl font-futura text-black">{price !== null ? price : "N/A"}</span>
+            <span className="text-1.5xl font-futura text-black ml-3" style={{ lineHeight: '0.5' }}>{size !== null ? size.toUpperCase() : "N/A"}</span>
           </p>
         </div>
       </div>

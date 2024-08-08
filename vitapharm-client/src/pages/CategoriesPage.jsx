@@ -58,7 +58,7 @@ const CategoriesPage = () => {
           {sortedSubCategories.map((category, index) => (
             <Box key={index} width="100%">
                 <Link  to={`/categories/${category.category}`} className='hover:text-brown-custom'>
-              <h2 className="text-3xl font-bold font-futuramedbold mb-4">{category.category.toUpperCase()}</h2>
+              <h2 className="text-3xl font-futuramedbold mb-4">{category.category.toUpperCase()}</h2>
               </Link>
             
               <ul className="flex flex-wrap">

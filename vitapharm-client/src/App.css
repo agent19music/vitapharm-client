@@ -44,7 +44,8 @@ div.info-bar{
 	min-width: 100vw;
 	display: flex;
 	justify-content:center;
-	background: rgb(105, 63, 45);
+	/* background: rgb(105, 63, 45); */
+	background: rgb(77,10,30);
 	
 	
 }
@@ -53,7 +54,8 @@ div.info-item{
 	margin: auto;
 	height: 3vh;
 	padding: 0.3rem;
-	background: rgb(105, 63, 45);
+	/* background: rgb(105, 63, 45); */
+	background: rgb(77,10,30);
 	color: white;
 }
 
@@ -127,7 +129,8 @@ section.desktop-navbar{
 	position: absolute;
 	top: -10px;
 	right: -10px;
-	background-color: rgb(105, 63, 45);
+	/* background-color: rgb(105, 63, 45); */
+	background-color: rgb(77,10,30);
 	color: white;
 	font-size: 12px;
 	font-weight: bold;
@@ -136,7 +139,8 @@ section.desktop-navbar{
   }
 
   .custom-hover:hover {
-    background-color: rgb(105, 63, 45);
+    /* background-color: rgb(105, 63, 45); */
+	background-color:rgb(77,10,30);
 }
 
   
@@ -403,5 +407,6 @@ div.mobile-blog{
 }
 
 .vp-bo{
-	background-color:  rgb(105, 63, 45);
+	/* background-color:  rgb(105, 63, 45); */
+	background-color: rgb(77,10,30);
 }
