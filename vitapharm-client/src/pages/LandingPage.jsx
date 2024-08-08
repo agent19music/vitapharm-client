@@ -31,8 +31,6 @@ export default function LandingPage() {
 
   return (
     <div>
-            <Popup/>
-
       <Header/>
       <section className='bg max-w-screen my-3 carousel desktopslides'>
        <BannerCarousel/>
@@ -79,7 +77,7 @@ export default function LandingPage() {
               </p>
             </div>
             <div className='group flex w-full cursor-pointer items-center justify-center vp-bo font-futurabold px-6 py- text-white transition'>
-              <RouterLink to={'/bookappointment'} className='group flex w-full items-center justify-center rounded py-1 text-center font-bold hover:text-white h-14'>
+              <RouterLink to={'/bookappointment'} className='group flex w-full items-center justify-center rounded py-1 text-center hover:text-white h-14'>
                 Book an appointment
               </RouterLink>
               <svg
@@ -96,9 +94,12 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section className='my-5'>
+      {/* <section className='my-5'>
       <SocialVideos/>
-      </section>
+      </section> */}
+      {/* <section className='bg-slate-200 container min-h-36 mx-auto mb-7'>
+
+      </section> */}
       <section>
       <Footer />
       </section>
