@@ -45,8 +45,8 @@ const ProductCard = ({ product, addToCart }) => {
             <span className="text-3xl font-futura text-black desktop-price-span">Ksh {price !== null ? price : "N/A"}</span>
             <span className="text-lg font-futura text-black mobile-price-span">Ksh {price !== null ? price : "N/A"}</span>
 
-            <span className="text-xs font-futura font-bold text-black ml-2 mobile-size-span" >{size !== null ? size.toUpperCase() : "N/A"}</span>
-            <span className="text-1.5xl font-futura font-bold text-black ml-3 desktop-size-span" >{size !== null ? size.toUpperCase() : "N/A"}</span>
+            <span className="text-xs font-futura text-black ml-2 mobile-size-span" >{size !== null ? size.toUpperCase() : "N/A"}</span>
+            <span className="text-1.5xl font-futura text-black ml-3 desktop-size-span" >{size !== null ? size.toUpperCase() : "N/A"}</span>
 
 
           </p>
