@@ -366,7 +366,7 @@ export default function CheckoutPage() {
                        thickness="6px"
                        speed="0.65s"
                        emptyColor="gray.200"
-                       color="#693F2D"
+                       color="#4D0A1E"
                        size="2xl"
                      />
                    </Box>

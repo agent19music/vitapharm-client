@@ -80,7 +80,7 @@ const SearchResultsPage = () => {
           zIndex="42"
           onClick={scrollToTop}
           backgroundColor="gray.100"
-          _hover={{ backgroundColor: '#693F2D', color: 'white'  }}
+          _hover={{ backgroundColor: '#4D0A1E', color: 'white'  }}
           color="black"
         >
           <ChevronUp size={24} />

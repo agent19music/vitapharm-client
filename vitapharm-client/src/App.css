@@ -248,12 +248,11 @@ h3.image-categories-titles{
   }
   }
 
-/*span.edit-cartamount:hover{
-	transform: scale(1.2);
-	transition: transform 0.3s ease;
+span.edit-cartamount:hover{
+
 	cursor: pointer;
-	color: rgb(150,50,7) ;
-}*/
+	color: rgb(77,10,30) ;
+}
 .product-card {
 	transition: transform 0.2s;
 	
