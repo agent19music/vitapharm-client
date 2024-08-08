@@ -6,7 +6,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'brown-custom': '#693F2D',
+        // 'brown-custom': '#693F2D',
+        'brown-custom': '#4D0A1E',
+
       },
       fontFamily: {
         'urbanist': ['Urbanist', 'sans-serif'],
