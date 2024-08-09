@@ -100,7 +100,7 @@ const scrollRight = () => {
 
   return (
     <>
-    {  highlitedSubCategory.length > 0   &&   <span className="relative justify-start m-2 rounded-none bg-brown-custom p-2 text-center text-md font-futurabold text-white">POWDERS</span>
+    {  highlitedSubCategory.length > 0   &&   <span className="relative justify-start m-2 rounded-none bg-brown-custom p-2 text-center text-md font-futurabold text-white">SKINCARE</span>
       } 
     <div className="overflow-container ">
     <div className="flex flex-col justify-center min-w-screen items-center relative">
