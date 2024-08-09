@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { Search, ShoppingBag } from 'react-feather';
 
 
-const ProductCard = ({ product, addToCart }) => {
+const ProductCard = ({ product, addToCart, navigateToSingleProductView }) => {
   const firstVariation = product.variations?.[0];
   const price = firstVariation ? firstVariation.price : null;
  const size = firstVariation ? firstVariation.size : null;
@@ -15,7 +15,7 @@ const ProductCard = ({ product, addToCart }) => {
 
   return (
    <div className="product-card group relative border-zinc-100/30  lg:w-72  flex flex-col self-center overflow-hidden border shadow-md lg:max-h-96 sm:ml-10">
-      <Link to={`/products/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
+      <div onClick={()=> navigateToSingleProductView(product)} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
         <img className="peer absolute top-0 right-0 h-full w-full object-cover"  src={`${product.images[0]?.url}`} alt="product image" />
         {product.images.length > 1 && (
           <>
@@ -31,7 +31,7 @@ const ProductCard = ({ product, addToCart }) => {
         <ShoppingBag className=" h-5 w-5" color="currentColor" />
       </Link>
         </div>
-      </Link>
+      </div>
       <div className=" px-5 pb-5">
           <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>
         <div className="mt-2 flex items-center justify-between">
@@ -63,8 +63,8 @@ const SkeletonCard = () => (
 );
 
 const Category = () => {
-  const { filteredBrands, addToCart } = useContext(ProductContext);
-  const [start, setStart] = useState({});
+  const { filteredBrands, addToCart, navigateToSingleProductView } = useContext(ProductContext);
+  const [start, setStart] = useState({}); 
   const [loading, setLoading] = useState(true);
 
   const groupedByCategory = filteredBrands.reduce((acc, product) => {
@@ -174,7 +174,7 @@ useEffect(() => {
       
                 <div className="flex w-full items-center justify-evenly">
                   {groupedByCategory[category].slice(start[category] || 0, (start[category] || 0) + 4).map((product, index) => (
-                    <ProductCard key={index} product={product} addToCart={addToCart} />
+                    <ProductCard key={index} product={product} addToCart={addToCart} navigateToSingleProductView={navigateToSingleProductView} />
                   ))}
                 </div>
               </div>
