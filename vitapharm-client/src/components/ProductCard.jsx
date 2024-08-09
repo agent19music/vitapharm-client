@@ -1,11 +1,12 @@
-import {React} from 'react';
+import {React, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ShoppingBag } from 'react-feather';
 import { ProductContext } from '../context/ProductContext';
 
 
 
-const ProductCard = ({ product, addToCart, navigateToSingleProductView }) => {
+const ProductCard = ({ product, addToCart }) => {
+  const {navigateToSingleProductView} = useContext(ProductContext)
   const firstVariation = product.variations?.[0];
   const price = firstVariation ? firstVariation.price : null;
   const size = firstVariation ? firstVariation.size : null;
