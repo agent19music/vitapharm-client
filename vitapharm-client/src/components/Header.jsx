@@ -9,7 +9,7 @@ import { InputGroup, Input, InputRightElement, Popover, PopoverTrigger, PopoverC
 import { ProductContext } from '../context/ProductContext';
 import Breadcrumbs from '../components/Breadcrumb'
 
-export default function Header() {
+export default function Header({flag}) {
   const { products, navigateToSingleProductView } = useContext(ProductContext);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -166,9 +166,12 @@ export default function Header() {
     const price = firstVariation ? firstVariation.price : null;
     const size = firstVariation ? firstVariation.size : null;
 
+    console.log(flag);
+    
+
     return (
       <div
-      onClick={()=>navigateToSingleProductView(result)}
+      onClick={()=>navigateToSingleProductView(result, flag)}
         key={index}
         style={{ textDecoration: 'none' }}
         className="custom-link font-futura"
@@ -253,7 +256,7 @@ export default function Header() {
 
                     return (
                       <div
-                       onClick={()=>navigateToSingleProductView(result)}
+                       onClick={()=>navigateToSingleProductView(result, flag)}
                         key={index}
                         style={{ textDecoration: 'none' }}
                         className='custom-link font-futura'

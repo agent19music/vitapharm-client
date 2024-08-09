@@ -408,17 +408,17 @@ useEffect(() => {
     return `${baseSlug}-${nanoid(10)}`;
   }
   
-  function navigateToSingleProductView(product) {
-
-    const slug = slugify(product.name);  // Generate the slug
+  function navigateToSingleProductView(product, flag) {
+    const slug = slugify(product.name);
     setSelectedProduct(product);
-
   
-    // Save the selected product to context or state (you've already set this up)
-  
-    // Navigate to the new URL
     navigate(`/products/${slug}`);
+  
+    if (flag === 'spc') {  // Strict comparison for flag value
+      window.location.reload(); // Use window.location.reload for better control
+    }
   }
+  
 
 
 
