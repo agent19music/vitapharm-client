@@ -9,7 +9,7 @@ import { Skeleton, Box, useDisclosure, Button } from '@chakra-ui/react';
 import { ChevronUp } from 'react-feather';
 
 const SearchResultsPage = () => {
-  const { products, addToCart } = useContext(ProductContext);
+  const { products, addToCart, navigateToSingleProductView } = useContext(ProductContext);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get('query');
@@ -29,20 +29,55 @@ const SearchResultsPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const filteredProducts = products.filter((product) => {
-    let lowerCaseQuery = query.toLowerCase();
+  const filteredProducts = products.reduce((result, product) => {
+    let queryTerms = query.toLowerCase().split(' ');
     let name = product.name.toLowerCase();
-    let description = product.description.toLowerCase();
+    let brand = product.brand.toLowerCase();
     let category = product.category.toLowerCase();
     let subCategory = product.sub_category.toLowerCase();
 
-    return (
-      name.includes(lowerCaseQuery) ||
-      description.includes(lowerCaseQuery) ||
-      category.includes(lowerCaseQuery) ||
-      subCategory.includes(lowerCaseQuery)
+    let isExactMatch = false;
+
+    // Check for exact match of the entire query 
+    if (queryTerms.length > 1) {
+        isExactMatch = 
+            name === query ||
+            brand === query ||
+            category === query ||
+            subCategory === query;
+    }
+
+    // If not a multi-word exact match, check for individual term matches
+    if (!isExactMatch) {
+        isExactMatch = queryTerms.some(term =>
+            name === term ||
+            brand === term ||
+            category === term ||
+            subCategory === term
+        );
+    }
+
+    let isPartialMatch = queryTerms.every(term =>
+        name.includes(term) ||
+        brand.includes(term) ||
+        category.includes(term) ||
+        subCategory.includes(term)
     );
-  });
+
+    if (isExactMatch) {
+        result.exactMatches.push(product);
+    } else if (isPartialMatch) {
+        result.partialMatches.push(product);
+    }
+
+    return result;
+}, { exactMatches: [], partialMatches: [] });
+
+// Combine the results, prioritizing exact matches
+const finalFilteredProducts = filteredProducts.exactMatches.concat(filteredProducts.partialMatches);
+
+  
+
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -65,10 +100,10 @@ const SearchResultsPage = () => {
       <Header />
 
       <SimpleGrid columns={[1, 2, 3, 4]} spacing="40px" width="100%" justifyItems="center" className="py-8">
-        {filteredProducts.length === 0
+        {finalFilteredProducts.length === 0
           ? Array.from({ length: 8 }).map((_, index) => <SkeletonCard key={index} />)
-          : filteredProducts.map((product, index) => (
-              <ProductCard key={index} product={product} addToCart={addToCart} />
+          : finalFilteredProducts.map((product, index) => (
+              <ProductCard key={index} product={product} addToCart={addToCart} navigateToSingleProductView={navigateToSingleProductView} />
             ))}
       </SimpleGrid>
 
