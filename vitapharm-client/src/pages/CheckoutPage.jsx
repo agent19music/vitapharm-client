@@ -34,7 +34,7 @@ export default function CheckoutPage() {
   const [promoLoading, setPromoLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [shippingOption, setShippingOption] = useState('within_nairobi');
-  const [shippingCost, setShippingCost] = useState(150);
+  const [shippingCost, setShippingCost] = useState(300);
   const [paymentOption, setPaymentOption] = useState('m-pesa');
   const [formData, setFormData] = useState(null);
   const [orderID, setOrderID] = useState(null);
@@ -76,12 +76,12 @@ export default function CheckoutPage() {
 
   const handleShippingChange = (e) => {
     setShippingOption(e.target.value);
-    if (discountedTotal >= 8000) {
+    if (discountedTotal >= 15000) {
       setShippingCost(0);
     } else if (e.target.value === 'within_nairobi') {
-      setShippingCost(150);
+      setShippingCost(300);
     } else if (e.target.value === 'outskirts') {
-      setShippingCost(250);
+      setShippingCost(500);
     } else {
       setShippingCost(0);
     }
@@ -250,21 +250,24 @@ export default function CheckoutPage() {
     setDiscountedTotal(promoApplied ? total - (total * discountPercentage / 100) : total);
     setOriginalTotal(total + shippingCost);
 
-    // Update shipping cost to 0 if discounted total is 8000 or more
-    if (discountedTotal >= 8000) {
+    // Update shipping cost to 0 if discounted total is 15000 or more
+    if (discountedTotal >= 15000) {
       setShippingCost(0);
     }
-  }, [total, promoApplied, discountPercentage, discountedTotal, shippingCost]);
+  }, [total, promoApplied, discountPercentage, discountedTotal, shippingCost, cartItems]);
 
   return (
     <div>
       <Header/>
       <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+        
         <a href="#" className="text-2xl font-futuramedbold text-gray-800 hover:text-brown-custom">Vitapharm Checkout</a>
       </div>
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 mb-10">
+   
         <div className="px-4 pt-8">
-          {!isSuccess && (
+          {
+          !isSuccess && (
             <>
               <p className="text-xl font-futurabold">Order Summary</p>
               <p className="text-gray-400 font-futurabold">Check your items. And select a suitable shipping method.</p>
@@ -299,7 +302,7 @@ export default function CheckoutPage() {
 
 
     <p className="mt-8 text-lg font-futurabold">Your Delivery Details</p>
-              <p className="mt-1 text-smd font-futurabold">*Orders above 8000 bob qualify for free delivery</p>
+              <p className="mt-1 text-smd font-futurabold">*Orders above 15000 bob qualify for free delivery</p>
               <form className="mt-5 grid gap-6">
                 <div className="relative">
                   <input className="peer hidden" id="shipping_1" type="radio" name="shipping" value="within_nairobi" checked={shippingOption === 'within_nairobi'} onChange={handleShippingChange} />
@@ -307,8 +310,8 @@ export default function CheckoutPage() {
                   <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="shipping_1">
                     <div className="ml-5">
                       <span className="mt-2 font-futuramedbold">Within Nairobi</span>
-                      <p className="text-smd text-gray-400 font-futurabold">Delivered within 24 Hours</p>
-                      <p className="text-smd text-gray-400 font-futurabold">Ksh 150</p>
+                      <p className="text-smd text-gray-400 font-futurabold">Delivered within 2 Hours</p>
+                      <p className="text-smd text-gray-400 font-futurabold">Ksh 300</p>
                     </div>
                   </label>
                 </div>
@@ -318,8 +321,8 @@ export default function CheckoutPage() {
                   <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="shipping_2">
                     <div className="ml-5">
                       <span className="mt-2 font-futuramedbold">Outskirts of Nairobi</span>
-                      <p className="text-smd text-gray-400 font-futurabold">Delivered within 48 Hours</p>
-                      <p className="text-smd text-gray-400 font-futurabold">Ksh 250</p>
+                      <p className="text-smd text-gray-400 font-futurabold">Delivered within 4 Hours</p>
+                      <p className="text-smd text-gray-400 font-futurabold">Ksh 500</p>
                     </div>
                   </label>
                 </div>
