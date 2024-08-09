@@ -382,7 +382,7 @@ useEffect(() => {
 
 useEffect(() => {
   const filteredProducts = products.filter(
-    (product) => product.sub_category.toLowerCase() === "powder"
+    (product) => product.category.toLowerCase() === "skincare"
   );
    
 
@@ -409,10 +409,12 @@ useEffect(() => {
   }
   
   function navigateToSingleProductView(product) {
+
     const slug = slugify(product.name);  // Generate the slug
+    setSelectedProduct(product);
+
   
     // Save the selected product to context or state (you've already set this up)
-    setSelectedProduct(product);
   
     // Navigate to the new URL
     navigate(`/products/${slug}`);

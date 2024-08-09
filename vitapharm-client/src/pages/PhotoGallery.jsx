@@ -34,15 +34,15 @@ export default function PhotoGallery() {
     return () => clearTimeout(timeoutId); 
   }, []);
 
-  return (
+ return (
   <div>
-      <Header />
-      <Grid 
-        templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }} 
-        gap={4} 
-        p={4}
-      >
-        {isLoading ? (
+ <Header />
+ <Grid
+ templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }} 
+ gap={4}
+ p={4}
+ >
+ {isLoading ? (
             // Render skeletons while loading
             Array.from({ length: images.length }).map((_, index) => (
               <GridItem key={index}>
@@ -52,17 +52,17 @@ export default function PhotoGallery() {
           ) : (
             // Render images once loaded
             images.map((src, index) => (
-          <GridItem key={index}>
-            <Tooltip label="Zoom In">
-              <Zoom>
-                <img src={src} alt={`Image ${index + 1}`} className="w-150 max-h-auto cursor-pointer object-cover" />
-              </Zoom>
-            </Tooltip>
-          </GridItem>
-        ))
+ <GridItem key={index}>
+ <Tooltip label="Zoom In">
+ <Zoom>
+ <img src={src} alt={`Image ${index + 1}`} className="w-150 max-h-auto cursor-pointer object-cover" />
+ </Zoom>
+ </Tooltip>
+ </GridItem>
+))
           )}
-      </Grid>
-      <Footer/>
-    </div>
+ </Grid>
+ <Footer/>
+ </div>
   );
 }
