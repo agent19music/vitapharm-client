@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from 'react';
 import { useToast } from "@chakra-ui/react";
 import HighlitedSubCategory from '../components/HighlitedSubcategory';
 import { nanoid } from 'nanoid'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -10,12 +11,13 @@ export const ProductContext = createContext();
 export default function ProductProvider({ children }) {
 
   
-
+    const navigate = useNavigate()
     const apiEndpoint = 'https://www.vitapharmcosmetics.co.ke/api/vitapharm';
     // const apiEndpoint = 'http://vitapharm-server-env.eba-k5q68s3p.eu-north-1.elasticbeanstalk.com/api/vitapharm'
 
 
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState([]);
   const [productsOnOffer, setProductsOnOffer] =useState([])
   const [recentlyAddedProducts, setRecentlyAddedProducts] =useState([])
   const [filteredCategories, setFilteredCategories] = useState([]);
@@ -398,14 +400,23 @@ useEffect(() => {
 
   
   function slugify(text) {
-      const baseSlug = text
-          .toLowerCase()
-          .replace(/ /g, "-")
-          .replace(/[^\w-]+/g, "");
-      
-      return `${baseSlug}-${nanoid()}`; 
+    const baseSlug = text
+      .toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/[^\w-]+/g, '');
+  
+    return `${baseSlug}-${nanoid(10)}`;
   }
-
+  
+  function navigateToSingleProductView(product) {
+    const slug = slugify(product.name);  // Generate the slug
+  
+    // Save the selected product to context or state (you've already set this up)
+    setSelectedProduct(product);
+  
+    // Navigate to the new URL
+    navigate(`/products/${slug}`);
+  }
 
 
 
@@ -442,7 +453,10 @@ useEffect(() => {
     setSubCategory,
     recentlyAddedProducts,
     highlitedBrand,
-    highlitedSubCategory
+    highlitedSubCategory,
+    selectedProduct,
+   navigateToSingleProductView,
+   setSelectedProduct
   };
 
   return (
