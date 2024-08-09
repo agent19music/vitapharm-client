@@ -36,7 +36,7 @@ const SideMenu = () => {
         ) : (
           <ul className="-my-8">
             {cartItems.map((item, index) => (
-                                <li key={index} className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0  py-8">
+                                <li key={index} className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0 ">
                                   <div className="shrink-0 relative ">
 <span className="absolute top-1 left-1 flex h- w-8 items-center justify-center rounded-full border bg-white text-base font-medium text-gray-500 shadow sm:-top-2 sm:-right-2">{item.quantity}</span>
                                     <img className="h-24 w-24 max-w-full rounded-lg object-cover ml-8" src={`${item.image_data[0].url}`} alt="" />

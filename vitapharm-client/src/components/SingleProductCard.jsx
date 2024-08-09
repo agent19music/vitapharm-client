@@ -87,7 +87,7 @@ export default function SingleProductCard() {
 
     return (
         <div>
-            <Header />
+            <Header flag={'spc'} />
             <div className="flex flex-col md:flex-row justify-center m-auto w-full py-12 sm:py-16 min-h-80">
                 <div className="flex w-full max-w-6xl px-6 h-full flex-col md:flex-row">
                     {/* Selected Image */}
@@ -197,7 +197,7 @@ export default function SingleProductCard() {
                                     </div>
                                 </div>
                                 <div className="flex items-center space-x-6 mb-8">
-                                    <Link onClick={() => addToCart(product.id)} className="spbs flex items-center font-futurabold justify-center bg-[#4D0A1E] text-white px-6 py-4 text-center text-sm font-medium focus:outline-none hover:bg-[#5a3524] rounded-0 hover:text-white">
+                                    <Link onClick={() => addToCart(product.id)} className="spbs flex items-center font-futurabold justify-center bg-[#4D0A1E] text-white px-6 py-4 text-center text-sm font-medium focus:outline-none hover:bg-[#4D0A1E] rounded-0 hover:text-white">
                                         ADD TO CART
                                     </Link>
                                 </div>
