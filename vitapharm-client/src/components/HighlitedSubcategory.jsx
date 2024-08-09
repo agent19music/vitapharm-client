@@ -10,7 +10,7 @@ import { Badge } from '@chakra-ui/react';
 import { Search, ShoppingBag } from 'react-feather';
 
 
-const ProductCard = ({ product, addToCart }) => {
+const ProductCard = ({ product, addToCart, navigateToSingleProductView }) => {
   const navigate = useNavigate();
   const firstVariation = product.variations?.[0];
   const price = firstVariation ? firstVariation.price : null;
@@ -21,8 +21,8 @@ const ProductCard = ({ product, addToCart }) => {
 
   return (
    <div className="product-card group relative border-zinc-100/30  lg:w-72  flex flex-col self-center overflow-hidden border shadow-md lg:max-h-96 sm:ml-10">
-      <Link to={`/products/${product.id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
-        <img className="peer absolute top-0 right-0 h-full w-full object-cover"  src={`${product.images[0]?.url}`} alt="product image" />
+      <div className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
+        <img  onClick={()=> navigateToSingleProductView(product)} className="hover:cursor-pointer peer absolute top-0 right-0 h-full w-full object-cover"  src={`${product.images[0]?.url}`} alt="product image" />
         {product.images.length > 1 && (
           <>
             <img className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0"  src={`${product.images[1]?.url}`} alt="product image" />
@@ -30,14 +30,14 @@ const ProductCard = ({ product, addToCart }) => {
           </>
         )}
         <div className="absolute -right-16 bottom-0 space-y-2 transition-all duration-300 group-hover:right-0">
-        <Link to={`/products/${product.id}`} className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-brown-custom hover:text-white">
+        <div  onClick={()=> navigateToSingleProductView(product)} className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-brown-custom hover:text-white">
         <Search className="h-5 w-5" color="currentColor" />
-      </Link>
+      </div>
       <Link onClick={()=>addToCart(product.id)} className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-brown-custom hover:text-white">
         <ShoppingBag className=" h-5 w-5" color="currentColor" />
       </Link>
         </div>
-      </Link>
+      </div>
       <div className=" px-5 pb-5">
           <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>
         <div className="mt-2 flex items-center justify-between">
@@ -70,7 +70,7 @@ const SkeletonCard = () => (
 );
 
 const HighlitedSubCategory = () => {
-  const { highlitedSubCategory, addToCart } = useContext(ProductContext);
+  const { highlitedSubCategory, addToCart, navigateToSingleProductView } = useContext(ProductContext);
   const [start, setStart] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -100,7 +100,7 @@ const scrollRight = () => {
 
   return (
     <>
-    {  highlitedSubCategory.length > 0   &&   <span className="relative justify-start m-2 rounded-none bg-brown-custom p-2 text-center text-md font-futurabold text-white">POWDERS</span>
+    {  highlitedSubCategory.length > 0   &&   <span className="relative justify-start m-2 rounded-none bg-brown-custom p-2 text-center text-md font-futurabold text-white">SKINCARE</span>
       } 
     <div className="overflow-container ">
     <div className="flex flex-col justify-center min-w-screen items-center relative">
@@ -132,7 +132,7 @@ const scrollRight = () => {
         {loading
           ? [1, 2, 3, 4].map((i) => <SkeletonCard key={i} />)
           : highlitedSubCategory.length >1 && highlitedSubCategory.slice(start, start + 4).map((product, index) => (
-              <ProductCard key={index} product={product} addToCart={addToCart} />
+              <ProductCard key={index} product={product} addToCart={addToCart} navigateToSingleProductView={navigateToSingleProductView} />
             ))}
       </div>
 
@@ -140,7 +140,7 @@ const scrollRight = () => {
   {loading 
     ? [1, 2, 3, 4].map((i) => <SkeletonCard key={i} />) 
     : highlitedSubCategory.map((product, index) => (
-        <ProductCard key={index} product={product} addToCart={addToCart} />
+        <ProductCard key={index} product={product} addToCart={addToCart} navigateToSingleProductView={navigateToSingleProductView} />
       )) 
   }
 </div>

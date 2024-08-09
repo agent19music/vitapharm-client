@@ -57,6 +57,7 @@ function CustomerForm() {
   const isDateError = submitted && (date !== '' && !isFuture(new Date(formatInTimeZone(date, 'Africa/Nairobi', 'yyyy-MM-dd'))));
   const isPhoneError = submitted && phone.length !== 10;
   const isAppointmentTypeError = submitted && appointmentType.trim() === '';
+  // const isConsulatationError = submitted day is no Mon,Thur, Fri
 
   const handleSubmit = async (e) => {
     e.preventDefault();

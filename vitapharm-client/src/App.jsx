@@ -43,7 +43,7 @@ function App() {
         <CookiesProvider>
             <Routes>
               <Route path="/" element={<LandingPage setUpdateCart={setUpdateCart} updateCart={updateCart} setCartItems={setCartItems} cartItems={cartItems}/>} />
-              <Route path="/products/:productId" element={<SingleProductCard />} />
+              <Route path="/products/:productSlug" element={<SingleProductCard />} />
               <Route path="/products" element={<AllProductsPage />} />
               <Route path="/bookappointment" element={<CustomerForm />} />
               <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems}/>} />

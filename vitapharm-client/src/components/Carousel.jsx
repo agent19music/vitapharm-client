@@ -7,8 +7,15 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
+import { Skeleton, Box } from '@chakra-ui/react'; // Import Box
 
 const BannerCarousel = () => {
+  const [imagesLoaded, setImagesLoaded] = React.useState(false);
+
+  const handleImageLoad = () => {
+    setImagesLoaded(true);
+  };
+
   return (
     <div style={{ maxWidth: '100vw' }}>
       <Swiper
@@ -25,34 +32,42 @@ const BannerCarousel = () => {
         className="mySwiper"
         loop={true}
       >
-        {/* Add SwiperSlide components here */}
         <SwiperSlide className="">
+          {!imagesLoaded && (
+            <Skeleton height="100%" width="100%" /> 
+          )}
           <img
             src="/C1.png"
             alt="Banner"
             className="banner-slide"
-           
+            onLoad={handleImageLoad} // Trigger when image loads
+            style={{ display: imagesLoaded ? 'block' : 'none' }} // Hide initially
           />
-
         </SwiperSlide>
         <SwiperSlide className="">
+          {!imagesLoaded && (
+            <Skeleton height="100%" width="100%" /> 
+          )}
           <img
             src="/C3.png"
             alt="Banner"
             className="banner-slide"
-            
+            onLoad={handleImageLoad}
+            style={{ display: imagesLoaded ? 'block' : 'none' }}
           />
         </SwiperSlide>
         <SwiperSlide className="">
+          {!imagesLoaded && (
+            <Skeleton height="100%" width="100%" /> 
+          )}
           <img
             src="/C4.png"
             alt="Banner"
             className="banner-slide"
-            
-            
+            onLoad={handleImageLoad}
+            style={{ display: imagesLoaded ? 'block' : 'none' }}
           />
         </SwiperSlide>
-        {/* Repeat SwiperSlide for additional images */}
       </Swiper>
     </div>
   );
