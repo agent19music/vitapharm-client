@@ -1,10 +1,13 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { Link, useLocation } from 'react-router-dom';
+import { useContext } from 'react';
+import { ProductContext } from '../context/ProductContext';
 
 const Breadcrumbs = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
+  const { selectedProduct } = useContext(ProductContext);
 
   const capitalize = (s) => {
     if (typeof s !== 'string') return '';
@@ -28,6 +31,13 @@ const Breadcrumbs = () => {
         const to = `/${pathnames.slice(0, index + 1).join('/')}`;
         const isLast = index === pathnames.length - 1;
 
+        let displayName = capitalize(value);
+        if (to === '/products') {
+          displayName = 'Products'; // Always show "Products" for this path
+        } else if (selectedProduct?.name && isLast) {
+          displayName = selectedProduct.name; // Show product name only for the last breadcrumb item
+        }
+
         return (
           <BreadcrumbItem className="font-futurabold" key={to} isCurrentPage={isLast}>
             <BreadcrumbLink
@@ -35,7 +45,7 @@ const Breadcrumbs = () => {
               to={to}
               className="hover:text-brown-custom hover:no-underline"
             >
-              {capitalize(value)}
+              {displayName}
             </BreadcrumbLink>
           </BreadcrumbItem>
         );
