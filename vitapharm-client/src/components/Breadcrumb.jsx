@@ -33,9 +33,11 @@ const Breadcrumbs = () => {
 
         let displayName = capitalize(value);
         if (to === '/products') {
-          displayName = 'Products'; // Always show "Products" for this path
+          displayName = 'Products'; 
+        } else if (to === '/search-results') { // Handle search results route
+          displayName = 'Search Results'; 
         } else if (selectedProduct?.name && isLast) {
-          displayName = selectedProduct.name; // Show product name only for the last breadcrumb item
+          displayName = selectedProduct.name; 
         }
 
         return (
