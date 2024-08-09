@@ -10,7 +10,7 @@ import { ProductContext } from '../context/ProductContext';
 import Breadcrumbs from '../components/Breadcrumb'
 
 export default function Header() {
-  const { products } = useContext(ProductContext);
+  const { products, navigateToSingleProductView } = useContext(ProductContext);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
@@ -36,24 +36,61 @@ export default function Header() {
   function handleSearch(query) {
     // Split the query into individual terms
     let queryTerms = query.toLowerCase().split(' ');
-  
-    let filtered = products.filter(product => {
-      let name = product.name.toLowerCase();
-      let brand = product.brand.toLowerCase();
-      let category = product.category.toLowerCase();
-      let subCategory = product.sub_category.toLowerCase();
-  
-      // Check if all query terms are present in any of the product fields
-      return queryTerms.every(term => 
-        name.includes(term) || 
-        brand.includes(term) || 
-        category.includes(term) || 
-        subCategory.includes(term)
-      );
+
+    let exactMatches = [];
+    let partialMatches = [];
+
+    products.forEach(product => {
+        let name = product.name.toLowerCase();
+        let brand = product.brand.toLowerCase();
+        let category = product.category.toLowerCase();
+        let subCategory = product.sub_category.toLowerCase();
+
+        let isExactMatch = false; 
+
+        // Check for exact match of the entire query 
+        if (queryTerms.length > 1) {
+            isExactMatch = 
+                name === query ||
+                brand === query ||
+                category === query ||
+                subCategory === query;
+        } 
+
+        // If not a multi-word exact match, check for individual term matches
+        if (!isExactMatch) {
+            isExactMatch = queryTerms.some(term =>
+                name === term ||
+                brand === term ||
+                category === term ||
+                subCategory === term
+            );
+        }
+
+        let isPartialMatch = queryTerms.every(term =>
+            name.includes(term) ||
+            brand.includes(term) ||
+            category.includes(term) ||
+            subCategory.includes(term)
+        );
+
+        if (isExactMatch) {
+            exactMatches.push(product);
+        } else if (isPartialMatch) {
+            partialMatches.push(product);
+        }
     });
-  
+
+    console.log(exactMatches);
+    console.log(partialMatches);
+
+    // Combine the results, prioritizing exact matches
+    let filtered = exactMatches.concat(partialMatches);
+
     setSearchResults(filtered);
-  }
+}
+
+
   
 
   const handleChange = (e) => {
@@ -130,9 +167,8 @@ export default function Header() {
     const size = firstVariation ? firstVariation.size : null;
 
     return (
-      <Link
-        as={RouterLink}
-        to={`/products/${result.id}`}
+      <div
+      onClick={()=>navigateToSingleProductView(result)}
         key={index}
         style={{ textDecoration: 'none' }}
         className="custom-link font-futura"
@@ -158,7 +194,7 @@ export default function Header() {
             borderRadius="md"
           />
         </Flex>
-      </Link>
+      </div>
     );
   })}
 </VStack>
@@ -216,9 +252,8 @@ export default function Header() {
                     const size = firstVariation ? firstVariation.size : null;
 
                     return (
-                      <Link
-                        as={RouterLink}
-                        to={`/products/${result.id}`}
+                      <div
+                       onClick={()=>navigateToSingleProductView(result)}
                         key={index}
                         style={{ textDecoration: 'none' }}
                         className='custom-link font-futura'
@@ -244,7 +279,7 @@ export default function Header() {
                             borderRadius="md"
                           />
                         </Flex>
-                      </Link>
+                      </div>
                     );
                   })}
                 </SimpleGrid>
