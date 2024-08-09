@@ -8,7 +8,6 @@ import SingleProductCard from './components/SingleProductCard';
 import CustomerForm from './pages/AppointmentPage';
 import CheckoutPage from './pages/CheckoutPage';
 import Brands from './pages/Brands'
-import Cart from './pages/Cart';
 import Categories from './pages/SingleCategoryPage';
 
 import { CookiesProvider } from 'react-cookie';
