@@ -19,57 +19,69 @@ import {
 export default function SingleProductCard() {
     const { productSlug } = useParams();
     const { addToCart, selectedProduct, setSelectedProduct, apiEndpoint } = useContext(ProductContext);
-    const { sessionToken } = useContext(UserContext);
+    const { sessionToken } = useContext(ProductContext);
     const [product, setProduct] = useState(selectedProduct || null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedVariation, setSelectedVariation] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const fetchData = async () => {
-        try {
-            const response = await fetch(`${apiEndpoint}/products`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${sessionToken}`
-                },
-            });
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Failed to fetch products:', error);
-            return [];
-        }
-    };
+
+
+    const fetchData = async (productId, sessionToken) => {
+  await new Promise(resolve => setTimeout(resolve, 10));
+
+  if (!sessionToken) return;
+
+  try {
+    const response = await fetch(`${apiEndpoint}/products/${productId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionToken}`
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch products:', error);
+    return [];
+  }
+};
+
 
     // Function to deslugify the URL slug to match the product name
     const deslugify = (slug) => {
         const parts = slug.split('-');
         parts.pop(); // Remove the last part (the nanoid)
-        return parts.join(' ').replace(/-/g, ' ');
+        return parts[0];
     };
 
     useEffect(() => {
-        const loadProduct = async () => {
-            let foundProduct = product;
-            if (!selectedProduct || selectedProduct.length === 0) {
-                setLoading(true);
-                const products = await fetchData();
-                const urlName = deslugify(productSlug);
-                foundProduct = products.find(prod => prod.name.toLowerCase() === urlName.toLowerCase());
-            }
-            
-            if (foundProduct) {
-                setProduct(foundProduct);
-                setSelectedVariation(foundProduct.variations[0]);
-                setLoading(false);
-            } else {
-                setLoading(false);
-            }
-        };
+    const loadProduct = async () => {
+        // Early return if sessionToken is null
+        if (!sessionToken) return;
 
+        let foundProduct = product;
+        const urlName = deslugify(productSlug);
+
+        if (!selectedProduct || selectedProduct.length === 0) {
+            setLoading(true);
+            foundProduct = await fetchData(urlName, sessionToken);
+        }
+        
+        if (foundProduct) {
+            setProduct(foundProduct);
+            setSelectedVariation(foundProduct.variations[0]);
+        }
+        setLoading(false);
+    };
+
+    // Only load product if sessionToken is available
+    if (sessionToken) {
         loadProduct();
-    }, [productSlug, selectedProduct]);
+    }
+}, [productSlug, selectedProduct, sessionToken]);
+
 
     useEffect(() => {
         if (product) {

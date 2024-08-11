@@ -80,10 +80,6 @@ export default function Header({flag}) {
             partialMatches.push(product);
         }
     });
-
-    console.log(exactMatches);
-    console.log(partialMatches);
-
     // Combine the results, prioritizing exact matches
     let filtered = exactMatches.concat(partialMatches);
 
@@ -166,7 +162,6 @@ export default function Header({flag}) {
     const price = firstVariation ? firstVariation.price : null;
     const size = firstVariation ? firstVariation.size : null;
 
-    console.log(flag);
     
 
     return (

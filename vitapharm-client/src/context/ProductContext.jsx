@@ -40,6 +40,9 @@ export default function ProductProvider({ children }) {
 
 
 
+
+
+
   const toast = useToast();
 
   useEffect(() => {
@@ -124,6 +127,7 @@ export default function ProductProvider({ children }) {
       .slice(0, 8);
     setRecentlyAddedProducts(topProducts);
   }, [products]);
+
 
   const addToCart = async (id) => {
     if (!sessionToken) return; // Handle missing token
@@ -285,6 +289,51 @@ export default function ProductProvider({ children }) {
     }
   };
 
+   // Function to deslugify the URL slug to match the product name
+ const scrappedDeslugify = (slug) => {
+    // Split the slug into parts, using both hyphens and underscores
+    const parts = slug.split(/[-_]/);
+    const lastPart = parts.pop(); // Remove the last part (the nanoid)
+
+    // Handle special cases where the % sign should be placed and add '+' where needed
+    for (let i = 0; i < parts.length; i++) {
+        const match = parts[i].match(/^(\d+(?:\.\d+)?)$/); // Match integers and decimals
+
+        if (match) {
+            const number = match[0];
+            if (i > 0 && /(?:gel|peel|solution|suspension|acid|retinoid|retinol|resveratrol|arbutin|vitamin|lactic|glycolic|ascorbyl)$/i.test(parts[i - 1])) {
+                parts[i] = `${number}%`;
+            } else if (i < parts.length - 1 && /^(?:gel|peel|solution|suspension|acid|retinoid|retinol|ha)$/i.test(parts[i + 1])) {
+                parts[i] = `${number}%`;
+            } else if (i > 0 && /(?:bha|aha)$/i.test(parts[i - 1])) {
+                parts[i] = `${number}%`;
+            } else {
+                parts[i] = `${number}`; // Keep the number as is
+            }
+        }
+
+        // Insert '+' between certain parts
+        if (parts[i].toLowerCase() === 'bha' && i > 0 && parts[i - 1].toLowerCase() === 'aha') {
+            parts.splice(i, 0, '+');
+            i++;
+        } else if (parts[i].toLowerCase() === 'ferulic' && i > 0 && parts[i - 1].toLowerCase() === 'resveratrol') {
+            parts.splice(i, 0, '+');
+            i++;
+        } else if (parts[i].toLowerCase() === 'ha' && i > 0 && parts[i - 1].toLowerCase() === 'arbutin') {
+            parts.splice(i, 0, '+');
+            i++;
+        }
+    }
+
+    // Capitalize the first letter of each word and join with spaces
+    const result = parts.join(' ')
+                        .replace(/\b\w/g, char => char.toUpperCase())  // Capitalize the first letter of each word
+                        .replace(/\s{2,}/g, ' ');  // Replace multiple spaces with a single space
+
+    return result;
+};
+
+
   const incrementQuantity = (productId) => {
     updateCartItemQuantity(productId, 1);
   };
@@ -399,17 +448,13 @@ useEffect(() => {
   }, [brand, products]);
 
   
-  function slugify(text) {
-    const baseSlug = text
-      .toLowerCase()
-      .replace(/ /g, '-')
-      .replace(/[^\w-]+/g, '');
-  
-    return `${baseSlug}-${nanoid(10)}`;
+  function slugify(int) {
+    const baseSlug = int  
+    return `${baseSlug}-${nanoid(12)}`;
   }
   
   function navigateToSingleProductView(product, flag) {
-    const slug = slugify(product.name);
+    const slug = slugify(product.id);
     setSelectedProduct(product);
   
     navigate(`/products/${slug}`);
