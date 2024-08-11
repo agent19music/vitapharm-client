@@ -3,6 +3,7 @@ import { ChevronRightIcon } from '@chakra-ui/icons';
 import { Link, useLocation } from 'react-router-dom';
 import { useContext, useState, useEffect, useRef } from 'react';
 import { ProductContext } from '../context/ProductContext';
+import isEqual from 'lodash.isequal'; // Import isEqual for shallow comparison
 
 const Breadcrumbs = () => {
   const location = useLocation();
@@ -17,7 +18,8 @@ const Breadcrumbs = () => {
   };
 
   useEffect(() => {
-    const newDisplayNameMap = {};
+    // Combine logic from both useEffect hooks
+    const newDisplayNameMap = { ...displayNameMap }; // Shallow copy for optimization
 
     pathnames.forEach((value, index) => {
       const to = `/${pathnames.slice(0, index + 1).join('/')}`;
@@ -34,25 +36,22 @@ const Breadcrumbs = () => {
       }
     });
 
-    setDisplayNameMap(newDisplayNameMap);
-    previousPath.current = location.pathname;
-  }, [pathnames, selectedProduct, location]);
-
-  useEffect(() => {
+    // Handle logic from the second useEffect
     if (location.pathname.startsWith('/brands') && previousPath.current.startsWith('/products')) {
-      setDisplayNameMap((prevMap) => {
-        const updatedMap = { ...prevMap };
-        // Remove any breadcrumb related to products
-        Object.keys(updatedMap).forEach((key) => {
-          if (key.startsWith('/products')) {
-            delete updatedMap[key];
-          }
-        });
-        return updatedMap;
+      Object.keys(newDisplayNameMap).forEach((key) => {
+        if (key.startsWith('/products')) {
+          delete newDisplayNameMap[key];
+        }
       });
     }
+
+    // Update state only if necessary
+    if (!isEqual(newDisplayNameMap, displayNameMap)) {
+      setDisplayNameMap(newDisplayNameMap);
+    }
+
     previousPath.current = location.pathname;
-  }, [location]);
+  }, [pathnames, selectedProduct, location.pathname]); // Combined dependencies
 
   return (
     <Breadcrumb separator={<ChevronRightIcon color="gray.500" />}>

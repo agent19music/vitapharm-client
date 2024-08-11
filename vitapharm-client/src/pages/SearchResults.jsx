@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ProductContext } from '../context/ProductContext';
 import { SimpleGrid } from '@chakra-ui/react';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '../components/SearchResultsProductCard';
 import Header from '../components/Header';
 import Footer from '../components/ModernFooter';
 import { Skeleton, Box, useDisclosure, Button } from '@chakra-ui/react';
