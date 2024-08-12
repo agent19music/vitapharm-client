@@ -13,7 +13,7 @@ const ProductCard = ({ product, addToCart }) => {
 
 
   return (
-    <div className="product-card group relative border-zinc-100/30  lg:w-72  flex flex-col self-center overflow-hidden border shadow-md lg:max-h-96 sm:ml-10">
+    <div className="product-card group relative border-zinc-100/30  lg:w-72  flex flex-col self-center overflow-hidden border shadow-sm lg:max-h-96 sm:ml-10">
     <div className="relative mx-3 mt-3 flex h-60 overflow-hidden">  
       <img  onClick={()=> navigateToSingleProductView(product)} className="hover:cursor-pointer peer absolute top-0 right-0 h-full w-full object-cover"  src={`${product.images[0]?.url}`} alt="product image" />
       {product.images.length > 1 && (
