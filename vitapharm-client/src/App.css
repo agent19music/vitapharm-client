@@ -358,9 +358,9 @@ div.mobile-blog{
 	  }
 	
 	  .product-card, .skeleton-card {
-		width: 41vw; /* Adjust the width as needed */
+		width: 45vw; /* Adjust the width as needed */
 		height: 42vh;  /* Adjust the height as needed */
-		margin-right: 16px;
+		margin-right: 4px;
 		flex-shrink: 0; /* Prevent the card from shrinking */
 	  }
 
