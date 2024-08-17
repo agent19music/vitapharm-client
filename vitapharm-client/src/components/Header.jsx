@@ -102,9 +102,16 @@ export default function Header({flag}) {
   return (
     <header>
     <div className='info-bar md:flex md:flex-row md:justify-between '>
-  <div className='info-item font-futurabold text-sm md:text-base'>
+  <div className='info-item font-futurabold text-sm md:text-base desktop-info-item'>
     {TEXTS.map((text, idx) => (
-      <TextTransition key={idx} springConfig={presets.wobbly}>
+      <TextTransition key={idx} springConfig={presets.wobbly} className=' mb-6 '>
+        {TEXTS[(index + idx) % TEXTS.length]}
+      </TextTransition>
+    ))}
+  </div>
+  <div className='info-item font-futurabold text-sm md:text-base mobile-info-item'>
+    {TEXTS.map((text, idx) => (
+      <TextTransition key={idx} springConfig={presets.wobbly} className=' mb-6 '>
         {TEXTS[(index + idx) % TEXTS.length]}
       </TextTransition>
     ))}
