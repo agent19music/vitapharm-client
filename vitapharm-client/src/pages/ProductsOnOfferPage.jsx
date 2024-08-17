@@ -26,12 +26,11 @@ export default function ProductsOnOfferPage() {
         <div className="search-results-page mx-auto">
           <Header/>
           
-         {productsOnOffer.message !== '' && productsOnOffer.length > 0 && <div className='flex justify-center items-center h-full py-64'>
+         {productsOnOffer.message !== '' && <div className='flex justify-center items-center h-full py-64'>
             <h2 className='font-futurabold'> OOPS ! NO PRODUCTS CURRENTLY ON OFFER</h2>
-            {/* <h5 className='font-futura'>Shop around to get product here !!</h5> */}
           </div>}
           <SimpleGrid columns={[1, 2, 3]} spacing="40px" width="100%" justifyItems="center" className='my-8'>
-            {productsOnOffer && productsOnOffer.length === 0 ? 
+            {productsOnOffer && productsOnOffer.length === 0 && productsOnOffer.message == '' ? 
               Array(6).fill().map((_, i) => <SkeletonCard key={i} />) : 
               productsOnOffer.length > 1 && productsOnOffer.map((product, index) => (
                 <ProductOnOfferCard key={index} product={product} addToCart={addToCart} />
