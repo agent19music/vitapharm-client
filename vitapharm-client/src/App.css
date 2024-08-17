@@ -43,6 +43,7 @@ button.spbs{
 div.info-bar{
 	min-width: 100vw;
 	display: flex;
+	padding-bottom: 0.5625rem;
 	justify-content:center;
 	/* background: rgb(105, 63, 45); */
 	background: rgb(77,10,30);
@@ -246,6 +247,9 @@ h3.image-categories-titles{
   div.mobile-scroll-products{
   	display : none;
   }
+  div.mobile-info-item{
+	display: none;
+  }
   }
 
 span.edit-cartamount:hover{
@@ -303,6 +307,9 @@ div.desktop-reels{
 	}
 
 	div.desktop-attr{
+		display: none;
+	}
+	div.desktop-info-item{
 		display: none;
 	}
 

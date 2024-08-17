@@ -33,7 +33,7 @@ export default function LandingPage() {
   return (
     <div>
       <Header/>
-      <section className='bg max-w-screen my-3 carousel desktopslides'>
+      <section className='bg max-w-screen min-h-full my-3 carousel desktopslides'>
        <BannerCarousel/>
       </section>
       <section className='bg max-w-screen my-3 mx-0 carousel mobileslides'>
