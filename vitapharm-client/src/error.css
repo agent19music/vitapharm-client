@@ -390,11 +390,55 @@ body {
     height: 190px;
     left: 47%;
     top: 19%;
-    transform: translate(-50%, -50%) rotate(20deg) scale(1.2);
+    transform: translate(-80%, -70%) rotate(20deg) scale(0.7);
   }
   .error__description{
     font-size: 1.2rem;
     margin-top: 5px;
   }
+  .moon {
+    background: linear-gradient(90deg, rgba(208,208,208,1) 48%, rgba(145,145,145,1) 100%);
+    position: absolute;
+    top: 60%;
+    left: 6%;
+    transform: translate(-50%, -50%); /* Center the moon */
+    width: 500px; /* 30% of original width */
+    height: 500px; /* 30% of original height */
+    content: '';
+    border-radius: 100%;
+    box-shadow: 0px 0px 30px -4px rgba(0,0,0,0.5);
+  }
+  
+  .moon__crater {
+    position: absolute;
+    content: '';
+    border-radius: 100%;
+    background: linear-gradient(90deg, rgba(122,122,122,1) 38%, rgba(195,195,195,1) 100%);
+    opacity: 0.6;
+  }
+  
+  .moon__crater1 {
+    top: 70%; /* 70% relative to the moon's height */
+    left: 25%; /* 185% relative to the moon's width */
+    width: 32px;
+    height: 30px;
+  }
+  
+  .moon__crater2 {
+    top: 75%; /* 93% relative to the moon's height */
+    left: 73%; /* 126% relative to the moon's width */
+    width: 40px;
+    height: 80px;
+    transform: rotate(55deg);
+  }
+  
+  .moon__crater3 {
+    top: 33%; /* 4% relative to the moon's height */
+    left: 89%; /* 15% relative to the moon's width */
+    width: 65px;
+    height: 120px;
+    transform: rotate(130deg);
+  }
+  
 
 }
