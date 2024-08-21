@@ -37,7 +37,7 @@ const BannerCarousel = () => {
             <Skeleton height="100%" width="100%" /> 
           )}
           <img
-            src="/C19.png"
+            src="/C1.png"
             alt="Banner"
             className="banner-slide"
             onLoad={handleImageLoad} // Trigger when image loads
@@ -49,7 +49,7 @@ const BannerCarousel = () => {
             <Skeleton height="100%" width="100%" /> 
           )}
           <img
-            src="/C3.png"
+            src="/C19.png"
             alt="Banner"
             className="banner-slide"
             onLoad={handleImageLoad}

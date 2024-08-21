@@ -459,10 +459,10 @@ export default function CheckoutPage() {
                             <p className="font-futuramedbold text-gray-900">{shippingCost}</p>
                           </div>
                         </div>
-                        {promoApplied && (
+                        {promoApplied && !promoError && (
                         <div className="flex items-center justify-between">
                           <p className="text-sm font-futurabold text-gray-900">Discounted Total</p>
-                          <p className="font-futuramedbold text-gray-900">Ksh {total}</p>
+                          <p className="font-futuramedbold text-gray-900">Ksh {total * discountPercentage / 100}</p>
                         </div>
                       )}
                         <div className="mt-6 flex items-center justify-between">
@@ -506,7 +506,7 @@ export default function CheckoutPage() {
                         </Alert>
                     )}
                     {isPromoCodeError && <p className="text-red-500 font-futurabold text-sm">Promocode is required.</p>}
-                    {promoApplied && <p className="text-green-500 font-futurabold text-sm">Promocode accepted.</p>}
+                    {promoApplied && !promoError && <p className="text-green-500 font-futurabold text-sm">Promocode accepted.</p>}
                 </Box>
 
                                  
