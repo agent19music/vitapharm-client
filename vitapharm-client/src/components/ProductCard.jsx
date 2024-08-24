@@ -32,7 +32,9 @@ const ProductCard = ({ product, addToCart }) => {
       </div>
     </div>
     <div className=" px-5 pb-5">
-        <h5 className="text-xl font-futurabold tracking-tight text-black">{product.name}</h5>
+        <h5 className="text-xl font-futurabold tracking-tight text-black desktop-name-h5">{product.name}</h5>
+        <h5 className="text-lg font-futurabold  text-black mobile-name-h5">{product.name}</h5>
+
       <div className="mt-2 flex items-center justify-between">
         <p>
           <span className="text-3xl font-futura text-black desktop-price-span">Ksh {price !== null ? price : "N/A"}</span>

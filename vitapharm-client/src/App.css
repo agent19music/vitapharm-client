@@ -247,6 +247,9 @@ h3.image-categories-titles{
   div.mobile-scroll-products{
   	display : none;
   }
+  h5.mobile-name-h5{
+	display: none;
+  }
   div.mobile-info-item{
 	display: none;
   }
@@ -301,6 +304,9 @@ span.edit-cartamount:hover{
 	}  
 div.desktop-reels{
 	display:none;
+}
+h5.desktop-name-h5{
+	display: none;
 }
 	section.desktop-navbar{
 		display: none;
